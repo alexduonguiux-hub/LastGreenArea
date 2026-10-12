@@ -18,6 +18,8 @@ from legacy_import import Importer  # noqa: E402
 from maps import lpc as lpc_tiles  # noqa: E402
 from maps import level1  # noqa: E402
 from maps.grade import grade  # noqa: E402
+from ui.components import all_components  # noqa: E402
+from ui.css import css as ui_css  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT_IMG = ROOT / 'public' / 'assets'
@@ -55,6 +57,12 @@ def build():
         # neo = chân vật thể: giữa đáy; cây có bóng nên nhích lên 6 px
         foot = im.height - (6 if name.startswith('conifer') else 2)
         m.place(f'env/{name}', im, 'env', 'env', (im.width // 2, foot), trim=False)
+    # thành phần UI v10 (A4): vào vùng ui, kèm slice/outset trong manifest; cắt ra sprite riêng cho CSS border-image
+    comps = all_components()
+    for name, spec in comps.items():
+        f = m.place(f'ui/{name}', spec['img'], 'ui', 'ui', (0, 0), trim=False)
+        if spec['slice']:
+            f.extra = {'slice': list(spec['slice']), 'outset': spec['outset']}
     manifest = m.manifest(PAGES)
     anims = imp.anims
     manifest['meta']['frames'] = len(m.frames)
@@ -69,6 +77,12 @@ def build():
     outputs['public/data/anims.json'] = dumps(anims).encode('utf-8')
     outputs['public/data/levels/level1.json'] = dumps(level).encode('utf-8')
     outputs['public/data/atlas.js'] = atlas_js(manifest, anims).encode('utf-8')
+    page1 = m.pages[1]
+    for f in m.frames:
+        if f.group == 'ui':
+            crop = page1.crop((f.x, f.y, f.x + f.w, f.y + f.h))
+            outputs[f'src/ui/sprites/{f.id.split("/", 1)[1]}.png'] = png_bytes(crop)
+    outputs['src/ui/v10.css'] = ui_css(comps).encode('utf-8')
     return m, outputs, manifest, anims, imp.log
 
 

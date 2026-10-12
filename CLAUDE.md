@@ -29,7 +29,8 @@ Game chiến thuật ẩn nấp góc nhìn 3/4 (top-down), pixel art, tiếng Vi
 - Vite + TypeScript + Phaser 3.90 trong `src/`; `npm run dev` / `build` / `test` / `lint` / `typecheck`. Cấu hình 800×450, `pixelArt`, `roundPixels`, `Scale.FIT`.
 - Atlas nạp bằng `load.multiatlas('atlas', 'data/atlas.json', 'assets/')`; hoạt ảnh đăng ký từ `anims.json` với khóa = id (`char/duong/di-xuong`).
 - `entities/Actor` là sprite LPC: neo chân tự theo `anchor` của khung, `setFace(1)` = lật ngang, `depth = y`. Tốc độ tư thế trong `entities/Player`.
-- Chữ chỉ vẽ trên lớp DOM `#ui` (`src/ui/overlay.ts`, token trong `src/ui/tokens.css`), không dùng `Phaser.GameObjects.Text` cho tiếng Việt.
+- Chữ chỉ vẽ trên lớp DOM `#ui` (`src/ui/overlay.ts`, `src/ui/hud.ts`), không dùng `Phaser.GameObjects.Text` cho tiếng Việt.
+- Khung UI là 9-slice sinh từ atlas: lớp `.v10-*` trong `src/ui/v10.css` (file sinh, không sửa tay; nguồn `art/ui/components.py`). Bố cục HUD trong `src/ui/tokens.css`, đơn vị `--px` = 1 px game.
 
 ## Cấu trúc
 - `assets/characters/` hoạt ảnh 4 nhân vật (bản C) · `assets/enemies/` 8 loại Biến Thể · `assets/npcs/` Mai, Ông Tư, Bác sĩ Lan, Lính Nhiễm

@@ -15,7 +15,7 @@ function box(cls: string, html: string): HTMLDivElement {
   let el = root.querySelector<HTMLDivElement>(`.v10-box.${cls}`);
   if (!el) {
     el = document.createElement('div');
-    el.className = `v10-box ${cls}`;
+    el.className = `v10-box v10-panel ${cls}`;
     root.appendChild(el);
   }
   el.innerHTML = html;

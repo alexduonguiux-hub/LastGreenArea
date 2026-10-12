@@ -27,11 +27,23 @@ UI = {
     'bar_off': (30, 36, 52),
     'shadow': (4, 6, 10),
     'black': (0, 0, 0),
+    # màu phụ lấy từ tools/locked.py và cyber.py
+    'mag_line': (170, 40, 120),   # vạch trên bảng tên
+    'card_sel': (58, 14, 42),     # thẻ đang chọn
+    'card_stripe': (70, 18, 52),  # vạch quét trên thẻ đang chọn
+    'choice': (24, 30, 44),       # dòng lựa chọn
+    'choice_sel': (70, 16, 52),   # dòng lựa chọn đang chọn
+    'track': (30, 40, 58),        # rãnh thanh cuộn
+    'btn_hover': (40, 52, 74),
+    'edge_hi': (60, 150, 170),
+    'speed': (190, 120, 255),     # thanh Nhanh
+    # viền sáng trên thanh phân đoạn (= màu + 60)
+    'bad_hi': (255, 130, 140), 'warn_hi': (255, 255, 120), 'ok_hi': (140, 255, 180), 'tick_hi': (122, 255, 255), 'speed_hi': (250, 180, 255),
 }
 LED = (UI['bad'], UI['warn'], UI['ok'])
 
 # Thanh chỉ số (HUD v10): máu đỏ, sức lực vàng, ẩn nấp cyan, nhanh tím
-STAT = {'hp': UI['bad'], 'sl': UI['warn'], 'stealth': UI['tick'], 'speed': (190, 120, 255)}
+STAT = {'hp': UI['bad'], 'sl': UI['warn'], 'stealth': UI['tick'], 'speed': UI['speed']}
 
 # ---- Nhân vật (bản C) ----------------------------------------------------
 CHARACTERS = {

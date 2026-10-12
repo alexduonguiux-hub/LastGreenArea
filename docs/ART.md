@@ -62,6 +62,14 @@ Hoạt ảnh = id không có số khung: `char/duong/di-xuong`. `anims.json[id]`
 Ký tự đặc biệt trong ma trận: `G` điểm cầm, `M` đầu nòng, `A` neo; khai báo trong tham số `markers` của `parse`
 để vừa tô màu vừa ghi tọa độ. `pixel.to_text` chuyển sprite có sẵn thành ma trận để port asset cũ.
 
+## Thành phần UI (A4)
+
+`art/ui/components.py` vẽ 34 thành phần v10 (khung, bảng tên, nút 4 trạng thái, tab, ô, thẻ, dòng lựa chọn, thanh
+phân đoạn, phím, công tắc, LED, dấu ?/!, ô chọn, con trỏ, thanh cuộn) vào vùng `ui` của atlas với metadata 9-slice.
+Build cắt từng thành phần ra `src/ui/sprites/<tên>.png` và sinh `src/ui/v10.css` (lớp `.v10-<tên>` dùng
+`border-image`, đơn vị `--px` = 1 px game). Xem thử: `prototype/ui_kit.html`. Thêm thành phần: viết hàm trong
+`components.py`, đăng ký trong `all_components()`, chạy `npm run art`.
+
 ## Bảng màu
 
 `art/palette.py`: `UI` token v10 (đã chốt), `CHARACTERS` bảng màu 4 nhân vật + Biến Thể, `MATERIAL` vật liệu

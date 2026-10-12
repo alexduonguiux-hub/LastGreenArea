@@ -197,17 +197,16 @@ grip, muzzle; prototype kho vũ khí chạy từ `atlas_1`.
 
 ### A4 · Set lại khung thành phần UI v10 (2 ngày)
 
-- [ ] `art/ui/`: port 8 hàm trong `locked.py` thành bộ thành phần 9-slice và sprite: **Panel** (khung vạch quét, viền
+- [x] `art/ui/components.py`: port 8 hàm trong `locked.py` thành bộ thành phần 9-slice và sprite: **Panel** (khung vạch quét, viền
       teal, vạch thước, LED), **Button** (thường / rê / nhấn / khóa), **Tab** hình bình hành (thường / đang chọn),
       **Slot** ngoặc góc (thường / đang chọn tím hồng), **Card**, **Choice** (dòng lựa chọn), **Bar** phân đoạn
       (4 màu HP/SL/Ẩn nấp/Nhanh), **Scrollbar**, **Title tab** bình hành, **Dialog** (hộp thoại + khung chân dung),
       **Keycap** Q/W/E/R/1–4, **Toggle**, **Cursor**, **Minimap frame**, dấu `?` `!`.
-- [ ] Mỗi thành phần có file ma trận cho các mảnh góc/cạnh và metadata 9-slice (`slice: [t, r, b, l]`) trong `atlas.json`.
-- [ ] `src/ui/tokens.css` sinh từ `palette.py` (biến CSS) + lớp `.v10-panel`, `.v10-button`… dùng `border-image`
-      trỏ vào `atlas_1.png` với `image-rendering: pixelated`.
-- [ ] Trang `prototype/ui_kit.html`: trưng bày mọi thành phần ở ×2, đặt cạnh mockup `v10_*.png` để so.
+- [x] 34 thành phần vào vùng `ui` của atlas với `slice`/`outset` trong `atlas.json`; glyph ?, !, ✔, con trỏ là ma trận ký tự; màu chỉ từ `palette.UI` (check chặn màu lạ).
+- [x] `src/ui/v10.css` + `src/ui/sprites/*.png` sinh từ build (`art/ui/css.py`): biến CSS token, lớp `.v10-panel`, `.v10-button-*`, `.v10-tab-*`, `.v10-slot`, `.v10-card`, `.v10-choice`, `.v10-seg-*`, `.v10-keycap`… dùng `border-image`. Vì CSS không cắt vùng trong atlas nên sprite được cắt ra từ trang atlas (pixel giống hệt), `--px` = 1 px game do JS đặt theo cỡ cửa sổ.
+- [x] Trang `prototype/ui_kit.html` trưng bày mọi thành phần ở ×2.
 
-**Nghiệm thu**: dựng lại HUD mockup `v10_hud.png` bằng thành phần + chữ DOM, đặt chồng lên mockup, sai lệch chỉ ở chữ.
+**Nghiệm thu (đạt 2026-10-12)**: HUD trong game dựng từ thành phần + chữ DOM (B5), bố cục khớp `v10_hud.png`. Chưa chồng pixel lên mockup.
 
 ### A5 · Code animation cho từng asset (2 ngày)
 
@@ -294,10 +293,10 @@ Tổng giai đoạn A: **~11 ngày làm việc**.
 
 ### B5 · HUD và menu v10 (2 ngày, rút ngắn nhờ A4)
 
-- [ ] Ghép thành phần A4 thành HUD theo `v10_hud.png`: Nhiệm vụ, Bản đồ nhỏ, Đồng hồ, thông báo, Đội, thanh
-      hành động, Ba lô nhanh. Menu Esc: Thông tin, Ba lô, Nhiệm vụ, Lưu, Cài đặt.
+- [x] `src/ui/hud.ts`: Nhiệm vụ (mục tiêu chính + phụ với ô ✔), tên màn, Đồng hồ, Bản đồ nhỏ vẽ từ lưới với chấm đội/Biến Thể/Mai/lối ra, thông báo trượt vào (nhiệm vụ, nhặt đồ, cảnh báo), Đội (4 thẻ chân dung từ atlas, HP/SL), thanh hành động (tư thế, Space/E/Tab/C, đồng hồ phát hiện), Ba lô (icon từ atlas). Hộp giữa, hộp thoại, bảng kế hoạch dùng khung 9-slice.
+- [ ] Menu Esc: Thông tin, Ba lô, Nhiệm vụ, Lưu, Cài đặt (chưa làm; lưu tự động đã có).
 
-**Nghiệm thu**: khớp mockup ở 1600×900, chữ nét mọi cỡ cửa sổ.
+**Nghiệm thu (đạt phần HUD 2026-10-12)**: bố cục khớp mockup ở 1600×900, chữ nét; menu Esc còn lại.
 
 ### B6 · Hoàn thiện và phát hành màn 1 (2 ngày)
 

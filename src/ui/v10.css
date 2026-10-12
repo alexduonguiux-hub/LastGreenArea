@@ -1,0 +1,73 @@
+/* FILE SINH bởi art/ui/css.py (npm run art). Không sửa tay. */
+:root {
+  --bg: #080A10;
+  --grid: #0E121C;
+  --panel: #121620;
+  --scan: #10141E;
+  --edge: #186078;
+  --tick: #3EECFF;
+  --mag: #6E144A;
+  --mag-hi: #FF3AA8;
+  --mag-lo: #38102C;
+  --slot: #161C28;
+  --ink: #D8F4FF;
+  --dim: #7896B0;
+  --warn: #F0C83C;
+  --ok: #50DC78;
+  --bad: #F04650;
+  --bracket-dim: #28384C;
+  --tab-off: #1E2636;
+  --bar-off: #1E2434;
+  --shadow: #04060A;
+  --black: #000000;
+  --mag-line: #AA2878;
+  --card-sel: #3A0E2A;
+  --card-stripe: #461234;
+  --choice: #181E2C;
+  --choice-sel: #461034;
+  --track: #1E283A;
+  --btn-hover: #28344A;
+  --edge-hi: #3C96AA;
+  --speed: #BE78FF;
+  --bad-hi: #FF828C;
+  --warn-hi: #FFFF78;
+  --ok-hi: #8CFFB4;
+  --tick-hi: #7AFFFF;
+  --speed-hi: #FAB4FF;
+  --px: 2px;
+}
+.v10 { image-rendering: pixelated; }
+.v10-panel { border-style: solid; border-width: calc(var(--px) * 14) calc(var(--px) * 30) calc(var(--px) * 10) calc(var(--px) * 10); border-image: url(./sprites/panel.png) 14 30 10 10 fill / calc(var(--px) * 14) calc(var(--px) * 30) calc(var(--px) * 10) calc(var(--px) * 10) / calc(var(--px) * 4) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-title { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 9) calc(var(--px) * 3) calc(var(--px) * 9); border-image: url(./sprites/title.png) 3 9 3 9 fill / calc(var(--px) * 3) calc(var(--px) * 9) calc(var(--px) * 3) calc(var(--px) * 9) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-keycap { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 4) calc(var(--px) * 3); border-image: url(./sprites/keycap.png) 3 3 4 3 fill / calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 4) calc(var(--px) * 3) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-scroll-track { background: url(./sprites/scroll-track.png) repeat-x; background-size: calc(var(--px) * 5) calc(var(--px) * 4); height: calc(var(--px) * 4); image-rendering: pixelated; display: inline-block; }
+.v10-scroll-thumb { border-style: solid; border-width: calc(var(--px) * 2) calc(var(--px) * 0) calc(var(--px) * 2) calc(var(--px) * 0); border-image: url(./sprites/scroll-thumb.png) 2 0 2 0 fill / calc(var(--px) * 2) calc(var(--px) * 0) calc(var(--px) * 2) calc(var(--px) * 0) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-cursor { background: url(./sprites/cursor.png) no-repeat; background-size: calc(var(--px) * 11) calc(var(--px) * 11); width: calc(var(--px) * 11); height: calc(var(--px) * 11); image-rendering: pixelated; display: inline-block; }
+.v10-target { background: url(./sprites/target.png) no-repeat; background-size: calc(var(--px) * 9) calc(var(--px) * 9); width: calc(var(--px) * 9); height: calc(var(--px) * 9); image-rendering: pixelated; display: inline-block; }
+.v10-marker-q { background: url(./sprites/marker-q.png) no-repeat; background-size: calc(var(--px) * 7) calc(var(--px) * 10); width: calc(var(--px) * 7); height: calc(var(--px) * 10); image-rendering: pixelated; display: inline-block; }
+.v10-marker-x { background: url(./sprites/marker-x.png) no-repeat; background-size: calc(var(--px) * 6) calc(var(--px) * 10); width: calc(var(--px) * 6); height: calc(var(--px) * 10); image-rendering: pixelated; display: inline-block; }
+.v10-check-on { background: url(./sprites/check-on.png) no-repeat; background-size: calc(var(--px) * 7) calc(var(--px) * 7); width: calc(var(--px) * 7); height: calc(var(--px) * 7); image-rendering: pixelated; display: inline-block; }
+.v10-check-off { background: url(./sprites/check-off.png) no-repeat; background-size: calc(var(--px) * 7) calc(var(--px) * 7); width: calc(var(--px) * 7); height: calc(var(--px) * 7); image-rendering: pixelated; display: inline-block; }
+.v10-toggle-on { background: url(./sprites/toggle-on.png) no-repeat; background-size: calc(var(--px) * 24) calc(var(--px) * 12); width: calc(var(--px) * 24); height: calc(var(--px) * 12); image-rendering: pixelated; display: inline-block; }
+.v10-toggle-off { background: url(./sprites/toggle-off.png) no-repeat; background-size: calc(var(--px) * 24) calc(var(--px) * 12); width: calc(var(--px) * 24); height: calc(var(--px) * 12); image-rendering: pixelated; display: inline-block; }
+.v10-button-normal { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3); border-image: url(./sprites/button-normal.png) 3 3 3 3 fill / calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-button-hover { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3); border-image: url(./sprites/button-hover.png) 3 3 3 3 fill / calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-button-pressed { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3); border-image: url(./sprites/button-pressed.png) 3 3 3 3 fill / calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-button-disabled { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3); border-image: url(./sprites/button-disabled.png) 3 3 3 3 fill / calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-tab-normal { border-style: solid; border-width: calc(var(--px) * 2) calc(var(--px) * 8) calc(var(--px) * 2) calc(var(--px) * 8); border-image: url(./sprites/tab-normal.png) 2 8 2 8 fill / calc(var(--px) * 2) calc(var(--px) * 8) calc(var(--px) * 2) calc(var(--px) * 8) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-tab-active { border-style: solid; border-width: calc(var(--px) * 2) calc(var(--px) * 8) calc(var(--px) * 2) calc(var(--px) * 8); border-image: url(./sprites/tab-active.png) 2 8 2 8 fill / calc(var(--px) * 2) calc(var(--px) * 8) calc(var(--px) * 2) calc(var(--px) * 8) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-slot { border-style: solid; border-width: calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7); border-image: url(./sprites/slot.png) 7 7 7 7 fill / calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) / calc(var(--px) * 2) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-slot-sel { border-style: solid; border-width: calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7); border-image: url(./sprites/slot-sel.png) 7 7 7 7 fill / calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) / calc(var(--px) * 2) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-card { border-style: solid; border-width: calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6); border-image: url(./sprites/card.png) 6 6 6 6 fill / calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-card-sel { border-style: solid; border-width: calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6); border-image: url(./sprites/card-sel.png) 6 6 6 6 fill / calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-choice { border-style: solid; border-width: calc(var(--px) * 2) calc(var(--px) * 10) calc(var(--px) * 2) calc(var(--px) * 4); border-image: url(./sprites/choice.png) 2 10 2 4 fill / calc(var(--px) * 2) calc(var(--px) * 10) calc(var(--px) * 2) calc(var(--px) * 4) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-choice-sel { border-style: solid; border-width: calc(var(--px) * 2) calc(var(--px) * 10) calc(var(--px) * 2) calc(var(--px) * 4); border-image: url(./sprites/choice-sel.png) 2 10 2 4 fill / calc(var(--px) * 2) calc(var(--px) * 10) calc(var(--px) * 2) calc(var(--px) * 4) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-seg-bad { background: url(./sprites/seg-bad.png) repeat-x; background-size: calc(var(--px) * 5) calc(var(--px) * 5); height: calc(var(--px) * 5); image-rendering: pixelated; display: inline-block; }
+.v10-seg-warn { background: url(./sprites/seg-warn.png) repeat-x; background-size: calc(var(--px) * 5) calc(var(--px) * 5); height: calc(var(--px) * 5); image-rendering: pixelated; display: inline-block; }
+.v10-seg-ok { background: url(./sprites/seg-ok.png) repeat-x; background-size: calc(var(--px) * 5) calc(var(--px) * 5); height: calc(var(--px) * 5); image-rendering: pixelated; display: inline-block; }
+.v10-seg-tick { background: url(./sprites/seg-tick.png) repeat-x; background-size: calc(var(--px) * 5) calc(var(--px) * 5); height: calc(var(--px) * 5); image-rendering: pixelated; display: inline-block; }
+.v10-seg-speed { background: url(./sprites/seg-speed.png) repeat-x; background-size: calc(var(--px) * 5) calc(var(--px) * 5); height: calc(var(--px) * 5); image-rendering: pixelated; display: inline-block; }
+.v10-seg-off { background: url(./sprites/seg-off.png) repeat-x; background-size: calc(var(--px) * 5) calc(var(--px) * 5); height: calc(var(--px) * 5); image-rendering: pixelated; display: inline-block; }
+.v10-led-bad { background: url(./sprites/led-bad.png) no-repeat; background-size: calc(var(--px) * 4) calc(var(--px) * 3); width: calc(var(--px) * 4); height: calc(var(--px) * 3); image-rendering: pixelated; display: inline-block; }
+.v10-led-warn { background: url(./sprites/led-warn.png) no-repeat; background-size: calc(var(--px) * 4) calc(var(--px) * 3); width: calc(var(--px) * 4); height: calc(var(--px) * 3); image-rendering: pixelated; display: inline-block; }
+.v10-led-ok { background: url(./sprites/led-ok.png) no-repeat; background-size: calc(var(--px) * 4) calc(var(--px) * 3); width: calc(var(--px) * 4); height: calc(var(--px) * 3); image-rendering: pixelated; display: inline-block; }

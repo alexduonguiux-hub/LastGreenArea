@@ -72,6 +72,7 @@ class Frame:
     anchor: tuple  # pixel trong khung gốc
     trimmed: bool
     empty: bool = False
+    extra: dict = field(default_factory=dict)
 
     def to_json(self):
         return {
@@ -86,6 +87,7 @@ class Frame:
             'zone': self.zone,
             'group': self.group,
             **({'empty': True} if self.empty else {}),
+            **self.extra,
         }
 
 

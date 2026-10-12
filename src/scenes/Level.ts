@@ -10,16 +10,15 @@ import { CollisionGrid, type LevelData } from '../world/CollisionGrid';
 import { Pickups, ITEM_LABEL } from '../world/Pickups';
 import { NoiseSystem } from '../stealth/Noise';
 import { drawCone } from '../stealth/VisionCone';
-import { LEVEL_LABEL } from '../stealth/Detection';
 import { CMD_LABEL, MAX_CMDS, PlanMode, type Cmd } from '../stealth/PlanMode';
 import { Squad } from '../squad/Squad';
 import { Beats, BEATS, SIDE_OBJECTIVES } from '../levels/level1';
 import { Dialogue, portraitCanvas, type Line } from '../ui/dialogue';
 import { overlay } from '../ui/overlay';
+import { Hud, type HudState } from '../ui/hud';
 
 const STANCE_LABEL = { dung: 'Đứng', khom: 'Khom', bo: 'Bò' } as const;
 const LEVEL_COLOR = { 'an-minh': 0xf05040, 'nghi-ngo': 0xf0c83c, 'bao-dong': 0xf04650 } as const;
-const LEVEL_CSS = { 'an-minh': 'var(--ok)', 'nghi-ngo': 'var(--warn)', 'bao-dong': 'var(--bad)' } as const;
 const ORDER = ['duong', 'hung', 'ny', 'son'];
 const LEVEL_ID = 'level1';
 
@@ -45,10 +44,11 @@ export class Level extends Phaser.Scene {
   private dialogue!: Dialogue;
   private mai!: Npc;
   private fog!: HTMLDivElement;
+  private hud!: Hud;
+  private lastSay = '';
   private caught = false;
   private won = false;
   private runNoiseT = 0;
-  private status = '';
   private objective = '';
   private inventory: Record<string, number> = {};
   private stats = { time: 0, detected: 0 };
@@ -135,6 +135,9 @@ export class Level extends Phaser.Scene {
     this.fog.className = 'fog';
     ui.appendChild(this.fog);
     this.dialogue = new Dialogue(ui, (who) => this.speaker(who));
+    this.hud = new Hud(ui);
+    this.hud.buildMinimap(this.grid);
+    this.lastSay = '';
 
     this.beats = new Beats(this.level);
     this.bindKeys();
@@ -184,7 +187,7 @@ export class Level extends Phaser.Scene {
       this.mai.lead(this.level.mai.path.slice(2));
       this.talk(dialogue);
     } else this.talk(dialogue);
-    if (beat > 0) this.say(`Điểm lưu: ${objective}.`);
+    this.say(`Nhiệm vụ mới: ${objective}`, 'quest');
   }
 
   private saveCheckpoint(beat: number, checkpoint: string): void {
@@ -237,7 +240,7 @@ export class Level extends Phaser.Scene {
       if (this.plan.active) this.plan.cancel();
       else {
         this.plan.enter(this.squad.leaderIdx);
-        this.say('Kế hoạch: chọn người 1–4, bấm bản đồ thêm Đi tới. T ném đá vào điểm bấm, H hạ gục, G chờ 2 s, Backspace xóa, Enter thực thi, Esc hủy.');
+        this.say('Kế hoạch: xếp lệnh cho từng người rồi Enter.');
       }
     });
     kb.on('keydown-ESC', () => {
@@ -308,11 +311,11 @@ export class Level extends Phaser.Scene {
     const item = it.def.item;
     if (item === 'da-nem') {
       m.rocks++;
-      this.say(`${m.def.name} nhặt một viên đá. Đá ×${m.rocks}.`);
+      this.say(`Nhặt được: Đá ném ×${m.rocks}`, 'item');
     } else {
       this.inventory[item] = (this.inventory[item] ?? 0) + 1;
       const side = SIDE_OBJECTIVES.find((s) => s.item === item);
-      this.say(`Nhặt được ${ITEM_LABEL[item] ?? item}${side ? ` · ${this.inventory[item]}/${side.need}` : ''}.`);
+      this.say(`Nhặt được: ${ITEM_LABEL[item] ?? item}${side ? ` ${this.inventory[item]}/${side.need}` : ''}`, 'item');
     }
   }
 
@@ -333,8 +336,16 @@ export class Level extends Phaser.Scene {
     this.say('Đang thực thi kế hoạch…');
   }
 
-  private say(text: string): void {
-    this.status = text;
+  private say(text: string, kind: 'info' | 'quest' | 'item' = 'info'): void {
+    if (text === this.lastSay) return;
+    this.lastSay = text;
+    this.hud.notify(text, kind);
+  }
+
+  /** Icon 16 px của vật phẩm từ atlas (canvas mới mỗi lần vì canvas không clone được bitmap). */
+  private itemIcon(item: string): HTMLCanvasElement | null {
+    const fr = this.textures.getFrame(ATLAS, `item/${item}`);
+    return fr ? portraitCanvas(fr.source.image as HTMLImageElement, { x: fr.cutX, y: fr.cutY, w: fr.cutWidth, h: fr.cutHeight }, 1) : null;
   }
 
   private rockLanded(x: number, y: number): void {
@@ -432,11 +443,10 @@ export class Level extends Phaser.Scene {
     });
   }
 
-  private drawHud(): void {
+  private drawHud(dt: number): void {
     const cam = this.cameras.main;
     const L = this.squad.leader;
     const hidden = L.stance !== 'dung' && this.grid.hides(L.x, L.y);
-    // Biến Thể gần thủ lĩnh nhất để hiện đồng hồ
     let e: Enemy | undefined;
     let bd = Infinity;
     for (const en of this.enemies) {
@@ -446,19 +456,33 @@ export class Level extends Phaser.Scene {
         e = en;
       }
     }
-    const lvl = e?.state === 'down' ? null : e?.level;
-    const label = e?.state === 'down' ? 'Bị hạ' : lvl ? LEVEL_LABEL[lvl] : '';
-    const team = this.squad.members
-      .map((m, i) => `<span style="color:${i === this.squad.leaderIdx ? 'var(--ink)' : 'var(--dim)'}"><b style="color:${m.def.color}">${i + 1}</b> ${m.def.name}</span>`)
-      .join(' · ');
-    const side = SIDE_OBJECTIVES.map((s) => {
-      const n = this.inventory[s.item] ?? 0;
-      return `<div class="${n >= s.need ? 'done' : 'side'}">${s.label} ${n}/${s.need}</div>`;
-    }).join('');
-    overlay.topLeft(
-      this.level.name,
-      `<div class="v10-obj"><div>${this.objective}</div>${side}</div><div style="margin-top:6px">${team}</div><div class="v10-sub">${STANCE_LABEL[L.stance]}${hidden ? ' · ẩn trong bụi' : ''} · Đá ×${L.rocks} · ${formatTime(this.stats.time)}</div>`,
-    );
+    const near = this.plan.active ? null : this.pickups.nearest(L.x, L.y, 28);
+    const inv = Object.entries(this.inventory)
+      .filter(([k]) => !k.startsWith('__'))
+      .map(([id, count]) => ({ id, label: ITEM_LABEL[id] ?? id, count, icon: () => this.itemIcon(id) }));
+    const state: HudState = {
+      levelName: this.level.name,
+      objective: this.objective,
+      side: SIDE_OBJECTIVES.map((o) => ({ label: o.label, have: this.inventory[o.item] ?? 0, need: o.need })),
+      members: this.squad.members.map((m) => ({ name: m.def.name, color: m.def.color, portrait: this.speaker(m.key).portrait, hp: 1, sl: m.running ? 0.8 : 1, rocks: m.rocks })),
+      leader: this.squad.leaderIdx,
+      stance: L.stance,
+      hidden,
+      time: formatTime(this.stats.time),
+      detect: e ? e.meter.value : 0,
+      detectLevel: e ? (e.state === 'down' ? 'down' : e.level) : null,
+      executing: this.plan.executing,
+      inventory: inv,
+      nearPickup: near ? (ITEM_LABEL[near.def.item] ?? near.def.item) : null,
+      canTakedown: this.enemies.some((en) => en.canBeTakenDown(L.x, L.y)) && L.hasSkill('ha-tu-sau'),
+    };
+    this.hud.update(state);
+    this.hud.tickToasts(dt);
+    const dots = this.squad.members.map((m) => ({ x: m.x, y: m.y, color: m === L ? '#3eecff' : '#d8f4ff', big: m === L }));
+    for (const en of this.enemies) if (en.state !== 'down') dots.push({ x: en.x, y: en.y, color: '#f04650', big: false });
+    if (this.mai.visibleNow) dots.push({ x: this.mai.x, y: this.mai.y, color: '#50dc78', big: true });
+    dots.push({ x: this.level.exit[0], y: this.level.exit[1] + 8, color: '#f0c83c', big: true });
+    this.hud.drawMinimap(dots);
     if (this.plan.active) {
       const rows = this.squad.members
         .map((m, i) => {
@@ -469,21 +493,13 @@ export class Level extends Phaser.Scene {
       overlay.topRight(
         `<span class="v10-tag">Kế hoạch</span> <span class="v10-sub">tạm dừng</span>${rows}<div class="v10-hint" style="margin-top:6px">Bấm bản đồ: <span class="v10-tool" aria-pressed="${this.plan.tool === 'di'}">Đi tới</span> · <kbd>T</kbd> <span class="v10-tool" aria-pressed="${this.plan.tool === 'nem'}">Ném đá</span> · <kbd>H</kbd> hạ gục · <kbd>G</kbd> chờ · <kbd>⌫</kbd> xóa · <kbd>Enter</kbd> thực thi · <kbd>Esc</kbd> hủy</div>`,
       );
-    } else {
-      overlay.topRight(
-        `<div class="v10-sub">Biến Thể gần nhất · phát hiện</div>${overlay.segments(e ? e.meter.value : 0, lvl ? LEVEL_CSS[lvl] : 'var(--dim)')}<div>${label}${this.plan.executing ? ' · <span class="v10-tag">đang thực thi</span>' : ''}</div><div class="v10-sub" style="margin-top:6px;max-width:260px">${this.status}</div>`,
-      );
-    }
-    overlay.bottom(
-      '<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> đi · <kbd>Shift</kbd> chạy · <kbd>C</kbd> tư thế · <kbd>Space</kbd> ném đá · <kbd>E</kbd> nhặt / hạ từ sau · <kbd>1</kbd>–<kbd>4</kbd> đổi người · <kbd>Tab</kbd> kế hoạch · <kbd>F3</kbd> lưới · <kbd>F5</kbd> chơi lại · <kbd>F6</kbd> nhịp kế (thử)',
-    );
+    } else document.querySelector('#ui .v10-box.top-right')?.remove();
     for (const en of this.enemies) {
       const id = `m-${en.actorId}-${this.enemies.indexOf(en)}`;
       if (en.state === 'down' || en.level === 'an-minh') overlay.removeMarker(id);
-      else overlay.marker(id, en.x, en.y - 70, cam, en.level === 'bao-dong' ? '!' : '?', en.level === 'bao-dong' ? 'x' : 'q');
+      else overlay.marker(id, en.x, en.y - 70, cam, `<span class="v10-marker-${en.level === 'bao-dong' ? 'x' : 'q'}"></span>`, en.level === 'bao-dong' ? 'x' : 'q');
     }
-    const near = this.pickups.nearest(L.x, L.y, 28);
-    if (near && !this.plan.active) overlay.marker('pick', near.def.x, near.def.y - 18, cam, `E nhặt ${ITEM_LABEL[near.def.item] ?? near.def.item}`, 'label');
+    if (near) overlay.marker('pick', near.def.x, near.def.y - 18, cam, `E · ${ITEM_LABEL[near.def.item] ?? near.def.item}`, 'label');
     else overlay.removeMarker('pick');
   }
 
@@ -538,6 +554,6 @@ export class Level extends Phaser.Scene {
     }
     this.drawPlan();
     this.drawDebug();
-    this.drawHud();
+    this.drawHud(dt);
   }
 }

@@ -35,7 +35,7 @@ export class Dialogue {
     this.active = true;
     if (!this.el) {
       this.el = document.createElement('div');
-      this.el.className = 'v10-box dialog';
+      this.el.className = 'v10-box v10-panel dialog';
       this.el.addEventListener('pointerdown', () => this.next());
       this.root.appendChild(this.el);
     }
