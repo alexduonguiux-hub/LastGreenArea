@@ -4,7 +4,7 @@ Kế hoạch này được lập sau khi đọc toàn bộ gói bàn giao (`CLAU
 `docs/CREDITS.md`, 10 file `data/*.json`, 38 file `assets/`, 26 script `tools/`, `prototype/build_hub.html`).
 Mục tiêu trước mắt theo `CLAUDE.md`: **màn 1 "Đường Mòn Sương" chơi được**, sau đó mở rộng ra 12 màn.
 
-Thứ tự thực hiện: **Giai đoạn A** refactor toàn bộ art thành "vẽ bằng code, ánh xạ lên ma trận 2560×2560"
+Thứ tự thực hiện: **Giai đoạn A** refactor toàn bộ art thành "vẽ bằng code, ánh xạ lên ma trận 2048×2048"
 (mục 3) → **Giai đoạn B** dựng game màn 1 trên nền art đó (mục 4) → **Giai đoạn C** 12 màn (mục 5).
 
 ---
@@ -26,7 +26,8 @@ Thứ tự thực hiện: **Giai đoạn A** refactor toàn bộ art thành "v�
 | Font | Be Vietnam Pro 4 độ đậm (OFL) | |
 | Prototype | `build_hub.html`: vòng lặp canvas, vẽ khung LPC, y-sort, lật hướng, Biến Thể tuần tra + nón nhìn thô | Tham chiếu cho renderer |
 
-Tổng cộng **1.481 khung 64 px** (1.521 nếu thêm "Đi lên"). Ma trận 2560×2560 chứa tối đa 1.600 ô 64 px.
+Tổng cộng **1.481 khung 64 px** (1.521 nếu thêm "Đi lên" cho 4 nhân vật và Biến Thể). Một trang ma trận
+2048×2048 chứa tối đa 1.024 ô 64 px khi chưa cắt viền.
 
 ### 1.2 Còn thiếu (phải làm hoặc quyết định)
 
@@ -44,11 +45,16 @@ Tổng cộng **1.481 khung 64 px** (1.521 nếu thêm "Đi lên"). Ma trận 25
 
 ### 2.1 Art: mọi pixel sinh từ code, ánh xạ lên ma trận
 
-- **Ma trận** = texture 2560×2560, chia lưới **160×160 ô đơn vị 16 px**. Mọi asset chiếm một hình chữ nhật ô
+- **Ma trận** = texture **2048×2048**, chia lưới **128×128 ô đơn vị 16 px**. Mọi asset chiếm một hình chữ nhật ô
   `(col, row, w, h)` tính theo đơn vị 16 px: nhân vật 4×4 ô, item 1×1, mảnh UI 1×1 đến 4×4, FX 4×4.
-- **Một chuẩn, nhiều trang**: vì khung hiện có đã chiếm 95 % một trang, dùng **2 trang** cùng định dạng:
-  `atlas_0.png` (nhân vật, NPC, Biến Thể ≈ 1.050 ô 64 px) và `atlas_1.png` (vũ khí, dao, FX, item, UI ≈ 450 ô + UI).
-  Trang 1 còn trống ≈ 60 % để thêm asset các màn sau. Tối ưu cắt viền (trim) để về 1 trang là việc tùy chọn ở A6.
+  Chọn 2048 vì đây là cỡ texture mọi thiết bị WebGL đều hỗ trợ (kể cả điện thoại 2010–2013), là lũy thừa của 2
+  nên GPU dùng bộ nhớ hiệu quả (16 MB/trang), và là mặc định của Phaser, PixiJS, Godot, Unity. 4096 chỉ an toàn
+  từ khoảng 2014, 2560 không phải lũy thừa của 2. Độ phân giải màn hình **giữ nguyên 800×450 phóng ×2**.
+- **Một chuẩn, N trang**: `atlas_0.png`, `atlas_1.png`, … cùng định dạng, thêm trang khi cần. Bắt đầu với 2 trang:
+  trang 0 = 4 nhân vật + Biến Thể + Kẻ Lang Thang (927 ô 64 px, đầy 90 % nếu không cắt viền),
+  trang 1 = NPC, vũ khí, dao, FX, item, UI (≈ 600 ô + UI, trống ≈ 25–35 %).
+- **Cắt viền khung (trim) ngay từ A1**: mỗi khung chỉ lưu hộp bao quanh pixel thật (nhân vật đứng ≈ 24×50 thay vì
+  64×64) kèm độ lệch neo trong manifest; tiết kiệm 40–50 % chỗ, nhờ đó trang 0 còn dư cho hoạt ảnh các màn sau.
 - **Manifest** `data/atlas.json` sinh tự động: `id → {page, col, row, w, h, anchor, …}`. Code game chỉ biết `id`,
   không bao giờ biết tọa độ pixel.
 - **Nguồn art là code Python** trong thư mục `art/` (Pillow, numpy, tái dùng 26 script hiện có), chạy bằng
@@ -82,7 +88,7 @@ Tổng cộng **1.481 khung 64 px** (1.521 nếu thêm "Đi lên"). Ma trận 25
 /
 ├─ index.html · package.json · vite.config.ts · tsconfig.json
 ├─ art/                       ← NGUỒN art bằng code (Python)
-│  ├─ matrix.py               lớp Matrix 160×160 ô: cấp phát vùng, đặt asset, kiểm tra chồng lấn, xuất PNG + JSON
+│  ├─ matrix.py               lớp Matrix 128×128 ô (trang 2048): cấp phát vùng, trim, đặt asset, kiểm tra chồng lấn, xuất PNG + JSON
 │  ├─ palette.py              bảng màu chung: token UI v10 (từ locked.py) + bảng màu nhân vật + vật liệu
 │  ├─ pixel.py                parser ma trận ký tự → ảnh; ký tự đặc biệt G/M/A → điểm neo
 │  ├─ characters/             rig LPC: parts.py (cấu hình bộ phận), rig.py (ghép lớp), anims.py (danh sách pose)
@@ -127,13 +133,16 @@ Tổng cộng **1.481 khung 64 px** (1.521 nếu thêm "Đi lên"). Ma trận 25
 
 Mỗi bước có tiêu chí nghiệm thu. Ước lượng theo ngày làm việc với Claude Code.
 
-### A1 · Dựng ma trận 2560×2560 và pipeline (1 ngày)
+### A1 · Dựng ma trận 2048×2048 và pipeline (1 ngày)
 
-- [ ] `art/matrix.py`: lớp `Matrix(page, 160, 160)`; `alloc(w, h, zone)` cấp phát theo vùng; `place(id, img, anchor)`;
-      phát hiện chồng lấn; xuất `atlas_{page}.png` + `atlas.json`.
-- [ ] Phân vùng cố định (để tọa độ ổn định giữa các lần sinh, tránh đổi hash vô cớ):
-      trang 0: hàng 0–71 nhân vật 4 người (18 dải 64 px × 40 khung), 72–87 NPC, 88–111 Biến Thể, 112–159 dự phòng;
-      trang 1: hàng 0–31 vũ khí, 32–39 dao, 40–51 FX, 52–55 item + icon vũ khí, 56–79 UI, 80–159 dự phòng.
+- [ ] `art/matrix.py`: lớp `Matrix(page, 128, 128)`; `alloc(w, h, zone)` cấp phát theo vùng; `place(id, img, anchor)`;
+      cắt viền khung (trim) và ghi độ lệch neo; phát hiện chồng lấn; xuất `atlas_{page}.png` + `atlas.json`.
+- [ ] Phân vùng cố định theo hàng đơn vị 16 px (để tọa độ ổn định giữa các lần sinh, tránh đổi hash vô cớ), tính
+      cho trường hợp chưa trim, mỗi dải 4 hàng = 32 khung 64 px:
+      trang 0: hàng 0–83 bốn nhân vật (21 dải, 642 khung kể cả "Đi lên"), 84–95 Biến Thể + Kẻ Lang Thang (3 dải),
+      96–123 sáu loại Biến Thể màn 3–8 (7 dải), 124–127 dự phòng;
+      trang 1: hàng 0–19 NPC (5 dải), 20–55 vũ khí (9 dải), 56–63 dao (2 dải), 64–79 FX (4 dải), 80–83 item + icon
+      vũ khí, 84–107 UI (6 dải), 108–127 dự phòng (5 dải). Sau khi trim, phần dự phòng tăng lên đáng kể.
 - [ ] `art/pixel.py`: parser ma trận ký tự; `art/palette.py`: token v10 + bảng màu nhân vật.
 - [ ] `art/build.py`, `art/check.py`, `npm run art`, `npm run art:check`; `prototype/atlas_viewer.html` xem ma trận,
       rê chuột hiện `id`, tọa độ ô, neo.
@@ -210,7 +219,7 @@ bước chân bắn đúng khung.
 - [ ] CI: job `art` chạy `build` + `check` và so hash với ảnh đã commit (chống chỉnh tay ảnh sinh ra).
 - [ ] Xóa `assets/characters|enemies|npcs|weapons|items|fx` và `tools/` cũ sau khi `art/` thay thế đủ; cập nhật
       `CLAUDE.md`, `CREDITS.md`, `ART.md`.
-- [ ] Tùy chọn: trim khung theo bounding box + neo để gom về 1 trang nếu cần giảm bộ nhớ mobile.
+- [ ] Đo bộ nhớ GPU và thời gian nạp trên điện thoại tầm trung; nếu cần, gom về 1 trang nhờ trim.
 - [ ] Bản đồ: `art/maps/` port `lpcmap.py`/`lpcscene.py`, xuất nền màn 1 + mask va chạm (chuẩn bị cho B1).
 
 **Nghiệm thu**: clone repo mới, `npm run art` tái tạo byte-giống ảnh đã commit; không còn ảnh tĩnh nào ngoài tile LPC
@@ -313,8 +322,8 @@ Tổng giai đoạn B: **~14–15 ngày**. Tổng A + B: **~25–26 ngày làm v
    đổi màu/bộ phận bằng cấu hình). Tự vẽ 1.500 khung người bằng ma trận ký tự chỉ khả thi nếu chuyển sang rig
    thủ tục (bộ phận nhỏ + keyframe offset), chất lượng sẽ thấp hơn LPC và tốn thêm ~2 tuần. Vũ khí, item, UI, FX
    thì tự vẽ hoàn toàn bằng ma trận.
-2. **Một trang hay hai trang 2560×2560?** Khung hiện có đã chiếm 95 % một trang. Đề xuất 2 trang cùng chuẩn; trim
-   khung để về 1 trang là tối ưu tùy chọn ở A6.
+2. **Cỡ ma trận: đã chốt 2048×2048, N trang cùng chuẩn, trim từ A1.** Giữ 800×450 phóng ×2; không theo hướng
+   256×192 ×4 kiểu DS vì phải vẽ lại toàn bộ sprite ở 16–32 px, tỉ lệ 4:3 và tầm nhìn quá hẹp cho game ẩn nấp.
 3. **Kích thước bản đồ màn 1**: 1 màn hình (cắt bớt nhịp) hay cuộn 1600×960 với 4 khu. Đề xuất cuộn.
 4. **Bị hạ có dậy lại không**: đề xuất 30 giây ở màn 1.
 5. **Nguồn âm thanh**: tự sản xuất hay CC0. Cần trước B6.
@@ -329,7 +338,7 @@ Tổng giai đoạn B: **~14–15 ngày**. Tổng A + B: **~25–26 ngày làm v
 | Rủi ro | Ảnh hưởng | Giảm thiểu |
 | --- | --- | --- |
 | Refactor art kéo dài, game chưa chạy được trong 2 tuần | Mất động lực, khó thấy tiến độ | A1 nhập tạm sheet cũ vào ma trận ngay ngày đầu; B0 có thể chạy song song từ ngày 2 trên ma trận "tạm", A2–A5 thay dần từng nhóm |
-| Ma trận 1 trang không đủ chỗ | Phải đổi chuẩn giữa chừng | Chốt 2 trang từ A1; vùng dự phòng 30–60 % mỗi trang |
+| Trang 0 đầy 90 % nếu không trim | Không còn chỗ cho hoạt ảnh màn sau | Trim ngay từ A1; chuẩn N trang nên thêm `atlas_2` không đổi code game |
 | Tọa độ ô đổi mỗi lần sinh → diff ảnh lớn, khó review | Lịch sử Git nặng | Phân vùng cố định + cấp phát tất định theo thứ tự id; `check` so hash |
 | Pipeline LPC (clone ~1 GB, đường dẫn cũ) | A2 chậm | Script fetch tự động, cache trong CI, đóng gói phần LPC cần dùng vào `art/characters/lpc_cache/` nếu giấy phép cho phép |
 | Rig code không tái tạo đúng pose vẽ tay cũ (bò, hạ gục) | Mất chất lượng | So khớp pixel với sheet cũ trong `check`; pose nào lệch thì giữ ảnh cũ làm "override" có ghi chú |
@@ -340,12 +349,12 @@ Tổng giai đoạn B: **~14–15 ngày**. Tổng A + B: **~25–26 ngày làm v
 
 ## 8. Việc làm ngay trong phiên tiếp theo
 
-1. Chốt câu hỏi 1 và 2 ở mục 6 (LPC làm gốc hay không; 1 hay 2 trang).
+1. Chốt câu hỏi 1 ở mục 6 (LPC làm gốc hay không). Câu 2 đã chốt: 2048×2048.
 2. Chạy **A1**: `art/matrix.py`, `pixel.py`, `palette.py`, `build.py`, `check.py`; nhập tạm 9 sheet cũ vào 2 trang;
    `atlas_viewer.html`; `docs/ART.md`.
 3. Chạy **A3** trước A2 nếu muốn thấy kết quả "ma trận ký tự" sớm: 18 vũ khí + 33 item là nhóm nhỏ, dễ duyệt mắt.
 
 Câu lệnh gợi ý cho Claude Code:
-- "Thực hiện A1 trong docs/PLAN.md: dựng art/matrix.py với lưới 160×160 ô 16 px, nhập toàn bộ sheet cũ vào
-  atlas_0/atlas_1, sinh atlas.json, viết atlas_viewer.html và docs/ART.md."
+- "Thực hiện A1 trong docs/PLAN.md: dựng art/matrix.py với lưới 128×128 ô 16 px (trang 2048×2048), trim khung,
+  nhập toàn bộ sheet cũ vào atlas_0/atlas_1, sinh atlas.json, viết atlas_viewer.html và docs/ART.md."
 - "Thực hiện A3: chuyển 18 vũ khí v2 sang ma trận ký tự có đánh dấu G/M, sinh lại weapons.json và so khớp với bản chốt."
