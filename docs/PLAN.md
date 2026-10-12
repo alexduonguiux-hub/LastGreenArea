@@ -166,9 +166,18 @@ viewer soi được từng ô.
       phình, chuột) port từ `zombies.py`; Kẻ Lang Thang có đủ 4 hướng đi.
 - [ ] `art/npcs/`: 4 NPC port từ `npcs.py`; Mai thêm pose "Lơ lửng" phát sáng xanh (glow sinh bằng hàm).
 - [ ] So khớp pixel với sheet cũ cho các pose đã có (chênh lệch chỉ do sửa chủ ý), ghi vào `check`.
+- [ ] **Bản review LPC** `prototype/review_lpc.html`, sinh tự động mỗi lần `npm run art`, để chủ dự án duyệt mắt:
+      1. Mỗi nhân vật một trang: bảng bộ phận LPC đã chọn (thân, tóc, áo, quần, giày, phụ kiện) kèm tên file gốc
+         trong LPC và tác giả (phục vụ `CREDITS.md`), bảng màu trước/sau khi ánh xạ.
+      2. Mỗi hoạt ảnh một hàng: **khung cũ (sheet bàn giao) đặt cạnh khung mới (sinh từ rig)**, phóng ×3, ô nào
+         lệch pixel thì tô viền đỏ và ghi số pixel khác; nút phát để xem hoạt ảnh chạy ở 1× và 2×.
+      3. Hoạt ảnh mới chưa có bản cũ ("Đi lên", "Đứng yên") hiện 4 hướng cạnh nhau để kiểm tra dáng và màu.
+      4. Trang tổng: lưới 4 nhân vật × mọi hoạt ảnh, đánh dấu ✔ đã duyệt / ✖ cần sửa, xuất danh sách cần sửa ra
+         `docs/review/lpc_<ngày>.md` để ghi chú và đối chiếu lần sau.
+      Biến Thể và NPC dùng cùng trang review.
 
-**Nghiệm thu**: xóa 6 sheet nhân vật/NPC/kẻ thù cũ, game vẫn chạy từ `atlas_0`; có "Đi lên"; đổi màu áo Dương
-trong `parts.py` → sinh lại → thấy ngay trong viewer.
+**Nghiệm thu**: bản review LPC được chủ dự án duyệt ✔ toàn bộ; sau đó mới xóa 6 sheet nhân vật/NPC/kẻ thù cũ,
+game vẫn chạy từ `atlas_0`; có "Đi lên"; đổi màu áo Dương trong `parts.py` → sinh lại → thấy ngay trong review.
 
 ### A3 · Set lại vũ khí, dao, item bằng ma trận ký tự (2 ngày)
 
@@ -318,10 +327,9 @@ Tổng giai đoạn B: **~14–15 ngày**. Tổng A + B: **~25–26 ngày làm v
 
 ## 6. Quyết định cần chốt với chủ dự án
 
-1. **Nhân vật: giữ LPC làm lớp gốc hay tự vẽ hoàn toàn bằng ma trận?** Đề xuất giữ LPC (rig ghép lớp bằng code,
-   đổi màu/bộ phận bằng cấu hình). Tự vẽ 1.500 khung người bằng ma trận ký tự chỉ khả thi nếu chuyển sang rig
-   thủ tục (bộ phận nhỏ + keyframe offset), chất lượng sẽ thấp hơn LPC và tốn thêm ~2 tuần. Vũ khí, item, UI, FX
-   thì tự vẽ hoàn toàn bằng ma trận.
+1. **Nhân vật: đã chốt giữ LPC làm lớp gốc**, rig ghép lớp bằng code, đổi màu/bộ phận bằng cấu hình; vũ khí,
+   item, UI, FX tự vẽ hoàn toàn bằng ma trận. Điều kiện kèm theo: mỗi lần sinh sprite phải có **bản review LPC**
+   (A2) để chủ dự án duyệt mắt trước khi xóa sheet cũ.
 2. **Cỡ ma trận: đã chốt 2048×2048, N trang cùng chuẩn, trim từ A1.** Giữ 800×450 phóng ×2; không theo hướng
    256×192 ×4 kiểu DS vì phải vẽ lại toàn bộ sprite ở 16–32 px, tỉ lệ 4:3 và tầm nhìn quá hẹp cho game ẩn nấp.
 3. **Kích thước bản đồ màn 1**: 1 màn hình (cắt bớt nhịp) hay cuộn 1600×960 với 4 khu. Đề xuất cuộn.
@@ -349,7 +357,7 @@ Tổng giai đoạn B: **~14–15 ngày**. Tổng A + B: **~25–26 ngày làm v
 
 ## 8. Việc làm ngay trong phiên tiếp theo
 
-1. Chốt câu hỏi 1 ở mục 6 (LPC làm gốc hay không). Câu 2 đã chốt: 2048×2048.
+1. Câu 1 và 2 ở mục 6 đã chốt (LPC làm gốc + bản review; 2048×2048). Còn lại chốt dần theo mốc.
 2. Chạy **A1**: `art/matrix.py`, `pixel.py`, `palette.py`, `build.py`, `check.py`; nhập tạm 9 sheet cũ vào 2 trang;
    `atlas_viewer.html`; `docs/ART.md`.
 3. Chạy **A3** trước A2 nếu muốn thấy kết quả "ma trận ký tự" sớm: 18 vũ khí + 33 item là nhóm nhỏ, dễ duyệt mắt.
