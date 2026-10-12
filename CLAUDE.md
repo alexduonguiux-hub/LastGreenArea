@@ -25,6 +25,12 @@ Game chiến thuật ẩn nấp góc nhìn 3/4 (top-down), pixel art, tiếng Vi
 - Xem ma trận: `prototype/atlas_viewer.html` (mở thẳng hoặc `npm run art:view`).
 - `assets/` sheet bàn giao đang được `art/legacy_import.py` nhập tạm; A2–A5 thay dần bằng nguồn code rồi xóa sheet.
 
+## Mã game (từ B0)
+- Vite + TypeScript + Phaser 3.90 trong `src/`; `npm run dev` / `build` / `test` / `lint` / `typecheck`. Cấu hình 800×450, `pixelArt`, `roundPixels`, `Scale.FIT`.
+- Atlas nạp bằng `load.multiatlas('atlas', 'data/atlas.json', 'assets/')`; hoạt ảnh đăng ký từ `anims.json` với khóa = id (`char/duong/di-xuong`).
+- `entities/Actor` là sprite LPC: neo chân tự theo `anchor` của khung, `setFace(1)` = lật ngang, `depth = y`. Tốc độ tư thế trong `entities/Player`.
+- Chữ chỉ vẽ trên lớp DOM `#ui` (`src/ui/overlay.ts`, token trong `src/ui/tokens.css`), không dùng `Phaser.GameObjects.Text` cho tiếng Việt.
+
 ## Cấu trúc
 - `assets/characters/` hoạt ảnh 4 nhân vật (bản C) · `assets/enemies/` 8 loại Biến Thể · `assets/npcs/` Mai, Ông Tư, Bác sĩ Lan, Lính Nhiễm
 - `assets/weapons/` sheet hoạt ảnh vũ khí v2 (đi cầm / ngắm / bắn cho từng món), atlas sprite, icon · `assets/items/` 33 icon vật phẩm 16×16

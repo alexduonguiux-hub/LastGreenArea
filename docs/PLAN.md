@@ -243,13 +243,13 @@ Tổng giai đoạn A: **~11 ngày làm việc**.
 
 ### B0 · Khởi tạo game (0.5 ngày)
 
-- [ ] Vite + TypeScript + Phaser 3.80+; ESLint, Prettier, Vitest; script `dev`, `build`, `test`, `lint`, `art`.
-- [ ] `core/atlas.ts` nạp 2 trang + `atlas.json`; `core/anims.ts` (từ A5); `@font-face` Be Vietnam Pro.
-- [ ] Scene `Preload` (thanh nạp v10) → `Level` vẽ nền cầu và Dương đi 4 hướng từ ma trận.
-- [ ] GitHub Actions: lint + test + art:check + build; deploy GitHub Pages.
-- [ ] Viết lại `README.md` thành README dự án; nội dung bàn giao cũ → `docs/HANDOFF.md`.
+- [x] Vite 7 + TypeScript 5.9 + Phaser 3.90; ESLint, Prettier, Vitest 3; script `dev`, `build`, `test`, `lint`, `typecheck`, `art`.
+- [x] `core/atlas.ts` nạp N trang qua `load.multiatlas`; `core/anims.ts` đăng ký `anims.json` (neo chân đi theo khung nhờ `anchor` trong manifest); `@font-face` Be Vietnam Pro.
+- [x] Scene `Preload` (thanh nạp v10) → `Level` vẽ nền cầu và Dương đi 4 hướng từ ma trận; `entities/Actor` (lật, depth = y), `entities/Player` (3 tư thế, trượt dọc tường).
+- [x] GitHub Actions: art:check + lint + typecheck + test + build; deploy GitHub Pages khi push `main`. `scripts/bundle_artifact.py` đóng gói `dist/` thành trang artifact để xem trực tiếp.
+- [x] Viết lại `README.md` thành README dự án; nội dung bàn giao cũ → `docs/HANDOFF.md`.
 
-**Nghiệm thu**: `npm run dev` mở game 1600×900, Dương đi WASD, lật đúng, chữ tiếng Việt nét.
+**Nghiệm thu (đạt 2026-10-12)**: build chạy trong Chromium, Dương đi WASD trên nền cầu, chữ tiếng Việt nét trên lớp DOM; test Vitest 4/4, lint và typecheck xanh. Thứ tự đã đổi: B0–B2 làm trước A2–A5 vì game chỉ phụ thuộc id trong atlas.
 
 ### B1 · Nền tảng thế giới (2 ngày)
 

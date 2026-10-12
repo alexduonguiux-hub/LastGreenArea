@@ -2,11 +2,32 @@
   "name": "vung-xanh-cuoi-cung",
   "private": true,
   "version": "0.1.0",
+  "type": "module",
   "description": "Vùng Xanh Cuối Cùng · game ẩn nấp pixel art tiếng Việt",
   "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "format": "prettier --write src",
     "art": "python3 art/build.py",
     "art:check": "python3 art/check.py",
-    "art:view": "python3 -m http.server 8080 --bind 127.0.0.1",
-    "art:review": "python3 art/review.py"
+    "art:review": "python3 art/review.py",
+    "art:view": "python3 -m http.server 8080 --bind 127.0.0.1"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^22.20.5",
+    "eslint": "^9.39.5",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.71.1",
+    "vite": "^7.3.7",
+    "vitest": "^3.2.7"
   }
 }
