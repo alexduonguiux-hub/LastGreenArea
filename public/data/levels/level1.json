@@ -1520,6 +1520,39 @@
   1520,
   96
  ],
+ "stealth": {
+  "vision": {
+   "angle": 90,
+   "range": 140
+  },
+  "detect": {
+   "suspect": 0.4,
+   "fillBase": 1.6,
+   "stance": {
+    "dung": 1.0,
+    "khom": 0.6,
+    "bo": 0.35
+   },
+   "decay": 0.4
+  },
+  "noise": {
+   "rock": 120,
+   "run": 48
+  },
+  "speed": {
+   "patrol": 16,
+   "investigate": 24,
+   "alert": 34
+  },
+  "listenEvery": 4.0,
+  "listenFor": 1.6,
+  "lookFor": 3.0,
+  "downFor": 30.0,
+  "takedown": {
+   "dist": 22
+  },
+  "rocks": 5
+ },
  "pickups": [
   {
    "item": "da-khac-ky-hieu",

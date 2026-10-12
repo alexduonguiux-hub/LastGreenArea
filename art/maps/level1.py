@@ -245,6 +245,16 @@ def build(env: dict[str, Image.Image]):
         'patrol': {'ke-lang-thang': [[bridge[0] - 160, bridge_mid_y + 2], [bridge[0] - 30, bridge_mid_y + 2]]},
         'mai': [int(36.5 * TS), int(far_path_y(36.5) * TS) + 8],
         'exit': [int(EXIT[0] * TS), int(EXIT[1] * TS)],
+        # hằng số ẩn nấp của màn (B2); chỉnh ở đây rồi npm run art, không sửa trong code game
+        'stealth': {
+            'vision': {'angle': 90, 'range': 140},
+            'detect': {'suspect': 0.4, 'fillBase': 1.6, 'stance': {'dung': 1.0, 'khom': 0.6, 'bo': 0.35}, 'decay': 0.4},
+            'noise': {'rock': 120, 'run': 48},
+            'speed': {'patrol': 16, 'investigate': 24, 'alert': 34},
+            'listenEvery': 4.0, 'listenFor': 1.6, 'lookFor': 3.0, 'downFor': 30.0,
+            'takedown': {'dist': 22},
+            'rocks': 5,
+        },
         'pickups': [
             {'item': 'da-khac-ky-hieu', 'x': int(LOOP_B[0] * TS + 4.3 * TS), 'y': int(LOOP_B[1] * TS)},
             {'item': 'da-khac-ky-hieu', 'x': int(25 * TS), 'y': int(forest_path_y(25) * TS) + 20},

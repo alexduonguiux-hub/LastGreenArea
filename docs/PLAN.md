@@ -263,16 +263,16 @@ Tổng giai đoạn A: **~11 ngày làm việc**.
 
 ### B2 · Lõi ẩn nấp (3 ngày)
 
-- [ ] `Enemy` FSM: Tuần tra (quay đầu nghe ngóng mỗi 4 s) → Nghi ngờ → Điều tra (3 s) → Báo động (30 px/s) →
+- [x] `Enemy` FSM (`src/entities/Enemy.ts`): Tuần tra (quay đầu nghe ngóng mỗi 4 s) → Nghi ngờ → Điều tra (3 s) → Báo động (30 px/s) →
       Mất dấu → Tuần tra; Bị hạ.
-- [ ] `VisionCone` 90°, 140 px, raycast qua ô che khuất; Khom/Bò trong ô che khuất thì không bị thấy.
-- [ ] `Detection` 3 mức: 0–40 % Ẩn mình, 40–99 % Nghi ngờ (`?`), 100 % Báo động (`!` + FX); hệ số tư thế
+- [x] `VisionCone` 90°, 140 px, raycast qua ô `#`; Khom/Bò trong ô bụi `o` thì không bị thấy; vẽ nón bị cắt bởi vật chắn, màu theo mức.
+- [x] `Detection` 3 mức (test): 0–40 % Ẩn mình, 40–99 % Nghi ngờ (`?`), 100 % Báo động (`!` + FX); hệ số tư thế
       1.0 / 0.6 / 0.35; tự giảm khi ra khỏi nón.
-- [ ] `Noise`: ném đá (parabol, vòng 120 px, FX tiếng động), chạy (vòng 48 px); Biến Thể đi điều tra.
-- [ ] Hạ từ sau (Dương): sau lưng 20 px, ngoài nón, phím W; nằm 30 s rồi dậy (cấu hình trong level JSON).
-- [ ] Bị tóm → Result "Bị phát hiện", nạp điểm lưu.
+- [x] `Noise`: ném đá (parabol, vòng 120 px, FX tiếng động), chạy (vòng 48 px); Biến Thể đi điều tra.
+- [x] Hạ từ sau (Dương): sau lưng 20 px, ngoài nón, phím W; nằm 30 s rồi dậy (cấu hình trong level JSON).
+- [x] Bị tóm → hộp "Bị phát hiện" trên lớp DOM, Enter nạp lại màn (điểm lưu thật ở B4). Mọi hằng số nằm trong `stealth` của `levels/level1.json` (sinh từ `art/maps/level1.py`). Dấu ?/! là marker DOM bám thế giới.
 
-**Nghiệm thu**: vượt Biến Thể đầu cầu bằng ném đá hoặc hạ từ sau; bị thấy khi đứng, không khi khom sau bụi.
+**Nghiệm thu (đạt 2026-10-12)**: kịch bản Chromium: ném đá → Biến Thể đi kiểm tra; chạy vào nón → báo động → bị tóm → màn Bị phát hiện. Hạ từ sau và khom sau bụi chạy theo cùng logic (test đơn vị cho đồng hồ, nón, tiếng động). Cân bằng số sẽ chỉnh sau khi chơi thử.
 
 ### B3 · Đội 4 người và chế độ kế hoạch (2 ngày)
 

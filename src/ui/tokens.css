@@ -37,3 +37,16 @@ body {
 #ui .center { left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; min-width: 320px; }
 .v10-bar { height: 6px; background: #1e2838; margin-top: 8px; }
 .v10-bar i { display: block; height: 100%; background: var(--tick); width: 0; transition: width 0.1s linear; }
+
+#ui .top-right { right: 12px; top: 12px; min-width: 190px; }
+.v10-seg { display: flex; gap: 2px; margin-top: 4px; }
+.v10-seg i { width: 10px; height: 5px; background: #1e2838; }
+.v10-sub { color: var(--dim); font-size: 11px; }
+.v10-marker { position: absolute; transform: translate(-50%, -100%); font: 800 16px var(--font-b); line-height: 1; pointer-events: none;
+  text-shadow: 0 0 2px #000, 0 0 4px #000; }
+.v10-marker.q { color: var(--warn); }
+.v10-marker.x { color: var(--bad); animation: blink 0.4s steps(2) infinite; }
+.v10-marker.label { font: 600 11px var(--font-b); color: var(--ink); background: rgba(18, 22, 32, 0.85); border: 1px solid var(--edge); padding: 2px 6px; transform: translate(-50%, -100%); }
+@keyframes blink { to { opacity: 0.3; } }
+@media (prefers-reduced-motion: reduce) { .v10-marker.x { animation: none; } }
+.v10-center-actions { margin-top: 8px; color: var(--dim); font-size: 12px; }
