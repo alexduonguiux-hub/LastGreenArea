@@ -4,6 +4,9 @@ Kế hoạch này được lập sau khi đọc toàn bộ gói bàn giao (`CLAU
 `docs/CREDITS.md`, 10 file `data/*.json`, 38 file `assets/`, 26 script `tools/`, `prototype/build_hub.html`).
 Mục tiêu trước mắt theo `CLAUDE.md`: **màn 1 "Đường Mòn Sương" chơi được**, sau đó mở rộng ra 12 màn.
 
+Thứ tự thực hiện: **Giai đoạn A** refactor toàn bộ art thành "vẽ bằng code, ánh xạ lên ma trận 2560×2560"
+(mục 3) → **Giai đoạn B** dựng game màn 1 trên nền art đó (mục 4) → **Giai đoạn C** 12 màn (mục 5).
+
 ---
 
 ## 1. Hiện trạng gói bàn giao
@@ -12,220 +15,337 @@ Mục tiêu trước mắt theo `CLAUDE.md`: **màn 1 "Đường Mòn Sương" c
 
 | Nhóm | Nội dung | Ghi chú kỹ thuật |
 | --- | --- | --- |
-| Nhân vật | 3 sheet 64×64: `anim_core` (30 hàng), `anim_more` (24 hàng), `anim_actions` (28 hàng) cho Dương, Hùng, Ny, Sơn + Biến Thể cơ bản | Mỗi hàng = 1 hoạt ảnh; `[tên, hoạt ảnh, số khung]` trong JSON cùng tên. Sheet rộng 704 = tối đa 11 khung/hàng |
-| Kẻ thù | `wanderer_walk_knockdown.png` (đi trái 8 + bị hạ 11) dùng cho màn 1; `zombies.png` 6 loại × 4 hoạt ảnh (màn 3–8) | Kẻ Lang Thang màn 1 chỉ có hướng trái, lật ngang để đi phải |
-| NPC | Mai, Ông Tư, Bác sĩ Lan, Lính Nhiễm (`npcs.png`, 20 hàng) | Mai có "Lơ lửng", "Hiện ra" cho ánh sáng xanh |
-| Vũ khí | `weapons.json` v2 chốt 18 món; sheet hoạt ảnh 54 hàng (đi/ngắm/bắn), atlas, icon; dao ngắn + dao rựa (`melee_anim`) | Màn 1 **không có súng**, hệ thống súng chỉ cần từ màn 2+ (prototype đã có logic bắn tái dùng được) |
-| Vật phẩm | 33 icon 16×16, thứ tự icon = thứ tự trong `items.json` | Màn 1 dùng: đá, Mảnh Ký Ức, Đá khắc, Ảnh bốn người, túi cứu thương |
-| Hiệu ứng | 12 FX 64×64 (`fx.json`), có "Tiếng động (ném đá)" và "Bị phát hiện" | Dùng trực tiếp cho vòng tiếng động và báo động |
-| UI | 5 mockup v10 1600×900 (HUD, menu, kho vũ khí, ba lô, vật phẩm) + token màu trong `tools/locked.py` và CSS của prototype | HUD mockup đã vẽ đủ: nhiệm vụ, đội, thanh hành động Q/W/E/R, ba lô, bản đồ nhỏ, đồng hồ, thông báo |
-| Bản đồ | `level1_bridge_bg.png` 800×450 (cảnh cầu gỗ) | Sinh bằng `tools/lpcscene.py`: lưới 25×15 tile 32px, sông x≈13, đường mòn y≈8.6 |
+| Nhân vật | 3 sheet 64×64: `anim_core` (30 hàng, 228 khung), `anim_more` (24 hàng, 183 khung), `anim_actions` (28 hàng, 248 khung) cho Dương, Hùng, Ny, Sơn + Biến Thể cơ bản | Mỗi hàng = 1 hoạt ảnh; `[tên, hoạt ảnh, số khung]` trong JSON cùng tên. Sheet rộng 704 = tối đa 11 khung/hàng |
+| Kẻ thù | `wanderer_walk_knockdown.png` (đi trái 8 + bị hạ 11) cho màn 1; `zombies.png` 6 loại × 4 hoạt ảnh, 209 khung (màn 3–8) | Kẻ Lang Thang màn 1 chỉ có hướng trái, lật ngang để đi phải |
+| NPC | Mai, Ông Tư, Bác sĩ Lan, Lính Nhiễm (`npcs.png`, 20 hàng, 149 khung) | Mai có "Lơ lửng", "Hiện ra" cho ánh sáng xanh |
+| Vũ khí | `weapons.json` v2 chốt 18 món; sheet hoạt ảnh 54 hàng, 288 khung (đi/ngắm/bắn); atlas 479×12, icon; dao ngắn + dao rựa (`melee_anim`, 59 khung) | Mỗi vũ khí ≤ 34×12 px, rất hợp để định nghĩa bằng ma trận ký tự |
+| Vật phẩm | 33 icon 16×16, thứ tự icon = thứ tự trong `items.json` | |
+| Hiệu ứng | 12 FX 64×64, 98 khung (`fx.json`) | Phần lớn là hình học (vòng, khói, lửa) → sinh bằng hàm theo thời gian |
+| UI | 5 mockup v10 1600×900 + token màu và hàm vẽ khung/tab/ô/thanh trong `tools/locked.py` | `locked.py` đã là "UI bằng code": frame, title, slot, card, tabs, choice, bar, scrollbar |
+| Bản đồ | `level1_bridge_bg.png` 800×450 | Sinh bằng `tools/lpcscene.py`: lưới 25×15 tile 32 px, autotile từ `terrain-v7.png` |
 | Font | Be Vietnam Pro 4 độ đậm (OFL) | |
-| Prototype | `build_hub.html`: vòng lặp canvas, vẽ khung LPC, y-sort, lật hướng, Biến Thể tuần tra + nón nhìn thô + nghe tiếng động, 18 vũ khí | Là điểm xuất phát tốt cho renderer và pose vũ khí |
+| Prototype | `build_hub.html`: vòng lặp canvas, vẽ khung LPC, y-sort, lật hướng, Biến Thể tuần tra + nón nhìn thô | Tham chiếu cho renderer |
+
+Tổng cộng **1.481 khung 64 px** (1.521 nếu thêm "Đi lên"). Ma trận 2560×2560 chứa tối đa 1.600 ô 64 px.
 
 ### 1.2 Còn thiếu (phải làm hoặc quyết định)
 
-1. **Chưa có mã game thật**: chưa có build tool, module, lưới va chạm, AI, HUD trong game, lưu game.
-2. **Bản đồ màn 1 chỉ có 1 màn hình** (800×450) trong khi thiết kế cần 4 khu vực (trại → rừng thông → đầu cầu → bên kia suối, 8–10 phút chơi). Cần bản đồ lớn hơn và camera cuộn.
-3. **Thiếu hoạt ảnh "Đi lên"** cho 4 nhân vật chính và Biến Thể (chỉ có đi xuống, đi trái, chạy lên). Game 3/4 cần đủ 4 hướng đi bộ.
-4. **Không có âm thanh** (nhạc nền, bước chân, đá rơi, báo động). Không có file audio nào trong gói.
-5. **Script `tools/` trỏ đến `/home/claude/...`** và cần thư viện LPC gốc (`lpct/`, generator) không có trong gói; muốn sinh lại asset phải clone LPC và sửa đường dẫn.
-6. **Chưa có kịch bản hội thoại** màn 1 (chỉ có nhịp truyện trong bảng thiết kế).
-7. **Chưa có dữ liệu màn** (điểm tuần tra, trigger, vị trí vật phẩm, điểm lưu) ở dạng máy đọc được.
-8. Tuyến Mai là bệnh nhân số 0 và bí mật của Sơn còn là đề xuất, chưa đối chiếu kịch bản gốc (ảnh hưởng màn 8, 11, 12, không ảnh hưởng màn 1).
+1. **Art đang là ảnh tĩnh rải trong 9 sheet + 5 atlas**, mỗi sheet một quy ước; script sinh trỏ đến `/home/claude/...` và cần thư viện LPC gốc không có trong gói. Không sinh lại được từ repo.
+2. **Chưa có mã game thật**: chưa có build tool, lưới va chạm, AI, HUD trong game, lưu game.
+3. **Bản đồ màn 1 chỉ có 1 màn hình** trong khi thiết kế cần 4 khu vực, 8–10 phút chơi.
+4. **Thiếu hoạt ảnh "Đi lên"** cho 4 nhân vật chính và Biến Thể.
+5. **Không có âm thanh.**
+6. **Chưa có kịch bản hội thoại và dữ liệu màn** ở dạng máy đọc được.
+7. Tuyến Mai bệnh nhân số 0 và bí mật của Sơn chưa đối chiếu kịch bản gốc (không ảnh hưởng màn 1).
 
 ---
 
 ## 2. Quyết định kỹ thuật
 
-### 2.1 Stack: **Phaser 3 + TypeScript + Vite**, HUD bằng DOM overlay
+### 2.1 Art: mọi pixel sinh từ code, ánh xạ lên ma trận
 
-Lý do chọn Phaser 3 thay vì Godot 4:
-- Toàn bộ asset, prototype và mockup đã là web; mở thẳng trên trình duyệt, deploy GitHub Pages / itch.io không cần export.
-- Claude Code chạy, test (Vitest) và chụp màn hình (Playwright) được ngay trong phiên làm việc; Godot cần editor và không kiểm thử tự động được trong môi trường này.
-- Phaser có sẵn: scene, camera cuộn, spritesheet nhiều hàng, tilemap Tiled (cho màn 2–12), tween, audio, input bàn phím/chuột/gamepad.
+- **Ma trận** = texture 2560×2560, chia lưới **160×160 ô đơn vị 16 px**. Mọi asset chiếm một hình chữ nhật ô
+  `(col, row, w, h)` tính theo đơn vị 16 px: nhân vật 4×4 ô, item 1×1, mảnh UI 1×1 đến 4×4, FX 4×4.
+- **Một chuẩn, nhiều trang**: vì khung hiện có đã chiếm 95 % một trang, dùng **2 trang** cùng định dạng:
+  `atlas_0.png` (nhân vật, NPC, Biến Thể ≈ 1.050 ô 64 px) và `atlas_1.png` (vũ khí, dao, FX, item, UI ≈ 450 ô + UI).
+  Trang 1 còn trống ≈ 60 % để thêm asset các màn sau. Tối ưu cắt viền (trim) để về 1 trang là việc tùy chọn ở A6.
+- **Manifest** `data/atlas.json` sinh tự động: `id → {page, col, row, w, h, anchor, …}`. Code game chỉ biết `id`,
+  không bao giờ biết tọa độ pixel.
+- **Nguồn art là code Python** trong thư mục `art/` (Pillow, numpy, tái dùng 26 script hiện có), chạy bằng
+  `npm run art`. Ba kiểu nguồn:
+  1. **Ma trận ký tự + bảng màu** cho asset nhỏ (vũ khí, item, icon, mảnh UI): mỗi ký tự = 1 màu trong palette,
+     ký tự đặc biệt đánh dấu điểm cầm `G`, đầu nòng `M`, neo `A`. `weapons.json` (`atlas_rect`, `grip`, `muzzle`)
+     được **sinh ra từ ma trận**, không còn sửa tay.
+  2. **Hàm vẽ theo tham số** cho FX, UI 9-slice, bản đồ (autotile), bóng đổ, viền: `draw(t, palette) → ảnh`.
+  3. **Rig ghép lớp** cho nhân vật: thân/đầu/tóc/áo/quần/giày lấy từ LPC theo cấu hình, ánh xạ bảng màu từng
+     nhân vật (`COL` trong `crawl.py` đã có), rồi ghép pose. Giữ LPC làm lớp gốc vì tự vẽ 1.500 khung người
+     bằng ma trận không khả thi về chất lượng; xem câu hỏi 1 mục 6.
+- **Hoạt ảnh là dữ liệu sinh bằng code**: `data/anims.json` ghi cho mỗi hoạt ảnh danh sách `id` khung, fps,
+  lặp hay không, neo chân (y = 60), sự kiện theo khung (bước chân, chạm đòn, thả đá), quy tắc lật. Hoạt ảnh
+  "thủ tục" (LED nháy, vạch quét, ngoặc nhấp nháy, vòng tiếng động nở ra) là hàm theo thời gian trong game,
+  không lưu khung.
+- **UI trong game dùng đúng mảnh từ ma trận**: khung, nút, tab, ô, thanh là 9-slice hoặc sprite từ `atlas_1`,
+  hiển thị qua CSS `border-image` + `image-rendering: pixelated` trên lớp DOM; chữ Be Vietnam Pro vẫn là DOM nét.
+  Nhờ vậy **100 % pixel đến từ ma trận**, chỉ có chữ là vector.
 
-Lý do HUD/menu dùng DOM (HTML/CSS) đè lên canvas thay vì vẽ trong Phaser:
-- Quy ước bắt buộc: chữ tiếng Việt phải vẽ ở độ phân giải hiển thị. Canvas 800×450 phóng ×2 sẽ làm vỡ dấu. DOM overlay vẽ chữ ở 1600×900 nét, còn sprite vẫn nearest-neighbour.
-- CSS token v10 đã có sẵn trong prototype (`--bg`, `--panel`, `--edge`, `--tick`, `--mag-hi`...), tái dùng trực tiếp.
-- Game và HUD giao tiếp qua một `EventBus` (Phaser `EventEmitter`), HUD không đụng vào state game.
+### 2.2 Stack game: **Phaser 3 + TypeScript + Vite**, HUD bằng DOM overlay
 
-Cấu hình Phaser: `width: 800, height: 450, zoom: 2, pixelArt: true, roundPixels: true`, `Scale.FIT` giữ tỉ lệ 16:9, nền `#080A10`.
+- Asset, prototype, mockup đã là web; chạy, test (Vitest) và chụp màn hình (Playwright) được ngay trong
+  phiên Claude Code; deploy GitHub Pages không cần export. Godot không kiểm thử tự động được trong môi trường này.
+- Phaser nạp 2 trang ma trận + `atlas.json` thành texture atlas; `anims.json` → `AnimationManager`.
+- Cấu hình: `800×450, zoom 2, pixelArt, roundPixels, Scale.FIT`, nền `#080A10`.
+- Chữ tiếng Việt chỉ vẽ trên DOM ở độ phân giải hiển thị (quy ước `CLAUDE.md`).
 
-### 2.2 Kiến trúc thư mục (sau M0)
+### 2.3 Kiến trúc thư mục (sau giai đoạn A và B0)
 
 ```
 /
 ├─ index.html · package.json · vite.config.ts · tsconfig.json
+├─ art/                       ← NGUỒN art bằng code (Python)
+│  ├─ matrix.py               lớp Matrix 160×160 ô: cấp phát vùng, đặt asset, kiểm tra chồng lấn, xuất PNG + JSON
+│  ├─ palette.py              bảng màu chung: token UI v10 (từ locked.py) + bảng màu nhân vật + vật liệu
+│  ├─ pixel.py                parser ma trận ký tự → ảnh; ký tự đặc biệt G/M/A → điểm neo
+│  ├─ characters/             rig LPC: parts.py (cấu hình bộ phận), rig.py (ghép lớp), anims.py (danh sách pose)
+│  ├─ enemies/                8 loại Biến Thể: tint + lớp phủ ma trận (vỏ, bụng, chuột…)
+│  ├─ npcs/                   Mai, Ông Tư, Bác sĩ Lan, Lính Nhiễm
+│  ├─ weapons/                18 vũ khí + 2 dao, mỗi món 1 file ma trận ký tự; poses.py ghép vào tay
+│  ├─ items/                  33 item, mỗi item 1 ma trận 16×16
+│  ├─ fx/                     12 FX = hàm draw(t)
+│  ├─ ui/                     panel, button, tab, slot, bar, led, scrollbar, dialog, cursor, keycap (9-slice)
+│  ├─ maps/                   autotile LPC (từ lpcmap/lpcscene), xuất nền + mask va chạm
+│  ├─ build.py                lệnh chính: sinh atlas_0/1.png, atlas.json, anims.json, weapons.json, items.json
+│  └─ check.py                kiểm tra: không chồng lấn, mọi id tồn tại, màu UI chỉ từ token, tất định (hash)
 ├─ public/
-│  ├─ assets/          ← chuyển từ assets/ (Vite phục vụ tĩnh, không bundle 7 MB ảnh)
-│  └─ data/            ← chuyển từ data/ + thêm levels/level1.json, dialogue/level1.json
-├─ src/
-│  ├─ main.ts                 cấu hình Phaser, khởi động scene
-│  ├─ core/
-│  │  ├─ anims.ts             đọc data/*.json → đăng ký animation (key = "Dương/Đi xuống")
-│  │  ├─ events.ts            EventBus game ↔ HUD
-│  │  ├─ input.ts             ánh xạ phím (WASD, 1–4, Q/W/E/R, Space, Tab, Esc)
-│  │  └─ save.ts              checkpoint JSON → localStorage
-│  ├─ world/
-│  │  ├─ CollisionGrid.ts     lưới 16px: đi được / chặn / che khuất / nước / cầu
-│  │  ├─ Triggers.ts          vùng kích hoạt mục tiêu, hội thoại, điểm lưu
-│  │  └─ Pickups.ts           vật phẩm trên bản đồ
-│  ├─ entities/
-│  │  ├─ Actor.ts             sprite LPC: chân ở y-60, lật khi quay phải, depth = y chân
-│  │  ├─ Player.ts / Squad.ts 4 nhân vật, đổi 1–4, đi theo thủ lĩnh
-│  │  ├─ Enemy.ts             Kẻ Lang Thang (FSM) + lớp cơ sở cho 8 loại
-│  │  ├─ Npc.ts               Mai (ánh sáng xanh dẫn đường)
-│  │  └─ Rock.ts              đá ném, quỹ đạo parabol, tạo tiếng động
-│  ├─ stealth/
-│  │  ├─ VisionCone.ts        nón nhìn + raycast qua lưới che khuất
-│  │  ├─ Noise.ts             vòng tiếng động, truyền sự kiện cho Enemy
-│  │  ├─ Detection.ts         đồng hồ 3 mức: Ẩn mình / Nghi ngờ / Báo động
-│  │  └─ PlanMode.ts          tạm dừng, xếp lệnh cho từng người, thực thi đồng loạt
-│  ├─ scenes/  Boot · Preload · Level · Result (thắng/thua) · Pause
-│  ├─ ui/      hud.ts · dialogue.ts · menus.ts · tokens.css (DOM overlay v10)
-│  └─ levels/  level1.ts (nạp level1.json, kịch bản 4 nhịp hướng dẫn)
-├─ docs/       level_design.md · CREDITS.md · PLAN.md · (sau) ARCHITECTURE.md
-├─ tools/      script Python sinh asset (sửa đường dẫn, thêm README)
-└─ prototype/  giữ làm tham chiếu, không phát triển tiếp
+│  ├─ assets/atlas_0.png · atlas_1.png · maps/ · fonts/ · tiles/ (LPC gốc giữ riêng, không vào ma trận)
+│  └─ data/atlas.json · anims.json · weapons.json · items.json · levels/ · dialogue/
+├─ src/                       mã game TypeScript (xem B0–B6)
+│  ├─ core/   atlas.ts (nạp ma trận) · anims.ts · events.ts · input.ts · save.ts
+│  ├─ world/  CollisionGrid · Triggers · Pickups
+│  ├─ entities/ Actor · Player · Squad · Enemy · Npc · Rock
+│  ├─ stealth/ VisionCone · Noise · Detection · PlanMode
+│  ├─ scenes/ Boot · Preload · Level · Result · Pause
+│  ├─ ui/     hud.ts · dialogue.ts · menus.ts · tokens.css (border-image từ atlas_1)
+│  └─ levels/ level1.ts
+├─ docs/      level_design.md · CREDITS.md · PLAN.md · ART.md (quy ước ma trận, cách thêm asset)
+├─ tools/     script cũ, giữ để đối chiếu cho đến khi art/ thay thế hết rồi xóa
+└─ prototype/ build_hub.html (tham chiếu) · atlas_viewer.html (xem ma trận, soi từng ô)
 ```
 
-### 2.3 Quy ước code bắt buộc (bám `CLAUDE.md`)
+### 2.4 Quy ước code bắt buộc (bám `CLAUDE.md`)
 
-- Mọi hoạt ảnh nạp từ JSON, **không hard-code chỉ số hàng** trong code. Khung = `row * 11 + col` với sheet rộng 704, `row * 10 + col` với sheet rộng 640.
-- Vẽ actor tại `(x - 32, y - 60)`, `depth = y` (y của chân). Hướng phải = `flipX = true` của khung hướng trái.
-- Vũ khí nạp từ `weapons.json` v2; không đụng `weapons_v3_smg_backup.json`.
-- Màu UI chỉ lấy từ token v10; không thêm màu mới ngoài bảng.
-- Mọi chuỗi hiển thị là tiếng Việt có dấu, nằm trong `data/` hoặc `src/ui/strings.ts`, không rải trong logic.
-
----
-
-## 3. Lộ trình: màn 1 chơi được
-
-Mỗi mốc có **tiêu chí nghiệm thu** để biết khi nào xong. Ước lượng tính theo ngày làm việc với Claude Code.
-
-### M0 · Khởi tạo dự án (0.5 ngày)
-
-- [ ] `npm create vite` + TypeScript + Phaser 3.80+; ESLint, Prettier, Vitest; script `dev`, `build`, `test`, `lint`.
-- [ ] Chuyển `assets/` → `public/assets/`, `data/` → `public/data/`; `@font-face` Be Vietnam Pro từ file local.
-- [ ] Viết `core/anims.ts` đọc 7 file JSON hoạt ảnh và đăng ký animation; unit test kiểm tra số hàng khớp chiều cao sheet.
-- [ ] Scene `Preload` hiện thanh nạp theo phong cách v10; scene `Level` vẽ `level1_bridge_bg.png` và Dương đi 4 hướng.
-- [ ] GitHub Actions: lint + test + build mỗi push; deploy `dist/` lên GitHub Pages từ nhánh chính.
-- [ ] Viết lại `README.md` thành README dự án (cách chạy, cấu trúc, giấy phép); đổi nội dung bàn giao cũ vào `docs/HANDOFF.md`.
-
-**Nghiệm thu**: `npm run dev` mở game 1600×900, Dương đi bằng WASD, lật đúng hướng, chữ tiếng Việt nét trên overlay.
-
-### M1 · Nền tảng thế giới (2 ngày)
-
-- [ ] **Quyết định bản đồ màn 1** (xem mục 5.1). Đề xuất: bản đồ 50×30 tile (1600×960) sinh bằng `tools/lpcscene.py` đã sửa đường dẫn, gồm 4 khu theo thiết kế; camera cuộn theo thủ lĩnh, `roundPixels`.
-- [ ] `CollisionGrid` 16px với 5 loại ô: đi được, chặn (thân cây, đá), **che khuất** (tán cây, bụi: đi được nhưng chắn tầm nhìn), nước (chặn), cầu (lối duy nhất qua suối). Xuất từ mask PNG kèm bản đồ (mỗi màu = 1 loại) để chỉnh bằng công cụ vẽ ảnh.
-- [ ] Di chuyển có va chạm trượt dọc tường; 3 tư thế **Đứng / Khom / Bò** (tốc độ 58 / 34 / 18 px/s, ảnh hưởng độ lộ diện).
-- [ ] Y-sort toàn bộ actor và vật thể cao (cây) bằng `depth`.
-- [ ] Sinh hoạt ảnh **"Đi lên"** cho 4 nhân vật + Biến Thể từ LPC hàng 0 (cần clone LPC generator, sửa `tools/`), cập nhật JSON.
-- [ ] Debug overlay (phím F3): vẽ lưới va chạm, nón nhìn, vòng tiếng động.
-
-**Nghiệm thu**: đi hết 4 khu màn 1, không lọt nước, cầu là đường duy nhất qua suối, cây che người khi đứng sau.
-
-### M2 · Lõi ẩn nấp (3 ngày)
-
-- [ ] `Enemy` FSM: **Tuần tra** (đi theo điểm, dừng ở mỗi điểm và "Quay đầu nghe ngóng" mỗi 4 giây theo thiết kế) → **Nghi ngờ** (đi tới điểm nghi) → **Điều tra** (nhìn quanh 3 giây) → **Báo động** (đuổi theo, tốc độ 30 px/s) → **Mất dấu** (về điểm cuối thấy, rồi về tuần tra) → **Bị hạ**.
-- [ ] `VisionCone`: góc 90°, tầm 140 px, raycast qua lưới che khuất; người ở tư thế Khom/Bò trong ô "che khuất" không bị thấy; vẽ nón mờ đỏ như mockup HUD.
-- [ ] `Detection` 3 mức, mỗi Biến Thể một đồng hồ: 0–40 % Ẩn mình, 40–99 % Nghi ngờ (hiện `?`), 100 % Báo động (hiện `!`, FX "Bị phát hiện"). Tốc độ đầy tỉ lệ nghịch khoảng cách, nhân hệ số tư thế (Đứng 1.0 / Khom 0.6 / Bò 0.35); tự giảm khi ra khỏi nón.
-- [ ] `Noise`: ném đá (hoạt ảnh "Ném đá" 8 khung, quỹ đạo parabol, rơi tạo vòng 120 px + FX "Tiếng động"); Biến Thể trong vòng chuyển sang Điều tra tại điểm rơi. Chạy cũng tạo vòng nhỏ 48 px.
-- [ ] **Hạ từ sau** (Dương): đứng sau lưng trong 20 px, ngoài nón nhìn, bấm W → "Khóa siết từ sau" 10 khung + Biến Thể "Bị hạ" 11 khung; nằm 30 giây rồi dậy (cấu hình trong level JSON).
-- [ ] Bị tóm (Báo động và chạm người) → Result "Bị phát hiện", nạp lại điểm lưu.
-
-**Nghiệm thu**: sân thử 1 Biến Thể ở đầu cầu: có thể vượt bằng ném đá đánh lạc hướng **hoặc** hạ từ sau; bị thấy khi đứng, không bị thấy khi khom sau bụi.
-
-### M3 · Đội 4 người và chế độ kế hoạch (2 ngày)
-
-- [ ] `Squad`: phím 1–4 đổi thủ lĩnh; người còn lại đi theo hàng dọc cách 24 px, copy tư thế, tự nấp khi thủ lĩnh nấp; mỗi người có đồng hồ phát hiện riêng.
-- [ ] Kỹ năng riêng nạp từ `data/characters.json` (mới): Dương hạ từ sau, Hùng phá cửa / khiêng, Ny nhảy qua / chế thuốc, Sơn mở khóa / drone. Màn 1 chỉ bật Dương + Ny (nhịp 4).
-- [ ] `PlanMode` (Tab): tạm dừng, chọn từng người, xếp tối đa 3 lệnh (Đi tới, Chờ, Ném đá, Hạ gục), vẽ đường đi dự kiến, Enter thực thi đồng loạt; Esc hủy.
-- [ ] Pathfinding A* trên lưới 16px cho lệnh Đi tới và cho Biến Thể điều tra.
-
-**Nghiệm thu**: ở nhịp 4 màn 1, lên kế hoạch cho 2 người cùng lúc ném đá và hạ gục, thực thi đúng thứ tự.
-
-### M4 · Nội dung màn 1 (3 ngày)
-
-- [ ] `public/data/levels/level1.json`: vị trí xuất phát, điểm tuần tra, vật phẩm (3 đá khắc, 1 Mảnh Ký Ức, ảnh bốn người, 5 viên đá ném), trigger, điểm lưu, lời nhắc hướng dẫn.
-- [ ] 4 nhịp theo `level_design.md`: (1) trại: dạy đi + khom, vòng lặp đường mòn đưa về trại lần 1 (trigger đổi sương, Mai hiện ra); (2) rừng thông: dạy ném đá; (3) đầu cầu: dạy nón nhìn + hạ từ sau; (4) bên kia suối: dạy kế hoạch 2 người, đi theo Mai ra khỏi rừng.
-- [ ] Hội thoại `dialogue/level1.json` (người nói, câu, lựa chọn nếu có); hộp thoại v10 với chân dung; viết lời thoại nháp cho 4 nhịp để nhóm kịch bản duyệt.
-- [ ] Nhặt đồ (E), ba lô cập nhật, mục tiêu phụ "Đá khắc 1/3".
-- [ ] Điểm lưu ở đầu mỗi nhịp; `save.ts` ghi vị trí, vật phẩm, cờ; tự lưu + nạp từ menu.
-- [ ] Màn **Hoàn thành** (thời gian, số lần bị phát hiện, đá khắc) và **Bị phát hiện** (thử lại từ điểm lưu) theo bố cục v10.
-
-**Nghiệm thu**: chơi từ đầu đến cuối 8–10 phút không cần debug, qua được bằng cả 2 cách, thắng/thua hiển thị đúng.
-
-### M5 · HUD và menu v10 (3 ngày)
-
-- [ ] `ui/tokens.css` từ token v10; thành phần: khung có vạch quét, ngoặc góc, tab hình bình hành, thanh phân đoạn, LED.
-- [ ] HUD theo mockup `v10_hud.png`: Nhiệm vụ (trái trên), Bản đồ nhỏ (phải trên, vẽ từ lưới va chạm), Đồng hồ, thông báo trượt vào, Đội (4 thẻ HP/SL), thanh hành động Q/W/E/R + tư thế, Ba lô nhanh, nhãn "Ném đá ×3".
-- [ ] Menu Esc: Thông tin nhân vật, Ba lô (lưới vật phẩm, màn 1 chưa cần kéo thả 18×18), Nhiệm vụ, Lưu game, Cài đặt (âm thanh, phụ đề, tự lưu).
-- [ ] Hỗ trợ chuột cho menu, bàn phím cho game; gamepad để sau.
-
-**Nghiệm thu**: so khớp từng vùng với mockup ở 1600×900; chữ nét, không vỡ dấu ở mọi cỡ cửa sổ.
-
-### M6 · Hoàn thiện và phát hành màn 1 (2 ngày)
-
-- [ ] Âm thanh: cần nguồn (tự thu / CC0 freesound / kenney). Tối thiểu: nền rừng + suối, bước chân (cỏ/gỗ), ném và rơi đá, "?" và "!", bị hạ, nhạc menu. Ghi công vào `CREDITS.md`.
-- [ ] Ánh sáng bình minh + sương: lớp overlay gradient và particle sương nhẹ; ánh sáng xanh của Mai bằng sprite "Lơ lửng" + glow.
-- [ ] Test: Vitest cho `CollisionGrid`, `Detection`, `Noise`, `anims`; Playwright chụp HUD và chạy kịch bản "qua cầu bằng ném đá" để chống hồi quy.
-- [ ] Hiệu năng: 60 fps trên laptop tích hợp; không rò rỉ listener khi nạp lại màn.
-- [ ] Deploy GitHub Pages; chơi thử 3–5 người, ghi thời gian hoàn thành và số lần bị phát hiện; chỉnh số (tầm nhìn, tốc độ đầy đồng hồ).
-
-**Nghiệm thu**: link công khai chơi được màn 1; checklist "Build màn 1" trong `level_design.md` tích hết.
-
-Tổng cho màn 1: **~15–16 ngày làm việc**.
+- Code game chỉ tham chiếu asset bằng `id` dạng `nhóm/tên/hoạt-ảnh/khung` (ví dụ `char/duong/di-xuong/3`,
+  `weapon/pistol/icon`, `ui/panel/tl`). Không hard-code tọa độ.
+- Vẽ actor với neo chân `(32, 60)`, `depth = y` chân. Hướng phải = `flipX` của khung hướng trái.
+- `weapons.json`, `items.json`, `anims.json`, `atlas.json` là **file sinh**, không sửa tay; sửa ở `art/`.
+- Màu UI chỉ từ `art/palette.py` (token v10). `art/check.py` chặn màu lạ.
+- Mọi chuỗi hiển thị là tiếng Việt có dấu, nằm trong `data/` hoặc `src/ui/strings.ts`.
+- Mỗi lần đổi art: chạy `npm run art && npm run art:check`, commit cả nguồn `art/` lẫn ảnh sinh ra.
 
 ---
 
-## 4. Lộ trình sau màn 1 (12 màn, 6 kết thúc)
+## 3. Giai đoạn A · Refactor art thành code trên ma trận (các bước đầu)
+
+Mỗi bước có tiêu chí nghiệm thu. Ước lượng theo ngày làm việc với Claude Code.
+
+### A1 · Dựng ma trận 2560×2560 và pipeline (1 ngày)
+
+- [ ] `art/matrix.py`: lớp `Matrix(page, 160, 160)`; `alloc(w, h, zone)` cấp phát theo vùng; `place(id, img, anchor)`;
+      phát hiện chồng lấn; xuất `atlas_{page}.png` + `atlas.json`.
+- [ ] Phân vùng cố định (để tọa độ ổn định giữa các lần sinh, tránh đổi hash vô cớ):
+      trang 0: hàng 0–71 nhân vật 4 người (18 dải 64 px × 40 khung), 72–87 NPC, 88–111 Biến Thể, 112–159 dự phòng;
+      trang 1: hàng 0–31 vũ khí, 32–39 dao, 40–51 FX, 52–55 item + icon vũ khí, 56–79 UI, 80–159 dự phòng.
+- [ ] `art/pixel.py`: parser ma trận ký tự; `art/palette.py`: token v10 + bảng màu nhân vật.
+- [ ] `art/build.py`, `art/check.py`, `npm run art`, `npm run art:check`; `prototype/atlas_viewer.html` xem ma trận,
+      rê chuột hiện `id`, tọa độ ô, neo.
+- [ ] **Nhập tạm** toàn bộ sheet hiện có vào ma trận (cắt khung từ 9 sheet theo JSON cũ) để game chạy được ngay
+      bằng ma trận trong khi A2–A5 thay dần từng nhóm bằng nguồn code.
+- [ ] `docs/ART.md`: quy ước ma trận, cách thêm 1 asset mới trong 5 phút.
+
+**Nghiệm thu**: `npm run art` sinh 2 trang + `atlas.json` chứa đủ 1.481 khung cũ + 33 item + icon; `check` xanh;
+viewer soi được từng ô.
+
+### A2 · Set lại sprite nhân vật, NPC, Biến Thể bằng rig code (3 ngày)
+
+- [ ] Khôi phục pipeline LPC: biến môi trường `LPC_ROOT`, script `art/characters/fetch_lpc.sh` clone generator,
+      bỏ mọi đường dẫn `/home/claude`.
+- [ ] `art/characters/parts.py`: mỗi nhân vật = cấu hình bộ phận LPC + bảng màu (thân, tóc, áo, quần, giày, phụ kiện:
+      băng đầu Hùng, túi đỏ Ny, ba lô Sơn). Đổi màu áo = sửa 1 dòng, sinh lại toàn bộ khung.
+- [ ] `art/characters/anims.py`: danh sách pose cho 4 người, gộp 3 sheet cũ thành một bảng duy nhất; **thêm "Đi lên"**
+      và "Đứng yên" 4 hướng; các pose vẽ riêng (bò, nấp, hạ gục, ném đá, băng bó, mở khóa, phá cửa) port từ
+      `anim2.py`, `crawl.py`, `knock.py`, `melee.py`, `polish.py` thành hàm có tham số.
+- [ ] `art/enemies/`: Biến Thể cơ bản = rig người + tint; 7 loại còn lại = tint + lớp phủ ma trận (vỏ cứng, bụng
+      phình, chuột) port từ `zombies.py`; Kẻ Lang Thang có đủ 4 hướng đi.
+- [ ] `art/npcs/`: 4 NPC port từ `npcs.py`; Mai thêm pose "Lơ lửng" phát sáng xanh (glow sinh bằng hàm).
+- [ ] So khớp pixel với sheet cũ cho các pose đã có (chênh lệch chỉ do sửa chủ ý), ghi vào `check`.
+
+**Nghiệm thu**: xóa 6 sheet nhân vật/NPC/kẻ thù cũ, game vẫn chạy từ `atlas_0`; có "Đi lên"; đổi màu áo Dương
+trong `parts.py` → sinh lại → thấy ngay trong viewer.
+
+### A3 · Set lại vũ khí, dao, item bằng ma trận ký tự (2 ngày)
+
+- [ ] Chuyển 18 vũ khí v2 từ `weapons_db2.py` sang 18 file ma trận ký tự `art/weapons/*.txt` (đầu nòng bên trái),
+      đánh dấu `G` (tay cầm), `M` (đầu nòng) ngay trong ma trận. Bộ 11 tiểu liên v3 chuyển sang `art/weapons/backup/`,
+      không build.
+- [ ] `art/weapons/poses.py`: 5 `pose_set` (one_hand, shoulder, throw, blade_short, blade_long) = hàm ghép vũ khí vào
+      tay theo khung (port `weapons_build3.py`, `melee.py`), sinh 54 hoạt ảnh đi/ngắm/bắn + 8 hoạt ảnh dao.
+- [ ] Icon vũ khí (×2 có bóng) và atlas sprite sinh từ cùng ma trận; **`weapons.json` sinh tự động** với
+      `atlas_rect`, `grip`, `muzzle`, giữ nguyên `stats` và `anims` từ file cấu hình `art/weapons/stats.py`.
+- [ ] 33 item → 33 ma trận 16×16 trong `art/items/`, nhóm và mô tả trong `art/items/catalog.py` → sinh `items.json`.
+- [ ] Kiểm tra: mọi vũ khí đúng kích thước cũ ±1 px, điểm cầm không đổi, so khớp với `weapons_atlas_v2.png`.
+
+**Nghiệm thu**: xóa 5 ảnh vũ khí và `item_icons.png` cũ; `weapons.json` sinh ra bằng với bản chốt v2 về id, stats,
+grip, muzzle; prototype kho vũ khí chạy từ `atlas_1`.
+
+### A4 · Set lại khung thành phần UI v10 (2 ngày)
+
+- [ ] `art/ui/`: port 8 hàm trong `locked.py` thành bộ thành phần 9-slice và sprite: **Panel** (khung vạch quét, viền
+      teal, vạch thước, LED), **Button** (thường / rê / nhấn / khóa), **Tab** hình bình hành (thường / đang chọn),
+      **Slot** ngoặc góc (thường / đang chọn tím hồng), **Card**, **Choice** (dòng lựa chọn), **Bar** phân đoạn
+      (4 màu HP/SL/Ẩn nấp/Nhanh), **Scrollbar**, **Title tab** bình hành, **Dialog** (hộp thoại + khung chân dung),
+      **Keycap** Q/W/E/R/1–4, **Toggle**, **Cursor**, **Minimap frame**, dấu `?` `!`.
+- [ ] Mỗi thành phần có file ma trận cho các mảnh góc/cạnh và metadata 9-slice (`slice: [t, r, b, l]`) trong `atlas.json`.
+- [ ] `src/ui/tokens.css` sinh từ `palette.py` (biến CSS) + lớp `.v10-panel`, `.v10-button`… dùng `border-image`
+      trỏ vào `atlas_1.png` với `image-rendering: pixelated`.
+- [ ] Trang `prototype/ui_kit.html`: trưng bày mọi thành phần ở ×2, đặt cạnh mockup `v10_*.png` để so.
+
+**Nghiệm thu**: dựng lại HUD mockup `v10_hud.png` bằng thành phần + chữ DOM, đặt chồng lên mockup, sai lệch chỉ ở chữ.
+
+### A5 · Code animation cho từng asset (2 ngày)
+
+- [ ] `art/anims.py` → `data/anims.json`: mỗi hoạt ảnh `{id, frames[], fps, loop, anchor, flip, events}`;
+      fps mặc định: đi 10, chạy 12, đòn 14, bị hạ 11 khung ở 11 fps, nghe ngóng 6; `events`: bước chân (khung 2, 6),
+      thả đá (khung 5), chạm đòn (khung 3), ngã xong (khung cuối).
+- [ ] Hoạt ảnh FX = hàm `draw(t)` trong `art/fx/`: vòng tiếng động, nổ, khói, bào tử, chập điện, nước bắn, bụi, sét,
+      hồi máu, drone quét, bị phát hiện; sinh 8–10 khung, đồng thời xuất tham số để game vẽ thủ tục khi cần mượt hơn.
+- [ ] Hoạt ảnh UI thủ tục trong `src/ui/motion.ts`: LED nháy theo trạng thái phát hiện, vạch quét trôi, ngoặc ô đang
+      chọn nhấp nháy, thông báo trượt vào, thanh phân đoạn đầy dần, nón nhìn đổi màu theo mức.
+- [ ] `src/core/anims.ts`: nạp `anims.json` vào Phaser `AnimationManager`, phát `events` qua `EventBus`.
+- [ ] Viewer hoạt ảnh trong `atlas_viewer.html`: chọn id, xem phát ở 1×/2×, hiện sự kiện theo khung.
+
+**Nghiệm thu**: mọi hoạt ảnh trong 3 sheet cũ + NPC + Biến Thể + vũ khí + FX phát được từ `anims.json`; sự kiện
+bước chân bắn đúng khung.
+
+### A6 · Chốt pipeline, dọn dẹp, tối ưu (1 ngày)
+
+- [ ] CI: job `art` chạy `build` + `check` và so hash với ảnh đã commit (chống chỉnh tay ảnh sinh ra).
+- [ ] Xóa `assets/characters|enemies|npcs|weapons|items|fx` và `tools/` cũ sau khi `art/` thay thế đủ; cập nhật
+      `CLAUDE.md`, `CREDITS.md`, `ART.md`.
+- [ ] Tùy chọn: trim khung theo bounding box + neo để gom về 1 trang nếu cần giảm bộ nhớ mobile.
+- [ ] Bản đồ: `art/maps/` port `lpcmap.py`/`lpcscene.py`, xuất nền màn 1 + mask va chạm (chuẩn bị cho B1).
+
+**Nghiệm thu**: clone repo mới, `npm run art` tái tạo byte-giống ảnh đã commit; không còn ảnh tĩnh nào ngoài tile LPC
+gốc, font và mockup tham chiếu.
+
+Tổng giai đoạn A: **~11 ngày làm việc**.
+
+---
+
+## 4. Giai đoạn B · Màn 1 chơi được
+
+### B0 · Khởi tạo game (0.5 ngày)
+
+- [ ] Vite + TypeScript + Phaser 3.80+; ESLint, Prettier, Vitest; script `dev`, `build`, `test`, `lint`, `art`.
+- [ ] `core/atlas.ts` nạp 2 trang + `atlas.json`; `core/anims.ts` (từ A5); `@font-face` Be Vietnam Pro.
+- [ ] Scene `Preload` (thanh nạp v10) → `Level` vẽ nền cầu và Dương đi 4 hướng từ ma trận.
+- [ ] GitHub Actions: lint + test + art:check + build; deploy GitHub Pages.
+- [ ] Viết lại `README.md` thành README dự án; nội dung bàn giao cũ → `docs/HANDOFF.md`.
+
+**Nghiệm thu**: `npm run dev` mở game 1600×900, Dương đi WASD, lật đúng, chữ tiếng Việt nét.
+
+### B1 · Nền tảng thế giới (2 ngày)
+
+- [ ] Chốt bản đồ màn 1 (câu hỏi 3 mục 6). Đề xuất: 50×30 tile (1600×960) sinh từ `art/maps/`, 4 khu; camera cuộn.
+- [ ] `CollisionGrid` 16 px: đi được / chặn / **che khuất** / nước / cầu; xuất từ mask PNG sinh cùng bản đồ.
+- [ ] Di chuyển trượt dọc tường; 3 tư thế Đứng / Khom / Bò (58 / 34 / 18 px/s).
+- [ ] Y-sort toàn bộ actor và cây; debug overlay F3 (lưới, nón nhìn, vòng tiếng động).
+
+**Nghiệm thu**: đi hết 4 khu, không lọt nước, cầu là lối duy nhất, cây che người.
+
+### B2 · Lõi ẩn nấp (3 ngày)
+
+- [ ] `Enemy` FSM: Tuần tra (quay đầu nghe ngóng mỗi 4 s) → Nghi ngờ → Điều tra (3 s) → Báo động (30 px/s) →
+      Mất dấu → Tuần tra; Bị hạ.
+- [ ] `VisionCone` 90°, 140 px, raycast qua ô che khuất; Khom/Bò trong ô che khuất thì không bị thấy.
+- [ ] `Detection` 3 mức: 0–40 % Ẩn mình, 40–99 % Nghi ngờ (`?`), 100 % Báo động (`!` + FX); hệ số tư thế
+      1.0 / 0.6 / 0.35; tự giảm khi ra khỏi nón.
+- [ ] `Noise`: ném đá (parabol, vòng 120 px, FX tiếng động), chạy (vòng 48 px); Biến Thể đi điều tra.
+- [ ] Hạ từ sau (Dương): sau lưng 20 px, ngoài nón, phím W; nằm 30 s rồi dậy (cấu hình trong level JSON).
+- [ ] Bị tóm → Result "Bị phát hiện", nạp điểm lưu.
+
+**Nghiệm thu**: vượt Biến Thể đầu cầu bằng ném đá hoặc hạ từ sau; bị thấy khi đứng, không khi khom sau bụi.
+
+### B3 · Đội 4 người và chế độ kế hoạch (2 ngày)
+
+- [ ] `Squad`: 1–4 đổi thủ lĩnh; người còn lại đi theo cách 24 px, copy tư thế; đồng hồ phát hiện riêng.
+- [ ] Kỹ năng riêng từ `data/characters.json`; màn 1 bật Dương + Ny.
+- [ ] `PlanMode` (Tab): tạm dừng, tối đa 3 lệnh/người (Đi tới, Chờ, Ném đá, Hạ gục), Enter thực thi đồng loạt.
+- [ ] A* trên lưới 16 px.
+
+**Nghiệm thu**: nhịp 4 màn 1, 2 người cùng lúc ném đá và hạ gục theo kế hoạch.
+
+### B4 · Nội dung màn 1 (3 ngày)
+
+- [ ] `levels/level1.json`: xuất phát, điểm tuần tra, vật phẩm (3 đá khắc, Mảnh Ký Ức, ảnh bốn người, 5 đá ném),
+      trigger, điểm lưu, lời nhắc.
+- [ ] 4 nhịp theo `level_design.md`; Mai hiện ra dẫn đường; vòng lặp đường mòn.
+- [ ] `dialogue/level1.json` + hộp thoại v10 với chân dung; lời thoại nháp để duyệt.
+- [ ] Nhặt đồ (E), ba lô, mục tiêu phụ; điểm lưu + `save.ts`; màn Hoàn thành / Bị phát hiện.
+
+**Nghiệm thu**: chơi 8–10 phút từ đầu đến cuối, qua được bằng cả 2 cách.
+
+### B5 · HUD và menu v10 (2 ngày, rút ngắn nhờ A4)
+
+- [ ] Ghép thành phần A4 thành HUD theo `v10_hud.png`: Nhiệm vụ, Bản đồ nhỏ, Đồng hồ, thông báo, Đội, thanh
+      hành động, Ba lô nhanh. Menu Esc: Thông tin, Ba lô, Nhiệm vụ, Lưu, Cài đặt.
+
+**Nghiệm thu**: khớp mockup ở 1600×900, chữ nét mọi cỡ cửa sổ.
+
+### B6 · Hoàn thiện và phát hành màn 1 (2 ngày)
+
+- [ ] Âm thanh (nguồn CC0 hoặc tự thu), ánh sáng bình minh + sương, test Vitest + Playwright, 60 fps, deploy,
+      chơi thử 3–5 người, chỉnh số.
+
+**Nghiệm thu**: link công khai chơi được màn 1; checklist "Build màn 1" tích hết.
+
+Tổng giai đoạn B: **~14–15 ngày**. Tổng A + B: **~25–26 ngày làm việc**.
+
+---
+
+## 5. Giai đoạn C · 12 màn, 6 kết thúc
 
 | Mốc | Nội dung | Phụ thuộc |
 | --- | --- | --- |
-| M7 · Pipeline màn | Chuyển sang Tiled: tileset LPC trong `assets/tiles/`, lớp `collision`/`occlude`/`water`, object layer cho tuần tra, trigger, vật phẩm; loader chung; công cụ xuất mask | M1 |
-| M8 · Hệ thống chiến đấu | Port logic 18 vũ khí từ prototype (pose, tiếng ồn theo `stats.noise`, băng đạn), dao, ném lựu/khói; đạn trong ba lô; kho vũ khí v2 UI | M2, M5 |
-| M9 · 8 loại Biến Thể | Kẻ Thính (nghe, mù), Kẻ Phun (mây bào tử theo gió), Kẻ Bám Trần (đèn pin), Kẻ Mang Vỏ (miễn cận chiến), Kẻ Bắt Chước (tiếng gọi giả), Bầy Chuột (cống, sợ lửa), Lính Nhiễm (súng, trạm gác). Mỗi loại một FSM kế thừa `Enemy` | M2 |
-| M10 · Hồi I (màn 2–4) | Trạm kiểm lâm (máy phát, drone Sơn, phá cửa Hùng), Bản làng (nước gây ồn, khiêng Ông Tư), Quốc lộ (gió, mặt nạ, kháng bào tử) | M7–M9 |
-| M11 · Hồi II (màn 5–8) | Phố chợ (2 tầng cống), Trường (3 tầng, đèn pin), Nhà máy nước (bẫy máy ép, sửa máy), Chung cư (ngụy trang, lựa chọn tin Sơn) | M10 |
-| M12 · Hồi III (màn 9–12) | Hộ tống Bác sĩ Lan, Ga tàu (kế hoạch đồng loạt + súng), B3 (thẻ từ, camera, laser, tha thứ Sơn), Khu Bảo Hộ (3 lối vào) | M11 |
-| M13 · Hệ thống truyện | Cờ toàn cục: số người sống, tha thứ Sơn (màn 8, 11), Ny có thuốc (màn 9), lối vào (màn 12); 6 kết thúc + bí mật Mai (6/6 Mảnh Ký Ức, 12/12 đá khắc); đếm sưu tập trên HUD | M4 |
-| M14 · Ba lô lưới 18×18 | Kéo thả theo kích thước ô (mockup `v10_backpack.png`), tải trọng, đưa đồng đội | M5 |
-| M15 · Phát hành | Tối ưu tải (atlas, nén), lưu nhiều slot, cài đặt phím, gamepad, bản mobile (nếu cần), trang itch.io | tất cả |
+| C1 · Pipeline màn | Tiled với tileset LPC, lớp collision/occlude/water, object layer; hoặc mở rộng `art/maps/` | B1 |
+| C2 · Chiến đấu | Port 18 vũ khí từ prototype (pose, tiếng ồn theo `stats.noise`, băng đạn), dao, lựu; kho vũ khí UI | A3, B2 |
+| C3 · 8 loại Biến Thể | FSM riêng từng loại kế thừa `Enemy`; art từ A2 | A2, B2 |
+| C4 · Hồi I (màn 2–4) | Trạm kiểm lâm, Bản làng, Quốc lộ | C1–C3 |
+| C5 · Hồi II (màn 5–8) | Phố chợ, Trường, Nhà máy nước, Chung cư | C4 |
+| C6 · Hồi III (màn 9–12) | Bệnh viện, Ga tàu, B3, Khu Bảo Hộ | C5 |
+| C7 · Hệ thống truyện | Cờ toàn cục, 6 kết thúc, bí mật Mai, đếm sưu tập | B4 |
+| C8 · Ba lô lưới 18×18 | Kéo thả theo kích thước ô, tải trọng | A4, B5 |
+| C9 · Phát hành | Tối ưu tải, nhiều slot lưu, gamepad, mobile, itch.io | tất cả |
 
 ---
 
-## 5. Quyết định cần chốt với chủ dự án
+## 6. Quyết định cần chốt với chủ dự án
 
-1. **Kích thước bản đồ màn 1**: (a) giữ 1 màn hình 800×450 và cắt bớt 4 nhịp xuống 2, hay (b) bản đồ cuộn ~1600×960 sinh lại bằng `tools/lpcscene.py` với 4 khu theo thiết kế. **Đề xuất (b)**; nền hiện tại trở thành khu 3 (đầu cầu).
-2. **Bị hạ có dậy lại không**: prototype cho dậy sau 4 giây; đề xuất màn 1 dậy sau 30 giây để giữ áp lực nhưng vẫn là màn hướng dẫn.
-3. **Nguồn âm thanh**: tự sản xuất hay dùng CC0. Cần quyết định trước M6.
-4. **Giấy phép**: sprite dẫn xuất từ LPC là CC-BY-SA 3.0 / GPL 3.0, nên toàn bộ asset dẫn xuất phải phát hành cùng giấy phép; mã nguồn có thể giấy phép riêng. Cần thêm `LICENSE` (mã) và `LICENSE-ASSETS` ở M0.
-5. **Hoạt ảnh "Đi lên"**: sinh lại từ LPC (đúng chuẩn, cần clone generator ~1 GB) hay tạm dùng "Chạy lên" chậm lại (nhanh nhưng dáng không khớp). Đề xuất sinh lại ở M1.
-6. **Lời thoại màn 1**: ai viết? Claude Code viết nháp theo nhịp truyện, chủ dự án duyệt.
-7. **Nền tảng mục tiêu**: chỉ desktop web cho màn 1; mobile để M15.
+1. **Nhân vật: giữ LPC làm lớp gốc hay tự vẽ hoàn toàn bằng ma trận?** Đề xuất giữ LPC (rig ghép lớp bằng code,
+   đổi màu/bộ phận bằng cấu hình). Tự vẽ 1.500 khung người bằng ma trận ký tự chỉ khả thi nếu chuyển sang rig
+   thủ tục (bộ phận nhỏ + keyframe offset), chất lượng sẽ thấp hơn LPC và tốn thêm ~2 tuần. Vũ khí, item, UI, FX
+   thì tự vẽ hoàn toàn bằng ma trận.
+2. **Một trang hay hai trang 2560×2560?** Khung hiện có đã chiếm 95 % một trang. Đề xuất 2 trang cùng chuẩn; trim
+   khung để về 1 trang là tối ưu tùy chọn ở A6.
+3. **Kích thước bản đồ màn 1**: 1 màn hình (cắt bớt nhịp) hay cuộn 1600×960 với 4 khu. Đề xuất cuộn.
+4. **Bị hạ có dậy lại không**: đề xuất 30 giây ở màn 1.
+5. **Nguồn âm thanh**: tự sản xuất hay CC0. Cần trước B6.
+6. **Giấy phép**: asset dẫn xuất LPC là CC-BY-SA 3.0 / GPL 3.0; thêm `LICENSE` (mã) và `LICENSE-ASSETS` ở A1.
+7. **Lời thoại màn 1**: Claude Code viết nháp theo nhịp truyện, chủ dự án duyệt.
+8. **Nền tảng**: desktop web cho màn 1; mobile để C9.
 
 ---
 
-## 6. Rủi ro
+## 7. Rủi ro
 
 | Rủi ro | Ảnh hưởng | Giảm thiểu |
 | --- | --- | --- |
-| Pipeline sinh asset Python gãy (đường dẫn `/home/claude`, thiếu LPC gốc) | Không sinh được "Đi lên", bản đồ mới, Biến Thể mới | M1 dành 0.5 ngày khôi phục `tools/`: biến môi trường `LPC_ROOT`, README cách chạy, clone LPC generator |
-| Chữ tiếng Việt vỡ dấu trên canvas phóng ×2 | Vi phạm quy ước, UI xấu | Toàn bộ chữ trên DOM overlay; cấm `Phaser.GameObjects.Text` cho chữ có dấu |
-| AI ẩn nấp khó cân bằng (quá dễ / quá ức chế) | Màn 1 không vui | Mọi hằng số (góc, tầm, tốc độ đầy đồng hồ) nằm trong `level1.json`; debug overlay F3; chơi thử sớm ở M2 |
-| Bản đồ pre-render PNG khó sửa về sau | Chỉnh bố cục tốn công | Chuyển sang Tiled ở M7; màn 1 giữ PNG + mask để ra bản chơi được sớm |
-| Phạm vi 12 màn lớn | Kéo dài vô hạn | Chỉ cam kết màn 1 đến M6; màn 2–12 lập kế hoạch lại sau khi chơi thử |
+| Refactor art kéo dài, game chưa chạy được trong 2 tuần | Mất động lực, khó thấy tiến độ | A1 nhập tạm sheet cũ vào ma trận ngay ngày đầu; B0 có thể chạy song song từ ngày 2 trên ma trận "tạm", A2–A5 thay dần từng nhóm |
+| Ma trận 1 trang không đủ chỗ | Phải đổi chuẩn giữa chừng | Chốt 2 trang từ A1; vùng dự phòng 30–60 % mỗi trang |
+| Tọa độ ô đổi mỗi lần sinh → diff ảnh lớn, khó review | Lịch sử Git nặng | Phân vùng cố định + cấp phát tất định theo thứ tự id; `check` so hash |
+| Pipeline LPC (clone ~1 GB, đường dẫn cũ) | A2 chậm | Script fetch tự động, cache trong CI, đóng gói phần LPC cần dùng vào `art/characters/lpc_cache/` nếu giấy phép cho phép |
+| Rig code không tái tạo đúng pose vẽ tay cũ (bò, hạ gục) | Mất chất lượng | So khớp pixel với sheet cũ trong `check`; pose nào lệch thì giữ ảnh cũ làm "override" có ghi chú |
+| Chữ tiếng Việt vỡ dấu | Vi phạm quy ước | Chữ chỉ trên DOM; cấm `Phaser.Text` cho chữ có dấu |
+| AI ẩn nấp khó cân bằng | Màn 1 không vui | Hằng số trong `level1.json`, overlay F3, chơi thử sớm ở B2 |
 
 ---
 
-## 7. Việc làm ngay trong phiên tiếp theo
+## 8. Việc làm ngay trong phiên tiếp theo
 
-1. Chốt câu hỏi 1, 2, 5 ở mục 5 (bản đồ, dậy lại, "Đi lên").
-2. Chạy M0: khởi tạo Vite + Phaser + TypeScript, chuyển asset, viết `core/anims.ts` và test, Dương đi 4 hướng trên nền cầu.
-3. Chạy M1 phần lưới va chạm trên nền hiện có (mask PNG cho vùng cầu) để có sân thử cho M2 sớm nhất.
+1. Chốt câu hỏi 1 và 2 ở mục 6 (LPC làm gốc hay không; 1 hay 2 trang).
+2. Chạy **A1**: `art/matrix.py`, `pixel.py`, `palette.py`, `build.py`, `check.py`; nhập tạm 9 sheet cũ vào 2 trang;
+   `atlas_viewer.html`; `docs/ART.md`.
+3. Chạy **A3** trước A2 nếu muốn thấy kết quả "ma trận ký tự" sớm: 18 vũ khí + 33 item là nhóm nhỏ, dễ duyệt mắt.
 
 Câu lệnh gợi ý cho Claude Code:
-- "Thực hiện M0 trong docs/PLAN.md: khởi tạo Vite + Phaser 3 + TypeScript, chuyển assets/data vào public/, viết core/anims.ts nạp JSON hoạt ảnh, scene Level vẽ nền cầu và Dương đi 4 hướng."
-- "Thực hiện M1: tạo CollisionGrid từ mask PNG, 3 tư thế, y-sort, debug overlay F3."
+- "Thực hiện A1 trong docs/PLAN.md: dựng art/matrix.py với lưới 160×160 ô 16 px, nhập toàn bộ sheet cũ vào
+  atlas_0/atlas_1, sinh atlas.json, viết atlas_viewer.html và docs/ART.md."
+- "Thực hiện A3: chuyển 18 vũ khí v2 sang ma trận ký tự có đánh dấu G/M, sinh lại weapons.json và so khớp với bản chốt."
