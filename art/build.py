@@ -63,8 +63,17 @@ def write(pngs, manifest, anims):
         (OUT_IMG / name).write_bytes(data)
     (OUT_DATA / 'atlas.json').write_text(dumps(manifest), encoding='utf-8')
     (OUT_DATA / 'anims.json').write_text(dumps(anims), encoding='utf-8')
+    # atlas.js: bản JS cho viewer/gallery mở từ file://, kèm dữ liệu mô tả để hiển thị tên, nhóm, chỉ số
+    data_dir = ROOT / 'data'
+    extras = {
+        'ITEMS': json.loads((data_dir / 'items.json').read_text(encoding='utf-8')),
+        'WEAPONS': json.loads((data_dir / 'weapons.json').read_text(encoding='utf-8')),
+        'ZOMBIE_INFO': json.loads((data_dir / 'zombies.json').read_text(encoding='utf-8'))['rows'],
+    }
     js = 'window.ATLAS=' + json.dumps(manifest, ensure_ascii=False) + ';\nwindow.ANIMS=' + \
          json.dumps(anims, ensure_ascii=False) + ';\n'
+    for k, v in extras.items():
+        js += f'window.{k}=' + json.dumps(v, ensure_ascii=False) + ';\n'
     (OUT_DATA / 'atlas.js').write_text(js, encoding='utf-8')
 
 

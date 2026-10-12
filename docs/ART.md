@@ -10,7 +10,7 @@ Mọi pixel của game (trừ tile LPC gốc, font và mockup tham chiếu) đư
 | --- | --- |
 | `npm run art` | sinh `atlas_0.png`, `atlas_1.png`, `public/data/atlas.json`, `anims.json`, `atlas.js` |
 | `npm run art:check` | kiểm tra chồng lấn, id, vùng, màu UI, tất định (ảnh trên đĩa = sinh lại) |
-| `npm run art:review` | gộp viewer + ảnh thành `prototype/atlas_review.html`, một file mở được ở bất kỳ máy nào để duyệt |
+| `npm run art:review` | gộp viewer/gallery + ảnh thành `prototype/atlas_review.html` (ma trận) và `prototype/gallery_review.html` (gallery + sân thử tương tác), mỗi file mở được ở bất kỳ máy nào |
 | `npm run art:view` rồi mở `http://127.0.0.1:8080/prototype/atlas_viewer.html` | xem ma trận, rê chuột xem ô, phát hoạt ảnh. Mở thẳng file cũng được vì viewer đọc `atlas.js` |
 
 Yêu cầu: Python 3.11+, Pillow, numpy. Không sửa tay các file sinh ra; `art:check` sẽ báo lỗi.

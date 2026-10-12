@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gallery Vùng Xanh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Bố cục: một thanh tab trên cùng, mỗi tab là một lưới thẻ; sân thử là canvas 800×450 phóng nguyên lần. Đơn sắc tối theo UI v10 đã chốt. */
+:root{color-scheme:dark;
+--bg:#080A10;--grid:#0E121C;--panel:#121620;--scan:#10141E;--edge:#186078;--tick:#3EECFF;--mag:#6E144A;--mag-hi:#FF3AA8;--mag-lo:#380F2C;
+--slot:#161C28;--ink:#D8F4FF;--dim:#7896B0;--warn:#F0C83C;--ok:#50DC78;--bad:#F04650;--violet:#BE78FF;
+--font-d:'Chakra Petch','Be Vietnam Pro',system-ui,sans-serif;--font-b:'Be Vietnam Pro',system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 var(--font-b);
+background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
+.wrap{max-width:1400px;margin:0 auto;padding-block:16px 60px;padding-inline:16px}
+header.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.eyebrow{font-family:var(--font-d);color:var(--tick);letter-spacing:.18em;font-size:12px;font-weight:600}
+h1{font-family:var(--font-d);font-weight:700;font-size:clamp(22px,3.4vw,34px);line-height:1.05;margin:4px 0 0;text-transform:uppercase;text-wrap:balance}
+h1 em{font-style:normal;color:var(--mag-hi)}
+.leds{display:flex;gap:6px}.leds i{width:10px;height:6px;display:block}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap;margin:10px 0 14px}
+nav.tabs button{font:600 13px var(--font-b);color:var(--dim);background:#1E2636;border:0;padding:7px 16px;cursor:pointer;
+clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%)}
+nav.tabs button[aria-selected="true"]{background:var(--mag);color:var(--ink);box-shadow:inset 0 2px 0 var(--mag-hi)}
+nav.tabs button:focus-visible{outline:2px solid var(--tick);outline-offset:2px}
+section[hidden]{display:none}
+.panel{position:relative;background:var(--panel);border:1px solid var(--edge);padding:16px;margin-bottom:16px;
+background-image:repeating-linear-gradient(0deg,transparent 0 2px,var(--scan) 2px 3px)}
+.panel::before{content:"";position:absolute;left:4px;top:-3px;width:70px;height:1px;background:var(--tick)}
+.panel::after{content:"";position:absolute;right:8px;top:6px;width:22px;height:4px;background:linear-gradient(90deg,var(--bad) 0 30%,transparent 30% 36%,var(--warn) 36% 64%,transparent 64% 70%,var(--ok) 70%)}
+.ptitle{position:absolute;top:-12px;left:14px;background:var(--mag);color:var(--ink);font:700 12px var(--font-d);letter-spacing:.14em;text-transform:uppercase;padding:3px 16px;
+clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);box-shadow:inset 0 1px 0 var(--mag-hi)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--slot);padding:12px;min-width:0;position:relative}
+.card::before,.card::after{content:"";position:absolute;width:8px;height:8px;border:2px solid var(--edge)}
+.card::before{left:0;top:0;border-right:0;border-bottom:0}.card::after{right:0;bottom:0;border-left:0;border-top:0}
+.card h3{font:700 15px var(--font-d);margin:0 0 2px;text-transform:uppercase;letter-spacing:.06em}
+.card p.sub{margin:0 0 8px;color:var(--dim);font-size:12px}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{display:flex;flex-direction:column;align-items:center;gap:3px;width:136px}
+.tile canvas{image-rendering:pixelated;background:#0C1018;border:1px solid #1E2838;width:128px;height:128px}
+.tile.s16 canvas{width:48px;height:48px}.tile.s16{width:96px}
+.tile small{color:var(--dim);font-size:11px;text-align:center;line-height:1.2;width:100%}
+.tile b{font-weight:600;font-size:12px;text-align:center;line-height:1.2}
+.tile:hover canvas{border-color:var(--mag-hi)}
+.stat{display:grid;grid-template-columns:64px 1fr;gap:6px;align-items:center;font-size:11px;color:var(--dim)}
+.seg{display:flex;gap:2px}.seg i{flex:1;height:5px;background:#1E2838}
+.icon{image-rendering:pixelated;height:44px;display:block;margin-bottom:6px}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.item{display:flex;gap:10px;align-items:center;background:var(--slot);padding:8px;border-left:2px solid var(--c)}
+.item canvas{image-rendering:pixelated;width:48px;height:48px;flex:none}
+.item b{display:block;font-size:13px}.item small{color:var(--dim);font-size:11px}
+.gname{font:700 12px var(--font-d);letter-spacing:.14em;text-transform:uppercase;color:var(--c);margin:12px 0 6px}
+/* sân thử */
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px}
+@media (max-width:1000px){.stage{grid-template-columns:1fr}}
+.screen{position:relative;max-width:1600px}
+#game{width:100%;aspect-ratio:16/9;image-rendering:pixelated;display:block;background:#000;border:1px solid var(--edge);outline:none}
+#game:focus-visible{outline:2px solid var(--tick)}
+.hud{position:absolute;left:8px;top:8px;right:8px;display:flex;justify-content:space-between;gap:8px;pointer-events:none;font-size:13px}
+.hud .box{background:rgba(18,22,32,.88);border:1px solid var(--edge);padding:6px 10px}
+.hud .name{font:700 13px var(--font-d);text-transform:uppercase;letter-spacing:.08em;color:var(--tick)}
+.hud .det{display:flex;gap:2px;margin-top:4px}.hud .det i{width:9px;height:5px;background:#1E2838}
+.hud .lvl{font-size:11px;color:var(--dim);margin-top:2px}
+.side .box{background:var(--slot);padding:10px;margin-bottom:10px;font-size:13px}
+.side h4{margin:0 0 6px;font:700 12px var(--font-d);letter-spacing:.14em;text-transform:uppercase;color:var(--mag-hi)}
+.side kbd{display:inline-block;background:#1E2636;border:1px solid var(--edge);border-bottom-width:2px;padding:0 6px;font:600 12px var(--font-b);color:var(--ink);margin-right:2px}
+#log{color:var(--warn);min-height:3em}
+.touch{display:none;gap:6px;flex-wrap:wrap;margin-top:8px}
+.touch button{font:600 14px var(--font-b);background:#1E2636;color:var(--ink);border:1px solid var(--edge);padding:10px 14px;min-width:52px}
+@media (pointer:coarse){.touch{display:flex}}
+.note{color:var(--dim);font-size:12px;margin:8px 0 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div><div class="eyebrow">VÙNG XANH CUỐI CÙNG // REVIEW A1 · MA TRẬN ATLAS</div><h1>Gallery <em>hoạt ảnh</em> và sân thử</h1></div>
+  <div class="leds" aria-hidden="true"><i style="background:var(--bad)"></i><i style="background:var(--warn)"></i><i style="background:var(--ok)"></i></div>
+</header>
+<nav class="tabs" role="tablist" id="tabs"></nav>
+
+<section id="tab-san-thu" class="panel"><div class="ptitle">Sân thử · Đường Mòn Sương</div>
+<div class="stage">
+  <div class="screen">
+    <canvas id="game" width="800" height="450" tabindex="0" aria-label="Sân thử: điều khiển nhân vật trên cầu màn 1"></canvas>
+    <div class="hud"><div class="box"><div class="name" id="hudName">Dương</div><div id="hudStance">Đứng</div></div>
+      <div class="box"><div style="font-size:11px;color:var(--dim)">Kẻ Lang Thang · phát hiện</div><div class="det" id="det"></div><div class="lvl" id="lvl">Ẩn mình</div></div></div>
+  </div>
+  <div class="side">
+    <div class="box"><h4>Điều khiển</h4>
+      <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> đi · <kbd>Shift</kbd> chạy · <kbd>C</kbd> khom/bò · <kbd>Space</kbd> ném đá · <kbd>E</kbd> hạ từ sau · <kbd>1</kbd>–<kbd>4</kbd> đổi người</div>
+      <div class="touch" id="touch"><button data-k="w">▲</button><button data-k="a">◀</button><button data-k="s">▼</button><button data-k="d">▶</button><button data-k=" ">Ném</button><button data-k="c">Khom</button><button data-k="e">Hạ</button></div>
+    </div>
+    <div class="box"><h4>Nhật ký</h4><div id="log">Bấm vào màn rồi di chuyển. Kẻ Lang Thang canh đầu cầu, quay đầu mỗi 4 giây.</div></div>
+    <div class="box"><h4>Ghi chú review</h4>
+      <div class="note">• Đi lên chưa có hoạt ảnh riêng, đang tạm dùng "Chạy lên" chậm lại (việc A2).<br>• Nón nhìn, đồng hồ phát hiện 3 mức, tiếng động ném đá và hạ từ sau là bản thử nghiệm để xem sprite trong ngữ cảnh, không phải logic game cuối.</div></div>
+  </div>
+</div>
+</section>
+
+<section id="tab-nhan-vat" class="panel" hidden><div class="ptitle">Nhân vật</div><div class="cards" id="chars"></div></section>
+<section id="tab-bien-the" class="panel" hidden><div class="ptitle">Biến Thể</div><div class="cards" id="enemies"></div></section>
+<section id="tab-npc" class="panel" hidden><div class="ptitle">NPC</div><div class="cards" id="npcs"></div></section>
+<section id="tab-vu-khi" class="panel" hidden><div class="ptitle">Vũ khí v2 · 18 món + dao</div><div class="cards" id="weapons"></div></section>
+<section id="tab-hieu-ung" class="panel" hidden><div class="ptitle">Hiệu ứng</div><div class="tiles" id="fx"></div></section>
+<section id="tab-vat-pham" class="panel" hidden><div class="ptitle">Vật phẩm · 33</div><div id="items"></div></section>
+</div>
+
+<script src="../public/data/atlas.js"></script>
+<script>
+const A = window.ATLAS, AN = window.ANIMS, ITEMS = window.ITEMS, WEAPONS = window.WEAPONS, ZI = window.ZOMBIE_INFO;
+const SRC = window.ATLAS_IMG || Object.fromEntries(A.textures.map(t => [t.image, '../public/assets/' + t.image]).concat([['bg', '../assets/maps/level1_bridge_bg.png']]));
+const IMG = {}; let pending = 0;
+for (const [k, v] of Object.entries(SRC)) { const im = new Image(); pending++; im.onload = () => { if (--pending === 0) start(); }; im.src = v; IMG[k] = im; }
+const F = {}; A.textures.forEach((t, p) => t.frames.forEach(f => { f.img = t.image; F[f.filename] = f; }));
+const $ = s => document.querySelector(s);
+// ---- vẽ khung từ atlas: (ctx, id khung, x,y = vị trí neo, flip) ----
+function draw(ctx, fid, x, y, flip = false, scale = 1) {
+  const f = F[fid]; if (!f || f.empty) return; const sw = f.sourceSize.w, sh = f.sourceSize.h, ax = f.anchor.x * sw, ay = f.anchor.y * sh;
+  ctx.save(); ctx.translate(Math.round(x), Math.round(y)); if (flip) ctx.scale(-1, 1); ctx.scale(scale, scale);
+  ctx.drawImage(IMG[f.img], f.frame.x, f.frame.y, f.frame.w, f.frame.h, f.spriteSourceSize.x - ax, f.spriteSourceSize.y - ay, f.frame.w, f.frame.h); ctx.restore();
+}
+// ---- tab ----
+const TABS = [['san-thu', 'Sân thử'], ['nhan-vat', 'Nhân vật'], ['bien-the', 'Biến Thể'], ['npc', 'NPC'], ['vu-khi', 'Vũ khí'], ['hieu-ung', 'Hiệu ứng'], ['vat-pham', 'Vật phẩm']];
+let tab = 'san-thu';
+TABS.forEach(([id, label]) => { const b = document.createElement('button'); b.role = 'tab'; b.textContent = label; b.setAttribute('aria-selected', id === tab); b.onclick = () => showTab(id); $('#tabs').appendChild(b); });
+function showTab(id) { tab = id; TABS.forEach(([t], i) => { $('#tab-' + t).hidden = t !== id; $('#tabs').children[i].setAttribute('aria-selected', t === id); }); if (id === 'san-thu') $('#game').focus(); }
+if (location.hash && TABS.some(([t]) => '#' + t === location.hash)) tab = location.hash.slice(1);
+// ---- gallery: mọi tile chạy trong một vòng lặp ----
+const tiles = []; // {ctx, aid, f, t, flip, scale}
+function tileFor(aid, opts = {}) {
+  const a = AN[aid], f0 = F[a.frames[0]], d = document.createElement('div'); d.className = 'tile' + (f0.sourceSize.w <= 16 ? ' s16' : '');
+  const c = document.createElement('canvas'); c.width = f0.sourceSize.w; c.height = f0.sourceSize.h; d.appendChild(c);
+  d.insertAdjacentHTML('beforeend', `<b>${opts.label || a.name}</b><small>${a.frames.length} khung · ${a.fps} fps${a.loop ? '' : ' · một lần'}</small>`);
+  const t = { ctx: c.getContext('2d'), aid, f: 0, t: 0, flip: false, w: c.width, h: c.height, anchor: a.anchor }; t.ctx.imageSmoothingEnabled = false; tiles.push(t);
+  d.onmouseenter = () => t.flip = true; d.onmouseleave = () => t.flip = false; d.title = aid; return d;
+}
+function card(parent, title, sub, aids, extra = '') {
+  const d = document.createElement('div'); d.className = 'card'; d.innerHTML = `<h3>${title}</h3><p class="sub">${sub}</p>${extra}`;
+  const w = document.createElement('div'); w.className = 'tiles'; aids.forEach(aid => w.appendChild(tileFor(aid))); d.appendChild(w); parent.appendChild(d); return d;
+}
+function animsOf(prefix) { return Object.keys(AN).filter(k => k.startsWith(prefix + '/')); }
+const NAMES = { duong: 'Dương', hung: 'Hùng', ny: 'Ny', son: 'Sơn' };
+function buildGallery() {
+  Object.entries(NAMES).forEach(([k, n]) => { const aids = animsOf('char/' + k); card($('#chars'), n, `${aids.length} hoạt ảnh · ${aids.reduce((s, a) => s + AN[a].frames.length, 0)} khung · rê chuột để lật phải`, aids); });
+  const zinfo = Object.fromEntries(ZI.map(([n, d]) => [n, d]));
+  const en = {}; animsOf('enemy').forEach(a => { const k = a.split('/')[1]; (en[k] = en[k] || []).push(a); });
+  Object.entries(en).forEach(([k, aids]) => { const actor = AN[aids[0]].actor; card($('#enemies'), actor, zinfo[actor] || (k === 'ke-lang-thang' ? 'Màn 1 · tuần tra đầu cầu' : 'Biến Thể cơ bản · dùng chung'), aids); });
+  const np = {}; animsOf('npc').forEach(a => { const k = a.split('/')[1]; (np[k] = np[k] || []).push(a); });
+  Object.values(np).forEach(aids => card($('#npcs'), AN[aids[0]].actor, `${aids.length} hoạt ảnh`, aids));
+  const STATC = { damage: 'var(--bad)', range: 'var(--tick)', noise: 'var(--warn)', rate: 'var(--mag-hi)' }, STATN = { damage: 'Sát thương', range: 'Tầm bắn', noise: 'Tiếng ồn', rate: 'Tốc độ' };
+  Object.entries(WEAPONS).forEach(([id, w]) => {
+    const ic = F[`weapon/${id}/icon`]; const icon = `<canvas class="icon" width="${ic.frame.w}" height="${ic.frame.h}" data-fid="weapon/${id}/icon"></canvas>`;
+    const stats = Object.entries(w.stats).map(([k, v]) => `<div class="stat"><span>${STATN[k]}</span><div class="seg">${Array.from({ length: 10 }, (_, j) => `<i style="background:${j < v * 2 ? STATC[k] : ''}"></i>`).join('')}</div></div>`).join('');
+    card($('#weapons'), w.name, `${w.class} · ${w.pose_set} · <code>${id}</code>`, ['walk', 'aim', 'fire'].map(k => `weapon/${id}/${k}`), icon + `<div style="margin-bottom:8px">${stats}</div>`);
+  });
+  ['knife', 'machete'].forEach(k => card($('#weapons'), k === 'knife' ? 'Dao ngắn' : 'Dao rựa', 'cận chiến · ' + k, animsOf('melee/' + k)));
+  document.querySelectorAll('canvas[data-fid]').forEach(c => { const f = F[c.dataset.fid], x = c.getContext('2d'); x.imageSmoothingEnabled = false; x.drawImage(IMG[f.img], f.frame.x, f.frame.y, f.frame.w, f.frame.h, 0, 0, f.frame.w, f.frame.h); });
+  animsOf('fx').forEach(a => $('#fx').appendChild(tileFor(a)));
+  const col = { 'Y tế': 'var(--bad)', 'Đồ ăn': 'var(--warn)', 'Công cụ': 'var(--tick)', 'Đạn': '#F0A040', 'Cốt truyện': 'var(--mag-hi)' }; let g = null, wrap;
+  ITEMS.forEach(it => { if (it.group !== g) { g = it.group; $('#items').insertAdjacentHTML('beforeend', `<div class="gname" style="--c:${col[g]}">${g}</div>`); wrap = document.createElement('div'); wrap.className = 'items'; $('#items').appendChild(wrap); }
+    const id = 'item/' + slug(it.name), f = F[id]; const el = document.createElement('div'); el.className = 'item'; el.style.setProperty('--c', col[g]);
+    const c = document.createElement('canvas'); c.width = 16; c.height = 16; const x = c.getContext('2d'); x.imageSmoothingEnabled = false; if (f) x.drawImage(IMG[f.img], f.frame.x, f.frame.y, 16, 16, 0, 0, 16, 16);
+    el.appendChild(c); el.insertAdjacentHTML('beforeend', `<div><b>${it.name}</b><small>${it.desc}${f ? '' : ' · thiếu icon ' + id}</small></div>`); wrap.appendChild(el); });
+}
+function slug(s) { return s.replace(/đ/g, 'd').replace(/Đ/g, 'd').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '').toLowerCase(); }
+// ---- sân thử ----
+const cv = $('#game'), cx = cv.getContext('2d'); cx.imageSmoothingEnabled = false;
+const keys = {};
+const P = { duong: { x: 560, y: 268 }, hung: { x: 600, y: 300 }, ny: { x: 640, y: 330 }, son: { x: 585, y: 352 } };
+const squad = Object.keys(NAMES).map(k => ({ k, x: P[k].x, y: P[k].y, face: -1, anim: 'di-xuong', f: 0, t: 0, stance: 'dung', busy: null }));
+let cur = 0;
+const Z = { x: 300, y: 256, dir: 1, f: 0, t: 0, state: 'patrol', wait: 0, det: 0, target: null, down: 0, x0: 200, x1: 340 };
+const MAI = { x: 712, y: 338, f: 0, t: 0 };
+let rocks = [], rings = [];
+function say(t) { $('#log').textContent = t; }
+function walkable(x, y) { if (x < 30 || x > 770 || y < 190 || y > 436) return false; const inRiver = x > 392 && x < 472; const onBridge = x > 348 && x < 512 && y > 232 && y < 292; return !inRiver || onBridge; }
+function anim(c, id) { const full = `char/${c.k}/${id}`; if (!AN[full]) return; if (c.anim !== id) { c.anim = id; c.f = 0; c.t = 0; } }
+function step(dt) {
+  const c = squad[cur];
+  if (!c.busy) {
+    let vx = (keys.d || keys.arrowright ? 1 : 0) - (keys.a || keys.arrowleft ? 1 : 0), vy = (keys.s || keys.arrowdown ? 1 : 0) - (keys.w || keys.arrowup ? 1 : 0);
+    const run = keys.shift && c.stance === 'dung'; const sp = c.stance === 'bo' ? 18 : run ? 96 : 58;
+    if (vx || vy) { const l = Math.hypot(vx, vy); const nx = c.x + vx / l * sp * dt, ny = c.y + vy / l * sp * dt; if (walkable(nx, c.y)) c.x = nx; if (walkable(c.x, ny)) c.y = ny; if (vx) c.face = vx > 0 ? 1 : -1;
+      if (c.stance === 'bo') anim(c, 'bo-nup'); else if (vy < 0) anim(c, 'chay-len'); else if (vy > 0) anim(c, run ? 'chay-xuong' : 'di-xuong'); else anim(c, run ? 'chay' : 'di-sang-trai');
+      c.moving = true; if (run) rings.push({ x: c.x, y: c.y, r: 2, R: 48, t: 0, quiet: true }); }
+    else { c.moving = false; if (c.stance === 'bo') anim(c, 'bo-nup'); else if (c.anim === 'chay-len' && !AN[`char/${c.k}/di-len`]) anim(c, 'di-sang-trai'); }
+  }
+  // hoạt ảnh nhân vật
+  squad.forEach(s => { const a = AN[`char/${s.k}/${s.anim}`]; if (!a) return; const fpsk = (s.anim === 'chay-len' && s === c && !keys.shift) ? 6 : a.fps;
+    if (s === c && (s.moving || s.busy)) { s.t += dt; if (s.t > 1 / fpsk) { s.t = 0; s.f++; if (s.f >= a.frames.length) { if (s.busy) { s.busy = null; s.f = 0; anim(s, 'di-sang-trai'); } else s.f = 0; } } } else if (!s.busy) s.f = 0;
+    if (s.busy === 'nem' && s.f === 5 && !s.thrown) { s.thrown = true; rocks.push({ x: s.x + s.face * 14, y: s.y - 30, vx: s.face * 150, vy: -110 }); } });
+  // đá và tiếng động
+  rocks.forEach(r => { r.vx *= 1; r.vy += 260 * dt; r.x += r.vx * dt; r.y += r.vy * dt; if (r.y > r.ground) { } });
+  rocks = rocks.filter(r => { if (r.y >= (r.ground || (r.ground = r.y + 46))) { rings.push({ x: r.x, y: r.y, r: 4, R: 120, t: 0 }); if (Z.state !== 'down' && Math.hypot(Z.x - r.x, Z.y - r.y) < 120) { Z.state = 'investigate'; Z.target = { x: r.x, y: r.y }; say('Kẻ Lang Thang nghe tiếng đá rơi, đi kiểm tra.'); } return false; } return true; });
+  rings.forEach(g => g.t += dt); rings = rings.filter(g => g.t < 0.6);
+  // Kẻ Lang Thang
+  Z.t += dt;
+  const pc = c, dx = pc.x - Z.x, dy = pc.y - Z.y, dist = Math.hypot(dx, dy);
+  const facing = Z.state === 'alert' ? Math.sign(dx) || Z.dir : Z.dir;
+  const inCone = dist < 130 && Math.sign(dx) === facing && Math.abs(Math.atan2(dy, Math.abs(dx))) < 0.5 && Z.state !== 'down' && Z.state !== 'listen';
+  if (inCone) { const k = pc.stance === 'bo' ? 0.35 : pc.stance === 'khom' ? 0.6 : 1; Z.det = Math.min(1, Z.det + dt * k * (1.6 - dist / 130)); } else Z.det = Math.max(0, Z.det - dt * 0.4);
+  if (Z.det >= 1 && Z.state !== 'alert' && Z.state !== 'down') { Z.state = 'alert'; say('Bị phát hiện! Kẻ Lang Thang lao tới.'); }
+  else if (Z.det >= 0.4 && Z.state === 'patrol') { Z.state = 'suspect'; Z.target = { x: pc.x, y: pc.y }; }
+  const walkTo = (tx, ty, sp) => { const d = Math.hypot(tx - Z.x, ty - Z.y); if (d < 3) return true; Z.x += (tx - Z.x) / d * sp * dt; Z.y += (ty - Z.y) / d * sp * dt; Z.dir = Math.sign(tx - Z.x) || Z.dir; return false; };
+  if (Z.state === 'patrol') { const tx = Z.dir > 0 ? Z.x1 : Z.x0; if (walkTo(tx, 256, 16)) { Z.state = 'listen'; Z.wait = 1.6; } else if (Z.t > 4) { Z.t = 0; Z.state = 'listen'; Z.wait = 1.2; } }
+  else if (Z.state === 'listen') { Z.wait -= dt; if (Z.wait <= 0) { Z.state = 'patrol'; Z.dir *= -1; Z.t = 0; } }
+  else if (Z.state === 'suspect' || Z.state === 'investigate') { if (walkTo(Z.target.x, Z.target.y, 24)) { Z.state = 'look'; Z.wait = 3; } if (Z.det < 0.2 && Z.state === 'suspect') Z.state = 'patrol'; }
+  else if (Z.state === 'look') { Z.wait -= dt; if (Z.wait <= 0) { Z.state = 'patrol'; say('Không thấy gì. Kẻ Lang Thang quay lại tuần tra.'); } }
+  else if (Z.state === 'alert') { walkTo(pc.x, pc.y, 34); if (dist < 14) { say('Bị tóm! Đặt lại vị trí.'); squad.forEach(s => { s.x = P[s.k].x; s.y = P[s.k].y; }); Z.x = 300; Z.y = 256; Z.state = 'patrol'; Z.det = 0; } }
+  else if (Z.state === 'down') { Z.down -= dt; if (Z.down <= 0) { Z.state = 'patrol'; Z.det = 0; Z.f = 0; say('Kẻ Lang Thang đứng dậy.'); } }
+  if (Z.state === 'down') { if (Z.t > 1 / 11 && Z.f < 10) { Z.t = 0; Z.f++; } } else if (Z.state === 'listen' || Z.state === 'look') Z.f = 0; else if (Z.t > 1 / (Z.state === 'alert' ? 14 : 10)) { Z.t = 0; Z.f = (Z.f + 1) % 8; }
+  MAI.t += dt; if (MAI.t > 1 / 6) { MAI.t = 0; MAI.f = (MAI.f + 1) % AN['npc/mai/lo-lung'].frames.length; }
+  // HUD
+  $('#hudName').textContent = NAMES[c.k]; $('#hudStance').textContent = ({ dung: 'Đứng', khom: 'Khom', bo: 'Bò' })[c.stance] + (c.busy ? ' · ' + (c.busy === 'nem' ? 'ném đá' : 'hạ gục') : '');
+  const seg = $('#det'); if (!seg.children.length) seg.innerHTML = '<i></i>'.repeat(10);
+  const col = Z.det >= 1 ? 'var(--bad)' : Z.det >= 0.4 ? 'var(--warn)' : 'var(--ok)'; [...seg.children].forEach((i, j) => i.style.background = j < Z.det * 10 ? col : '');
+  $('#lvl').textContent = Z.state === 'down' ? 'Bị hạ' : Z.det >= 1 ? 'Báo động !' : Z.det >= 0.4 ? 'Nghi ngờ ?' : 'Ẩn mình';
+}
+function render() {
+  cx.drawImage(IMG.bg, 0, 0);
+  if (Z.state !== 'down' && Z.state !== 'listen' && Z.state !== 'look') { const fz = Z.state === 'alert' ? (Math.sign(squad[cur].x - Z.x) || Z.dir) : Z.dir; cx.fillStyle = Z.det >= 1 ? 'rgba(240,70,80,0.28)' : Z.det >= 0.4 ? 'rgba(240,200,60,0.22)' : 'rgba(240,80,60,0.16)'; cx.beginPath(); cx.moveTo(Z.x, Z.y - 12); cx.arc(Z.x, Z.y - 12, 130, fz > 0 ? -0.5 : Math.PI - 0.5, fz > 0 ? 0.5 : Math.PI + 0.5); cx.closePath(); cx.fill(); }
+  // Mai glow
+  cx.fillStyle = 'rgba(62,236,255,0.10)'; cx.beginPath(); cx.ellipse(MAI.x, MAI.y - 20, 26, 34, 0, 0, Math.PI * 2); cx.fill();
+  const ents = [];
+  squad.forEach(s => { const a = AN[`char/${s.k}/${s.anim}`]; if (a) ents.push({ y: s.y, d: () => { draw(cx, a.frames[Math.min(s.f, a.frames.length - 1)], s.x, s.y, s.face > 0); if (s === squad[cur]) { cx.strokeStyle = 'rgba(62,236,255,0.8)'; cx.beginPath(); cx.ellipse(s.x, s.y + 1, 12, 5, 0, 0, Math.PI * 2); cx.stroke(); } } }); });
+  const za = Z.state === 'down' ? AN['enemy/ke-lang-thang/bi-ha'] : AN['enemy/ke-lang-thang/le-buoc-trai'];
+  const zf = Z.state === 'alert' ? (Math.sign(squad[cur].x - Z.x) || Z.dir) : Z.dir;
+  ents.push({ y: Z.y, d: () => { draw(cx, za.frames[Math.min(Z.f, za.frames.length - 1)], Z.x, Z.y, Z.state !== 'down' && zf > 0); if (Z.state !== 'down' && Z.det >= 0.4) { cx.font = 'bold 12px monospace'; cx.fillStyle = Z.det >= 1 ? '#F04650' : '#F0C83C'; cx.fillText(Z.det >= 1 ? '!' : '?', Z.x - 3, Z.y - 66); } } });
+  ents.push({ y: MAI.y, d: () => draw(cx, AN['npc/mai/lo-lung'].frames[MAI.f], MAI.x, MAI.y) });
+  ents.sort((a, b) => a.y - b.y).forEach(e => e.d());
+  cx.fillStyle = '#B0B4BC'; rocks.forEach(r => cx.fillRect(r.x - 2, r.y - 2, 4, 4));
+  rings.forEach(g => { const r = g.r + (g.R - g.r) * Math.min(1, g.t / 0.6); cx.strokeStyle = g.quiet ? `rgba(120,150,176,${0.5 - g.t * 0.8})` : `rgba(240,200,60,${Math.max(0, 0.8 - g.t)})`; cx.beginPath(); cx.ellipse(g.x, g.y, r, r * 0.5, 0, 0, Math.PI * 2); cx.stroke(); });
+}
+let last = 0;
+function loop(now) {
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  if (tab === 'san-thu') { step(dt); render(); }
+  else tiles.forEach(t => { const a = AN[t.aid]; t.t += dt; if (t.t > 1 / a.fps) { t.t = 0; t.f = (t.f + 1) % a.frames.length; } t.ctx.clearRect(0, 0, t.w, t.h); draw(t.ctx, a.frames[t.f], t.anchor[0], t.anchor[1], t.flip); });
+  requestAnimationFrame(loop);
+}
+function press(k) { const c = squad[cur]; if (k === 'c') { c.stance = c.stance === 'dung' ? 'khom' : c.stance === 'khom' ? 'bo' : 'dung'; if (c.stance === 'bo') anim(c, 'bo-nup'); else anim(c, 'di-sang-trai'); c.f = 0; }
+  if (k === ' ' && !c.busy && c.stance !== 'bo') { c.busy = 'nem'; c.thrown = false; anim(c, 'nem-da'); c.f = 0; }
+  if (k === 'e' && !c.busy && Z.state !== 'down') { const behind = Math.hypot(Z.x - c.x, Z.y - c.y) < 22 && Math.sign(c.x - Z.x) !== Z.dir; if (behind) { c.busy = 'ha'; anim(c, 'khoa-siet-tu-sau'); c.f = 0; c.face = Z.dir; Z.state = 'down'; Z.f = 0; Z.t = 0; Z.down = 8; Z.det = 0; say(`${NAMES[c.k]} hạ Kẻ Lang Thang từ sau. Nó dậy sau 8 giây.`); } else say('Phải đứng sau lưng, ngoài nón nhìn, cách dưới 22 px.'); }
+  if ('1234'.includes(k)) { cur = +k - 1; say(`Điều khiển ${NAMES[squad[cur].k]}.`); } }
+addEventListener('keydown', e => { if (document.activeElement !== cv) return; const k = e.key.toLowerCase(); if (!keys[k]) press(k); keys[k] = true; if ([' ', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(k)) e.preventDefault(); });
+addEventListener('keyup', e => { keys[e.key.toLowerCase()] = false; });
+cv.addEventListener('pointerdown', () => cv.focus());
+document.querySelectorAll('#touch button').forEach(b => { const k = b.dataset.k; const on = e => { e.preventDefault(); cv.focus(); if (!keys[k]) press(k); keys[k] = true; }; const off = () => keys[k] = false; b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointercancel', off); b.addEventListener('pointerleave', off); });
+function start() { buildGallery(); showTab(tab); last = performance.now(); requestAnimationFrame(loop); }
+</script>
+</body>
+</html>
