@@ -18,6 +18,13 @@ Game chiến thuật ẩn nấp góc nhìn 3/4 (top-down), pixel art, tiếng Vi
 - **Chữ**: Be Vietnam Pro (`assets/fonts/`, OFL). Chữ pixel nhỏ làm mất dấu tiếng Việt → luôn vẽ chữ ở độ phân giải hiển thị.
 - **Ghi công bắt buộc**: sprite nhân vật/Biến Thể và tile lấy từ Liberated Pixel Cup (CC-BY-SA 3.0 / GPL 3.0). Xem `docs/CREDITS.md`.
 
+## Art bằng code trên ma trận (từ A1)
+- `art/` là NGUỒN art: `npm run art` sinh `public/assets/atlas_0.png`, `atlas_1.png` (2048×2048, lưới 128×128 ô 16 px)
+  và `public/data/atlas.json` (TexturePacker multiatlas), `anims.json`. `npm run art:check` kiểm tra; file sinh ra không sửa tay.
+- Id asset: `nhóm/tên/hoạt-ảnh/khung` ASCII, ví dụ `char/duong/di-xuong/3`. Code game chỉ dùng id. Quy ước đầy đủ: `docs/ART.md`.
+- Xem ma trận: `prototype/atlas_viewer.html` (mở thẳng hoặc `npm run art:view`).
+- `assets/` sheet bàn giao đang được `art/legacy_import.py` nhập tạm; A2–A5 thay dần bằng nguồn code rồi xóa sheet.
+
 ## Cấu trúc
 - `assets/characters/` hoạt ảnh 4 nhân vật (bản C) · `assets/enemies/` 8 loại Biến Thể · `assets/npcs/` Mai, Ông Tư, Bác sĩ Lan, Lính Nhiễm
 - `assets/weapons/` sheet hoạt ảnh vũ khí v2 (đi cầm / ngắm / bắn cho từng món), atlas sprite, icon · `assets/items/` 33 icon vật phẩm 16×16

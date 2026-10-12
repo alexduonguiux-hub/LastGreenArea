@@ -1,0 +1,85 @@
+"""Sinh atlas: python3 art/build.py  (hoặc npm run art)
+
+Đầu ra (đều là file sinh, không sửa tay):
+  public/assets/atlas_0.png, atlas_1.png   trang ma trận 2048×2048
+  public/data/atlas.json                   manifest TexturePacker multiatlas + cell/zone/group/anchor
+  public/data/atlas.js                     bản JS của manifest + anims để viewer mở từ file://
+  public/data/anims.json                   hoạt ảnh: khung, fps, lặp, neo
+"""
+import hashlib
+import io
+import json
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from matrix import Matrix, Zone  # noqa: E402
+from legacy_import import Importer  # noqa: E402
+
+ROOT = Path(__file__).resolve().parent.parent
+OUT_IMG = ROOT / 'public' / 'assets'
+OUT_DATA = ROOT / 'public' / 'data'
+PAGES = ['atlas_0.png', 'atlas_1.png']
+
+# Phân vùng cố định theo hàng 16 px (xem docs/PLAN.md A1). Dải 4 hàng = 32 khung 64 px chưa trim.
+ZONES = [
+    Zone('char', 0, 0, 83),       # 4 nhân vật chính
+    Zone('bienthe', 0, 84, 95),   # Biến Thể cơ bản + Kẻ Lang Thang
+    Zone('zombies', 0, 96, 123),  # 6 loại Biến Thể màn 3–8
+    Zone('spare0', 0, 124, 127),
+    Zone('npc', 1, 0, 19),
+    Zone('weapons', 1, 20, 55),   # hoạt ảnh đi/ngắm/bắn 18 vũ khí
+    Zone('melee', 1, 56, 63),
+    Zone('fx', 1, 64, 79),
+    Zone('items', 1, 80, 83),     # 33 item + icon và sprite vũ khí
+    Zone('ui', 1, 84, 107),       # thành phần UI 9-slice (A4)
+    Zone('spare1', 1, 108, 127),
+]
+
+
+def build():
+    m = Matrix(ZONES)
+    imp = Importer(m).all()
+    manifest = m.manifest(PAGES)
+    anims = imp.anims
+    pngs = []
+    for im in m.pages:
+        buf = io.BytesIO()
+        im.save(buf, 'PNG', optimize=True)
+        pngs.append(buf.getvalue())
+    manifest['meta']['frames'] = len(m.frames)
+    manifest['meta']['anims'] = len(anims)
+    return m, pngs, manifest, anims, imp.log
+
+
+def dumps(obj):
+    return json.dumps(obj, ensure_ascii=False, indent=1) + '\n'
+
+
+def write(pngs, manifest, anims):
+    OUT_IMG.mkdir(parents=True, exist_ok=True)
+    OUT_DATA.mkdir(parents=True, exist_ok=True)
+    for name, data in zip(PAGES, pngs):
+        (OUT_IMG / name).write_bytes(data)
+    (OUT_DATA / 'atlas.json').write_text(dumps(manifest), encoding='utf-8')
+    (OUT_DATA / 'anims.json').write_text(dumps(anims), encoding='utf-8')
+    js = 'window.ATLAS=' + json.dumps(manifest, ensure_ascii=False) + ';\nwindow.ANIMS=' + \
+         json.dumps(anims, ensure_ascii=False) + ';\n'
+    (OUT_DATA / 'atlas.js').write_text(js, encoding='utf-8')
+
+
+def main():
+    m, pngs, manifest, anims, log = build()
+    write(pngs, manifest, anims)
+    for line in log:
+        print('  ', line)
+    print(f'khung: {len(m.frames)}  hoạt ảnh: {len(anims)}')
+    for z in manifest['meta']['zones']:
+        pct = 100 * z['used'] / z['capacity']
+        print(f"  trang {z['page']} {z['name']:8s} hàng {z['row0']:3d}–{z['row1']:3d}  dùng {z['used']:5d}/{z['capacity']:5d} ô ({pct:4.1f} %)")
+    for name, data in zip(PAGES, pngs):
+        print(f'  {name}: {len(data) // 1024} KB  sha256 {hashlib.sha256(data).hexdigest()[:12]}')
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,11 @@
+{
+  "name": "vung-xanh-cuoi-cung",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Vùng Xanh Cuối Cùng · game ẩn nấp pixel art tiếng Việt",
+  "scripts": {
+    "art": "python3 art/build.py",
+    "art:check": "python3 art/check.py",
+    "art:view": "python3 -m http.server 8080 --bind 127.0.0.1"
+  }
+}

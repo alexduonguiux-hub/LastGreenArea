@@ -135,23 +135,24 @@ Mỗi bước có tiêu chí nghiệm thu. Ước lượng theo ngày làm việ
 
 ### A1 · Dựng ma trận 2048×2048 và pipeline (1 ngày)
 
-- [ ] `art/matrix.py`: lớp `Matrix(page, 128, 128)`; `alloc(w, h, zone)` cấp phát theo vùng; `place(id, img, anchor)`;
+- [x] `art/matrix.py`: lớp `Matrix(page, 128, 128)`; `alloc(w, h, zone)` cấp phát theo vùng; `place(id, img, anchor)`;
       cắt viền khung (trim) và ghi độ lệch neo; phát hiện chồng lấn; xuất `atlas_{page}.png` + `atlas.json`.
-- [ ] Phân vùng cố định theo hàng đơn vị 16 px (để tọa độ ổn định giữa các lần sinh, tránh đổi hash vô cớ), tính
+- [x] Phân vùng cố định theo hàng đơn vị 16 px (để tọa độ ổn định giữa các lần sinh, tránh đổi hash vô cớ), tính
       cho trường hợp chưa trim, mỗi dải 4 hàng = 32 khung 64 px:
       trang 0: hàng 0–83 bốn nhân vật (21 dải, 642 khung kể cả "Đi lên"), 84–95 Biến Thể + Kẻ Lang Thang (3 dải),
       96–123 sáu loại Biến Thể màn 3–8 (7 dải), 124–127 dự phòng;
       trang 1: hàng 0–19 NPC (5 dải), 20–55 vũ khí (9 dải), 56–63 dao (2 dải), 64–79 FX (4 dải), 80–83 item + icon
       vũ khí, 84–107 UI (6 dải), 108–127 dự phòng (5 dải). Sau khi trim, phần dự phòng tăng lên đáng kể.
-- [ ] `art/pixel.py`: parser ma trận ký tự; `art/palette.py`: token v10 + bảng màu nhân vật.
-- [ ] `art/build.py`, `art/check.py`, `npm run art`, `npm run art:check`; `prototype/atlas_viewer.html` xem ma trận,
+- [x] `art/pixel.py`: parser ma trận ký tự; `art/palette.py`: token v10 + bảng màu nhân vật.
+- [x] `art/build.py`, `art/check.py`, `npm run art`, `npm run art:check`; `prototype/atlas_viewer.html` xem ma trận,
       rê chuột hiện `id`, tọa độ ô, neo.
-- [ ] **Nhập tạm** toàn bộ sheet hiện có vào ma trận (cắt khung từ 9 sheet theo JSON cũ) để game chạy được ngay
+- [x] **Nhập tạm** toàn bộ sheet hiện có vào ma trận (cắt khung từ 9 sheet theo JSON cũ) để game chạy được ngay
       bằng ma trận trong khi A2–A5 thay dần từng nhóm bằng nguồn code.
-- [ ] `docs/ART.md`: quy ước ma trận, cách thêm 1 asset mới trong 5 phút.
+- [x] `docs/ART.md`: quy ước ma trận, cách thêm 1 asset mới trong 5 phút.
 
-**Nghiệm thu**: `npm run art` sinh 2 trang + `atlas.json` chứa đủ 1.481 khung cũ + 33 item + icon; `check` xanh;
-viewer soi được từng ô.
+**Nghiệm thu (đạt 2026-10-12)**: `npm run art` sinh 2 trang + `atlas.json` với 1.482 khung (1.413 khung hoạt ảnh sau
+khi bỏ 8 cặp trùng, 33 item, 18 icon + 18 sprite vũ khí), 194 hoạt ảnh; `art:check` xanh và tất định; viewer soi được
+từng ô và phát hoạt ảnh. Nhờ trim, vùng nhân vật dùng 46 %, các vùng khác 31–64 %.
 
 ### A2 · Set lại sprite nhân vật, NPC, Biến Thể bằng rig code (3 ngày)
 

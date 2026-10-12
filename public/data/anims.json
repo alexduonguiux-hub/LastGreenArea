@@ -1,0 +1,3937 @@
+{
+ "char/duong/di-xuong": {
+  "name": "Đi xuống",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/di-xuong/0",
+   "char/duong/di-xuong/1",
+   "char/duong/di-xuong/2",
+   "char/duong/di-xuong/3",
+   "char/duong/di-xuong/4",
+   "char/duong/di-xuong/5",
+   "char/duong/di-xuong/6",
+   "char/duong/di-xuong/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/duong/di-sang-trai": {
+  "name": "Đi sang trái",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/di-sang-trai/0",
+   "char/duong/di-sang-trai/1",
+   "char/duong/di-sang-trai/2",
+   "char/duong/di-sang-trai/3",
+   "char/duong/di-sang-trai/4",
+   "char/duong/di-sang-trai/5",
+   "char/duong/di-sang-trai/6",
+   "char/duong/di-sang-trai/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/duong/chay": {
+  "name": "Chạy",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/chay/0",
+   "char/duong/chay/1",
+   "char/duong/chay/2",
+   "char/duong/chay/3",
+   "char/duong/chay/4",
+   "char/duong/chay/5",
+   "char/duong/chay/6",
+   "char/duong/chay/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/duong/leo-treo": {
+  "name": "Leo trèo",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/leo-treo/0",
+   "char/duong/leo-treo/1",
+   "char/duong/leo-treo/2",
+   "char/duong/leo-treo/3",
+   "char/duong/leo-treo/4",
+   "char/duong/leo-treo/5"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/duong/am-sat": {
+  "name": "Ám sát",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/am-sat/0",
+   "char/duong/am-sat/1",
+   "char/duong/am-sat/2",
+   "char/duong/am-sat/3",
+   "char/duong/am-sat/4",
+   "char/duong/am-sat/5"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/duong/bo-nup": {
+  "name": "Bò núp",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/bo-nup/0",
+   "char/duong/bo-nup/1",
+   "char/duong/bo-nup/2",
+   "char/duong/bo-nup/3",
+   "char/duong/bo-nup/4",
+   "char/duong/bo-nup/5",
+   "char/duong/bo-nup/6",
+   "char/duong/bo-nup/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/hung/di-xuong": {
+  "name": "Đi xuống",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/di-xuong/0",
+   "char/hung/di-xuong/1",
+   "char/hung/di-xuong/2",
+   "char/hung/di-xuong/3",
+   "char/hung/di-xuong/4",
+   "char/hung/di-xuong/5",
+   "char/hung/di-xuong/6",
+   "char/hung/di-xuong/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/hung/di-sang-trai": {
+  "name": "Đi sang trái",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/di-sang-trai/0",
+   "char/hung/di-sang-trai/1",
+   "char/hung/di-sang-trai/2",
+   "char/hung/di-sang-trai/3",
+   "char/hung/di-sang-trai/4",
+   "char/hung/di-sang-trai/5",
+   "char/hung/di-sang-trai/6",
+   "char/hung/di-sang-trai/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/hung/chay": {
+  "name": "Chạy",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/chay/0",
+   "char/hung/chay/1",
+   "char/hung/chay/2",
+   "char/hung/chay/3",
+   "char/hung/chay/4",
+   "char/hung/chay/5",
+   "char/hung/chay/6",
+   "char/hung/chay/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/hung/pha-cua": {
+  "name": "Phá cửa",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/pha-cua/0",
+   "char/hung/pha-cua/1",
+   "char/hung/pha-cua/2",
+   "char/hung/pha-cua/3",
+   "char/hung/pha-cua/4",
+   "char/hung/pha-cua/5",
+   "char/hung/pha-cua/6",
+   "char/hung/pha-cua/7",
+   "char/hung/pha-cua/8",
+   "char/hung/pha-cua/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/hung/khoa-siet-tu-sau": {
+  "name": "Khóa siết từ sau",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/khoa-siet-tu-sau/0",
+   "char/hung/khoa-siet-tu-sau/1",
+   "char/hung/khoa-siet-tu-sau/2",
+   "char/hung/khoa-siet-tu-sau/3",
+   "char/hung/khoa-siet-tu-sau/4",
+   "char/hung/khoa-siet-tu-sau/5",
+   "char/hung/khoa-siet-tu-sau/6",
+   "char/hung/khoa-siet-tu-sau/7",
+   "char/hung/khoa-siet-tu-sau/8",
+   "char/hung/khoa-siet-tu-sau/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/hung/bo-nup": {
+  "name": "Bò núp",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/bo-nup/0",
+   "char/hung/bo-nup/1",
+   "char/hung/bo-nup/2",
+   "char/hung/bo-nup/3",
+   "char/hung/bo-nup/4",
+   "char/hung/bo-nup/5",
+   "char/hung/bo-nup/6",
+   "char/hung/bo-nup/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/ny/di-xuong": {
+  "name": "Đi xuống",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/di-xuong/0",
+   "char/ny/di-xuong/1",
+   "char/ny/di-xuong/2",
+   "char/ny/di-xuong/3",
+   "char/ny/di-xuong/4",
+   "char/ny/di-xuong/5",
+   "char/ny/di-xuong/6",
+   "char/ny/di-xuong/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/ny/di-sang-trai": {
+  "name": "Đi sang trái",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/di-sang-trai/0",
+   "char/ny/di-sang-trai/1",
+   "char/ny/di-sang-trai/2",
+   "char/ny/di-sang-trai/3",
+   "char/ny/di-sang-trai/4",
+   "char/ny/di-sang-trai/5",
+   "char/ny/di-sang-trai/6",
+   "char/ny/di-sang-trai/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/ny/chay": {
+  "name": "Chạy",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/chay/0",
+   "char/ny/chay/1",
+   "char/ny/chay/2",
+   "char/ny/chay/3",
+   "char/ny/chay/4",
+   "char/ny/chay/5",
+   "char/ny/chay/6",
+   "char/ny/chay/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/ny/nhay-qua": {
+  "name": "Nhảy qua",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/nhay-qua/0",
+   "char/ny/nhay-qua/1",
+   "char/ny/nhay-qua/2",
+   "char/ny/nhay-qua/3",
+   "char/ny/nhay-qua/4"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/ny/dung-tho": {
+  "name": "Đứng thở",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/dung-tho/0",
+   "char/ny/dung-tho/1"
+  ],
+  "fps": 2,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/ny/bo-nup": {
+  "name": "Bò núp",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/bo-nup/0",
+   "char/ny/bo-nup/1",
+   "char/ny/bo-nup/2",
+   "char/ny/bo-nup/3",
+   "char/ny/bo-nup/4",
+   "char/ny/bo-nup/5",
+   "char/ny/bo-nup/6",
+   "char/ny/bo-nup/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/son/di-xuong": {
+  "name": "Đi xuống",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/di-xuong/0",
+   "char/son/di-xuong/1",
+   "char/son/di-xuong/2",
+   "char/son/di-xuong/3",
+   "char/son/di-xuong/4",
+   "char/son/di-xuong/5",
+   "char/son/di-xuong/6",
+   "char/son/di-xuong/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/son/di-sang-trai": {
+  "name": "Đi sang trái",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/di-sang-trai/0",
+   "char/son/di-sang-trai/1",
+   "char/son/di-sang-trai/2",
+   "char/son/di-sang-trai/3",
+   "char/son/di-sang-trai/4",
+   "char/son/di-sang-trai/5",
+   "char/son/di-sang-trai/6",
+   "char/son/di-sang-trai/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/son/chay": {
+  "name": "Chạy",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/chay/0",
+   "char/son/chay/1",
+   "char/son/chay/2",
+   "char/son/chay/3",
+   "char/son/chay/4",
+   "char/son/chay/5",
+   "char/son/chay/6",
+   "char/son/chay/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/son/mo-khoa-cua": {
+  "name": "Mở khóa cửa",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/mo-khoa-cua/0",
+   "char/son/mo-khoa-cua/1",
+   "char/son/mo-khoa-cua/2",
+   "char/son/mo-khoa-cua/3",
+   "char/son/mo-khoa-cua/4",
+   "char/son/mo-khoa-cua/5",
+   "char/son/mo-khoa-cua/6",
+   "char/son/mo-khoa-cua/7",
+   "char/son/mo-khoa-cua/8",
+   "char/son/mo-khoa-cua/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/son/dung-tho": {
+  "name": "Đứng thở",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/dung-tho/0",
+   "char/son/dung-tho/1"
+  ],
+  "fps": 2,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/son/bo-nup": {
+  "name": "Bò núp",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/bo-nup/0",
+   "char/son/bo-nup/1",
+   "char/son/bo-nup/2",
+   "char/son/bo-nup/3",
+   "char/son/bo-nup/4",
+   "char/son/bo-nup/5",
+   "char/son/bo-nup/6",
+   "char/son/bo-nup/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "enemy/bien-the/le-buoc-xuong": {
+  "name": "Lê bước xuống",
+  "actor": "Biến Thể",
+  "frames": [
+   "enemy/bien-the/le-buoc-xuong/0",
+   "enemy/bien-the/le-buoc-xuong/1",
+   "enemy/bien-the/le-buoc-xuong/2",
+   "enemy/bien-the/le-buoc-xuong/3",
+   "enemy/bien-the/le-buoc-xuong/4",
+   "enemy/bien-the/le-buoc-xuong/5",
+   "enemy/bien-the/le-buoc-xuong/6",
+   "enemy/bien-the/le-buoc-xuong/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "enemy/bien-the/le-buoc-trai": {
+  "name": "Lê bước trái",
+  "actor": "Biến Thể",
+  "frames": [
+   "enemy/bien-the/le-buoc-trai/0",
+   "enemy/bien-the/le-buoc-trai/1",
+   "enemy/bien-the/le-buoc-trai/2",
+   "enemy/bien-the/le-buoc-trai/3",
+   "enemy/bien-the/le-buoc-trai/4",
+   "enemy/bien-the/le-buoc-trai/5",
+   "enemy/bien-the/le-buoc-trai/6",
+   "enemy/bien-the/le-buoc-trai/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "enemy/bien-the/vo": {
+  "name": "Vồ",
+  "actor": "Biến Thể",
+  "frames": [
+   "enemy/bien-the/vo/0",
+   "enemy/bien-the/vo/1",
+   "enemy/bien-the/vo/2",
+   "enemy/bien-the/vo/3",
+   "enemy/bien-the/vo/4",
+   "enemy/bien-the/vo/5"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "enemy/bien-the/quay-dau-nghe-ngong": {
+  "name": "Quay đầu nghe ngóng",
+  "actor": "Biến Thể",
+  "frames": [
+   "enemy/bien-the/quay-dau-nghe-ngong/0",
+   "enemy/bien-the/quay-dau-nghe-ngong/1",
+   "enemy/bien-the/quay-dau-nghe-ngong/2",
+   "enemy/bien-the/quay-dau-nghe-ngong/3",
+   "enemy/bien-the/quay-dau-nghe-ngong/4",
+   "enemy/bien-the/quay-dau-nghe-ngong/5",
+   "enemy/bien-the/quay-dau-nghe-ngong/6",
+   "enemy/bien-the/quay-dau-nghe-ngong/7"
+  ],
+  "fps": 6,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "enemy/bien-the/bi-ha": {
+  "name": "Bị hạ",
+  "actor": "Biến Thể",
+  "frames": [
+   "enemy/bien-the/bi-ha/0",
+   "enemy/bien-the/bi-ha/1",
+   "enemy/bien-the/bi-ha/2",
+   "enemy/bien-the/bi-ha/3",
+   "enemy/bien-the/bi-ha/4",
+   "enemy/bien-the/bi-ha/5",
+   "enemy/bien-the/bi-ha/6",
+   "enemy/bien-the/bi-ha/7",
+   "enemy/bien-the/bi-ha/8",
+   "enemy/bien-the/bi-ha/9",
+   "enemy/bien-the/bi-ha/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "enemy/bien-the/bo-ke-thinh": {
+  "name": "Bò (Kẻ Thính)",
+  "actor": "Biến Thể",
+  "frames": [
+   "enemy/bien-the/bo-ke-thinh/0",
+   "enemy/bien-the/bo-ke-thinh/1",
+   "enemy/bien-the/bo-ke-thinh/2",
+   "enemy/bien-the/bo-ke-thinh/3",
+   "enemy/bien-the/bo-ke-thinh/4",
+   "enemy/bien-the/bo-ke-thinh/5",
+   "enemy/bien-the/bo-ke-thinh/6",
+   "enemy/bien-the/bo-ke-thinh/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_core"
+ },
+ "char/duong/chay-len": {
+  "name": "Chạy lên",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/chay-len/0",
+   "char/duong/chay-len/1",
+   "char/duong/chay-len/2",
+   "char/duong/chay-len/3",
+   "char/duong/chay-len/4",
+   "char/duong/chay-len/5",
+   "char/duong/chay-len/6",
+   "char/duong/chay-len/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/duong/chay-xuong": {
+  "name": "Chạy xuống",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/chay-xuong/0",
+   "char/duong/chay-xuong/1",
+   "char/duong/chay-xuong/2",
+   "char/duong/chay-xuong/3",
+   "char/duong/chay-xuong/4",
+   "char/duong/chay-xuong/5",
+   "char/duong/chay-xuong/6",
+   "char/duong/chay-xuong/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/duong/nhay": {
+  "name": "Nhảy",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/nhay/0",
+   "char/duong/nhay/1",
+   "char/duong/nhay/2",
+   "char/duong/nhay/3",
+   "char/duong/nhay/4"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/duong/trung-don-nga": {
+  "name": "Trúng đòn, ngã",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/trung-don-nga/0",
+   "char/duong/trung-don-nga/1",
+   "char/duong/trung-don-nga/2",
+   "char/duong/trung-don-nga/3",
+   "char/duong/trung-don-nga/4",
+   "char/duong/trung-don-nga/5",
+   "char/duong/trung-don-nga/6",
+   "char/duong/trung-don-nga/7",
+   "char/duong/trung-don-nga/8",
+   "char/duong/trung-don-nga/9",
+   "char/duong/trung-don-nga/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/duong/nem-da": {
+  "name": "Ném đá",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/nem-da/0",
+   "char/duong/nem-da/1",
+   "char/duong/nem-da/2",
+   "char/duong/nem-da/3",
+   "char/duong/nem-da/4",
+   "char/duong/nem-da/5",
+   "char/duong/nem-da/6",
+   "char/duong/nem-da/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/hung/chay-len": {
+  "name": "Chạy lên",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/chay-len/0",
+   "char/hung/chay-len/1",
+   "char/hung/chay-len/2",
+   "char/hung/chay-len/3",
+   "char/hung/chay-len/4",
+   "char/hung/chay-len/5",
+   "char/hung/chay-len/6",
+   "char/hung/chay-len/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/hung/chay-xuong": {
+  "name": "Chạy xuống",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/chay-xuong/0",
+   "char/hung/chay-xuong/1",
+   "char/hung/chay-xuong/2",
+   "char/hung/chay-xuong/3",
+   "char/hung/chay-xuong/4",
+   "char/hung/chay-xuong/5",
+   "char/hung/chay-xuong/6",
+   "char/hung/chay-xuong/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/hung/nhay": {
+  "name": "Nhảy",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/nhay/0",
+   "char/hung/nhay/1",
+   "char/hung/nhay/2",
+   "char/hung/nhay/3",
+   "char/hung/nhay/4"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/hung/nhay-xuong": {
+  "name": "Nhảy xuống",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/nhay-xuong/0",
+   "char/hung/nhay-xuong/1",
+   "char/hung/nhay-xuong/2",
+   "char/hung/nhay-xuong/3",
+   "char/hung/nhay-xuong/4"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/hung/trung-don-nga": {
+  "name": "Trúng đòn, ngã",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/trung-don-nga/0",
+   "char/hung/trung-don-nga/1",
+   "char/hung/trung-don-nga/2",
+   "char/hung/trung-don-nga/3",
+   "char/hung/trung-don-nga/4",
+   "char/hung/trung-don-nga/5",
+   "char/hung/trung-don-nga/6",
+   "char/hung/trung-don-nga/7",
+   "char/hung/trung-don-nga/8",
+   "char/hung/trung-don-nga/9",
+   "char/hung/trung-don-nga/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/hung/nem-da": {
+  "name": "Ném đá",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/nem-da/0",
+   "char/hung/nem-da/1",
+   "char/hung/nem-da/2",
+   "char/hung/nem-da/3",
+   "char/hung/nem-da/4",
+   "char/hung/nem-da/5",
+   "char/hung/nem-da/6",
+   "char/hung/nem-da/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/ny/chay-len": {
+  "name": "Chạy lên",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/chay-len/0",
+   "char/ny/chay-len/1",
+   "char/ny/chay-len/2",
+   "char/ny/chay-len/3",
+   "char/ny/chay-len/4",
+   "char/ny/chay-len/5",
+   "char/ny/chay-len/6",
+   "char/ny/chay-len/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/ny/chay-xuong": {
+  "name": "Chạy xuống",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/chay-xuong/0",
+   "char/ny/chay-xuong/1",
+   "char/ny/chay-xuong/2",
+   "char/ny/chay-xuong/3",
+   "char/ny/chay-xuong/4",
+   "char/ny/chay-xuong/5",
+   "char/ny/chay-xuong/6",
+   "char/ny/chay-xuong/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/ny/nhay": {
+  "name": "Nhảy",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/nhay/0",
+   "char/ny/nhay/1",
+   "char/ny/nhay/2",
+   "char/ny/nhay/3",
+   "char/ny/nhay/4"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/ny/leo-treo": {
+  "name": "Leo trèo",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/leo-treo/0",
+   "char/ny/leo-treo/1",
+   "char/ny/leo-treo/2",
+   "char/ny/leo-treo/3",
+   "char/ny/leo-treo/4",
+   "char/ny/leo-treo/5"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/ny/trung-don-nga": {
+  "name": "Trúng đòn, ngã",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/trung-don-nga/0",
+   "char/ny/trung-don-nga/1",
+   "char/ny/trung-don-nga/2",
+   "char/ny/trung-don-nga/3",
+   "char/ny/trung-don-nga/4",
+   "char/ny/trung-don-nga/5",
+   "char/ny/trung-don-nga/6",
+   "char/ny/trung-don-nga/7",
+   "char/ny/trung-don-nga/8",
+   "char/ny/trung-don-nga/9",
+   "char/ny/trung-don-nga/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/ny/nem-da": {
+  "name": "Ném đá",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/nem-da/0",
+   "char/ny/nem-da/1",
+   "char/ny/nem-da/2",
+   "char/ny/nem-da/3",
+   "char/ny/nem-da/4",
+   "char/ny/nem-da/5",
+   "char/ny/nem-da/6",
+   "char/ny/nem-da/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/son/chay-len": {
+  "name": "Chạy lên",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/chay-len/0",
+   "char/son/chay-len/1",
+   "char/son/chay-len/2",
+   "char/son/chay-len/3",
+   "char/son/chay-len/4",
+   "char/son/chay-len/5",
+   "char/son/chay-len/6",
+   "char/son/chay-len/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/son/chay-xuong": {
+  "name": "Chạy xuống",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/chay-xuong/0",
+   "char/son/chay-xuong/1",
+   "char/son/chay-xuong/2",
+   "char/son/chay-xuong/3",
+   "char/son/chay-xuong/4",
+   "char/son/chay-xuong/5",
+   "char/son/chay-xuong/6",
+   "char/son/chay-xuong/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/son/nhay": {
+  "name": "Nhảy",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/nhay/0",
+   "char/son/nhay/1",
+   "char/son/nhay/2",
+   "char/son/nhay/3",
+   "char/son/nhay/4"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/son/leo-treo": {
+  "name": "Leo trèo",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/leo-treo/0",
+   "char/son/leo-treo/1",
+   "char/son/leo-treo/2",
+   "char/son/leo-treo/3",
+   "char/son/leo-treo/4",
+   "char/son/leo-treo/5"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/son/trung-don-nga": {
+  "name": "Trúng đòn, ngã",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/trung-don-nga/0",
+   "char/son/trung-don-nga/1",
+   "char/son/trung-don-nga/2",
+   "char/son/trung-don-nga/3",
+   "char/son/trung-don-nga/4",
+   "char/son/trung-don-nga/5",
+   "char/son/trung-don-nga/6",
+   "char/son/trung-don-nga/7",
+   "char/son/trung-don-nga/8",
+   "char/son/trung-don-nga/9",
+   "char/son/trung-don-nga/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/son/nem-da": {
+  "name": "Ném đá",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/nem-da/0",
+   "char/son/nem-da/1",
+   "char/son/nem-da/2",
+   "char/son/nem-da/3",
+   "char/son/nem-da/4",
+   "char/son/nem-da/5",
+   "char/son/nem-da/6",
+   "char/son/nem-da/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_more"
+ },
+ "char/duong/ngoi-nap-sau-bui": {
+  "name": "Ngồi nấp sau bụi",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/ngoi-nap-sau-bui/0",
+   "char/duong/ngoi-nap-sau-bui/1",
+   "char/duong/ngoi-nap-sau-bui/2",
+   "char/duong/ngoi-nap-sau-bui/3",
+   "char/duong/ngoi-nap-sau-bui/4",
+   "char/duong/ngoi-nap-sau-bui/5",
+   "char/duong/ngoi-nap-sau-bui/6",
+   "char/duong/ngoi-nap-sau-bui/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/duong/ngoi-nghi": {
+  "name": "Ngồi nghỉ",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/ngoi-nghi/0",
+   "char/duong/ngoi-nghi/1",
+   "char/duong/ngoi-nghi/2",
+   "char/duong/ngoi-nghi/3",
+   "char/duong/ngoi-nghi/4",
+   "char/duong/ngoi-nghi/5",
+   "char/duong/ngoi-nghi/6",
+   "char/duong/ngoi-nghi/7"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/duong/mo-khoa-cua": {
+  "name": "Mở khóa cửa",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/mo-khoa-cua/0",
+   "char/duong/mo-khoa-cua/1",
+   "char/duong/mo-khoa-cua/2",
+   "char/duong/mo-khoa-cua/3",
+   "char/duong/mo-khoa-cua/4",
+   "char/duong/mo-khoa-cua/5",
+   "char/duong/mo-khoa-cua/6",
+   "char/duong/mo-khoa-cua/7",
+   "char/duong/mo-khoa-cua/8",
+   "char/duong/mo-khoa-cua/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/duong/pha-cua": {
+  "name": "Phá cửa",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/pha-cua/0",
+   "char/duong/pha-cua/1",
+   "char/duong/pha-cua/2",
+   "char/duong/pha-cua/3",
+   "char/duong/pha-cua/4",
+   "char/duong/pha-cua/5",
+   "char/duong/pha-cua/6",
+   "char/duong/pha-cua/7",
+   "char/duong/pha-cua/8",
+   "char/duong/pha-cua/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/duong/khoa-siet-tu-sau": {
+  "name": "Khóa siết từ sau",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/khoa-siet-tu-sau/0",
+   "char/duong/khoa-siet-tu-sau/1",
+   "char/duong/khoa-siet-tu-sau/2",
+   "char/duong/khoa-siet-tu-sau/3",
+   "char/duong/khoa-siet-tu-sau/4",
+   "char/duong/khoa-siet-tu-sau/5",
+   "char/duong/khoa-siet-tu-sau/6",
+   "char/duong/khoa-siet-tu-sau/7",
+   "char/duong/khoa-siet-tu-sau/8",
+   "char/duong/khoa-siet-tu-sau/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/duong/bang-bo": {
+  "name": "Băng bó",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/bang-bo/0",
+   "char/duong/bang-bo/1",
+   "char/duong/bang-bo/2",
+   "char/duong/bang-bo/3",
+   "char/duong/bang-bo/4",
+   "char/duong/bang-bo/5",
+   "char/duong/bang-bo/6",
+   "char/duong/bang-bo/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/hung/ngoi-nap-sau-bui": {
+  "name": "Ngồi nấp sau bụi",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/ngoi-nap-sau-bui/0",
+   "char/hung/ngoi-nap-sau-bui/1",
+   "char/hung/ngoi-nap-sau-bui/2",
+   "char/hung/ngoi-nap-sau-bui/3",
+   "char/hung/ngoi-nap-sau-bui/4",
+   "char/hung/ngoi-nap-sau-bui/5",
+   "char/hung/ngoi-nap-sau-bui/6",
+   "char/hung/ngoi-nap-sau-bui/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/hung/ngoi-nghi": {
+  "name": "Ngồi nghỉ",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/ngoi-nghi/0",
+   "char/hung/ngoi-nghi/1",
+   "char/hung/ngoi-nghi/2",
+   "char/hung/ngoi-nghi/3",
+   "char/hung/ngoi-nghi/4",
+   "char/hung/ngoi-nghi/5",
+   "char/hung/ngoi-nghi/6",
+   "char/hung/ngoi-nghi/7"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/hung/mo-khoa-cua": {
+  "name": "Mở khóa cửa",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/mo-khoa-cua/0",
+   "char/hung/mo-khoa-cua/1",
+   "char/hung/mo-khoa-cua/2",
+   "char/hung/mo-khoa-cua/3",
+   "char/hung/mo-khoa-cua/4",
+   "char/hung/mo-khoa-cua/5",
+   "char/hung/mo-khoa-cua/6",
+   "char/hung/mo-khoa-cua/7",
+   "char/hung/mo-khoa-cua/8",
+   "char/hung/mo-khoa-cua/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/hung/bang-bo": {
+  "name": "Băng bó",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/bang-bo/0",
+   "char/hung/bang-bo/1",
+   "char/hung/bang-bo/2",
+   "char/hung/bang-bo/3",
+   "char/hung/bang-bo/4",
+   "char/hung/bang-bo/5",
+   "char/hung/bang-bo/6",
+   "char/hung/bang-bo/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/ny/ngoi-nap-sau-bui": {
+  "name": "Ngồi nấp sau bụi",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/ngoi-nap-sau-bui/0",
+   "char/ny/ngoi-nap-sau-bui/1",
+   "char/ny/ngoi-nap-sau-bui/2",
+   "char/ny/ngoi-nap-sau-bui/3",
+   "char/ny/ngoi-nap-sau-bui/4",
+   "char/ny/ngoi-nap-sau-bui/5",
+   "char/ny/ngoi-nap-sau-bui/6",
+   "char/ny/ngoi-nap-sau-bui/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/ny/ngoi-nghi": {
+  "name": "Ngồi nghỉ",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/ngoi-nghi/0",
+   "char/ny/ngoi-nghi/1",
+   "char/ny/ngoi-nghi/2",
+   "char/ny/ngoi-nghi/3",
+   "char/ny/ngoi-nghi/4",
+   "char/ny/ngoi-nghi/5",
+   "char/ny/ngoi-nghi/6",
+   "char/ny/ngoi-nghi/7"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/ny/mo-khoa-cua": {
+  "name": "Mở khóa cửa",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/mo-khoa-cua/0",
+   "char/ny/mo-khoa-cua/1",
+   "char/ny/mo-khoa-cua/2",
+   "char/ny/mo-khoa-cua/3",
+   "char/ny/mo-khoa-cua/4",
+   "char/ny/mo-khoa-cua/5",
+   "char/ny/mo-khoa-cua/6",
+   "char/ny/mo-khoa-cua/7",
+   "char/ny/mo-khoa-cua/8",
+   "char/ny/mo-khoa-cua/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/ny/pha-cua": {
+  "name": "Phá cửa",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/pha-cua/0",
+   "char/ny/pha-cua/1",
+   "char/ny/pha-cua/2",
+   "char/ny/pha-cua/3",
+   "char/ny/pha-cua/4",
+   "char/ny/pha-cua/5",
+   "char/ny/pha-cua/6",
+   "char/ny/pha-cua/7",
+   "char/ny/pha-cua/8",
+   "char/ny/pha-cua/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/ny/khoa-siet-tu-sau": {
+  "name": "Khóa siết từ sau",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/khoa-siet-tu-sau/0",
+   "char/ny/khoa-siet-tu-sau/1",
+   "char/ny/khoa-siet-tu-sau/2",
+   "char/ny/khoa-siet-tu-sau/3",
+   "char/ny/khoa-siet-tu-sau/4",
+   "char/ny/khoa-siet-tu-sau/5",
+   "char/ny/khoa-siet-tu-sau/6",
+   "char/ny/khoa-siet-tu-sau/7",
+   "char/ny/khoa-siet-tu-sau/8",
+   "char/ny/khoa-siet-tu-sau/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/ny/bang-bo": {
+  "name": "Băng bó",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/bang-bo/0",
+   "char/ny/bang-bo/1",
+   "char/ny/bang-bo/2",
+   "char/ny/bang-bo/3",
+   "char/ny/bang-bo/4",
+   "char/ny/bang-bo/5",
+   "char/ny/bang-bo/6",
+   "char/ny/bang-bo/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/son/ngoi-nap-sau-bui": {
+  "name": "Ngồi nấp sau bụi",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/ngoi-nap-sau-bui/0",
+   "char/son/ngoi-nap-sau-bui/1",
+   "char/son/ngoi-nap-sau-bui/2",
+   "char/son/ngoi-nap-sau-bui/3",
+   "char/son/ngoi-nap-sau-bui/4",
+   "char/son/ngoi-nap-sau-bui/5",
+   "char/son/ngoi-nap-sau-bui/6",
+   "char/son/ngoi-nap-sau-bui/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/son/ngoi-nghi": {
+  "name": "Ngồi nghỉ",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/ngoi-nghi/0",
+   "char/son/ngoi-nghi/1",
+   "char/son/ngoi-nghi/2",
+   "char/son/ngoi-nghi/3",
+   "char/son/ngoi-nghi/4",
+   "char/son/ngoi-nghi/5",
+   "char/son/ngoi-nghi/6",
+   "char/son/ngoi-nghi/7"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/son/pha-cua": {
+  "name": "Phá cửa",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/pha-cua/0",
+   "char/son/pha-cua/1",
+   "char/son/pha-cua/2",
+   "char/son/pha-cua/3",
+   "char/son/pha-cua/4",
+   "char/son/pha-cua/5",
+   "char/son/pha-cua/6",
+   "char/son/pha-cua/7",
+   "char/son/pha-cua/8",
+   "char/son/pha-cua/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/son/khoa-siet-tu-sau": {
+  "name": "Khóa siết từ sau",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/khoa-siet-tu-sau/0",
+   "char/son/khoa-siet-tu-sau/1",
+   "char/son/khoa-siet-tu-sau/2",
+   "char/son/khoa-siet-tu-sau/3",
+   "char/son/khoa-siet-tu-sau/4",
+   "char/son/khoa-siet-tu-sau/5",
+   "char/son/khoa-siet-tu-sau/6",
+   "char/son/khoa-siet-tu-sau/7",
+   "char/son/khoa-siet-tu-sau/8",
+   "char/son/khoa-siet-tu-sau/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "char/son/bang-bo": {
+  "name": "Băng bó",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/bang-bo/0",
+   "char/son/bang-bo/1",
+   "char/son/bang-bo/2",
+   "char/son/bang-bo/3",
+   "char/son/bang-bo/4",
+   "char/son/bang-bo/5",
+   "char/son/bang-bo/6",
+   "char/son/bang-bo/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "anim_actions"
+ },
+ "enemy/ke-lang-thang/le-buoc-trai": {
+  "name": "Lê bước trái",
+  "actor": "Kẻ Lang Thang",
+  "frames": [
+   "enemy/ke-lang-thang/le-buoc-trai/0",
+   "enemy/ke-lang-thang/le-buoc-trai/1",
+   "enemy/ke-lang-thang/le-buoc-trai/2",
+   "enemy/ke-lang-thang/le-buoc-trai/3",
+   "enemy/ke-lang-thang/le-buoc-trai/4",
+   "enemy/ke-lang-thang/le-buoc-trai/5",
+   "enemy/ke-lang-thang/le-buoc-trai/6",
+   "enemy/ke-lang-thang/le-buoc-trai/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "wanderer"
+ },
+ "enemy/ke-lang-thang/bi-ha": {
+  "name": "Bị hạ",
+  "actor": "Kẻ Lang Thang",
+  "frames": [
+   "enemy/ke-lang-thang/bi-ha/0",
+   "enemy/ke-lang-thang/bi-ha/1",
+   "enemy/ke-lang-thang/bi-ha/2",
+   "enemy/ke-lang-thang/bi-ha/3",
+   "enemy/ke-lang-thang/bi-ha/4",
+   "enemy/ke-lang-thang/bi-ha/5",
+   "enemy/ke-lang-thang/bi-ha/6",
+   "enemy/ke-lang-thang/bi-ha/7",
+   "enemy/ke-lang-thang/bi-ha/8",
+   "enemy/ke-lang-thang/bi-ha/9",
+   "enemy/ke-lang-thang/bi-ha/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "wanderer"
+ },
+ "enemy/ke-thinh/le-buoc": {
+  "name": "Lê bước",
+  "actor": "Kẻ Thính",
+  "frames": [
+   "enemy/ke-thinh/le-buoc/0",
+   "enemy/ke-thinh/le-buoc/1",
+   "enemy/ke-thinh/le-buoc/2",
+   "enemy/ke-thinh/le-buoc/3",
+   "enemy/ke-thinh/le-buoc/4",
+   "enemy/ke-thinh/le-buoc/5",
+   "enemy/ke-thinh/le-buoc/6",
+   "enemy/ke-thinh/le-buoc/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-thinh/nghe-ngong": {
+  "name": "Nghe ngóng",
+  "actor": "Kẻ Thính",
+  "frames": [
+   "enemy/ke-thinh/nghe-ngong/0",
+   "enemy/ke-thinh/nghe-ngong/1",
+   "enemy/ke-thinh/nghe-ngong/2",
+   "enemy/ke-thinh/nghe-ngong/3",
+   "enemy/ke-thinh/nghe-ngong/4",
+   "enemy/ke-thinh/nghe-ngong/5",
+   "enemy/ke-thinh/nghe-ngong/6",
+   "enemy/ke-thinh/nghe-ngong/7"
+  ],
+  "fps": 6,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-thinh/bo-sat-dat": {
+  "name": "Bò sát đất",
+  "actor": "Kẻ Thính",
+  "frames": [
+   "enemy/ke-thinh/bo-sat-dat/0",
+   "enemy/ke-thinh/bo-sat-dat/1",
+   "enemy/ke-thinh/bo-sat-dat/2",
+   "enemy/ke-thinh/bo-sat-dat/3",
+   "enemy/ke-thinh/bo-sat-dat/4",
+   "enemy/ke-thinh/bo-sat-dat/5",
+   "enemy/ke-thinh/bo-sat-dat/6",
+   "enemy/ke-thinh/bo-sat-dat/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-thinh/bi-ha": {
+  "name": "Bị hạ",
+  "actor": "Kẻ Thính",
+  "frames": [
+   "enemy/ke-thinh/bi-ha/0",
+   "enemy/ke-thinh/bi-ha/1",
+   "enemy/ke-thinh/bi-ha/2",
+   "enemy/ke-thinh/bi-ha/3",
+   "enemy/ke-thinh/bi-ha/4",
+   "enemy/ke-thinh/bi-ha/5",
+   "enemy/ke-thinh/bi-ha/6",
+   "enemy/ke-thinh/bi-ha/7",
+   "enemy/ke-thinh/bi-ha/8",
+   "enemy/ke-thinh/bi-ha/9",
+   "enemy/ke-thinh/bi-ha/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-phun/le-buoc": {
+  "name": "Lê bước",
+  "actor": "Kẻ Phun",
+  "frames": [
+   "enemy/ke-phun/le-buoc/0",
+   "enemy/ke-phun/le-buoc/1",
+   "enemy/ke-phun/le-buoc/2",
+   "enemy/ke-phun/le-buoc/3",
+   "enemy/ke-phun/le-buoc/4",
+   "enemy/ke-phun/le-buoc/5",
+   "enemy/ke-phun/le-buoc/6",
+   "enemy/ke-phun/le-buoc/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-phun/phinh-bung": {
+  "name": "Phình bụng",
+  "actor": "Kẻ Phun",
+  "frames": [
+   "enemy/ke-phun/phinh-bung/0",
+   "enemy/ke-phun/phinh-bung/1",
+   "enemy/ke-phun/phinh-bung/2",
+   "enemy/ke-phun/phinh-bung/3",
+   "enemy/ke-phun/phinh-bung/4",
+   "enemy/ke-phun/phinh-bung/5",
+   "enemy/ke-phun/phinh-bung/6",
+   "enemy/ke-phun/phinh-bung/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-phun/phun-bao-tu": {
+  "name": "Phun bào tử",
+  "actor": "Kẻ Phun",
+  "frames": [
+   "enemy/ke-phun/phun-bao-tu/0",
+   "enemy/ke-phun/phun-bao-tu/1",
+   "enemy/ke-phun/phun-bao-tu/2",
+   "enemy/ke-phun/phun-bao-tu/3",
+   "enemy/ke-phun/phun-bao-tu/4",
+   "enemy/ke-phun/phun-bao-tu/5",
+   "enemy/ke-phun/phun-bao-tu/6",
+   "enemy/ke-phun/phun-bao-tu/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-phun/bi-ha": {
+  "name": "Bị hạ",
+  "actor": "Kẻ Phun",
+  "frames": [
+   "enemy/ke-phun/bi-ha/0",
+   "enemy/ke-phun/bi-ha/1",
+   "enemy/ke-phun/bi-ha/2",
+   "enemy/ke-phun/bi-ha/3",
+   "enemy/ke-phun/bi-ha/4",
+   "enemy/ke-phun/bi-ha/5",
+   "enemy/ke-phun/bi-ha/6",
+   "enemy/ke-phun/bi-ha/7",
+   "enemy/ke-phun/bi-ha/8",
+   "enemy/ke-phun/bi-ha/9",
+   "enemy/ke-phun/bi-ha/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-bam-tran/le-buoc": {
+  "name": "Lê bước",
+  "actor": "Kẻ Bám Trần",
+  "frames": [
+   "enemy/ke-bam-tran/le-buoc/0",
+   "enemy/ke-bam-tran/le-buoc/1",
+   "enemy/ke-bam-tran/le-buoc/2",
+   "enemy/ke-bam-tran/le-buoc/3",
+   "enemy/ke-bam-tran/le-buoc/4",
+   "enemy/ke-bam-tran/le-buoc/5",
+   "enemy/ke-bam-tran/le-buoc/6",
+   "enemy/ke-bam-tran/le-buoc/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-bam-tran/bo-tren-tran": {
+  "name": "Bò trên trần",
+  "actor": "Kẻ Bám Trần",
+  "frames": [
+   "enemy/ke-bam-tran/bo-tren-tran/0",
+   "enemy/ke-bam-tran/bo-tren-tran/1",
+   "enemy/ke-bam-tran/bo-tren-tran/2",
+   "enemy/ke-bam-tran/bo-tren-tran/3",
+   "enemy/ke-bam-tran/bo-tren-tran/4",
+   "enemy/ke-bam-tran/bo-tren-tran/5",
+   "enemy/ke-bam-tran/bo-tren-tran/6",
+   "enemy/ke-bam-tran/bo-tren-tran/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-bam-tran/roi-xuong-tom": {
+  "name": "Rơi xuống tóm",
+  "actor": "Kẻ Bám Trần",
+  "frames": [
+   "enemy/ke-bam-tran/roi-xuong-tom/0",
+   "enemy/ke-bam-tran/roi-xuong-tom/1",
+   "enemy/ke-bam-tran/roi-xuong-tom/2",
+   "enemy/ke-bam-tran/roi-xuong-tom/3",
+   "enemy/ke-bam-tran/roi-xuong-tom/4",
+   "enemy/ke-bam-tran/roi-xuong-tom/5",
+   "enemy/ke-bam-tran/roi-xuong-tom/6",
+   "enemy/ke-bam-tran/roi-xuong-tom/7",
+   "enemy/ke-bam-tran/roi-xuong-tom/8",
+   "enemy/ke-bam-tran/roi-xuong-tom/9"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-bam-tran/bi-ha": {
+  "name": "Bị hạ",
+  "actor": "Kẻ Bám Trần",
+  "frames": [
+   "enemy/ke-bam-tran/bi-ha/0",
+   "enemy/ke-bam-tran/bi-ha/1",
+   "enemy/ke-bam-tran/bi-ha/2",
+   "enemy/ke-bam-tran/bi-ha/3",
+   "enemy/ke-bam-tran/bi-ha/4",
+   "enemy/ke-bam-tran/bi-ha/5",
+   "enemy/ke-bam-tran/bi-ha/6",
+   "enemy/ke-bam-tran/bi-ha/7",
+   "enemy/ke-bam-tran/bi-ha/8",
+   "enemy/ke-bam-tran/bi-ha/9",
+   "enemy/ke-bam-tran/bi-ha/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-mang-vo/le-buoc": {
+  "name": "Lê bước",
+  "actor": "Kẻ Mang Vỏ",
+  "frames": [
+   "enemy/ke-mang-vo/le-buoc/0",
+   "enemy/ke-mang-vo/le-buoc/1",
+   "enemy/ke-mang-vo/le-buoc/2",
+   "enemy/ke-mang-vo/le-buoc/3",
+   "enemy/ke-mang-vo/le-buoc/4",
+   "enemy/ke-mang-vo/le-buoc/5",
+   "enemy/ke-mang-vo/le-buoc/6",
+   "enemy/ke-mang-vo/le-buoc/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-mang-vo/huc-toi": {
+  "name": "Húc tới",
+  "actor": "Kẻ Mang Vỏ",
+  "frames": [
+   "enemy/ke-mang-vo/huc-toi/0",
+   "enemy/ke-mang-vo/huc-toi/1",
+   "enemy/ke-mang-vo/huc-toi/2",
+   "enemy/ke-mang-vo/huc-toi/3",
+   "enemy/ke-mang-vo/huc-toi/4",
+   "enemy/ke-mang-vo/huc-toi/5",
+   "enemy/ke-mang-vo/huc-toi/6",
+   "enemy/ke-mang-vo/huc-toi/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-mang-vo/do-don": {
+  "name": "Đỡ đòn",
+  "actor": "Kẻ Mang Vỏ",
+  "frames": [
+   "enemy/ke-mang-vo/do-don/0",
+   "enemy/ke-mang-vo/do-don/1",
+   "enemy/ke-mang-vo/do-don/2",
+   "enemy/ke-mang-vo/do-don/3",
+   "enemy/ke-mang-vo/do-don/4",
+   "enemy/ke-mang-vo/do-don/5",
+   "enemy/ke-mang-vo/do-don/6",
+   "enemy/ke-mang-vo/do-don/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-mang-vo/bi-ha": {
+  "name": "Bị hạ",
+  "actor": "Kẻ Mang Vỏ",
+  "frames": [
+   "enemy/ke-mang-vo/bi-ha/0",
+   "enemy/ke-mang-vo/bi-ha/1",
+   "enemy/ke-mang-vo/bi-ha/2",
+   "enemy/ke-mang-vo/bi-ha/3",
+   "enemy/ke-mang-vo/bi-ha/4",
+   "enemy/ke-mang-vo/bi-ha/5",
+   "enemy/ke-mang-vo/bi-ha/6",
+   "enemy/ke-mang-vo/bi-ha/7",
+   "enemy/ke-mang-vo/bi-ha/8",
+   "enemy/ke-mang-vo/bi-ha/9",
+   "enemy/ke-mang-vo/bi-ha/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-bat-chuoc/le-buoc": {
+  "name": "Lê bước",
+  "actor": "Kẻ Bắt Chước",
+  "frames": [
+   "enemy/ke-bat-chuoc/le-buoc/0",
+   "enemy/ke-bat-chuoc/le-buoc/1",
+   "enemy/ke-bat-chuoc/le-buoc/2",
+   "enemy/ke-bat-chuoc/le-buoc/3",
+   "enemy/ke-bat-chuoc/le-buoc/4",
+   "enemy/ke-bat-chuoc/le-buoc/5",
+   "enemy/ke-bat-chuoc/le-buoc/6",
+   "enemy/ke-bat-chuoc/le-buoc/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-bat-chuoc/gia-giong": {
+  "name": "Giả giọng",
+  "actor": "Kẻ Bắt Chước",
+  "frames": [
+   "enemy/ke-bat-chuoc/gia-giong/0",
+   "enemy/ke-bat-chuoc/gia-giong/1",
+   "enemy/ke-bat-chuoc/gia-giong/2",
+   "enemy/ke-bat-chuoc/gia-giong/3",
+   "enemy/ke-bat-chuoc/gia-giong/4",
+   "enemy/ke-bat-chuoc/gia-giong/5",
+   "enemy/ke-bat-chuoc/gia-giong/6",
+   "enemy/ke-bat-chuoc/gia-giong/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-bat-chuoc/lao-toi": {
+  "name": "Lao tới",
+  "actor": "Kẻ Bắt Chước",
+  "frames": [
+   "enemy/ke-bat-chuoc/lao-toi/0",
+   "enemy/ke-bat-chuoc/lao-toi/1",
+   "enemy/ke-bat-chuoc/lao-toi/2",
+   "enemy/ke-bat-chuoc/lao-toi/3",
+   "enemy/ke-bat-chuoc/lao-toi/4",
+   "enemy/ke-bat-chuoc/lao-toi/5",
+   "enemy/ke-bat-chuoc/lao-toi/6",
+   "enemy/ke-bat-chuoc/lao-toi/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/ke-bat-chuoc/bi-ha": {
+  "name": "Bị hạ",
+  "actor": "Kẻ Bắt Chước",
+  "frames": [
+   "enemy/ke-bat-chuoc/bi-ha/0",
+   "enemy/ke-bat-chuoc/bi-ha/1",
+   "enemy/ke-bat-chuoc/bi-ha/2",
+   "enemy/ke-bat-chuoc/bi-ha/3",
+   "enemy/ke-bat-chuoc/bi-ha/4",
+   "enemy/ke-bat-chuoc/bi-ha/5",
+   "enemy/ke-bat-chuoc/bi-ha/6",
+   "enemy/ke-bat-chuoc/bi-ha/7",
+   "enemy/ke-bat-chuoc/bi-ha/8",
+   "enemy/ke-bat-chuoc/bi-ha/9",
+   "enemy/ke-bat-chuoc/bi-ha/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/bay-chuot-do/chay-theo-dan": {
+  "name": "Chạy theo đàn",
+  "actor": "Bầy Chuột Đỏ",
+  "frames": [
+   "enemy/bay-chuot-do/chay-theo-dan/0",
+   "enemy/bay-chuot-do/chay-theo-dan/1",
+   "enemy/bay-chuot-do/chay-theo-dan/2",
+   "enemy/bay-chuot-do/chay-theo-dan/3",
+   "enemy/bay-chuot-do/chay-theo-dan/4",
+   "enemy/bay-chuot-do/chay-theo-dan/5",
+   "enemy/bay-chuot-do/chay-theo-dan/6",
+   "enemy/bay-chuot-do/chay-theo-dan/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/bay-chuot-do/tan-ra": {
+  "name": "Tản ra",
+  "actor": "Bầy Chuột Đỏ",
+  "frames": [
+   "enemy/bay-chuot-do/tan-ra/0",
+   "enemy/bay-chuot-do/tan-ra/1",
+   "enemy/bay-chuot-do/tan-ra/2",
+   "enemy/bay-chuot-do/tan-ra/3",
+   "enemy/bay-chuot-do/tan-ra/4",
+   "enemy/bay-chuot-do/tan-ra/5",
+   "enemy/bay-chuot-do/tan-ra/6",
+   "enemy/bay-chuot-do/tan-ra/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/bay-chuot-do/so-lua": {
+  "name": "Sợ lửa",
+  "actor": "Bầy Chuột Đỏ",
+  "frames": [
+   "enemy/bay-chuot-do/so-lua/0",
+   "enemy/bay-chuot-do/so-lua/1",
+   "enemy/bay-chuot-do/so-lua/2",
+   "enemy/bay-chuot-do/so-lua/3",
+   "enemy/bay-chuot-do/so-lua/4",
+   "enemy/bay-chuot-do/so-lua/5",
+   "enemy/bay-chuot-do/so-lua/6",
+   "enemy/bay-chuot-do/so-lua/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "enemy/bay-chuot-do/bi-lua-dot": {
+  "name": "Bị lửa đốt",
+  "actor": "Bầy Chuột Đỏ",
+  "frames": [
+   "enemy/bay-chuot-do/bi-lua-dot/0",
+   "enemy/bay-chuot-do/bi-lua-dot/1",
+   "enemy/bay-chuot-do/bi-lua-dot/2",
+   "enemy/bay-chuot-do/bi-lua-dot/3",
+   "enemy/bay-chuot-do/bi-lua-dot/4",
+   "enemy/bay-chuot-do/bi-lua-dot/5",
+   "enemy/bay-chuot-do/bi-lua-dot/6",
+   "enemy/bay-chuot-do/bi-lua-dot/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "zombies"
+ },
+ "npc/mai/di-xuong": {
+  "name": "Đi xuống",
+  "actor": "Mai",
+  "frames": [
+   "npc/mai/di-xuong/0",
+   "npc/mai/di-xuong/1",
+   "npc/mai/di-xuong/2",
+   "npc/mai/di-xuong/3",
+   "npc/mai/di-xuong/4",
+   "npc/mai/di-xuong/5",
+   "npc/mai/di-xuong/6",
+   "npc/mai/di-xuong/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/mai/di-sang-trai": {
+  "name": "Đi sang trái",
+  "actor": "Mai",
+  "frames": [
+   "npc/mai/di-sang-trai/0",
+   "npc/mai/di-sang-trai/1",
+   "npc/mai/di-sang-trai/2",
+   "npc/mai/di-sang-trai/3",
+   "npc/mai/di-sang-trai/4",
+   "npc/mai/di-sang-trai/5",
+   "npc/mai/di-sang-trai/6",
+   "npc/mai/di-sang-trai/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/mai/di-len": {
+  "name": "Đi lên",
+  "actor": "Mai",
+  "frames": [
+   "npc/mai/di-len/0",
+   "npc/mai/di-len/1",
+   "npc/mai/di-len/2",
+   "npc/mai/di-len/3",
+   "npc/mai/di-len/4",
+   "npc/mai/di-len/5",
+   "npc/mai/di-len/6",
+   "npc/mai/di-len/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/mai/lo-lung": {
+  "name": "Lơ lửng",
+  "actor": "Mai",
+  "frames": [
+   "npc/mai/lo-lung/0",
+   "npc/mai/lo-lung/1",
+   "npc/mai/lo-lung/2",
+   "npc/mai/lo-lung/3",
+   "npc/mai/lo-lung/4",
+   "npc/mai/lo-lung/5",
+   "npc/mai/lo-lung/6",
+   "npc/mai/lo-lung/7"
+  ],
+  "fps": 6,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/mai/hien-ra": {
+  "name": "Hiện ra",
+  "actor": "Mai",
+  "frames": [
+   "npc/mai/hien-ra/0",
+   "npc/mai/hien-ra/1",
+   "npc/mai/hien-ra/2",
+   "npc/mai/hien-ra/3",
+   "npc/mai/hien-ra/4",
+   "npc/mai/hien-ra/5",
+   "npc/mai/hien-ra/6",
+   "npc/mai/hien-ra/7"
+  ],
+  "fps": 8,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/ong-tu/di-xuong": {
+  "name": "Đi xuống",
+  "actor": "Ông Tư",
+  "frames": [
+   "npc/ong-tu/di-xuong/0",
+   "npc/ong-tu/di-xuong/1",
+   "npc/ong-tu/di-xuong/2",
+   "npc/ong-tu/di-xuong/3",
+   "npc/ong-tu/di-xuong/4",
+   "npc/ong-tu/di-xuong/5",
+   "npc/ong-tu/di-xuong/6",
+   "npc/ong-tu/di-xuong/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/ong-tu/di-sang-trai": {
+  "name": "Đi sang trái",
+  "actor": "Ông Tư",
+  "frames": [
+   "npc/ong-tu/di-sang-trai/0",
+   "npc/ong-tu/di-sang-trai/1",
+   "npc/ong-tu/di-sang-trai/2",
+   "npc/ong-tu/di-sang-trai/3",
+   "npc/ong-tu/di-sang-trai/4",
+   "npc/ong-tu/di-sang-trai/5",
+   "npc/ong-tu/di-sang-trai/6",
+   "npc/ong-tu/di-sang-trai/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/ong-tu/di-len": {
+  "name": "Đi lên",
+  "actor": "Ông Tư",
+  "frames": [
+   "npc/ong-tu/di-len/0",
+   "npc/ong-tu/di-len/1",
+   "npc/ong-tu/di-len/2",
+   "npc/ong-tu/di-len/3",
+   "npc/ong-tu/di-len/4",
+   "npc/ong-tu/di-len/5",
+   "npc/ong-tu/di-len/6",
+   "npc/ong-tu/di-len/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/ong-tu/chay": {
+  "name": "Chạy",
+  "actor": "Ông Tư",
+  "frames": [
+   "npc/ong-tu/chay/0",
+   "npc/ong-tu/chay/1",
+   "npc/ong-tu/chay/2",
+   "npc/ong-tu/chay/3",
+   "npc/ong-tu/chay/4",
+   "npc/ong-tu/chay/5",
+   "npc/ong-tu/chay/6",
+   "npc/ong-tu/chay/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/ong-tu/dung-tho": {
+  "name": "Đứng thở",
+  "actor": "Ông Tư",
+  "frames": [
+   "npc/ong-tu/dung-tho/0",
+   "npc/ong-tu/dung-tho/1"
+  ],
+  "fps": 2,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/bac-si-lan/di-xuong": {
+  "name": "Đi xuống",
+  "actor": "Bác sĩ Lan",
+  "frames": [
+   "npc/bac-si-lan/di-xuong/0",
+   "npc/bac-si-lan/di-xuong/1",
+   "npc/bac-si-lan/di-xuong/2",
+   "npc/bac-si-lan/di-xuong/3",
+   "npc/bac-si-lan/di-xuong/4",
+   "npc/bac-si-lan/di-xuong/5",
+   "npc/bac-si-lan/di-xuong/6",
+   "npc/bac-si-lan/di-xuong/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/bac-si-lan/di-sang-trai": {
+  "name": "Đi sang trái",
+  "actor": "Bác sĩ Lan",
+  "frames": [
+   "npc/bac-si-lan/di-sang-trai/0",
+   "npc/bac-si-lan/di-sang-trai/1",
+   "npc/bac-si-lan/di-sang-trai/2",
+   "npc/bac-si-lan/di-sang-trai/3",
+   "npc/bac-si-lan/di-sang-trai/4",
+   "npc/bac-si-lan/di-sang-trai/5",
+   "npc/bac-si-lan/di-sang-trai/6",
+   "npc/bac-si-lan/di-sang-trai/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/bac-si-lan/di-len": {
+  "name": "Đi lên",
+  "actor": "Bác sĩ Lan",
+  "frames": [
+   "npc/bac-si-lan/di-len/0",
+   "npc/bac-si-lan/di-len/1",
+   "npc/bac-si-lan/di-len/2",
+   "npc/bac-si-lan/di-len/3",
+   "npc/bac-si-lan/di-len/4",
+   "npc/bac-si-lan/di-len/5",
+   "npc/bac-si-lan/di-len/6",
+   "npc/bac-si-lan/di-len/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/bac-si-lan/chay": {
+  "name": "Chạy",
+  "actor": "Bác sĩ Lan",
+  "frames": [
+   "npc/bac-si-lan/chay/0",
+   "npc/bac-si-lan/chay/1",
+   "npc/bac-si-lan/chay/2",
+   "npc/bac-si-lan/chay/3",
+   "npc/bac-si-lan/chay/4",
+   "npc/bac-si-lan/chay/5",
+   "npc/bac-si-lan/chay/6",
+   "npc/bac-si-lan/chay/7"
+  ],
+  "fps": 12,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/bac-si-lan/dung-tho": {
+  "name": "Đứng thở",
+  "actor": "Bác sĩ Lan",
+  "frames": [
+   "npc/bac-si-lan/dung-tho/0",
+   "npc/bac-si-lan/dung-tho/1"
+  ],
+  "fps": 2,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/linh-nhiem/le-buoc-xuong": {
+  "name": "Lê bước xuống",
+  "actor": "Lính Nhiễm",
+  "frames": [
+   "npc/linh-nhiem/le-buoc-xuong/0",
+   "npc/linh-nhiem/le-buoc-xuong/1",
+   "npc/linh-nhiem/le-buoc-xuong/2",
+   "npc/linh-nhiem/le-buoc-xuong/3",
+   "npc/linh-nhiem/le-buoc-xuong/4",
+   "npc/linh-nhiem/le-buoc-xuong/5",
+   "npc/linh-nhiem/le-buoc-xuong/6",
+   "npc/linh-nhiem/le-buoc-xuong/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/linh-nhiem/le-buoc-trai": {
+  "name": "Lê bước trái",
+  "actor": "Lính Nhiễm",
+  "frames": [
+   "npc/linh-nhiem/le-buoc-trai/0",
+   "npc/linh-nhiem/le-buoc-trai/1",
+   "npc/linh-nhiem/le-buoc-trai/2",
+   "npc/linh-nhiem/le-buoc-trai/3",
+   "npc/linh-nhiem/le-buoc-trai/4",
+   "npc/linh-nhiem/le-buoc-trai/5",
+   "npc/linh-nhiem/le-buoc-trai/6",
+   "npc/linh-nhiem/le-buoc-trai/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/linh-nhiem/le-buoc-len": {
+  "name": "Lê bước lên",
+  "actor": "Lính Nhiễm",
+  "frames": [
+   "npc/linh-nhiem/le-buoc-len/0",
+   "npc/linh-nhiem/le-buoc-len/1",
+   "npc/linh-nhiem/le-buoc-len/2",
+   "npc/linh-nhiem/le-buoc-len/3",
+   "npc/linh-nhiem/le-buoc-len/4",
+   "npc/linh-nhiem/le-buoc-len/5",
+   "npc/linh-nhiem/le-buoc-len/6",
+   "npc/linh-nhiem/le-buoc-len/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/linh-nhiem/vo-toi": {
+  "name": "Vồ tới",
+  "actor": "Lính Nhiễm",
+  "frames": [
+   "npc/linh-nhiem/vo-toi/0",
+   "npc/linh-nhiem/vo-toi/1",
+   "npc/linh-nhiem/vo-toi/2",
+   "npc/linh-nhiem/vo-toi/3",
+   "npc/linh-nhiem/vo-toi/4",
+   "npc/linh-nhiem/vo-toi/5"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "npc/linh-nhiem/bi-ha": {
+  "name": "Bị hạ",
+  "actor": "Lính Nhiễm",
+  "frames": [
+   "npc/linh-nhiem/bi-ha/0",
+   "npc/linh-nhiem/bi-ha/1",
+   "npc/linh-nhiem/bi-ha/2",
+   "npc/linh-nhiem/bi-ha/3",
+   "npc/linh-nhiem/bi-ha/4",
+   "npc/linh-nhiem/bi-ha/5",
+   "npc/linh-nhiem/bi-ha/6",
+   "npc/linh-nhiem/bi-ha/7",
+   "npc/linh-nhiem/bi-ha/8",
+   "npc/linh-nhiem/bi-ha/9",
+   "npc/linh-nhiem/bi-ha/10"
+  ],
+  "fps": 11,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "npcs"
+ },
+ "weapon/pistol/walk": {
+  "name": "Đi cầm · Súng ngắn",
+  "actor": "Dương",
+  "frames": [
+   "weapon/pistol/walk/0",
+   "weapon/pistol/walk/1",
+   "weapon/pistol/walk/2",
+   "weapon/pistol/walk/3",
+   "weapon/pistol/walk/4",
+   "weapon/pistol/walk/5",
+   "weapon/pistol/walk/6",
+   "weapon/pistol/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/pistol/aim": {
+  "name": "Ngắm · Súng ngắn",
+  "actor": "Dương",
+  "frames": [
+   "weapon/pistol/aim/0",
+   "weapon/pistol/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/pistol/fire": {
+  "name": "Bắn · Súng ngắn",
+  "actor": "Dương",
+  "frames": [
+   "weapon/pistol/fire/0",
+   "weapon/pistol/fire/1",
+   "weapon/pistol/fire/2",
+   "weapon/pistol/fire/3"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/revolver/walk": {
+  "name": "Đi cầm · Súng lục ổ quay",
+  "actor": "Dương",
+  "frames": [
+   "weapon/revolver/walk/0",
+   "weapon/revolver/walk/1",
+   "weapon/revolver/walk/2",
+   "weapon/revolver/walk/3",
+   "weapon/revolver/walk/4",
+   "weapon/revolver/walk/5",
+   "weapon/revolver/walk/6",
+   "weapon/revolver/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/revolver/aim": {
+  "name": "Ngắm · Súng lục ổ quay",
+  "actor": "Dương",
+  "frames": [
+   "weapon/revolver/aim/0",
+   "weapon/revolver/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/revolver/fire": {
+  "name": "Bắn · Súng lục ổ quay",
+  "actor": "Dương",
+  "frames": [
+   "weapon/revolver/fire/0",
+   "weapon/revolver/fire/1",
+   "weapon/revolver/fire/2",
+   "weapon/revolver/fire/3"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/silenced/walk": {
+  "name": "Đi cầm · Súng giảm thanh",
+  "actor": "Dương",
+  "frames": [
+   "weapon/silenced/walk/0",
+   "weapon/silenced/walk/1",
+   "weapon/silenced/walk/2",
+   "weapon/silenced/walk/3",
+   "weapon/silenced/walk/4",
+   "weapon/silenced/walk/5",
+   "weapon/silenced/walk/6",
+   "weapon/silenced/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/silenced/aim": {
+  "name": "Ngắm · Súng giảm thanh",
+  "actor": "Dương",
+  "frames": [
+   "weapon/silenced/aim/0",
+   "weapon/silenced/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/silenced/fire": {
+  "name": "Bắn · Súng giảm thanh",
+  "actor": "Dương",
+  "frames": [
+   "weapon/silenced/fire/0",
+   "weapon/silenced/fire/1",
+   "weapon/silenced/fire/2",
+   "weapon/silenced/fire/3"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/mac/walk": {
+  "name": "Đi cầm · Tiểu liên giảm thanh",
+  "actor": "Dương",
+  "frames": [
+   "weapon/mac/walk/0",
+   "weapon/mac/walk/1",
+   "weapon/mac/walk/2",
+   "weapon/mac/walk/3",
+   "weapon/mac/walk/4",
+   "weapon/mac/walk/5",
+   "weapon/mac/walk/6",
+   "weapon/mac/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/mac/aim": {
+  "name": "Ngắm · Tiểu liên giảm thanh",
+  "actor": "Dương",
+  "frames": [
+   "weapon/mac/aim/0",
+   "weapon/mac/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/mac/fire": {
+  "name": "Bắn · Tiểu liên giảm thanh",
+  "actor": "Dương",
+  "frames": [
+   "weapon/mac/fire/0",
+   "weapon/mac/fire/1",
+   "weapon/mac/fire/2",
+   "weapon/mac/fire/3",
+   "weapon/mac/fire/4",
+   "weapon/mac/fire/5",
+   "weapon/mac/fire/6",
+   "weapon/mac/fire/7"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/uzi/walk": {
+  "name": "Đi cầm · Tiểu liên nhỏ",
+  "actor": "Dương",
+  "frames": [
+   "weapon/uzi/walk/0",
+   "weapon/uzi/walk/1",
+   "weapon/uzi/walk/2",
+   "weapon/uzi/walk/3",
+   "weapon/uzi/walk/4",
+   "weapon/uzi/walk/5",
+   "weapon/uzi/walk/6",
+   "weapon/uzi/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/uzi/aim": {
+  "name": "Ngắm · Tiểu liên nhỏ",
+  "actor": "Dương",
+  "frames": [
+   "weapon/uzi/aim/0",
+   "weapon/uzi/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/uzi/fire": {
+  "name": "Bắn · Tiểu liên nhỏ",
+  "actor": "Dương",
+  "frames": [
+   "weapon/uzi/fire/0",
+   "weapon/uzi/fire/1",
+   "weapon/uzi/fire/2",
+   "weapon/uzi/fire/3",
+   "weapon/uzi/fire/4",
+   "weapon/uzi/fire/5",
+   "weapon/uzi/fire/6",
+   "weapon/uzi/fire/7"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/ar_tan/walk": {
+  "name": "Đi cầm · Súng trường (cát)",
+  "actor": "Dương",
+  "frames": [
+   "weapon/ar_tan/walk/0",
+   "weapon/ar_tan/walk/1",
+   "weapon/ar_tan/walk/2",
+   "weapon/ar_tan/walk/3",
+   "weapon/ar_tan/walk/4",
+   "weapon/ar_tan/walk/5",
+   "weapon/ar_tan/walk/6",
+   "weapon/ar_tan/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/ar_tan/aim": {
+  "name": "Ngắm · Súng trường (cát)",
+  "actor": "Dương",
+  "frames": [
+   "weapon/ar_tan/aim/0",
+   "weapon/ar_tan/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/ar_tan/fire": {
+  "name": "Bắn · Súng trường (cát)",
+  "actor": "Dương",
+  "frames": [
+   "weapon/ar_tan/fire/0",
+   "weapon/ar_tan/fire/1",
+   "weapon/ar_tan/fire/2",
+   "weapon/ar_tan/fire/3",
+   "weapon/ar_tan/fire/4",
+   "weapon/ar_tan/fire/5",
+   "weapon/ar_tan/fire/6",
+   "weapon/ar_tan/fire/7"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/ar_scope/walk": {
+  "name": "Đi cầm · Súng trường ống ngắm",
+  "actor": "Dương",
+  "frames": [
+   "weapon/ar_scope/walk/0",
+   "weapon/ar_scope/walk/1",
+   "weapon/ar_scope/walk/2",
+   "weapon/ar_scope/walk/3",
+   "weapon/ar_scope/walk/4",
+   "weapon/ar_scope/walk/5",
+   "weapon/ar_scope/walk/6",
+   "weapon/ar_scope/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/ar_scope/aim": {
+  "name": "Ngắm · Súng trường ống ngắm",
+  "actor": "Dương",
+  "frames": [
+   "weapon/ar_scope/aim/0",
+   "weapon/ar_scope/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/ar_scope/fire": {
+  "name": "Bắn · Súng trường ống ngắm",
+  "actor": "Dương",
+  "frames": [
+   "weapon/ar_scope/fire/0",
+   "weapon/ar_scope/fire/1",
+   "weapon/ar_scope/fire/2",
+   "weapon/ar_scope/fire/3",
+   "weapon/ar_scope/fire/4",
+   "weapon/ar_scope/fire/5",
+   "weapon/ar_scope/fire/6",
+   "weapon/ar_scope/fire/7"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/ar_red/walk": {
+  "name": "Đi cầm · Súng trường (đỏ)",
+  "actor": "Dương",
+  "frames": [
+   "weapon/ar_red/walk/0",
+   "weapon/ar_red/walk/1",
+   "weapon/ar_red/walk/2",
+   "weapon/ar_red/walk/3",
+   "weapon/ar_red/walk/4",
+   "weapon/ar_red/walk/5",
+   "weapon/ar_red/walk/6",
+   "weapon/ar_red/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/ar_red/aim": {
+  "name": "Ngắm · Súng trường (đỏ)",
+  "actor": "Dương",
+  "frames": [
+   "weapon/ar_red/aim/0",
+   "weapon/ar_red/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/ar_red/fire": {
+  "name": "Bắn · Súng trường (đỏ)",
+  "actor": "Dương",
+  "frames": [
+   "weapon/ar_red/fire/0",
+   "weapon/ar_red/fire/1",
+   "weapon/ar_red/fire/2",
+   "weapon/ar_red/fire/3",
+   "weapon/ar_red/fire/4",
+   "weapon/ar_red/fire/5",
+   "weapon/ar_red/fire/6",
+   "weapon/ar_red/fire/7"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/lmg/walk": {
+  "name": "Đi cầm · Trung liên",
+  "actor": "Dương",
+  "frames": [
+   "weapon/lmg/walk/0",
+   "weapon/lmg/walk/1",
+   "weapon/lmg/walk/2",
+   "weapon/lmg/walk/3",
+   "weapon/lmg/walk/4",
+   "weapon/lmg/walk/5",
+   "weapon/lmg/walk/6",
+   "weapon/lmg/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/lmg/aim": {
+  "name": "Ngắm · Trung liên",
+  "actor": "Dương",
+  "frames": [
+   "weapon/lmg/aim/0",
+   "weapon/lmg/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/lmg/fire": {
+  "name": "Bắn · Trung liên",
+  "actor": "Dương",
+  "frames": [
+   "weapon/lmg/fire/0",
+   "weapon/lmg/fire/1",
+   "weapon/lmg/fire/2",
+   "weapon/lmg/fire/3",
+   "weapon/lmg/fire/4",
+   "weapon/lmg/fire/5",
+   "weapon/lmg/fire/6",
+   "weapon/lmg/fire/7"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/sniper_tan/walk": {
+  "name": "Đi cầm · Súng bắn tỉa (cát)",
+  "actor": "Dương",
+  "frames": [
+   "weapon/sniper_tan/walk/0",
+   "weapon/sniper_tan/walk/1",
+   "weapon/sniper_tan/walk/2",
+   "weapon/sniper_tan/walk/3",
+   "weapon/sniper_tan/walk/4",
+   "weapon/sniper_tan/walk/5",
+   "weapon/sniper_tan/walk/6",
+   "weapon/sniper_tan/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/sniper_tan/aim": {
+  "name": "Ngắm · Súng bắn tỉa (cát)",
+  "actor": "Dương",
+  "frames": [
+   "weapon/sniper_tan/aim/0",
+   "weapon/sniper_tan/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/sniper_tan/fire": {
+  "name": "Bắn · Súng bắn tỉa (cát)",
+  "actor": "Dương",
+  "frames": [
+   "weapon/sniper_tan/fire/0",
+   "weapon/sniper_tan/fire/1",
+   "weapon/sniper_tan/fire/2",
+   "weapon/sniper_tan/fire/3",
+   "weapon/sniper_tan/fire/4",
+   "weapon/sniper_tan/fire/5"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/sniper_black/walk": {
+  "name": "Đi cầm · Súng bắn tỉa nòng dài",
+  "actor": "Dương",
+  "frames": [
+   "weapon/sniper_black/walk/0",
+   "weapon/sniper_black/walk/1",
+   "weapon/sniper_black/walk/2",
+   "weapon/sniper_black/walk/3",
+   "weapon/sniper_black/walk/4",
+   "weapon/sniper_black/walk/5",
+   "weapon/sniper_black/walk/6",
+   "weapon/sniper_black/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/sniper_black/aim": {
+  "name": "Ngắm · Súng bắn tỉa nòng dài",
+  "actor": "Dương",
+  "frames": [
+   "weapon/sniper_black/aim/0",
+   "weapon/sniper_black/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/sniper_black/fire": {
+  "name": "Bắn · Súng bắn tỉa nòng dài",
+  "actor": "Dương",
+  "frames": [
+   "weapon/sniper_black/fire/0",
+   "weapon/sniper_black/fire/1",
+   "weapon/sniper_black/fire/2",
+   "weapon/sniper_black/fire/3",
+   "weapon/sniper_black/fire/4",
+   "weapon/sniper_black/fire/5"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/shotgun/walk": {
+  "name": "Đi cầm · Súng săn bơm",
+  "actor": "Dương",
+  "frames": [
+   "weapon/shotgun/walk/0",
+   "weapon/shotgun/walk/1",
+   "weapon/shotgun/walk/2",
+   "weapon/shotgun/walk/3",
+   "weapon/shotgun/walk/4",
+   "weapon/shotgun/walk/5",
+   "weapon/shotgun/walk/6",
+   "weapon/shotgun/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/shotgun/aim": {
+  "name": "Ngắm · Súng săn bơm",
+  "actor": "Dương",
+  "frames": [
+   "weapon/shotgun/aim/0",
+   "weapon/shotgun/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/shotgun/fire": {
+  "name": "Bắn · Súng săn bơm",
+  "actor": "Dương",
+  "frames": [
+   "weapon/shotgun/fire/0",
+   "weapon/shotgun/fire/1",
+   "weapon/shotgun/fire/2",
+   "weapon/shotgun/fire/3",
+   "weapon/shotgun/fire/4",
+   "weapon/shotgun/fire/5"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/sawed/walk": {
+  "name": "Đi cầm · Súng săn cưa nòng",
+  "actor": "Dương",
+  "frames": [
+   "weapon/sawed/walk/0",
+   "weapon/sawed/walk/1",
+   "weapon/sawed/walk/2",
+   "weapon/sawed/walk/3",
+   "weapon/sawed/walk/4",
+   "weapon/sawed/walk/5",
+   "weapon/sawed/walk/6",
+   "weapon/sawed/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/sawed/aim": {
+  "name": "Ngắm · Súng săn cưa nòng",
+  "actor": "Dương",
+  "frames": [
+   "weapon/sawed/aim/0",
+   "weapon/sawed/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/sawed/fire": {
+  "name": "Bắn · Súng săn cưa nòng",
+  "actor": "Dương",
+  "frames": [
+   "weapon/sawed/fire/0",
+   "weapon/sawed/fire/1",
+   "weapon/sawed/fire/2",
+   "weapon/sawed/fire/3",
+   "weapon/sawed/fire/4",
+   "weapon/sawed/fire/5"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/rpg/walk": {
+  "name": "Đi cầm · Súng phóng lựu",
+  "actor": "Dương",
+  "frames": [
+   "weapon/rpg/walk/0",
+   "weapon/rpg/walk/1",
+   "weapon/rpg/walk/2",
+   "weapon/rpg/walk/3",
+   "weapon/rpg/walk/4",
+   "weapon/rpg/walk/5",
+   "weapon/rpg/walk/6",
+   "weapon/rpg/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/rpg/aim": {
+  "name": "Ngắm · Súng phóng lựu",
+  "actor": "Dương",
+  "frames": [
+   "weapon/rpg/aim/0",
+   "weapon/rpg/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/rpg/fire": {
+  "name": "Bắn · Súng phóng lựu",
+  "actor": "Dương",
+  "frames": [
+   "weapon/rpg/fire/0",
+   "weapon/rpg/fire/1",
+   "weapon/rpg/fire/2",
+   "weapon/rpg/fire/3",
+   "weapon/rpg/fire/4",
+   "weapon/rpg/fire/5"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/grenade/walk": {
+  "name": "Đi cầm · Lựu đạn",
+  "actor": "Dương",
+  "frames": [
+   "weapon/grenade/walk/0",
+   "weapon/grenade/walk/1"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/grenade/aim": {
+  "name": "Ngắm · Lựu đạn",
+  "actor": "Dương",
+  "frames": [
+   "weapon/grenade/aim/0",
+   "weapon/grenade/aim/1",
+   "weapon/grenade/aim/2",
+   "weapon/grenade/aim/3"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/grenade/fire": {
+  "name": "Bắn · Lựu đạn",
+  "actor": "Dương",
+  "frames": [
+   "weapon/grenade/fire/0",
+   "weapon/grenade/fire/1",
+   "weapon/grenade/fire/2",
+   "weapon/grenade/fire/3",
+   "weapon/grenade/fire/4",
+   "weapon/grenade/fire/5"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/smoke/walk": {
+  "name": "Đi cầm · Lựu khói",
+  "actor": "Dương",
+  "frames": [
+   "weapon/smoke/walk/0",
+   "weapon/smoke/walk/1"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/smoke/aim": {
+  "name": "Ngắm · Lựu khói",
+  "actor": "Dương",
+  "frames": [
+   "weapon/smoke/aim/0",
+   "weapon/smoke/aim/1",
+   "weapon/smoke/aim/2",
+   "weapon/smoke/aim/3"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/smoke/fire": {
+  "name": "Bắn · Lựu khói",
+  "actor": "Dương",
+  "frames": [
+   "weapon/smoke/fire/0",
+   "weapon/smoke/fire/1",
+   "weapon/smoke/fire/2",
+   "weapon/smoke/fire/3",
+   "weapon/smoke/fire/4",
+   "weapon/smoke/fire/5"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/knife/walk": {
+  "name": "Đi cầm · Dao ngắn",
+  "actor": "Dương",
+  "frames": [
+   "weapon/knife/walk/0",
+   "weapon/knife/walk/1",
+   "weapon/knife/walk/2",
+   "weapon/knife/walk/3",
+   "weapon/knife/walk/4",
+   "weapon/knife/walk/5",
+   "weapon/knife/walk/6",
+   "weapon/knife/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/knife/aim": {
+  "name": "Ngắm · Dao ngắn",
+  "actor": "Dương",
+  "frames": [
+   "weapon/knife/aim/0",
+   "weapon/knife/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/knife/fire": {
+  "name": "Bắn · Dao ngắn",
+  "actor": "Dương",
+  "frames": [
+   "weapon/knife/fire/0",
+   "weapon/knife/fire/1",
+   "weapon/knife/fire/2",
+   "weapon/knife/fire/3",
+   "weapon/knife/fire/4",
+   "weapon/knife/fire/5",
+   "weapon/knife/fire/6",
+   "weapon/knife/fire/7"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/machete/walk": {
+  "name": "Đi cầm · Dao rựa",
+  "actor": "Dương",
+  "frames": [
+   "weapon/machete/walk/0",
+   "weapon/machete/walk/1",
+   "weapon/machete/walk/2",
+   "weapon/machete/walk/3",
+   "weapon/machete/walk/4",
+   "weapon/machete/walk/5",
+   "weapon/machete/walk/6",
+   "weapon/machete/walk/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/machete/aim": {
+  "name": "Ngắm · Dao rựa",
+  "actor": "Dương",
+  "frames": [
+   "weapon/machete/aim/0",
+   "weapon/machete/aim/1"
+  ],
+  "fps": 4,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "weapon/machete/fire": {
+  "name": "Bắn · Dao rựa",
+  "actor": "Dương",
+  "frames": [
+   "weapon/machete/fire/0",
+   "weapon/machete/fire/1",
+   "weapon/machete/fire/2",
+   "weapon/machete/fire/3",
+   "weapon/machete/fire/4",
+   "weapon/machete/fire/5"
+  ],
+  "fps": 14,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "weapons_anim_v2"
+ },
+ "melee/knife/di-cam-dao": {
+  "name": "Đi cầm dao",
+  "actor": "knife",
+  "frames": [
+   "melee/knife/di-cam-dao/0",
+   "melee/knife/di-cam-dao/1",
+   "melee/knife/di-cam-dao/2",
+   "melee/knife/di-cam-dao/3",
+   "melee/knife/di-cam-dao/4",
+   "melee/knife/di-cam-dao/5",
+   "melee/knife/di-cam-dao/6",
+   "melee/knife/di-cam-dao/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "melee_anim"
+ },
+ "melee/knife/dam": {
+  "name": "Đâm",
+  "actor": "knife",
+  "frames": [
+   "melee/knife/dam/0",
+   "melee/knife/dam/1",
+   "melee/knife/dam/2",
+   "melee/knife/dam/3",
+   "melee/knife/dam/4",
+   "melee/knife/dam/5",
+   "melee/knife/dam/6",
+   "melee/knife/dam/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "melee_anim"
+ },
+ "melee/knife/chem": {
+  "name": "Chém",
+  "actor": "knife",
+  "frames": [
+   "melee/knife/chem/0",
+   "melee/knife/chem/1",
+   "melee/knife/chem/2",
+   "melee/knife/chem/3",
+   "melee/knife/chem/4",
+   "melee/knife/chem/5"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "melee_anim"
+ },
+ "melee/knife/ha-guc-tu-sau": {
+  "name": "Hạ gục từ sau",
+  "actor": "knife",
+  "frames": [
+   "melee/knife/ha-guc-tu-sau/0",
+   "melee/knife/ha-guc-tu-sau/1",
+   "melee/knife/ha-guc-tu-sau/2",
+   "melee/knife/ha-guc-tu-sau/3",
+   "melee/knife/ha-guc-tu-sau/4",
+   "melee/knife/ha-guc-tu-sau/5",
+   "melee/knife/ha-guc-tu-sau/6",
+   "melee/knife/ha-guc-tu-sau/7",
+   "melee/knife/ha-guc-tu-sau/8"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "melee_anim"
+ },
+ "melee/machete/di-cam-dao-rua": {
+  "name": "Đi cầm dao rựa",
+  "actor": "machete",
+  "frames": [
+   "melee/machete/di-cam-dao-rua/0",
+   "melee/machete/di-cam-dao-rua/1",
+   "melee/machete/di-cam-dao-rua/2",
+   "melee/machete/di-cam-dao-rua/3",
+   "melee/machete/di-cam-dao-rua/4",
+   "melee/machete/di-cam-dao-rua/5",
+   "melee/machete/di-cam-dao-rua/6",
+   "melee/machete/di-cam-dao-rua/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "melee_anim"
+ },
+ "melee/machete/chem": {
+  "name": "Chém",
+  "actor": "machete",
+  "frames": [
+   "melee/machete/chem/0",
+   "melee/machete/chem/1",
+   "melee/machete/chem/2",
+   "melee/machete/chem/3",
+   "melee/machete/chem/4",
+   "melee/machete/chem/5"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "melee_anim"
+ },
+ "melee/machete/dam": {
+  "name": "Đâm",
+  "actor": "machete",
+  "frames": [
+   "melee/machete/dam/0",
+   "melee/machete/dam/1",
+   "melee/machete/dam/2",
+   "melee/machete/dam/3",
+   "melee/machete/dam/4",
+   "melee/machete/dam/5",
+   "melee/machete/dam/6",
+   "melee/machete/dam/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "melee_anim"
+ },
+ "melee/machete/hung-chem": {
+  "name": "Hùng chém",
+  "actor": "machete",
+  "frames": [
+   "melee/machete/hung-chem/0",
+   "melee/machete/hung-chem/1",
+   "melee/machete/hung-chem/2",
+   "melee/machete/hung-chem/3",
+   "melee/machete/hung-chem/4",
+   "melee/machete/hung-chem/5"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "melee_anim"
+ },
+ "fx/lua-chay": {
+  "name": "Lửa cháy",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/lua-chay/0",
+   "fx/lua-chay/1",
+   "fx/lua-chay/2",
+   "fx/lua-chay/3",
+   "fx/lua-chay/4",
+   "fx/lua-chay/5",
+   "fx/lua-chay/6",
+   "fx/lua-chay/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/no": {
+  "name": "Nổ",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/no/0",
+   "fx/no/1",
+   "fx/no/2",
+   "fx/no/3",
+   "fx/no/4",
+   "fx/no/5",
+   "fx/no/6",
+   "fx/no/7",
+   "fx/no/8",
+   "fx/no/9"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/khoi": {
+  "name": "Khói",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/khoi/0",
+   "fx/khoi/1",
+   "fx/khoi/2",
+   "fx/khoi/3",
+   "fx/khoi/4",
+   "fx/khoi/5",
+   "fx/khoi/6",
+   "fx/khoi/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/bao-tu-phun": {
+  "name": "Bào tử phun",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/bao-tu-phun/0",
+   "fx/bao-tu-phun/1",
+   "fx/bao-tu-phun/2",
+   "fx/bao-tu-phun/3",
+   "fx/bao-tu-phun/4",
+   "fx/bao-tu-phun/5",
+   "fx/bao-tu-phun/6",
+   "fx/bao-tu-phun/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/chap-dien": {
+  "name": "Chập điện",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/chap-dien/0",
+   "fx/chap-dien/1",
+   "fx/chap-dien/2",
+   "fx/chap-dien/3",
+   "fx/chap-dien/4",
+   "fx/chap-dien/5",
+   "fx/chap-dien/6",
+   "fx/chap-dien/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/nuoc-ban": {
+  "name": "Nước bắn",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/nuoc-ban/0",
+   "fx/nuoc-ban/1",
+   "fx/nuoc-ban/2",
+   "fx/nuoc-ban/3",
+   "fx/nuoc-ban/4",
+   "fx/nuoc-ban/5",
+   "fx/nuoc-ban/6",
+   "fx/nuoc-ban/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/tieng-dong-nem-da": {
+  "name": "Tiếng động (ném đá)",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/tieng-dong-nem-da/0",
+   "fx/tieng-dong-nem-da/1",
+   "fx/tieng-dong-nem-da/2",
+   "fx/tieng-dong-nem-da/3",
+   "fx/tieng-dong-nem-da/4",
+   "fx/tieng-dong-nem-da/5",
+   "fx/tieng-dong-nem-da/6",
+   "fx/tieng-dong-nem-da/7"
+  ],
+  "fps": 10,
+  "loop": false,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/bui-da-roi": {
+  "name": "Bụi đá rơi",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/bui-da-roi/0",
+   "fx/bui-da-roi/1",
+   "fx/bui-da-roi/2",
+   "fx/bui-da-roi/3",
+   "fx/bui-da-roi/4",
+   "fx/bui-da-roi/5",
+   "fx/bui-da-roi/6",
+   "fx/bui-da-roi/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/set-danh": {
+  "name": "Sét đánh",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/set-danh/0",
+   "fx/set-danh/1",
+   "fx/set-danh/2",
+   "fx/set-danh/3",
+   "fx/set-danh/4",
+   "fx/set-danh/5",
+   "fx/set-danh/6",
+   "fx/set-danh/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/hoi-mau": {
+  "name": "Hồi máu",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/hoi-mau/0",
+   "fx/hoi-mau/1",
+   "fx/hoi-mau/2",
+   "fx/hoi-mau/3",
+   "fx/hoi-mau/4",
+   "fx/hoi-mau/5",
+   "fx/hoi-mau/6",
+   "fx/hoi-mau/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/drone-quet": {
+  "name": "Drone quét",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/drone-quet/0",
+   "fx/drone-quet/1",
+   "fx/drone-quet/2",
+   "fx/drone-quet/3",
+   "fx/drone-quet/4",
+   "fx/drone-quet/5",
+   "fx/drone-quet/6",
+   "fx/drone-quet/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ },
+ "fx/bi-phat-hien": {
+  "name": "Bị phát hiện",
+  "actor": "Hiệu ứng",
+  "frames": [
+   "fx/bi-phat-hien/0",
+   "fx/bi-phat-hien/1",
+   "fx/bi-phat-hien/2",
+   "fx/bi-phat-hien/3",
+   "fx/bi-phat-hien/4",
+   "fx/bi-phat-hien/5",
+   "fx/bi-phat-hien/6",
+   "fx/bi-phat-hien/7"
+  ],
+  "fps": 10,
+  "loop": true,
+  "anchor": [
+   32,
+   32
+  ],
+  "source": "fx"
+ }
+}

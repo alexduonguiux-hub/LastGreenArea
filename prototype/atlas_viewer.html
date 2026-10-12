@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vùng Xanh · Xem ma trận atlas</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080A10;--grid:#0E121C;--panel:#121620;--edge:#186078;--tick:#3EECFF;--mag:#6E144A;--mag-hi:#FF3AA8;--slot:#161C28;--ink:#D8F4FF;--dim:#7896B0;--warn:#F0C83C;--ok:#50DC78;--bad:#F04650}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.4 'Be Vietnam Pro',system-ui,sans-serif;
+background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
+header{display:flex;gap:16px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--edge);background:var(--panel)}
+header h1{font-size:15px;margin:0;letter-spacing:.12em;text-transform:uppercase;color:var(--tick)}
+header label{color:var(--dim);font-size:13px}
+header select,header input,header button{background:var(--slot);color:var(--ink);border:1px solid var(--edge);padding:4px 8px;font:inherit}
+header button[aria-pressed="true"]{border-color:var(--mag-hi);background:var(--mag)}
+main{display:grid;grid-template-columns:300px 1fr 320px;height:calc(100vh - 49px)}
+aside{overflow:auto;background:var(--panel);border-right:1px solid var(--edge)}
+aside.right{border-right:0;border-left:1px solid var(--edge)}
+#list{list-style:none;margin:0;padding:6px}
+#list li{padding:3px 8px;cursor:pointer;border-left:2px solid transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+#list li:hover{background:var(--slot)}#list li[aria-selected="true"]{border-left-color:var(--mag-hi);background:#2A1030}
+#list li small{color:var(--dim)}
+.group{padding:8px 8px 2px;color:var(--tick);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+#stage{overflow:auto;position:relative}
+#page{image-rendering:pixelated;display:block;cursor:crosshair}
+.info{padding:12px}.info h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mag-hi);margin:0 0 8px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:13px}.kv span:nth-child(odd){color:var(--dim)}
+#preview{background:var(--slot);border:1px solid var(--edge);margin:10px 0;display:block;image-rendering:pixelated}
+.zones{padding:0 12px 12px}.zones div{display:flex;justify-content:space-between;font-size:12px;padding:2px 0;border-bottom:1px dashed #1E2838}
+.zones b{color:var(--ink);font-weight:500}.zones i{font-style:normal;color:var(--dim)}
+.bar{height:4px;background:#1E2838;margin-top:2px}.bar i{display:block;height:100%;background:var(--tick)}
+.ctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0}.ctl button{background:var(--slot);color:var(--ink);border:1px solid var(--edge);padding:3px 8px;font:inherit;cursor:pointer}
+.ctl button[aria-pressed="true"]{border-color:var(--mag-hi);background:var(--mag)}
+code{color:var(--warn);font-size:12px;word-break:break-all}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ma trận atlas</h1>
+  <label>Trang <select id="pageSel"></select></label>
+  <label>Phóng <select id="zoom"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+  <button id="gridBtn" aria-pressed="true">Lưới 16 px</button>
+  <button id="zoneBtn" aria-pressed="true">Vùng</button>
+  <label>Tìm <input id="q" placeholder="id, tên, nhân vật…" size="26"></label>
+  <span id="count" style="color:var(--dim)"></span>
+</header>
+<main>
+  <aside><ul id="list"></ul></aside>
+  <section id="stage"><canvas id="page"></canvas></section>
+  <aside class="right">
+    <div class="info">
+      <h2>Ô đang trỏ</h2>
+      <div class="kv" id="hover"><span>id</span><span>—</span></div>
+    </div>
+    <div class="info">
+      <h2>Hoạt ảnh</h2>
+      <div class="kv" id="animInfo"><span>—</span><span></span></div>
+      <canvas id="preview" width="192" height="192"></canvas>
+      <div class="ctl">
+        Tỉ lệ <button data-s="1">1×</button><button data-s="2" aria-pressed="true">2×</button><button data-s="3">3×</button>
+        <button id="play" aria-pressed="true">Phát</button><button id="flip">Lật</button>
+        <span id="frameNo" style="color:var(--dim)"></span>
+      </div>
+      <div class="kv" id="frameInfo"></div>
+    </div>
+    <div class="info"><h2>Vùng</h2></div>
+    <div class="zones" id="zones"></div>
+  </aside>
+</main>
+<script src="../public/data/atlas.js"></script>
+<script>
+const A = window.ATLAS, AN = window.ANIMS, U = A.meta.unit;
+const imgs = A.textures.map(t => { const im = new Image(); im.src = '../public/assets/' + t.image; return im; });
+const frames = {}; A.textures.forEach((t, p) => t.frames.forEach(f => { f.page = p; frames[f.filename] = f; }));
+const cellIndex = A.textures.map(t => { const m = new Map(); t.frames.forEach(f => { const [c, r, w, h] = f.cell; for (let y = r; y < r + h; y++) for (let x = c; x < c + w; x++) m.set(y * A.meta.cells + x, f); }); return m; });
+const $ = s => document.querySelector(s);
+const S = { page: 0, zoom: 1, grid: true, zone: true, anim: null, scale: 2, play: true, flip: false, f: 0, t: 0, hover: null, sel: null };
+const cv = $('#page'), cx = cv.getContext('2d'), pv = $('#preview'), px = pv.getContext('2d');
+cx.imageSmoothingEnabled = false; px.imageSmoothingEnabled = false;
+const ZC = ['#3EECFF', '#FF3AA8', '#F0C83C', '#50DC78', '#F04650', '#B478FF', '#3EECFF', '#FF3AA8', '#F0C83C', '#50DC78', '#B478FF'];
+A.textures.forEach((t, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i} · ${t.image}`; $('#pageSel').appendChild(o); });
+function drawPage() {
+  const z = S.zoom, im = imgs[S.page]; cv.width = A.meta.page * z; cv.height = A.meta.page * z;
+  cx.imageSmoothingEnabled = false; cx.fillStyle = '#0B0E16'; cx.fillRect(0, 0, cv.width, cv.height);
+  if (S.zone) A.meta.zones.filter(zn => zn.page === S.page).forEach((zn, i) => { cx.fillStyle = ZC[i % ZC.length] + '14'; cx.fillRect(0, zn.row0 * U * z, cv.width, (zn.row1 - zn.row0 + 1) * U * z); cx.fillStyle = ZC[i % ZC.length]; cx.font = `${12}px Be Vietnam Pro`; cx.fillText(`${zn.name} · hàng ${zn.row0}–${zn.row1}`, 4, zn.row0 * U * z + 13); });
+  if (im.complete) cx.drawImage(im, 0, 0, cv.width, cv.height);
+  if (S.grid && z >= 2) { cx.strokeStyle = 'rgba(62,236,255,0.12)'; cx.lineWidth = 1; cx.beginPath(); for (let i = 0; i <= A.meta.cells; i++) { cx.moveTo(i * U * z + .5, 0); cx.lineTo(i * U * z + .5, cv.height); cx.moveTo(0, i * U * z + .5); cx.lineTo(cv.width, i * U * z + .5); } cx.stroke(); }
+  const hi = (f, col) => { if (!f || f.page !== S.page) return; const [c, r, w, h] = f.cell; cx.strokeStyle = col; cx.lineWidth = 2; cx.strokeRect(c * U * z + 1, r * U * z + 1, w * U * z - 2, h * U * z - 2); };
+  if (S.anim) AN[S.anim].frames.forEach(id => hi(frames[id], '#FF3AA8'));
+  hi(S.hover, '#3EECFF');
+}
+function kv(el, rows) { el.innerHTML = rows.map(([k, v]) => `<span>${k}</span><span>${v}</span>`).join(''); }
+cv.addEventListener('mousemove', e => { const r = cv.getBoundingClientRect(); const c = Math.floor((e.clientX - r.left) / (U * S.zoom)), rr = Math.floor((e.clientY - r.top) / (U * S.zoom)); const f = cellIndex[S.page].get(rr * A.meta.cells + c) || null; if (f !== S.hover) { S.hover = f; drawPage(); kv($('#hover'), f ? [['id', `<code>${f.filename}</code>`], ['ô (col,row,w,h)', f.cell.join(', ')], ['pixel', `${f.frame.x},${f.frame.y} ${f.frame.w}×${f.frame.h}`], ['gốc', `${f.sourceSize.w}×${f.sourceSize.h} lệch ${f.spriteSourceSize.x},${f.spriteSourceSize.y}`], ['neo', `${(f.anchor.x * f.sourceSize.w).toFixed(0)},${(f.anchor.y * f.sourceSize.h).toFixed(0)}`], ['vùng / nhóm', `${f.zone} / ${f.group}`]] : [['ô', `${c}, ${rr} (trống)`]]); } });
+cv.addEventListener('click', () => { if (!S.hover) return; const id = S.hover.filename; const aid = Object.keys(AN).find(k => AN[k].frames.includes(id)); if (aid) selectAnim(aid); });
+function buildList(q = '') {
+  const ul = $('#list'); ul.innerHTML = ''; q = q.toLowerCase(); let last = '', n = 0;
+  Object.entries(AN).forEach(([aid, a]) => { const hay = `${aid} ${a.name} ${a.actor}`.toLowerCase(); if (q && !hay.includes(q)) return; const g = aid.split('/').slice(0, 2).join('/'); if (g !== last) { last = g; const d = document.createElement('li'); d.className = 'group'; d.textContent = g; ul.appendChild(d); } const li = document.createElement('li'); li.dataset.id = aid; li.innerHTML = `${a.name} <small>${a.frames.length} khung · ${a.fps} fps</small>`; li.setAttribute('aria-selected', aid === S.anim); li.onclick = () => selectAnim(aid); ul.appendChild(li); n++; });
+  $('#count').textContent = `${n} hoạt ảnh · ${A.meta.frames} khung`;
+}
+function selectAnim(aid) { S.anim = aid; S.f = 0; S.t = 0; const a = AN[aid]; const f0 = frames[a.frames[0]]; if (f0.page !== S.page) { S.page = f0.page; $('#pageSel').value = S.page; } document.querySelectorAll('#list li[data-id]').forEach(li => li.setAttribute('aria-selected', li.dataset.id === aid)); kv($('#animInfo'), [['id', `<code>${aid}</code>`], ['tên', `${a.actor} · ${a.name}`], ['khung', a.frames.length], ['fps / lặp', `${a.fps} / ${a.loop ? 'có' : 'không'}`], ['neo', a.anchor.join(',')], ['nguồn', a.source || '']]); drawPage(); const sel = document.querySelector('#list li[aria-selected="true"]'); if (sel) sel.scrollIntoView({ block: 'nearest' }); }
+let last = performance.now();
+function tick(now) {
+  const dt = (now - last) / 1000; last = now;
+  if (S.anim) {
+    const a = AN[S.anim]; if (S.play) { S.t += dt; if (S.t > 1 / a.fps) { S.t = 0; S.f = (S.f + 1) % a.frames.length; } }
+    const f = frames[a.frames[S.f]], s = S.scale, sw = f.sourceSize.w, sh = f.sourceSize.h;
+    pv.width = Math.max(192, sw * s + 16); pv.height = Math.max(192, sh * s + 16); px.imageSmoothingEnabled = false;
+    px.fillStyle = '#161C28'; px.fillRect(0, 0, pv.width, pv.height);
+    const ox = Math.floor((pv.width - sw * s) / 2), oy = Math.floor((pv.height - sh * s) / 2);
+    px.strokeStyle = '#243040'; px.strokeRect(ox + .5, oy + .5, sw * s, sh * s);
+    px.save(); px.translate(ox, oy); if (S.flip) { px.translate(sw * s, 0); px.scale(-1, 1); }
+    if (!f.empty) px.drawImage(imgs[f.page], f.frame.x, f.frame.y, f.frame.w, f.frame.h, f.spriteSourceSize.x * s, f.spriteSourceSize.y * s, f.frame.w * s, f.frame.h * s);
+    px.strokeStyle = '#FF3AA8'; px.strokeRect(f.spriteSourceSize.x * s + .5, f.spriteSourceSize.y * s + .5, f.frame.w * s, f.frame.h * s);
+    px.restore();
+    const ax = ox + (S.flip ? sw - a.anchor[0] : a.anchor[0]) * s, ay = oy + a.anchor[1] * s;
+    px.strokeStyle = '#3EECFF'; px.beginPath(); px.moveTo(ax - 6, ay); px.lineTo(ax + 6, ay); px.moveTo(ax, ay - 6); px.lineTo(ax, ay + 6); px.stroke();
+    $('#frameNo').textContent = `khung ${S.f + 1}/${a.frames.length}`;
+    kv($('#frameInfo'), [['khung id', `<code>${f.filename}</code>`], ['trang / ô', `${f.page} / ${f.cell.join(',')}`], ['cắt viền', f.trimmed ? `${f.frame.w}×${f.frame.h} trong ${sw}×${sh}` : 'không']]);
+  }
+  requestAnimationFrame(tick);
+}
+function zones() { $('#zones').innerHTML = A.meta.zones.map((z, i) => `<div><b style="color:${ZC[i % ZC.length]}">${z.page}·${z.name}</b><i>hàng ${z.row0}–${z.row1} · ${z.used}/${z.capacity} ô · ${(100 * z.used / z.capacity).toFixed(0)} %</i></div><div class="bar"><i style="width:${100 * z.used / z.capacity}%"></i></div>`).join(''); }
+$('#pageSel').onchange = e => { S.page = +e.target.value; drawPage(); };
+$('#zoom').onchange = e => { S.zoom = +e.target.value; drawPage(); };
+$('#gridBtn').onclick = e => { S.grid = !S.grid; e.target.setAttribute('aria-pressed', S.grid); drawPage(); };
+$('#zoneBtn').onclick = e => { S.zone = !S.zone; e.target.setAttribute('aria-pressed', S.zone); drawPage(); };
+$('#q').oninput = e => buildList(e.target.value);
+document.querySelectorAll('.ctl button[data-s]').forEach(b => b.onclick = () => { S.scale = +b.dataset.s; document.querySelectorAll('.ctl button[data-s]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+$('#play').onclick = e => { S.play = !S.play; e.target.setAttribute('aria-pressed', S.play); };
+$('#flip').onclick = e => { S.flip = !S.flip; e.target.setAttribute('aria-pressed', S.flip); };
+imgs.forEach(im => im.onload = drawPage);
+buildList(); zones(); drawPage(); selectAnim('char/duong/di-xuong'); requestAnimationFrame(tick);
+</script>
+</body>
+</html>

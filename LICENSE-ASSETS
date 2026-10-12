@@ -1,0 +1,16 @@
+Giấy phép tài nguyên (asset) · Vùng Xanh Cuối Cùng
+=====================================================
+
+1. Sprite nhân vật, NPC, Biến Thể (assets/characters, assets/enemies, assets/npcs, và mọi atlas
+   sinh ra từ chúng trong public/assets) cùng tile trong assets/tiles dẫn xuất từ
+   Liberated Pixel Cup / Universal LPC Spritesheet Character Generator.
+   Giấy phép kép: CC-BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/)
+   và GPL 3.0 (https://www.gnu.org/licenses/gpl-3.0.html).
+   Tác phẩm dẫn xuất phải phát hành theo cùng giấy phép và ghi công các tác giả trong docs/CREDITS.md.
+
+2. Font Be Vietnam Pro (assets/fonts): SIL Open Font License 1.1.
+
+3. Vũ khí, vật phẩm, hiệu ứng, UI, bản đồ sinh bằng code (art/) và các pose vẽ riêng:
+   vẽ riêng cho dự án. Khi được ghép cùng lớp LPC trong một atlas, phần ghép theo mục 1.
+
+Mã nguồn game (src/, art/) có giấy phép riêng trong LICENSE (chủ dự án quyết định).
