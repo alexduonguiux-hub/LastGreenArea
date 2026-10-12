@@ -43,7 +43,7 @@ export class Enemy extends Actor {
   private readonly cfg: StealthConfig;
   private readonly grid: CollisionGrid;
   /** gọi khi tóm được mục tiêu */
-  onCatch?: () => void;
+  onCatch?: (victim: Target) => void;
   onState?: (s: EnemyState) => void;
 
   constructor(scene: Phaser.Scene, actorId: string, waypoints: [number, number][], cfg: StealthConfig, grid: CollisionGrid) {
@@ -103,7 +103,7 @@ export class Enemy extends Actor {
     return false;
   }
 
-  updateAI(dt: number, t: Target): void {
+  updateAI(dt: number, targets: Target[]): void {
     const cfg = this.cfg;
     if (this.state === 'down') {
       this.timer -= dt;
@@ -113,10 +113,32 @@ export class Enemy extends Actor {
       }
       return;
     }
-    // nhìn
+    // nhìn: lấy người lộ nhất trong đội
     const sensing = this.state !== 'listen' && this.state !== 'look';
-    const dist01 = sensing && !t.hidden ? inCone(cfg.vision, this.x, this.y - 12, this.face, t.x, t.y - 12, this.grid) : -1;
+    let t: Target = targets[0];
+    let dist01 = -1;
+    if (sensing) {
+      for (const tg of targets) {
+        if (tg.hidden) continue;
+        const d = inCone(cfg.vision, this.x, this.y - 12, this.face, tg.x, tg.y - 12, this.grid);
+        if (d >= 0 && (dist01 < 0 || d < dist01)) {
+          dist01 = d;
+          t = tg;
+        }
+      }
+    }
     const seen = dist01 >= 0;
+    if (!seen) {
+      // khi không thấy ai, đuổi theo người gần nhất lúc báo động
+      let bd = Infinity;
+      for (const tg of targets) {
+        const d = Math.hypot(tg.x - this.x, tg.y - this.y);
+        if (d < bd) {
+          bd = d;
+          t = tg;
+        }
+      }
+    }
     const lvl = this.meter.update(dt, seen, Math.max(0, dist01), t.stance);
     if (seen) this.lastSeen = { x: t.x, y: t.y };
     if (lvl === 'bao-dong' && this.state !== 'alert') this.go('alert');
@@ -175,7 +197,7 @@ export class Enemy extends Actor {
           this.go('lost');
           this.timer = cfg.lookFor;
         }
-        if (Math.hypot(t.x - this.x, t.y - this.y) < 14) this.onCatch?.();
+        for (const tg of targets) if (Math.hypot(tg.x - this.x, tg.y - this.y) < 14) this.onCatch?.(tg);
         break;
       case 'lost':
         this.timer -= dt;

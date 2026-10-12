@@ -50,3 +50,13 @@ body {
 @keyframes blink { to { opacity: 0.3; } }
 @media (prefers-reduced-motion: reduce) { .v10-marker.x { animation: none; } }
 .v10-center-actions { margin-top: 8px; color: var(--dim); font-size: 12px; }
+
+/* chế độ kế hoạch */
+#ui .plan { right: 12px; top: 12px; width: 300px; }
+.v10-row { display: flex; gap: 6px; align-items: center; padding: 3px 0; border-bottom: 1px dashed #1e2838; font-size: 12px; }
+.v10-row[aria-selected="true"] { color: var(--ink); background: rgba(110, 20, 74, 0.5); outline: 1px solid var(--mag-hi); }
+.v10-row .n { width: 14px; color: var(--tick); font-weight: 700; }
+.v10-row .cmds { color: var(--dim); flex: 1; }
+.v10-row .cmds b { color: var(--ink); font-weight: 600; }
+.v10-tag { display: inline-block; background: var(--mag); color: var(--ink); font: 700 10px var(--font-b); letter-spacing: 0.1em; padding: 1px 6px; text-transform: uppercase; }
+.v10-tool[aria-pressed="true"] { color: var(--mag-hi); }

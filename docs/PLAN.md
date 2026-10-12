@@ -276,12 +276,12 @@ Tổng giai đoạn A: **~11 ngày làm việc**.
 
 ### B3 · Đội 4 người và chế độ kế hoạch (2 ngày)
 
-- [ ] `Squad`: 1–4 đổi thủ lĩnh; người còn lại đi theo cách 24 px, copy tư thế; đồng hồ phát hiện riêng.
-- [ ] Kỹ năng riêng từ `data/characters.json`; màn 1 bật Dương + Ny.
-- [ ] `PlanMode` (Tab): tạm dừng, tối đa 3 lệnh/người (Đi tới, Chờ, Ném đá, Hạ gục), Enter thực thi đồng loạt.
-- [ ] A* trên lưới 16 px.
+- [x] `Squad` (`src/squad/Squad.ts`): 1–4 đổi thủ lĩnh, camera đổi theo; người còn lại bám vệt đường của thủ lĩnh cách 24 px, copy tư thế. Biến Thể theo dõi cả 4 người, lấy người lộ nhất; tóm bất kỳ ai.
+- [x] Kỹ năng riêng từ `public/data/characters.json` (tên, vai, kỹ năng, màu); hạ từ sau chỉ Dương (`ha-tu-sau`), ném đá ai cũng được.
+- [x] `PlanMode` (Tab): tạm dừng thế giới, chọn người 1–4, bấm bản đồ thêm Đi tới, T đổi sang Ném đá vào điểm, H hạ gục, G chờ 2 s, Backspace xóa, tối đa 3 lệnh/người; vẽ đường đi dự kiến và nhãn lệnh; Enter thực thi đồng loạt theo thời gian thực, Esc hủy.
+- [x] A* 8 hướng trên lưới 16 px (`src/world/Pathfind.ts`, test: vòng tường, không xuyên góc, trại → lối ra qua cầu). Đá ném nhắm điểm (`Rock` tính vận tốc theo thời gian bay).
 
-**Nghiệm thu**: nhịp 4 màn 1, 2 người cùng lúc ném đá và hạ gục theo kế hoạch.
+**Nghiệm thu (đạt 2026-10-12)**: kịch bản Chromium ở đầu cầu: Dương đi tới điểm, Ny ném đá rồi chờ, cùng lúc; Kẻ Lang Thang đi kiểm tra tiếng đá. Bài học nhịp 4 với 2 người sẽ dựng ở B4.
 
 ### B4 · Nội dung màn 1 (3 ngày)
 

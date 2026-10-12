@@ -1,0 +1,6 @@
+{
+  "duong": { "name": "Dương", "actor": "char/duong", "role": "Trưởng nhóm", "skills": ["ha-tu-sau", "leo-treo"], "color": "#50dc78" },
+  "hung": { "name": "Hùng", "actor": "char/hung", "role": "Sức mạnh", "skills": ["pha-cua", "khieng"], "color": "#f0a040" },
+  "ny": { "name": "Ny", "actor": "char/ny", "role": "Y tế", "skills": ["nhay-qua", "che-thuoc"], "color": "#f04650" },
+  "son": { "name": "Sơn", "actor": "char/son", "role": "Kỹ thuật", "skills": ["mo-khoa", "drone"], "color": "#3eecff" }
+}
