@@ -253,12 +253,13 @@ Tổng giai đoạn A: **~11 ngày làm việc**.
 
 ### B1 · Nền tảng thế giới (2 ngày)
 
-- [ ] Chốt bản đồ màn 1 (câu hỏi 3 mục 6). Đề xuất: 50×30 tile (1600×960) sinh từ `art/maps/`, 4 khu; camera cuộn.
-- [ ] `CollisionGrid` 16 px: đi được / chặn / **che khuất** / nước / cầu; xuất từ mask PNG sinh cùng bản đồ.
-- [ ] Di chuyển trượt dọc tường; 3 tư thế Đứng / Khom / Bò (58 / 34 / 18 px/s).
-- [ ] Y-sort toàn bộ actor và cây; debug overlay F3 (lưới, nón nhìn, vòng tiếng động).
+- [x] Bản đồ màn 1: 50×30 tile (1600×960) sinh từ `art/maps/level1.py` (autotile LPC port từ tools/), 4 khu: trại với đường mòn số 8, rừng thông dày, đầu cầu, bên kia suối lên lối ra; cây/bụi/lều/củi là sprite `env/*` trong atlas, game xếp lớp theo y; nền có hậu kỳ bình minh, sprite môi trường cùng tông màu. Camera cuộn theo thủ lĩnh.
+- [x] `CollisionGrid` 16 px trong `levels/level1.json` (`.` `#` `o` `~` `=`), kèm `level1_mask.png` để soi; test: cầu là lối duy nhất qua suối, BFS từ trại tới lối ra, mọi điểm đặt đứng được.
+- [x] Di chuyển trượt dọc tường; 3 tư thế Đứng / Khom / Bò (58 / 34 / 18 px/s), chạy 96.
+- [x] Y-sort actor và vật thể môi trường bằng depth = y chân; debug overlay F3 vẽ lưới va chạm (nón nhìn, vòng tiếng động thêm ở B2).
+- [ ] Hoạt ảnh "Đi lên" (việc A2, cần clone LPC); tạm dùng "Chạy lên" chậm.
 
-**Nghiệm thu**: đi hết 4 khu, không lọt nước, cầu là lối duy nhất, cây che người.
+**Nghiệm thu (đạt 2026-10-12, trừ "Đi lên")**: đi hết 4 khu trong build Chromium, không lọt nước, cầu là lối duy nhất (test), cây và bụi che người theo depth.
 
 ### B2 · Lõi ẩn nấp (3 ngày)
 

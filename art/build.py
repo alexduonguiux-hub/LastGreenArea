@@ -15,6 +15,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from matrix import Matrix, Zone  # noqa: E402
 from legacy_import import Importer  # noqa: E402
+from maps import lpc as lpc_tiles  # noqa: E402
+from maps import level1  # noqa: E402
+from maps.grade import grade  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT_IMG = ROOT / 'public' / 'assets'
@@ -33,37 +36,48 @@ ZONES = [
     Zone('fx', 1, 64, 79),
     Zone('items', 1, 80, 83),     # 33 item + icon và sprite vũ khí
     Zone('ui', 1, 84, 107),       # thành phần UI 9-slice (A4)
-    Zone('spare1', 1, 108, 127),
+    Zone('env', 1, 108, 127),      # cây, bụi, lều, củi (sprite môi trường, xếp lớp theo y trong game)
 ]
 
 
+def png_bytes(im):
+    buf = io.BytesIO()
+    im.save(buf, 'PNG', optimize=True)
+    return buf.getvalue()
+
+
 def build():
+    """Sinh mọi file đầu ra trong bộ nhớ. Trả về (matrix, outputs{đường dẫn tương đối: bytes}, manifest, anims, log)."""
     m = Matrix(ZONES)
     imp = Importer(m).all()
+    env = {k: grade(v) for k, v in lpc_tiles.env_sprites().items()}
+    for name, im in env.items():
+        # neo = chân vật thể: giữa đáy; cây có bóng nên nhích lên 6 px
+        foot = im.height - (6 if name.startswith('conifer') else 2)
+        m.place(f'env/{name}', im, 'env', 'env', (im.width // 2, foot), trim=False)
     manifest = m.manifest(PAGES)
     anims = imp.anims
-    pngs = []
-    for im in m.pages:
-        buf = io.BytesIO()
-        im.save(buf, 'PNG', optimize=True)
-        pngs.append(buf.getvalue())
     manifest['meta']['frames'] = len(m.frames)
     manifest['meta']['anims'] = len(anims)
-    return m, pngs, manifest, anims, imp.log
+    ground, mask, level = level1.build(env)
+    outputs = {}
+    for name, im in zip(PAGES, m.pages):
+        outputs[f'public/assets/{name}'] = png_bytes(im)
+    outputs['public/assets/maps/level1_ground.png'] = png_bytes(ground)
+    outputs['public/assets/maps/level1_mask.png'] = png_bytes(mask)
+    outputs['public/data/atlas.json'] = dumps(manifest).encode('utf-8')
+    outputs['public/data/anims.json'] = dumps(anims).encode('utf-8')
+    outputs['public/data/levels/level1.json'] = dumps(level).encode('utf-8')
+    outputs['public/data/atlas.js'] = atlas_js(manifest, anims).encode('utf-8')
+    return m, outputs, manifest, anims, imp.log
 
 
 def dumps(obj):
     return json.dumps(obj, ensure_ascii=False, indent=1) + '\n'
 
 
-def write(pngs, manifest, anims):
-    OUT_IMG.mkdir(parents=True, exist_ok=True)
-    OUT_DATA.mkdir(parents=True, exist_ok=True)
-    for name, data in zip(PAGES, pngs):
-        (OUT_IMG / name).write_bytes(data)
-    (OUT_DATA / 'atlas.json').write_text(dumps(manifest), encoding='utf-8')
-    (OUT_DATA / 'anims.json').write_text(dumps(anims), encoding='utf-8')
-    # atlas.js: bản JS cho viewer/gallery mở từ file://, kèm dữ liệu mô tả để hiển thị tên, nhóm, chỉ số
+def atlas_js(manifest, anims):
+    """Bản JS cho viewer/gallery mở từ file://, kèm dữ liệu mô tả để hiển thị tên, nhóm, chỉ số."""
     data_dir = ROOT / 'data'
     extras = {
         'ITEMS': json.loads((data_dir / 'items.json').read_text(encoding='utf-8')),
@@ -74,20 +88,28 @@ def write(pngs, manifest, anims):
          json.dumps(anims, ensure_ascii=False) + ';\n'
     for k, v in extras.items():
         js += f'window.{k}=' + json.dumps(v, ensure_ascii=False) + ';\n'
-    (OUT_DATA / 'atlas.js').write_text(js, encoding='utf-8')
+    return js
+
+
+def write(outputs):
+    for rel, data in outputs.items():
+        p = ROOT / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_bytes(data)
 
 
 def main():
-    m, pngs, manifest, anims, log = build()
-    write(pngs, manifest, anims)
+    m, outputs, manifest, anims, log = build()
+    write(outputs)
     for line in log:
         print('  ', line)
     print(f'khung: {len(m.frames)}  hoạt ảnh: {len(anims)}')
     for z in manifest['meta']['zones']:
         pct = 100 * z['used'] / z['capacity']
         print(f"  trang {z['page']} {z['name']:8s} hàng {z['row0']:3d}–{z['row1']:3d}  dùng {z['used']:5d}/{z['capacity']:5d} ô ({pct:4.1f} %)")
-    for name, data in zip(PAGES, pngs):
-        print(f'  {name}: {len(data) // 1024} KB  sha256 {hashlib.sha256(data).hexdigest()[:12]}')
+    for rel, data in outputs.items():
+        if rel.endswith('.png'):
+            print(f'  {rel}: {len(data) // 1024} KB  sha256 {hashlib.sha256(data).hexdigest()[:12]}')
 
 
 if __name__ == '__main__':

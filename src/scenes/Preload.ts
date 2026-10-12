@@ -25,7 +25,8 @@ export class Preload extends Phaser.Scene {
     });
 
     loadAtlas(this.load);
-    this.load.image('bg-level1', 'assets/maps/level1_bridge_bg.png');
+    this.load.image('ground-level1', 'assets/maps/level1_ground.png');
+    this.load.json('level1', 'data/levels/level1.json');
   }
 
   create(): void {

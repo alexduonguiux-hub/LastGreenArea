@@ -15,6 +15,7 @@ describe('atlas + anims (file sinh bởi art/build.py)', () => {
   it('mọi trang là 2048×2048 và số khung khớp meta', () => {
     for (const t of atlas.textures) expect([t.size.w, t.size.h]).toEqual([2048, 2048]);
     expect(frameIds.size).toBe(atlas.meta.frames);
+    expect(frameIds.has('env/conifer-0')).toBe(true);
     expect(Object.keys(anims).length).toBe(atlas.meta.anims);
   });
 

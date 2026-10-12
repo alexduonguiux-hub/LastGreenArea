@@ -84,22 +84,29 @@ def main():
     for fid in ids:
         if fid.count('/') >= 3 and fid.rsplit('/', 1)[1].isdigit() and fid not in used:
             err(f'khung {fid} không thuộc hoạt ảnh nào')
-    # 5. tất định
-    m, pngs, manifest, anims2, _ = build.build()
-    for name, data in zip(build.PAGES, pngs):
-        if (build.OUT_IMG / name).read_bytes() != data:
-            err(f'{name} trên đĩa khác bản sinh lại (ảnh bị sửa tay hoặc build không tất định)')
-    if build.dumps(manifest) != (build.OUT_DATA / 'atlas.json').read_text(encoding='utf-8'):
-        err('atlas.json trên đĩa khác bản sinh lại')
-    if build.dumps(anims2) != (build.OUT_DATA / 'anims.json').read_text(encoding='utf-8'):
-        err('anims.json trên đĩa khác bản sinh lại')
+    # 5. tất định: mọi file sinh ra trên đĩa phải bằng bản sinh lại
+    _, outputs, _, _, _ = build.build()
+    for rel, data in outputs.items():
+        p = build.ROOT / rel
+        if not p.exists():
+            err(f'{rel} chưa được sinh (chạy npm run art)')
+        elif p.read_bytes() != data:
+            err(f'{rel} trên đĩa khác bản sinh lại (bị sửa tay hoặc build không tất định)')
+    # 6. level: lưới đúng kích thước, vật thể trỏ tới khung env có thật
+    lv = json.loads((build.OUT_DATA / 'levels' / 'level1.json').read_text(encoding='utf-8'))
+    gw, gh = lv['size'][0] // lv['cell'], lv['size'][1] // lv['cell']
+    if len(lv['grid']) != gh or any(len(r) != gw for r in lv['grid']):
+        err('level1 grid sai kích thước')
+    for o in lv['objects']:
+        if o['id'] not in ids:
+            err(f'level1 vật thể {o["id"]} không có trong atlas')
 
     if errors:
         print(f'LỖI ({len(errors)}):')
         for e in errors[:50]:
             print('  -', e)
         sys.exit(1)
-    print(f'OK: {len(ids)} khung, {len(anims)} hoạt ảnh, {len(pages)} trang, tất định.')
+    print(f'OK: {len(ids)} khung, {len(anims)} hoạt ảnh, {len(pages)} trang, {len(lv["objects"])} vật thể màn 1, tất định.')
 
 
 if __name__ == '__main__':
