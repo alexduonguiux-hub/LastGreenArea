@@ -1,0 +1,167 @@
+[
+ {
+  "group": "Y tế",
+  "name": "Túi cứu thương",
+  "desc": "Hồi 3 máu cho một người."
+ },
+ {
+  "group": "Y tế",
+  "name": "Thuốc giảm đau",
+  "desc": "Giảm run tay khi ngắm."
+ },
+ {
+  "group": "Y tế",
+  "name": "Kháng bào tử",
+  "desc": "Chữa nhiễm bào tử từ Kẻ Phun."
+ },
+ {
+  "group": "Đồ ăn",
+  "name": "Cá hộp",
+  "desc": "Hồi sức lực."
+ },
+ {
+  "group": "Đồ ăn",
+  "name": "Nước suối",
+  "desc": "Hồi sức lực, giảm khát."
+ },
+ {
+  "group": "Đồ ăn",
+  "name": "Mì gói",
+  "desc": "Nấu ở lửa trại cho cả đội."
+ },
+ {
+  "group": "Đồ ăn",
+  "name": "Bánh mì",
+  "desc": "Ăn ngay, hồi ít sức lực."
+ },
+ {
+  "group": "Công cụ",
+  "name": "Đèn pin",
+  "desc": "Làm choáng Kẻ Bám Trần."
+ },
+ {
+  "group": "Công cụ",
+  "name": "Pin",
+  "desc": "Nạp cho đèn pin và drone."
+ },
+ {
+  "group": "Công cụ",
+  "name": "Dây thừng",
+  "desc": "Leo xuống vách, trói Biến Thể."
+ },
+ {
+  "group": "Công cụ",
+  "name": "Xà beng",
+  "desc": "Phá cửa, cạy nắp cống."
+ },
+ {
+  "group": "Công cụ",
+  "name": "Bật lửa",
+  "desc": "Đốt lửa, đuổi bầy chuột."
+ },
+ {
+  "group": "Công cụ",
+  "name": "Bộ đàm",
+  "desc": "Gọi đồng đội ở xa."
+ },
+ {
+  "group": "Công cụ",
+  "name": "Mặt nạ phòng độc",
+  "desc": "Đi qua mây bào tử."
+ },
+ {
+  "group": "Công cụ",
+  "name": "La bàn",
+  "desc": "Định hướng khi sương dày."
+ },
+ {
+  "group": "Công cụ",
+  "name": "Thẻ từ",
+  "desc": "Mở cửa phòng thí nghiệm."
+ },
+ {
+  "group": "Đạn",
+  "name": "Hộp đạn 9mm",
+  "desc": "Cho súng ngắn, tiểu liên."
+ },
+ {
+  "group": "Đạn",
+  "name": "Băng đạn 5.56",
+  "desc": "Cho súng trường."
+ },
+ {
+  "group": "Đạn",
+  "name": "Đạn ghém",
+  "desc": "Cho súng săn."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Sổ phác thảo của Dương",
+  "desc": "Những trang vẽ con đường trở về."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Túi y tế đỏ của Ny",
+  "desc": "Không bao giờ rời Ny."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Drone Chuồn Chuồn",
+  "desc": "Sơn tự lắp từ đồ chơi cũ."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Băng đầu xanh của Hùng",
+  "desc": "Quà của em gái Hùng."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Mảnh Ký Ức",
+  "desc": "Phát sáng khi đến gần Mai."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Đá khắc ký hiệu",
+  "desc": "Ai đó đã đánh dấu đường mòn."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Kẹp tóc của Mai",
+  "desc": "Vẫn còn ấm."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Nhật ký kiểm lâm",
+  "desc": "Ghi chép của ông Tư."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Chìa khóa kho",
+  "desc": "Kho của trạm kiểm lâm."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Cầu chì máy phát",
+  "desc": "Thiếu nó trạm không có điện."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Ảnh bốn người",
+  "desc": "Chụp ngày đầu đi cắm trại."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Mẫu bào tử",
+  "desc": "Ny cần phân tích."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Ghi chép của Bác sĩ Lan",
+  "desc": "Nghiên cứu về Vùng Xanh."
+ },
+ {
+  "group": "Cốt truyện",
+  "name": "Thẻ bài quân nhân",
+  "desc": "Của một Lính Nhiễm."
+ }
+]

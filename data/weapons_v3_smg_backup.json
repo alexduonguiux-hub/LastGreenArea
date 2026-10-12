@@ -1,0 +1,812 @@
+{
+ "pistol": {
+  "name": "Súng ngắn",
+  "class": "pistol",
+  "pose_set": "one_hand",
+  "atlas_rect": [
+   0,
+   0,
+   18,
+   10
+  ],
+  "grip": [
+   12,
+   6
+  ],
+  "muzzle": [
+   1,
+   3
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 2,
+   "noise": 3,
+   "rate": 3
+  },
+  "anims": {
+   "walk": "one_hand_walk",
+   "aim": "one_hand_aim",
+   "fire": "one_hand_fire"
+  }
+ },
+ "revolver": {
+  "name": "Súng lục ổ quay",
+  "class": "pistol",
+  "pose_set": "one_hand",
+  "atlas_rect": [
+   20,
+   0,
+   20,
+   10
+  ],
+  "grip": [
+   16,
+   6
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 3,
+   "range": 2,
+   "noise": 4,
+   "rate": 2
+  },
+  "anims": {
+   "walk": "one_hand_walk",
+   "aim": "one_hand_aim",
+   "fire": "one_hand_fire"
+  }
+ },
+ "silenced": {
+  "name": "Súng giảm thanh",
+  "class": "pistol",
+  "pose_set": "one_hand",
+  "atlas_rect": [
+   42,
+   0,
+   22,
+   9
+  ],
+  "grip": [
+   17,
+   5
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 2,
+   "noise": 1,
+   "rate": 3
+  },
+  "anims": {
+   "walk": "one_hand_walk",
+   "aim": "one_hand_aim",
+   "fire": "one_hand_fire"
+  }
+ },
+ "smg_fold": {
+  "name": "Tiểu liên báng gập",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   66,
+   0,
+   26,
+   10
+  ],
+  "grip": [
+   13,
+   3
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 2,
+   "noise": 3,
+   "rate": 5
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "smg_scorpion": {
+  "name": "Tiểu liên bọ cạp",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   94,
+   0,
+   20,
+   8
+  ],
+  "grip": [
+   15,
+   4
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 2,
+   "noise": 3,
+   "rate": 5
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "smg_box": {
+  "name": "Tiểu liên hộp",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   116,
+   0,
+   18,
+   11
+  ],
+  "grip": [
+   8,
+   5
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 2,
+   "noise": 4,
+   "rate": 5
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "smg_pdw": {
+  "name": "Tiểu liên PDW",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   136,
+   0,
+   22,
+   10
+  ],
+  "grip": [
+   9,
+   4
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 3,
+   "noise": 3,
+   "rate": 5
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "smg_skeleton": {
+  "name": "Tiểu liên khung rỗng",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   160,
+   0,
+   30,
+   7
+  ],
+  "grip": [
+   20,
+   4
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 3,
+   "noise": 3,
+   "rate": 4
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "smg_p90": {
+  "name": "Tiểu liên đạn ngang",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   192,
+   0,
+   26,
+   8
+  ],
+  "grip": [
+   18,
+   5
+  ],
+  "muzzle": [
+   1,
+   3
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 3,
+   "noise": 3,
+   "rate": 5
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "smg_bullpup": {
+  "name": "Tiểu liên bullpup",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   220,
+   0,
+   28,
+   9
+  ],
+  "grip": [
+   15,
+   5
+  ],
+  "muzzle": [
+   1,
+   3
+  ],
+  "stats": {
+   "damage": 3,
+   "range": 4,
+   "noise": 3,
+   "rate": 5
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "smg_olive": {
+  "name": "Tiểu liên giảm thanh ô liu",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   250,
+   0,
+   28,
+   8
+  ],
+  "grip": [
+   15,
+   3
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 1,
+   "noise": 4,
+   "rate": 5
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "smg_wood": {
+  "name": "Tiểu liên báng gỗ",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   280,
+   0,
+   32,
+   9
+  ],
+  "grip": [
+   16,
+   4
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 2,
+   "noise": 4,
+   "rate": 4
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "smg_vector": {
+  "name": "Tiểu liên khung cát",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   314,
+   0,
+   26,
+   10
+  ],
+  "grip": [
+   10,
+   4
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 3,
+   "noise": 3,
+   "rate": 5
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "smg_square": {
+  "name": "Tiểu liên vuông",
+  "class": "smg",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   342,
+   0,
+   24,
+   9
+  ],
+  "grip": [
+   15,
+   4
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 2,
+   "noise": 3,
+   "rate": 4
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "ar_tan": {
+  "name": "Súng trường (cát)",
+  "class": "rifle",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   368,
+   0,
+   34,
+   11
+  ],
+  "grip": [
+   21,
+   7
+  ],
+  "muzzle": [
+   1,
+   4
+  ],
+  "stats": {
+   "damage": 3,
+   "range": 4,
+   "noise": 4,
+   "rate": 4
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "ar_scope": {
+  "name": "Súng trường ống ngắm",
+  "class": "rifle",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   404,
+   0,
+   34,
+   12
+  ],
+  "grip": [
+   21,
+   8
+  ],
+  "muzzle": [
+   1,
+   5
+  ],
+  "stats": {
+   "damage": 3,
+   "range": 5,
+   "noise": 4,
+   "rate": 4
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "ar_red": {
+  "name": "Súng trường (đỏ)",
+  "class": "rifle",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   440,
+   0,
+   34,
+   11
+  ],
+  "grip": [
+   21,
+   7
+  ],
+  "muzzle": [
+   1,
+   4
+  ],
+  "stats": {
+   "damage": 3,
+   "range": 4,
+   "noise": 5,
+   "rate": 4
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "lmg": {
+  "name": "Trung liên",
+  "class": "rifle",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   476,
+   0,
+   36,
+   10
+  ],
+  "grip": [
+   23,
+   6
+  ],
+  "muzzle": [
+   1,
+   4
+  ],
+  "stats": {
+   "damage": 4,
+   "range": 4,
+   "noise": 5,
+   "rate": 5
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "sniper_tan": {
+  "name": "Súng bắn tỉa (cát)",
+  "class": "sniper",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   514,
+   0,
+   38,
+   10
+  ],
+  "grip": [
+   26,
+   7
+  ],
+  "muzzle": [
+   1,
+   5
+  ],
+  "stats": {
+   "damage": 5,
+   "range": 5,
+   "noise": 5,
+   "rate": 1
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "sniper_black": {
+  "name": "Súng bắn tỉa nòng dài",
+  "class": "sniper",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   554,
+   0,
+   36,
+   9
+  ],
+  "grip": [
+   26,
+   6
+  ],
+  "muzzle": [
+   1,
+   4
+  ],
+  "stats": {
+   "damage": 5,
+   "range": 5,
+   "noise": 4,
+   "rate": 1
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "shotgun": {
+  "name": "Súng săn bơm",
+  "class": "shotgun",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   592,
+   0,
+   30,
+   8
+  ],
+  "grip": [
+   20,
+   4
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 4,
+   "range": 1,
+   "noise": 5,
+   "rate": 1
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "sawed": {
+  "name": "Súng săn cưa nòng",
+  "class": "shotgun",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   624,
+   0,
+   19,
+   8
+  ],
+  "grip": [
+   11,
+   4
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 4,
+   "range": 1,
+   "noise": 5,
+   "rate": 1
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "rpg": {
+  "name": "Súng phóng lựu",
+  "class": "launcher",
+  "pose_set": "shoulder",
+  "atlas_rect": [
+   645,
+   0,
+   32,
+   9
+  ],
+  "grip": [
+   19,
+   6
+  ],
+  "muzzle": [
+   1,
+   3
+  ],
+  "stats": {
+   "damage": 5,
+   "range": 4,
+   "noise": 5,
+   "rate": 1
+  },
+  "anims": {
+   "walk": "shoulder_walk",
+   "aim": "shoulder_aim",
+   "fire": "shoulder_fire"
+  }
+ },
+ "grenade": {
+  "name": "Lựu đạn",
+  "class": "throw",
+  "pose_set": "throw",
+  "atlas_rect": [
+   679,
+   0,
+   8,
+   8
+  ],
+  "grip": [
+   4,
+   5
+  ],
+  "muzzle": [
+   4,
+   1
+  ],
+  "stats": {
+   "damage": 5,
+   "range": 3,
+   "noise": 5,
+   "rate": 1
+  },
+  "anims": {
+   "walk": "throw_walk",
+   "aim": "throw_aim",
+   "fire": "throw_fire"
+  }
+ },
+ "smoke": {
+  "name": "Lựu khói",
+  "class": "throw",
+  "pose_set": "throw",
+  "atlas_rect": [
+   689,
+   0,
+   7,
+   9
+  ],
+  "grip": [
+   4,
+   5
+  ],
+  "muzzle": [
+   4,
+   1
+  ],
+  "stats": {
+   "damage": 0,
+   "range": 3,
+   "noise": 2,
+   "rate": 1
+  },
+  "anims": {
+   "walk": "throw_walk",
+   "aim": "throw_aim",
+   "fire": "throw_fire"
+  }
+ },
+ "knife": {
+  "name": "Dao ngắn",
+  "class": "melee_short",
+  "pose_set": "blade_short",
+  "atlas_rect": [
+   698,
+   0,
+   14,
+   5
+  ],
+  "grip": [
+   10,
+   2
+  ],
+  "muzzle": [
+   1,
+   2
+  ],
+  "stats": {
+   "damage": 2,
+   "range": 1,
+   "noise": 1,
+   "rate": 4
+  },
+  "anims": {
+   "walk": "blade_short_walk",
+   "aim": "blade_short_aim",
+   "fire": "blade_short_fire"
+  }
+ },
+ "machete": {
+  "name": "Dao rựa",
+  "class": "melee_long",
+  "pose_set": "blade_long",
+  "atlas_rect": [
+   714,
+   0,
+   24,
+   7
+  ],
+  "grip": [
+   18,
+   3
+  ],
+  "muzzle": [
+   1,
+   3
+  ],
+  "stats": {
+   "damage": 4,
+   "range": 1,
+   "noise": 2,
+   "rate": 2
+  },
+  "anims": {
+   "walk": "blade_long_walk",
+   "aim": "blade_long_aim",
+   "fire": "blade_long_fire"
+  }
+ }
+}
