@@ -1,0 +1,34 @@
+{
+  "intro": [
+    { "who": "duong", "text": "Sương dày quá. Mọi người bám sát nhau, đi theo đường mòn ra khỏi rừng." },
+    { "who": "ny", "text": "Tối qua mình nghe tiếng gì đó quanh lều… không phải thú." },
+    { "who": "hung", "text": "Thì càng phải đi nhanh. Sơn, drone còn pin không?" },
+    { "who": "son", "text": "Hết rồi. Hôm nay đi bằng mắt thôi." },
+    { "who": "duong", "text": "Đi khom khi cần, và đừng chạy nếu không bắt buộc. Chạy là có tiếng." }
+  ],
+  "vong-ve": [
+    { "who": "ny", "text": "Khoan… lại là chỗ dựng lều. Mình đi vòng tròn à?" },
+    { "who": "duong", "text": "Sổ phác thảo của tôi vẽ đúng con đường này. Nhưng nó tự dẫn mình quay lại." },
+    { "who": "son", "text": "Có ánh sáng xanh ở bìa rừng. Không giống đèn pin." },
+    { "who": "hung", "text": "Thứ gì phát sáng thì thứ đó biết mình ở đây." },
+    { "who": "duong", "text": "Hết đường khác rồi. Đi theo nó." }
+  ],
+  "rung": [
+    { "who": "duong", "text": "Đá khắc ký hiệu… ai đó đã đánh dấu đường mòn này từ trước." },
+    { "who": "ny", "text": "Nhặt vài viên đá đi. Ném sang chỗ khác, thứ gì nghe thấy sẽ đi tìm tiếng động chứ không tìm mình." }
+  ],
+  "dau-cau": [
+    { "who": "hung", "text": "Người… không. Không còn là người nữa. Nó đứng canh đầu cầu." },
+    { "who": "duong", "text": "Nó quay đầu mỗi vài giây. Khom sau bụi, chờ nó quay lưng rồi qua." },
+    { "who": "duong", "text": "Nếu cần, để tôi vòng ra sau lưng nó. Chỉ tôi làm được việc đó." }
+  ],
+  "ben-kia": [
+    { "who": "ny", "text": "Mảnh gì đó trong túi tôi đang phát sáng… cùng màu với ánh sáng kia." },
+    { "who": "son", "text": "Phía trước còn một con nữa, ngay trên lối ra. Chia việc: một người ném đá dụ nó, một người lẻn qua." },
+    { "who": "duong", "text": "Lên kế hoạch cho cả đội rồi làm cùng lúc. Không ai đi một mình." }
+  ],
+  "win": [
+    { "who": "mai", "text": "…Dương." },
+    { "who": "duong", "text": "Ra khỏi rừng rồi. Nhưng chuyện gì đã xảy ra với thế giới ngoài kia?" }
+  ]
+}

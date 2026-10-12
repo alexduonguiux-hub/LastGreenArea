@@ -15,9 +15,11 @@ export interface LevelData {
   spawn: Record<string, [number, number]>;
   zones: Record<string, [number, number, number, number]>;
   bridge: [number, number, number, number];
-  patrol: Record<string, [number, number][]>;
-  mai: [number, number];
+  patrol: Record<string, { type: string; points: [number, number][] }>;
+  mai: { appear: [number, number]; path: [number, number][] };
   exit: [number, number];
+  triggers: Record<string, [number, number, number, number]>;
+  checkpoints: Record<string, [number, number]>;
   pickups: { item: string; x: number; y: number }[];
 }
 

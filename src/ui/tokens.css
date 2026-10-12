@@ -60,3 +60,23 @@ body {
 .v10-row .cmds b { color: var(--ink); font-weight: 600; }
 .v10-tag { display: inline-block; background: var(--mag); color: var(--ink); font: 700 10px var(--font-b); letter-spacing: 0.1em; padding: 1px 6px; text-transform: uppercase; }
 .v10-tool[aria-pressed="true"] { color: var(--mag-hi); }
+
+/* hộp thoại */
+#ui .dialog { left: 50%; bottom: 44px; transform: translateX(-50%); width: min(760px, 92%); display: flex; gap: 12px; padding: 10px 12px; cursor: pointer; }
+.dialog .portrait { width: 64px; height: 100px; flex: none; background: var(--slot); border: 1px solid var(--edge); display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+.dialog .portrait canvas { image-rendering: pixelated; display: block; }
+.dialog .body { min-width: 0; }
+.dialog .who { font: 700 12px var(--font-b); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+.dialog .text { font-size: 15px; line-height: 1.45; }
+.dialog .more { margin-top: 6px; }
+/* nhiệm vụ */
+.v10-obj { margin-top: 4px; font-size: 12px; }
+.v10-obj div::before { content: '■ '; color: var(--tick); }
+.v10-obj div.done { color: var(--dim); text-decoration: line-through; }
+.v10-obj div.done::before { content: '✔ '; color: var(--ok); }
+.v10-obj .side { color: var(--dim); }
+/* màn hoàn thành */
+.v10-stats { display: grid; grid-template-columns: auto auto; gap: 3px 16px; text-align: left; margin: 10px auto 0; font-size: 13px; width: max-content; }
+.v10-stats span:nth-child(odd) { color: var(--dim); }
+.v10-stats b { color: var(--tick); }
+#ui .fog { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(200, 214, 220, 0) 30%, rgba(200, 214, 220, 0.32) 100%); pointer-events: none; transition: opacity 3s ease; }

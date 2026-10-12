@@ -285,13 +285,12 @@ Tổng giai đoạn A: **~11 ngày làm việc**.
 
 ### B4 · Nội dung màn 1 (3 ngày)
 
-- [ ] `levels/level1.json`: xuất phát, điểm tuần tra, vật phẩm (3 đá khắc, Mảnh Ký Ức, ảnh bốn người, 5 đá ném),
-      trigger, điểm lưu, lời nhắc.
-- [ ] 4 nhịp theo `level_design.md`; Mai hiện ra dẫn đường; vòng lặp đường mòn.
-- [ ] `dialogue/level1.json` + hộp thoại v10 với chân dung; lời thoại nháp để duyệt.
-- [ ] Nhặt đồ (E), ba lô, mục tiêu phụ; điểm lưu + `save.ts`; màn Hoàn thành / Bị phát hiện.
+- [x] `levels/level1.json` (sinh từ `art/maps/level1.py`): xuất phát, 2 Biến Thể tuần tra (đầu cầu, lối ra), vật phẩm (3 đá khắc, Mảnh Ký Ức, ảnh bốn người, 5 đá ném), 6 vùng kích hoạt, 4 điểm lưu, lộ trình Mai.
+- [x] 4 nhịp theo `level_design.md` (`src/levels/level1.ts`, máy trạng thái thuần có test): vòng số 8 đưa về trại → sương tan, Mai hiện ra; rừng (ném đá); đầu cầu; bên kia suối với Biến Thể thứ hai cho bài kế hoạch 2 người; Mai đi trước và chờ đội.
+- [x] `public/data/dialogue/level1.json` (6 đoạn, lời nháp cần chủ dự án duyệt) + hộp thoại DOM với chân dung vẽ từ atlas, Enter/Space/bấm để tiếp; thế giới dừng khi thoại.
+- [x] Nhặt đồ (E, ưu tiên hạ từ sau nếu có thể), bảng nhiệm vụ chính + phụ (Đá khắc x/3…); `core/save.ts` localStorage lưu ở đầu mỗi nhịp (nhịp, kho đồ, đá, thủ lĩnh, thống kê); Bị phát hiện → Enter nạp điểm lưu; Hoàn thành với thời gian, số lần bị phát hiện, sưu tập; F5 chơi lại, F6 nhịp kế (thử).
 
-**Nghiệm thu**: chơi 8–10 phút từ đầu đến cuối, qua được bằng cả 2 cách.
+**Nghiệm thu (đạt kỹ thuật 2026-10-12)**: kịch bản Chromium đi qua thoại mở đầu, nhặt ảnh, nhảy nhịp bằng điểm lưu tới bên kia suối không lỗi. Chưa chơi thử trọn 8–10 phút bằng tay; cân bằng và thời lượng chỉnh ở B6.
 
 ### B5 · HUD và menu v10 (2 ngày, rút ngắn nhờ A4)
 

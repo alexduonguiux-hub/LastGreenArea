@@ -33,8 +33,9 @@ describe('màn 1 (sinh bởi art/maps/level1.py)', () => {
 
   it('điểm xuất phát, tuần tra, Mai và vật phẩm đều đứng được', () => {
     for (const [name, [x, y]] of Object.entries(level.spawn)) expect(grid.canStand(x, y), `spawn ${name}`).toBe(true);
-    for (const p of level.patrol['ke-lang-thang']) expect(grid.canStand(p[0], p[1]), `patrol ${p}`).toBe(true);
-    expect(grid.canStand(level.mai[0], level.mai[1])).toBe(true);
+    for (const pt of Object.values(level.patrol)) for (const p of pt.points) expect(grid.canStand(p[0], p[1]), `patrol ${p}`).toBe(true);
+    expect(grid.canStand(level.mai.appear[0], level.mai.appear[1])).toBe(true);
+    for (const [k, [x, y]] of Object.entries(level.checkpoints)) expect(grid.canStand(x, y), `checkpoint ${k}`).toBe(true);
     for (const p of level.pickups) expect(grid.isWalkable(p.x, p.y), `pickup ${p.item}`).toBe(true);
   });
 

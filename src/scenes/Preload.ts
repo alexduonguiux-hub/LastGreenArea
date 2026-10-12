@@ -28,6 +28,7 @@ export class Preload extends Phaser.Scene {
     this.load.image('ground-level1', 'assets/maps/level1_ground.png');
     this.load.json('level1', 'data/levels/level1.json');
     this.load.json('characters', 'data/characters.json');
+    this.load.json('dialogue1', 'data/dialogue/level1.json');
   }
 
   create(): void {

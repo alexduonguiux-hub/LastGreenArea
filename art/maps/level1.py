@@ -242,9 +242,31 @@ def build(env: dict[str, Image.Image]):
             'ben-kia': [bridge[2] + 40, 0, W, 760],
         },
         'bridge': list(bridge),
-        'patrol': {'ke-lang-thang': [[bridge[0] - 160, bridge_mid_y + 2], [bridge[0] - 30, bridge_mid_y + 2]]},
-        'mai': [int(36.5 * TS), int(far_path_y(36.5) * TS) + 8],
+        'patrol': {
+            'canh-cau': {'type': 'ke-lang-thang', 'points': [[bridge[0] - 160, bridge_mid_y + 2], [bridge[0] - 30, bridge_mid_y + 2]]},
+            'canh-loi-ra': {'type': 'ke-lang-thang', 'points': [[int(41.5 * TS), int(far_path_y(41.5) * TS)], [int(45.5 * TS), int(far_path_y(45.5) * TS)]]},
+        },
+        'mai': {
+            'appear': [int(20.5 * TS), int(forest_path_y(20.5) * TS) - 10],
+            'path': [[int(25 * TS), int(forest_path_y(25) * TS) - 12], [bridge[2] + 60, bridge_mid_y - 14], [int(39 * TS), int(far_path_y(39) * TS) - 12], [int(EXIT[0] * TS), int(EXIT[1] * TS) + 24]],
+        },
         'exit': [int(EXIT[0] * TS), int(EXIT[1] * TS)],
+        # vùng kích hoạt 4 nhịp hướng dẫn (x0, y0, x1, y1)
+        'triggers': {
+            'vong-xa': [int((LOOP_B[0] + 3.0) * TS), int((LOOP_B[1] - 5.5) * TS), int((LOOP_B[0] + 6.0) * TS), int((LOOP_B[1] + 5.5) * TS)],
+            'trai-ve': [int((CAMP[0] - 3.0) * TS), int((CAMP[1] - 3.0) * TS), int((CAMP[0] + 3.0) * TS), int((CAMP[1] + 3.0) * TS)],
+            'rung': [int(19.8 * TS), int(13 * TS), int(21.3 * TS), int(20 * TS)],
+            'dau-cau': [bridge[0] - 200, bridge[1] - 120, bridge[0] - 110, bridge[3] + 120],
+            'qua-cau': [bridge[2] + 10, bridge[1] - 20, bridge[2] + 70, bridge[3] + 20],
+            'loi-ra': [int((EXIT[0] - 2.5) * TS), 0, int((EXIT[0] + 2.5) * TS), int((EXIT[1] + 1.5) * TS)],
+        },
+        # điểm lưu: vị trí thủ lĩnh ở đầu mỗi nhịp (đội xếp quanh)
+        'checkpoints': {
+            'trai': [int(cx - 20), int(cy + 56)],
+            'rung': [int(20.5 * TS), int(forest_path_y(20.5) * TS) + 10],
+            'dau-cau': [bridge[0] - 230, bridge_mid_y + 40],
+            'ben-kia': [bridge[2] + 44, bridge_mid_y + 30],
+        },
         # hằng số ẩn nấp của màn (B2); chỉnh ở đây rồi npm run art, không sửa trong code game
         'stealth': {
             'vision': {'angle': 90, 'range': 140},
@@ -253,7 +275,7 @@ def build(env: dict[str, Image.Image]):
             'speed': {'patrol': 16, 'investigate': 24, 'alert': 34},
             'listenEvery': 4.0, 'listenFor': 1.6, 'lookFor': 3.0, 'downFor': 30.0,
             'takedown': {'dist': 22},
-            'rocks': 5,
+            'rocks': 2,
         },
         'pickups': [
             {'item': 'da-khac-ky-hieu', 'x': int(LOOP_B[0] * TS + 4.3 * TS), 'y': int(LOOP_B[1] * TS)},
@@ -261,6 +283,11 @@ def build(env: dict[str, Image.Image]):
             {'item': 'da-khac-ky-hieu', 'x': int(42 * TS), 'y': int(far_path_y(42) * TS) - 24},
             {'item': 'manh-ky-uc', 'x': int(cx + 96), 'y': int(cy + 10)},
             {'item': 'anh-bon-nguoi', 'x': int(cx - 40), 'y': int(cy + 20)},
+            {'item': 'da-nem', 'x': int(cx + 40), 'y': int(cy + 70)},
+            {'item': 'da-nem', 'x': int((LOOP_B[0] + 4.3) * TS) + 10, 'y': int((LOOP_B[1] - 2) * TS)},
+            {'item': 'da-nem', 'x': int(22.5 * TS), 'y': int(forest_path_y(22.5) * TS) + 24},
+            {'item': 'da-nem', 'x': int(26.5 * TS), 'y': int(forest_path_y(26.5) * TS) - 20},
+            {'item': 'da-nem', 'x': bridge[0] - 200, 'y': bridge_mid_y + 60},
         ],
     }
     return ground, mask, level
