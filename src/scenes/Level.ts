@@ -15,7 +15,7 @@ import { Squad } from '../squad/Squad';
 import { Beats, BEATS, SIDE_OBJECTIVES } from '../levels/level1';
 import { Dialogue, portraitCanvas, type Line } from '../ui/dialogue';
 import { overlay } from '../ui/overlay';
-import { Hud, type HudState } from '../ui/hud';
+import { Hud, type HudIcon, type HudState } from '../ui/hud';
 
 const LEVEL_COLOR = { 'an-minh': 0xf05040, 'nghi-ngo': 0xf0c83c, 'bao-dong': 0xf04650 } as const;
 const ORDER = ['duong', 'hung', 'ny', 'son'];
@@ -53,6 +53,7 @@ export class Level extends Phaser.Scene {
   private inventory: Record<string, number> = {};
   private stats = { time: 0, detected: 0 };
   private startData: StartData = {};
+  private iconCache = new Map<string, HudIcon>();
 
   constructor() {
     super('Level');
@@ -76,6 +77,7 @@ export class Level extends Phaser.Scene {
     const cfg = this.level.stealth;
 
     this.add.image(0, 0, 'ground-level1').setOrigin(0, 0).setDepth(-1000);
+    this.addWater();
     this.cones = this.add.graphics().setDepth(-500);
     this.fxLayer = this.add.graphics().setDepth(-400);
     this.planLayer = this.add.graphics().setDepth(9000);
@@ -348,7 +350,12 @@ export class Level extends Phaser.Scene {
 
   /** Icon 16 px của vật phẩm từ atlas (canvas mới mỗi lần vì canvas không clone được bitmap). */
   private itemIcon(item: string): HTMLCanvasElement | null {
-    const fr = this.textures.getFrame(ATLAS, `item/${item}`);
+    return this.atlasIcon(`item/${item}`);
+  }
+
+  /** Canvas 1:1 của một khung atlas (icon vật phẩm, icon vũ khí) cho HUD; null nếu không có. */
+  private atlasIcon(frame: string): HTMLCanvasElement | null {
+    const fr = this.textures.getFrame(ATLAS, frame);
     return fr ? portraitCanvas(fr.source.image as HTMLImageElement, { x: fr.cutX, y: fr.cutY, w: fr.cutWidth, h: fr.cutHeight }, 1) : null;
   }
 
@@ -454,6 +461,42 @@ export class Level extends Phaser.Scene {
     this.say(`${STANCE_LABEL[s]} · ${r > 0 ? `tiếng bước chân lan ${tiles} ô` : 'không gây tiếng'}`);
   }
 
+  /** 4 ô hành động theo moodboard: icon + phím ở góc + nhãn dưới. Icon canvas lấy một lần rồi dùng lại. */
+  private actionSlots(L: Player, pickup: string | null, canTakedown: boolean): HudState['slots'] {
+    const ic = (k: string, frame: string): HudIcon => {
+      if (!this.iconCache.has(k)) {
+        const c = this.atlasIcon(frame);
+        this.iconCache.set(k, c ? () => c : null);
+      }
+      return this.iconCache.get(k) ?? null;
+    };
+    const eLabel = canTakedown ? 'Hạ gục' : pickup ? `Nhặt ${ITEM_LABEL[pickup] ?? pickup}` : 'Nhặt / Hạ gục';
+    const eIcon: HudIcon = canTakedown ? ic('knife', 'weapon/knife/icon') : pickup ? ic(`item:${pickup}`, `item/${pickup}`) : ic('knife', 'weapon/knife/icon');
+    return [
+      { key: 'Space', label: `Ném đá ×${L.rocks}`, on: L.rocks > 0, icon: 'v10-icon-rock' },
+      { key: 'E', label: eLabel, on: canTakedown || !!pickup, icon: eIcon },
+      { key: 'Tab', label: this.plan.executing ? 'Đang thực thi' : 'Kế hoạch', on: this.plan.executing, icon: ic('plan', 'item/la-ban') },
+      { key: 'Shift', label: L.stance === 'chay' ? 'Thôi chạy' : 'Chạy', on: L.stance === 'chay', icon: 'v10-icon-chay' },
+    ];
+  }
+
+  /** Mặt nước: dải khung ngang sinh từ art/maps/level1.py, cắt thành khung trong texture rồi lặp chậm (sóng trôi). */
+  private addWater(): void {
+    const w = (this.level as unknown as { water?: { x: number; y: number; w: number; h: number; frames: number; fps: number } }).water;
+    if (!w || !this.textures.exists('water-level1')) return;
+    const tex = this.textures.get('water-level1');
+    const names: string[] = [];
+    for (let k = 0; k < w.frames; k++) {
+      const name = `f${k}`;
+      if (!tex.has(name)) tex.add(name, 0, k * w.w, 0, w.w, w.h);
+      names.push(name);
+    }
+    if (!this.anims.exists('water-level1')) {
+      this.anims.create({ key: 'water-level1', frames: names.map((frame) => ({ key: 'water-level1', frame })), frameRate: w.fps, repeat: -1 });
+    }
+    this.add.sprite(w.x, w.y, 'water-level1', 'f0').setOrigin(0, 0).setDepth(-999).play('water-level1');
+  }
+
   private drawHud(dt: number): void {
     const cam = this.cameras.main;
     const L = this.squad.leader;
@@ -468,6 +511,7 @@ export class Level extends Phaser.Scene {
       }
     }
     const near = this.plan.active ? null : this.pickups.nearest(L.x, L.y, 28);
+    const canTakedown = this.enemies.some((en) => en.canBeTakenDown(L.x, L.y)) && L.hasSkill('ha-tu-sau');
     const inv = Object.entries(this.inventory)
       .filter(([k]) => !k.startsWith('__'))
       .map(([id, count]) => ({ id, label: ITEM_LABEL[id] ?? id, count, icon: () => this.itemIcon(id) }));
@@ -475,7 +519,7 @@ export class Level extends Phaser.Scene {
       levelName: this.level.name,
       objective: this.objective,
       side: SIDE_OBJECTIVES.map((o) => ({ label: o.label, have: this.inventory[o.item] ?? 0, need: o.need })),
-      members: this.squad.members.map((m) => ({ name: m.def.name, color: m.def.color, portrait: this.speaker(m.key).portrait, hp: 1, sl: m.running ? 0.8 : 1, rocks: m.rocks })),
+      members: this.squad.members.map((m) => ({ name: m.def.name, color: m.def.color, portrait: this.speaker(m.key).portrait, hp: 1, sl: m.running ? 0.8 : 1, rocks: m.rocks, stance: m.stance })),
       leader: this.squad.leaderIdx,
       stance: L.stance,
       hidden,
@@ -483,9 +527,8 @@ export class Level extends Phaser.Scene {
       detect: e ? e.meter.value : 0,
       detectLevel: e ? (e.state === 'down' ? 'down' : e.state === 'alert' ? 'bao-dong' : e.level) : null,
       executing: this.plan.executing,
+      slots: this.actionSlots(L, near ? near.def.item : null, canTakedown),
       inventory: inv,
-      nearPickup: near ? (ITEM_LABEL[near.def.item] ?? near.def.item) : null,
-      canTakedown: this.enemies.some((en) => en.canBeTakenDown(L.x, L.y)) && L.hasSkill('ha-tu-sau'),
     };
     this.hud.update(state);
     this.hud.tickToasts(dt);

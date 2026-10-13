@@ -236,6 +236,86 @@ kk.kwwk....
 ....kk.....
 """
 
+# icon nhỏ cho HUD (moodboard v10): hình người theo tư thế (xanh lá), đá, cuộn nhiệm vụ, vật phẩm, đồng hồ
+GLYPH_DUNG = """
+..kkk..
+..kwk..
+..kkk..
+.kkwkk.
+kwkwkwk
+kkkwkkk
+..kwk..
+..kkk..
+..kwk..
+.kwkwk.
+.kk.kk.
+"""
+GLYPH_CHAY = """
+....kkk..
+....kwk..
+.kkkkkk..
+kwwkwwk..
+kkkkwwkk.
+...kwwkwk
+..kkwkkk.
+.kwkkwk..
+kwk..kwk.
+kk....kk.
+"""
+GLYPH_KHOM = """
+.....kkk.
+.....kwk.
+..kkkkkk.
+.kwwwwwk.
+.kwwwwkkk
+.kwwwwkwk
+kkwkkkkk.
+kwk.kwk..
+kkk.kkk..
+"""
+GLYPH_BO = """
+.........kkk
+kkkkkkkkkkwk
+kwwwwwwwwwwk
+kkkkkkkkkkkk
+"""
+GLYPH_ROCK = """
+...kkkk..
+..kwwwwk.
+.kwwwwwwk
+kwwwwkwwk
+kwwwwwwwk
+.kwwwwwk.
+..kkkkk..
+"""
+GLYPH_QUEST = """
+kkkkkkk
+kwwwwwk
+kwkkkwk
+kwwwwwk
+kwkkkwk
+kwwwwwk
+kkkkkkk
+"""
+GLYPH_ITEM = """
+.kkkkk.
+kwkwkwk
+kkkkkkk
+kwwwwwk
+kwwkwwk
+kwwwwwk
+kkkkkkk
+"""
+GLYPH_CLOCK = """
+.kkkkk.
+kwwwwwk
+kwwkwwk
+kwwkwwk
+kwwwkwk
+kwwwwwk
+.kkkkk.
+"""
+
 
 def glyph(text: str, color: str) -> Spec:
     rows = [r for r in text.strip('\n').split('\n')]
@@ -284,6 +364,14 @@ def all_components() -> dict[str, Spec]:
         'check-off': check(False),
         'toggle-on': toggle(True),
         'toggle-off': toggle(False),
+        'icon-dung': glyph(GLYPH_DUNG, 'ok'),
+        'icon-chay': glyph(GLYPH_CHAY, 'ok'),
+        'icon-khom': glyph(GLYPH_KHOM, 'ok'),
+        'icon-bo': glyph(GLYPH_BO, 'ok'),
+        'icon-rock': glyph(GLYPH_ROCK, 'dim'),
+        'icon-quest': glyph(GLYPH_QUEST, 'warn'),
+        'icon-item': glyph(GLYPH_ITEM, 'ok'),
+        'icon-clock': glyph(GLYPH_CLOCK, 'warn'),
     }
     for st in ('normal', 'hover', 'pressed', 'disabled'):
         out[f'button-{st}'] = button(st)

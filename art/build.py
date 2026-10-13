@@ -37,8 +37,8 @@ ZONES = [
     Zone('melee', 1, 56, 63),
     Zone('fx', 1, 64, 79),
     Zone('items', 1, 80, 83),     # 33 item + icon và sprite vũ khí
-    Zone('ui', 1, 84, 107),       # thành phần UI 9-slice (A4)
-    Zone('env', 1, 108, 127),      # cây, bụi, lều, củi (sprite môi trường, xếp lớp theo y trong game)
+    Zone('ui', 1, 84, 91),        # thành phần UI 9-slice (A4): sprite nhỏ, 8 hàng là đủ
+    Zone('env', 1, 92, 127),      # cây, bụi, đá, gỗ, lều, củi (sprite môi trường, xếp lớp theo y trong game)
 ]
 
 
@@ -55,7 +55,7 @@ def build():
     env = {k: grade(v) for k, v in lpc_tiles.env_sprites().items()}
     for name, im in env.items():
         # neo = chân vật thể: giữa đáy; cây có bóng nên nhích lên 6 px
-        foot = im.height - (6 if name.startswith('conifer') else 2)
+        foot = im.height - (6 if name.startswith('conifer') else 4 if name.startswith('tree-') and not name.startswith('tree-small') else 2)
         m.place(f'env/{name}', im, 'env', 'env', (im.width // 2, foot), trim=False)
     # thành phần UI v10 (A4): vào vùng ui, kèm slice/outset trong manifest; cắt ra sprite riêng cho CSS border-image
     comps = all_components()
@@ -67,12 +67,13 @@ def build():
     anims = imp.anims
     manifest['meta']['frames'] = len(m.frames)
     manifest['meta']['anims'] = len(anims)
-    ground, mask, level = level1.build(env)
+    ground, mask, level, water_strip = level1.build(env)
     outputs = {}
     for name, im in zip(PAGES, m.pages):
         outputs[f'public/assets/{name}'] = png_bytes(im)
     outputs['public/assets/maps/level1_ground.png'] = png_bytes(ground)
     outputs['public/assets/maps/level1_mask.png'] = png_bytes(mask)
+    outputs['public/assets/maps/level1_water.png'] = png_bytes(water_strip)
     outputs['public/data/atlas.json'] = dumps(manifest).encode('utf-8')
     outputs['public/data/anims.json'] = dumps(anims).encode('utf-8')
     outputs['public/data/levels/level1.json'] = dumps(level).encode('utf-8')

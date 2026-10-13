@@ -1,10 +1,15 @@
 /**
- * HUD v10 trên lớp DOM, ghép từ thành phần 9-slice sinh trong atlas (src/ui/v10.css).
- * Bố cục theo mockup assets/ui/v10_hud.png: Nhiệm vụ (trái trên), tên màn (giữa trên), đồng hồ + bản đồ nhỏ (phải trên),
- * thông báo (phải), Đội (trái dưới), thanh hành động (giữa dưới), Ba lô (phải dưới).
+ * HUD v10 trên lớp DOM, ghép từ thành phần 9-slice và icon sinh trong atlas (src/ui/v10.css).
+ * Bố cục theo moodboard assets/ui/v10_hud.png: Nhiệm vụ (trái trên), băng rôn tên màn (giữa trên), đồng hồ + bản đồ nhỏ
+ * (phải trên), thông báo một dòng có icon (phải), Đội 2×2 (trái dưới), bảng hành động: cột tư thế có icon + 4 ô hành động
+ * vuông lớn có icon và phím ở góc (giữa dưới), Ba lô 2×6 có thanh cuộn (phải dưới).
  * DOM dựng một lần; mỗi khung chỉ đổi chữ/giá trị khi khác trước để tránh churn.
  */
 import type { CollisionGrid } from '../world/CollisionGrid';
+
+export type HudStance = 'chay' | 'dung' | 'khom' | 'bo';
+/** Icon cho ô hành động: lớp CSS của glyph trong atlas (v10-icon-*) hoặc hàm tạo canvas 16 px. */
+export type HudIcon = string | (() => HTMLCanvasElement | null) | null;
 
 export interface HudMember {
   name: string;
@@ -13,6 +18,13 @@ export interface HudMember {
   hp: number; // 0–1
   sl: number; // 0–1
   rocks: number;
+  stance: HudStance;
+}
+export interface HudSlot {
+  key: string;
+  label: string;
+  on: boolean;
+  icon: HudIcon;
 }
 export interface HudState {
   levelName: string;
@@ -20,18 +32,17 @@ export interface HudState {
   side: { label: string; have: number; need: number }[];
   members: HudMember[];
   leader: number;
-  stance: 'chay' | 'dung' | 'khom' | 'bo';
+  stance: HudStance;
   hidden: boolean;
   time: string;
   detect: number; // 0–1
   detectLevel: 'an-minh' | 'nghi-ngo' | 'bao-dong' | 'down' | null;
   executing: boolean;
+  slots: HudSlot[];
   inventory: { id: string; label: string; count: number; icon: () => HTMLCanvasElement | null }[];
-  nearPickup: string | null;
-  canTakedown: boolean;
 }
 
-const STANCES: [HudState['stance'], string][] = [
+const STANCES: [HudStance, string][] = [
   ['chay', 'Chạy'],
   ['dung', 'Đi'],
   ['khom', 'Khom'],
@@ -39,6 +50,12 @@ const STANCES: [HudState['stance'], string][] = [
 ];
 const LEVEL_SEG = { 'an-minh': 'ok', 'nghi-ngo': 'warn', 'bao-dong': 'bad', down: 'off' } as const;
 const LEVEL_TEXT = { 'an-minh': 'Ẩn mình', 'nghi-ngo': 'Nghi ngờ', 'bao-dong': 'Báo động', down: 'Bị hạ' } as const;
+const BAG_SLOTS = 12;
+
+const segs = (color: string, v: number) => {
+  const n = Math.round(Math.max(0, Math.min(1, v)) * 10);
+  return `<i class="v10-seg-${color}" style="width:calc(var(--px)*5*${n})"></i><i class="v10-seg-off" style="width:calc(var(--px)*5*${10 - n})"></i>`;
+};
 
 export class Hud {
   private el: HTMLDivElement;
@@ -48,6 +65,7 @@ export class Hud {
   private toasts: { el: HTMLDivElement; t: number }[] = [];
   private cache = new Map<string, string>();
   private teamBuilt = false;
+  private slotIcons: (HudIcon | undefined)[] = [];
 
   constructor(root: HTMLElement) {
     this.el = document.createElement('div');
@@ -58,19 +76,21 @@ export class Hud {
         <div class="hud-obj"><span class="v10-check-off" data-k="objcheck"></span><span data-k="objective"></span></div>
         <div class="hud-side" data-k="side"></div>
       </section>
-      <div class="v10-title hud-name" data-k="name"></div>
-      <section class="v10-panel hud-clock"><span data-k="time">0:00</span></section>
+      <div class="v10-panel hud-name"><span class="chev">«</span><span data-k="name"></span><span class="chev">»</span></div>
+      <section class="v10-panel hud-clock"><i class="v10-icon-clock"></i><span data-k="time">0:00</span></section>
       <section class="v10-panel hud-map"><span class="v10-title">Bản đồ</span><canvas class="hud-mini" width="100" height="60"></canvas></section>
       <div class="hud-toasts" data-k="toasts"></div>
       <section class="v10-panel hud-team"><span class="v10-title">Đội</span><div class="hud-cards" data-k="cards"></div></section>
       <section class="v10-panel hud-actions"><span class="v10-title" data-k="leader"></span>
-        <div class="hud-stances" data-k="stances"></div>
-        <div class="hud-slots" data-k="slots"></div>
+        <div class="hud-act">
+          <div class="hud-stances" data-k="stances"></div>
+          <div class="hud-slots" data-k="slots"></div>
+        </div>
         <div class="hud-detect"><span class="v10-sub">Phát hiện</span><span class="hud-detbar" data-k="detbar"></span><span data-k="detlabel"></span></div>
       </section>
       <section class="v10-panel hud-bag"><span class="v10-title">Ba lô</span>
         <div class="hud-tabs"><span class="v10-tab-active">Vật phẩm</span><span class="v10-tab-normal">Vũ khí</span><span class="v10-tab-normal">Chìa khóa</span></div>
-        <div class="hud-grid" data-k="bag"></div>
+        <div class="hud-bagbody"><div class="hud-grid" data-k="bag"></div><div class="hud-scroll"><i class="v10-scroll-track"></i><b class="v10-scroll-thumb"></b></div></div>
       </section>`;
     root.appendChild(this.el);
     this.mini = this.el.querySelector('.hud-mini')!;
@@ -120,10 +140,13 @@ export class Hud {
     }
   }
 
+  /** Thông báo một dòng: icon theo loại (nhiệm vụ: cuộn vàng, vật phẩm: hộp xanh, khác: dấu !) + LED. */
   notify(text: string, kind: 'info' | 'quest' | 'item' = 'info'): void {
     const el = document.createElement('div');
     el.className = `v10-panel hud-toast ${kind}`;
-    el.innerHTML = `<span class="v10-led-${kind === 'quest' ? 'warn' : kind === 'item' ? 'ok' : 'bad'}"></span> ${text}`;
+    const ico = kind === 'quest' ? 'v10-icon-quest' : kind === 'item' ? 'v10-icon-item' : 'v10-marker-x';
+    el.innerHTML = `<i class="${ico}"></i><span class="txt">${text}</span><b class="v10-led-${kind === 'quest' ? 'warn' : kind === 'item' ? 'ok' : 'bad'}"></b>`;
+    el.title = text;
     this.q('toasts').prepend(el);
     this.toasts.unshift({ el, t: 0 });
     while (this.toasts.length > 4) this.toasts.pop()!.el.remove();
@@ -140,6 +163,16 @@ export class Hud {
     }
   }
 
+  private iconEl(icon: HudIcon): HTMLElement | null {
+    if (!icon) return null;
+    if (typeof icon === 'string') {
+      const i = document.createElement('i');
+      i.className = icon;
+      return i;
+    }
+    return icon();
+  }
+
   update(s: HudState): void {
     this.set('level', s.levelName);
     this.set('objective', s.objective);
@@ -148,24 +181,34 @@ export class Hud {
     this.set('time', s.time);
     const L = s.members[s.leader];
     this.set('leader', `${L.name} · ${s.leader === 0 ? 'Trưởng nhóm' : 'Điều khiển'}`);
-    this.set('stances', STANCES.map(([k, label]) => `<div class="${k === s.stance ? 'v10-choice-sel' : 'v10-choice'}">${label}${k === s.stance && s.hidden ? ' · ẩn' : ''}</div>`).join(''));
-    const slots = [
-      { key: 'Space', label: `Ném đá ×${L.rocks}`, on: L.rocks > 0 },
-      { key: 'E', label: s.canTakedown ? 'Hạ gục' : s.nearPickup ? `Nhặt ${s.nearPickup}` : 'Nhặt / Hạ gục', on: s.canTakedown || !!s.nearPickup },
-      { key: 'Tab', label: s.executing ? 'Đang thực thi' : 'Kế hoạch', on: true },
-      { key: 'Shift', label: s.stance === 'chay' ? 'Thôi chạy' : 'Chạy', on: s.stance === 'chay' },
-      { key: 'C', label: 'Tư thế', on: true },
-    ];
-    this.set('slots', slots.map((sl) => `<div class="${sl.on ? 'v10-slot-sel' : 'v10-slot'} hud-slot"><span class="v10-keycap">${sl.key}</span><span class="lbl">${sl.label}</span></div>`).join(''));
+    this.set(
+      'stances',
+      STANCES.map(([k, label]) => `<div class="${k === s.stance ? 'v10-choice-sel' : 'v10-choice'}"><i class="v10-icon-${k}"></i><span>${label}${k === s.stance && s.hidden ? ' · ẩn' : ''}</span></div>`).join(''),
+    );
+    // ô hành động: dựng lại khi phím/nhãn/trạng thái đổi; icon canvas gắn sau vì innerHTML không mang canvas
+    const slotKey = s.slots.map((sl, i) => `${sl.key}|${sl.label}|${sl.on}|${typeof sl.icon === 'string' ? sl.icon : sl.icon ? `fn${i}` : ''}`).join('#');
+    if (this.cache.get('slotkey') !== slotKey || s.slots.some((sl, i) => sl.icon !== this.slotIcons[i])) {
+      this.cache.set('slotkey', slotKey);
+      this.slotIcons = s.slots.map((sl) => sl.icon);
+      const box = this.q('slots');
+      box.innerHTML = '';
+      for (const sl of s.slots) {
+        const d = document.createElement('div');
+        d.className = `hud-slot ${sl.on ? 'on' : ''}`;
+        d.innerHTML = `<div class="box ${sl.on ? 'v10-slot-sel' : 'v10-slot'}"><span class="ico"></span><span class="v10-keycap">${sl.key}</span></div><span class="lbl">${sl.label}</span>`;
+        const ic = this.iconEl(sl.icon);
+        if (ic) d.querySelector('.ico')!.appendChild(ic);
+        box.appendChild(d);
+      }
+    }
     const seg = s.detectLevel ? LEVEL_SEG[s.detectLevel] : 'off';
-    const n = Math.round(s.detect * 10);
-    this.set('detbar', `<i class="v10-seg-${seg === 'off' ? 'off' : seg}" style="width:calc(var(--px)*5*${n})"></i><i class="v10-seg-off" style="width:calc(var(--px)*5*${10 - n})"></i>`);
+    this.set('detbar', segs(seg, seg === 'off' ? 0 : s.detect));
     this.set('detlabel', s.detectLevel ? LEVEL_TEXT[s.detectLevel] : '');
-    // thẻ đội: dựng một lần (chân dung), sau đó chỉ đổi lớp và thanh
+    // thẻ đội: dựng một lần (chân dung), sau đó chỉ đổi lớp, thanh và icon tư thế
     const cards = this.q('cards');
     if (!this.teamBuilt) {
       cards.innerHTML = s.members
-        .map((m, i) => `<div class="hud-card" data-i="${i}"><div class="pf"></div><div class="info"><div class="nm"><b>${i + 1}</b> ${m.name}</div><div class="bar"><span>HP</span><i data-b="hp"></i></div><div class="bar"><span>SL</span><i data-b="sl"></i></div></div></div>`)
+        .map((m, i) => `<div class="hud-card" data-i="${i}"><b class="num">${i + 1}</b><div class="pf"></div><div class="info"><div class="nm">${m.name}</div><div class="bar"><span>HP</span><i data-b="hp"></i></div><div class="bar"><span>SL</span><i data-b="sl"></i></div></div><i class="st" data-b="st"></i></div>`)
         .join('');
       s.members.forEach((m, i) => {
         const pf = cards.querySelector<HTMLElement>(`[data-i="${i}"] .pf`)!;
@@ -181,22 +224,23 @@ export class Hud {
       const card = cards.querySelector<HTMLElement>(`[data-i="${i}"]`)!;
       const cls = i === s.leader ? 'hud-card v10-card-sel' : 'hud-card v10-card';
       if (card.className !== cls) card.className = cls;
-      const hp = Math.round(m.hp * 10);
-      const sl = Math.round(m.sl * 10);
-      const hpHtml = `<i class="v10-seg-bad" style="width:calc(var(--px)*5*${hp})"></i><i class="v10-seg-off" style="width:calc(var(--px)*5*${10 - hp})"></i>`;
-      const slHtml = `<i class="v10-seg-warn" style="width:calc(var(--px)*5*${sl})"></i><i class="v10-seg-off" style="width:calc(var(--px)*5*${10 - sl})"></i>`;
+      const hpHtml = segs('ok', m.hp);
+      const slHtml = segs('warn', m.sl);
       const hpEl = card.querySelector<HTMLElement>('[data-b="hp"]')!;
       const slEl = card.querySelector<HTMLElement>('[data-b="sl"]')!;
+      const stEl = card.querySelector<HTMLElement>('[data-b="st"]')!;
       if (hpEl.innerHTML !== hpHtml) hpEl.innerHTML = hpHtml;
       if (slEl.innerHTML !== slHtml) slEl.innerHTML = slHtml;
+      const stCls = `st v10-icon-${m.stance}`;
+      if (stEl.className !== stCls) stEl.className = stCls;
     });
-    // ba lô: 10 ô
+    // ba lô: 2 hàng × 6 ô + thanh cuộn
     const key = s.inventory.map((it) => `${it.id}:${it.count}`).join('|');
     if (this.cache.get('bagkey') !== key) {
       this.cache.set('bagkey', key);
       const bag = this.q('bag');
       bag.innerHTML = '';
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < BAG_SLOTS; i++) {
         const it = s.inventory[i];
         const d = document.createElement('div');
         d.className = `hud-bagslot ${it ? 'v10-slot-sel' : 'v10-slot'}`;

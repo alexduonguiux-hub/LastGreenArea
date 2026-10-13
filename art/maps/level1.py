@@ -66,14 +66,19 @@ def masks():
                 on = True  # sân trại
             dirt[y][x] = on and not water[y][x]
     rng = random.Random(5)
-    grass = [[False] * MW for _ in range(MH)]
-    for _ in range(26):
-        cx, cy, r = rng.uniform(0, MW), rng.uniform(0, MH), rng.uniform(1.5, 3.5)
+    # mảng cỏ tối (dưới tán rừng dày, khu 2 và rìa bản đồ) và mảng nắng (gần trại, ven suối)
+    dark = [[False] * MW for _ in range(MH)]
+    sun = [[False] * MW for _ in range(MH)]
+    for _ in range(40):
+        cx, cy, r = rng.uniform(0, MW), rng.uniform(0, MH), rng.uniform(2.5, 5.0)
+        dense = 18 <= cx <= 30 and 9 <= cy <= 24
+        if not dense and rng.random() < 0.5:
+            continue
         for y in range(MH):
             for x in range(MW):
                 if math.hypot(x - cx, (y - cy) * 1.2) < r and not water[y][x]:
-                    grass[y][x] = True
-    return water, dirt, grass
+                    dark[y][x] = True
+    return water, dirt, dark, sun  # sun: dự phòng, hiện không vẽ (khối 'sun' viền gắt trên nền cỏ)
 
 
 def draw_bridge(img: Image.Image):
@@ -101,12 +106,21 @@ def build(env: dict[str, Image.Image]):
     rng = random.Random(11)
     img = Image.new('RGBA', (W, H))
     full = [[True] * MW for _ in range(MH)]
-    lpc.autotile(img, full, 'forest', rng)
-    water, dirt, grass = masks()
-    lpc.autotile(img, grass, 'grass', rng)
+    lpc.autotile(img, full, 'grass', rng)
+    water, dirt, dark, sun = masks()
+    lpc.autotile(img, dark, 'forest', rng)
     lpc.autotile(img, dirt, 'dirt', rng)
-    lpc.autotile(img, water, 'water', rng)
+    # nước: lớp riêng 3 khung (ô lõi cuộn dọc = sóng trôi), khung 0 cũng in vào nền
+    water_frames = []
+    for k in range(3):
+        wl = Image.new('RGBA', (W, H))
+        # ô lõi có vệt sóng (hàng 5 của khối), cuộn dọc 11 px mỗi khung → sóng trôi xuôi dòng
+        lpc.autotile(wl, water, 'water', random.Random(1), interior=lambda x, y, k=k: lpc.roll_v(lpc.tile('water', (x + y) % 3, 5), k * 11))
+        water_frames.append(wl)
+    img.alpha_composite(water_frames[0])
     bridge = draw_bridge(img)
+    for wl in water_frames:
+        draw_bridge(wl)  # lớp nước nằm trên nền nên phải mang cả cầu
 
     def blocked_tile(x, y, pad=1):
         tx, ty = int(x // TS), int(y // TS)
@@ -142,10 +156,11 @@ def build(env: dict[str, Image.Image]):
             continue
         if any(math.hypot(x - kx, y - ky) < 120 for kx, ky in keep):
             continue
-        mind = 46 if dense else 72
+        mind = 58 if dense else 84
         if any(math.hypot(x - px, (y - py) * 1.4) < mind for px, py in placed):
             continue
-        kind = rng.choice(['conifer-0', 'conifer-1', 'conifer-2', 'conifer-3', 'conifer-4']) if rng.random() < 0.75 else rng.choice(['conifer-small-0', 'conifer-small-1'])
+        # hai cỡ cây: thông (rừng dày nhiều thông hơn) và tán tròn như moodboard
+        kind = rng.choice(['conifer-0', 'conifer-1', 'conifer-2']) if rng.random() < (0.5 if dense else 0.35) else rng.choice(['tree-0', 'tree-1', 'tree-2', 'tree-3'])
         im = env[kind]
         if covers_path(x, y, min(im.width, 56), im.height * 0.8):
             continue
@@ -154,7 +169,7 @@ def build(env: dict[str, Image.Image]):
     # bụi: nơi nấp, ưu tiên ven đường khu 2 và hai đầu cầu
     bushes = 0
     tries = 0
-    while tries < 20000 and bushes < 60:
+    while tries < 20000 and bushes < 40:
         tries += 1
         x, y = rng.uniform(10, W - 10), rng.uniform(10, H - 10)
         if blocked_tile(x, y, 0):
@@ -172,6 +187,20 @@ def build(env: dict[str, Image.Image]):
     # bụi nấp cố định cho bài học: trước đầu cầu tây và cạnh đường rừng
     for (x, y) in ((bridge[0] - 70, bridge[3] + 40), (bridge[0] - 150, bridge[1] - 30), (760, 470), (690, 560), (bridge[2] + 60, bridge[3] + 50)):
         objects.append((y, 'env/bush-1', int(x), int(y)))
+    # đá và gỗ đổ: vật cản nhỏ rải trong rừng và ven đường, không đè đường/nước
+    rocks = 0
+    tries = 0
+    while tries < 20000 and rocks < 9:
+        tries += 1
+        x, y = rng.uniform(20, W - 20), rng.uniform(20, H - 20)
+        if blocked_tile(x, y, 0) or any(math.hypot(x - kx, y - ky) < 100 for kx, ky in keep):
+            continue
+        if any(math.hypot(x - px, (y - py) * 1.4) < 40 for px, py in placed):
+            continue
+        kind = 'log-fallen' if rocks % 4 == 3 else rng.choice(['rock-0', 'rock-1', 'rock-2'])
+        placed.append((x, y))
+        rocks += 1
+        objects.append((y, f'env/{kind}', int(x), int(y)))
     # trại: lều, củi, gốc cây làm ghế
     cx, cy = camp_px
     objects.append((cy - 46, 'env/tent', int(cx - 70), int(cy - 46)))
@@ -202,8 +231,10 @@ def build(env: dict[str, Image.Image]):
     for (_, oid, x, y) in objects:
         im = env[oid.split('/', 1)[1]]
         w, h = im.size
-        if oid.startswith('env/conifer'):
+        if oid.startswith('env/conifer') or oid.startswith('env/tree-'):
             fill(x - 9, y - 10, x + 8, y - 1, '#')           # gốc cây chặn + chắn tầm nhìn
+        elif oid.startswith('env/rock') or oid == 'env/log-fallen':
+            fill(x - w / 2 + 3, y - h * 0.45, x + w / 2 - 4, y - 1, '#')
         elif oid.startswith('env/bush'):
             fill(x - w / 2 + 2, y - h + 6, x + w / 2 - 3, y - 1, 'o')
         else:
@@ -217,7 +248,90 @@ def build(env: dict[str, Image.Image]):
         if 0 < cx_ < GW - 1:
             grid[0][cx_] = '.'
 
+    # ---- trang trí nướng vào nền: hoa ven đường, nấm trong rừng, sậy/súng ven suối, cỏ cao (ô 'o' núp được) ----
+    decor = lpc.ground_decor()
+
+    def near_water(tx, ty):
+        return any(0 <= tx + dx < MW and 0 <= ty + dy < MH and water[ty + dy][tx + dx] for dx in (-1, 0, 1) for dy in (-1, 0, 1))
+
+    def paste(name, x, y):
+        im = decor[name]
+        img.alpha_composite(im, (int(x - im.width / 2), int(y - im.height)))
+
+    # cỏ cao: mảng 64×64 đặt có chủ ý ở lối tiếp cận cầu (lấp khoảng trống giữa các bụi) và ven lối ra, cộng ngẫu nhiên trong rừng
+    patches = [(760, 528), (826, 508), (700, 468), (1200, 420), (1262, 318), (1392, 262), (1462, 206), (1120, 540)]
+    tries = 0
+    while tries < 4000 and len(patches) < 12:
+        tries += 1
+        x, y = rng.uniform(40, W - 40), rng.uniform(40, H - 40)
+        tx, ty = int(x // TS), int(y // TS)
+        if water[ty][tx] or dirt[ty][tx] or any(math.hypot(x - kx, y - ky) < 110 for kx, ky in keep):
+            continue
+        if any(math.hypot(x - px, y - py) < 120 for px, py in patches):
+            continue
+        patches.append((int(x), int(y)))
+    # mỗi mảng = nhiều cụm cỏ rải trong hình elip (mép tự nhiên, không cắt vuông); ô lưới trong lõi elip thành 'o'
+    for (x, y) in patches:
+        rx, ry = 36, 24
+        clumps = []
+        for _ in range(60):
+            if len(clumps) >= 16:
+                break
+            u, v = rng.uniform(-1, 1), rng.uniform(-1, 1)
+            if u * u + v * v > 1:
+                continue
+            cx_, cy_ = x + u * rx, y + v * ry
+            tx, ty = int(cx_ // TS), int(cy_ // TS)
+            if not (0 <= tx < MW and 0 <= ty < MH) or water[ty][tx] or dirt[ty][tx]:
+                continue
+            clumps.append((cx_, cy_ + 14))
+        for (cx_, cy_) in sorted(clumps, key=lambda c: c[1]):
+            paste('reeds', cx_, cy_)
+        for gy in range(int((y - ry) // CELL), int((y + ry) // CELL) + 1):
+            for gx in range(int((x - rx) // CELL), int((x + rx) // CELL) + 1):
+                px_, py_ = gx * CELL + 8, gy * CELL + 8
+                if ((px_ - x) / (rx - 4)) ** 2 + ((py_ - y) / (ry - 4)) ** 2 <= 1 and not dirt[py_ // TS][px_ // TS]:
+                    fill(px_, py_, px_, py_, 'o')
+    # hoa ven đường mòn, nấm trong rừng dày, sậy và súng ven suối
+    for _ in range(24):
+        x, y = rng.uniform(10, W - 10), rng.uniform(10, H - 10)
+        if blocked_tile(x, y, 0) or not blocked_tile(x, y, 1):
+            continue
+        paste(f'flower-{rng.randrange(3)}', x, y)
+    for _ in range(6):
+        x, y = rng.uniform(580, 960), rng.uniform(300, 760)
+        if blocked_tile(x, y, 0):
+            continue
+        paste('mush-1', x, y)
+    for _ in range(220):
+        x, y = rng.uniform(10, W - 10), rng.uniform(10, H - 10)
+        tx, ty = int(x // TS), int(y // TS)
+        if water[ty][tx] or dirt[ty][tx] or not near_water(tx, ty):
+            continue
+        paste(rng.choice(['reeds', 'reeds', 'cattail']), x, y)
+    # súng: in vào cả 3 khung nước, chỉ khi cả bốn góc lá nằm trong nước (không cắt bờ), tránh gầm cầu
+    lily = decor['lily']
+    for _ in range(300):
+        x, y = rng.uniform(10, W - 10), rng.uniform(10, H - 10)
+        if abs(y - BRIDGE_TY * TS) < 70:
+            continue
+        corners = [(x - lily.width / 2, y - lily.height), (x + lily.width / 2, y - lily.height), (x - lily.width / 2, y), (x + lily.width / 2, y)]
+        if not all(0 <= cx_ < W and 0 <= cy_ < H and water[int(cy_ // TS)][int(cx_ // TS)] for cx_, cy_ in corners):
+            continue
+        for wl in water_frames:
+            wl.alpha_composite(lily, (int(x - lily.width / 2), int(y - lily.height)))
+
     ground = rays(grade(img))
+    # hộp nước (ô) → dải khung ngang; nền in lại khung 0 đã grade (không vệt nắng dither trên mặt nước)
+    wx = [x for y in range(MH) for x in range(MW) if water[y][x]]
+    wy = [y for y in range(MH) for x in range(MW) if water[y][x]]
+    wbox = (min(wx) * TS, min(wy) * TS, (max(wx) + 1) * TS, (max(wy) + 1) * TS)
+    frames = [grade(wl.crop(wbox)) for wl in water_frames]
+    fw, fh = frames[0].size
+    water_strip = Image.new('RGBA', (fw * len(frames), fh))
+    for k, fr in enumerate(frames):
+        water_strip.paste(fr, (k * fw, 0))
+    ground.alpha_composite(frames[0], (wbox[0], wbox[1]))
     mask = Image.new('RGBA', (GW, GH))
     COL = {'.': (0, 0, 0, 0), '#': (240, 70, 80, 255), 'o': (80, 220, 120, 255), '~': (62, 150, 255, 255), '=': (240, 200, 60, 255)}
     mp = mask.load()
@@ -232,6 +346,7 @@ def build(env: dict[str, Image.Image]):
         'size': [W, H],
         'cell': CELL,
         'ground': 'assets/maps/level1_ground.png',
+        'water': {'image': 'assets/maps/level1_water.png', 'x': wbox[0], 'y': wbox[1], 'w': fw, 'h': fh, 'frames': len(frames), 'fps': 3},
         'grid': [''.join(r) for r in grid],
         'objects': [{'id': oid, 'x': x, 'y': y} for (_, oid, x, y) in objects],
         'spawn': {'duong': [int(cx - 20), int(cy + 56)], 'hung': [int(cx + 28), int(cy + 66)], 'ny': [int(cx - 56), int(cy + 70)], 'son': [int(cx + 60), int(cy + 48)]},
@@ -294,4 +409,4 @@ def build(env: dict[str, Image.Image]):
             {'item': 'da-nem', 'x': bridge[0] - 200, 'y': bridge_mid_y + 60},
         ],
     }
-    return ground, mask, level
+    return ground, mask, level, water_strip

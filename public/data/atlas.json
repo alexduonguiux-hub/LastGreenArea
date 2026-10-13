@@ -52103,7 +52103,7 @@
      "filename": "env/conifer-0",
      "frame": {
       "x": 0,
-      "y": 1728,
+      "y": 1472,
       "w": 82,
       "h": 189
      },
@@ -52125,7 +52125,7 @@
      },
      "cell": [
       0,
-      108,
+      92,
       6,
       12
      ],
@@ -52136,7 +52136,7 @@
      "filename": "env/conifer-1",
      "frame": {
       "x": 96,
-      "y": 1728,
+      "y": 1472,
       "w": 74,
       "h": 158
      },
@@ -52158,7 +52158,7 @@
      },
      "cell": [
       6,
-      108,
+      92,
       5,
       10
      ],
@@ -52169,40 +52169,7 @@
      "filename": "env/conifer-2",
      "frame": {
       "x": 176,
-      "y": 1728,
-      "w": 127,
-      "h": 215
-     },
-     "rotated": false,
-     "trimmed": false,
-     "spriteSourceSize": {
-      "x": 0,
-      "y": 0,
-      "w": 127,
-      "h": 215
-     },
-     "sourceSize": {
-      "w": 127,
-      "h": 215
-     },
-     "anchor": {
-      "x": 0.49606,
-      "y": 0.97209
-     },
-     "cell": [
-      11,
-      108,
-      8,
-      14
-     ],
-     "zone": "env",
-     "group": "env"
-    },
-    {
-     "filename": "env/conifer-3",
-     "frame": {
-      "x": 304,
-      "y": 1728,
+      "y": 1472,
       "w": 74,
       "h": 154
      },
@@ -52223,8 +52190,8 @@
       "y": 0.96104
      },
      "cell": [
-      19,
-      108,
+      11,
+      92,
       5,
       10
      ],
@@ -52232,100 +52199,133 @@
      "group": "env"
     },
     {
-     "filename": "env/conifer-4",
+     "filename": "env/tree-0",
      "frame": {
-      "x": 384,
-      "y": 1728,
-      "w": 64,
-      "h": 216
+      "x": 256,
+      "y": 1472,
+      "w": 94,
+      "h": 119
      },
      "rotated": false,
      "trimmed": false,
      "spriteSourceSize": {
       "x": 0,
       "y": 0,
-      "w": 64,
-      "h": 216
+      "w": 94,
+      "h": 119
      },
      "sourceSize": {
-      "w": 64,
-      "h": 216
+      "w": 94,
+      "h": 119
      },
      "anchor": {
       "x": 0.5,
-      "y": 0.97222
+      "y": 0.96639
      },
      "cell": [
-      24,
-      108,
-      4,
-      14
+      16,
+      92,
+      6,
+      8
      ],
      "zone": "env",
      "group": "env"
     },
     {
-     "filename": "env/conifer-small-0",
+     "filename": "env/tree-1",
      "frame": {
-      "x": 448,
-      "y": 1728,
-      "w": 56,
-      "h": 78
+      "x": 352,
+      "y": 1472,
+      "w": 94,
+      "h": 117
      },
      "rotated": false,
      "trimmed": false,
      "spriteSourceSize": {
       "x": 0,
       "y": 0,
-      "w": 56,
-      "h": 78
+      "w": 94,
+      "h": 117
      },
      "sourceSize": {
-      "w": 56,
-      "h": 78
+      "w": 94,
+      "h": 117
      },
      "anchor": {
       "x": 0.5,
-      "y": 0.92308
+      "y": 0.96581
+     },
+     "cell": [
+      22,
+      92,
+      6,
+      8
+     ],
+     "zone": "env",
+     "group": "env"
+    },
+    {
+     "filename": "env/tree-2",
+     "frame": {
+      "x": 448,
+      "y": 1472,
+      "w": 94,
+      "h": 117
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 94,
+      "h": 117
+     },
+     "sourceSize": {
+      "w": 94,
+      "h": 117
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.96581
      },
      "cell": [
       28,
-      108,
-      4,
-      5
+      92,
+      6,
+      8
      ],
      "zone": "env",
      "group": "env"
     },
     {
-     "filename": "env/conifer-small-1",
+     "filename": "env/tree-3",
      "frame": {
-      "x": 512,
-      "y": 1728,
-      "w": 38,
-      "h": 80
+      "x": 544,
+      "y": 1472,
+      "w": 94,
+      "h": 119
      },
      "rotated": false,
      "trimmed": false,
      "spriteSourceSize": {
       "x": 0,
       "y": 0,
-      "w": 38,
-      "h": 80
+      "w": 94,
+      "h": 119
      },
      "sourceSize": {
-      "w": 38,
-      "h": 80
+      "w": 94,
+      "h": 119
      },
      "anchor": {
       "x": 0.5,
-      "y": 0.925
+      "y": 0.96639
      },
      "cell": [
-      32,
-      108,
-      3,
-      5
+      34,
+      92,
+      6,
+      8
      ],
      "zone": "env",
      "group": "env"
@@ -52333,8 +52333,8 @@
     {
      "filename": "env/bush-0",
      "frame": {
-      "x": 560,
-      "y": 1728,
+      "x": 640,
+      "y": 1472,
       "w": 64,
       "h": 52
      },
@@ -52355,8 +52355,8 @@
       "y": 0.96154
      },
      "cell": [
-      35,
-      108,
+      40,
+      92,
       4,
       4
      ],
@@ -52366,8 +52366,8 @@
     {
      "filename": "env/bush-1",
      "frame": {
-      "x": 624,
-      "y": 1728,
+      "x": 704,
+      "y": 1472,
       "w": 64,
       "h": 52
      },
@@ -52388,8 +52388,8 @@
       "y": 0.96154
      },
      "cell": [
-      39,
-      108,
+      44,
+      92,
       4,
       4
      ],
@@ -52399,8 +52399,8 @@
     {
      "filename": "env/bush-2",
      "frame": {
-      "x": 688,
-      "y": 1728,
+      "x": 768,
+      "y": 1472,
       "w": 64,
       "h": 44
      },
@@ -52421,8 +52421,8 @@
       "y": 0.95455
      },
      "cell": [
-      43,
-      108,
+      48,
+      92,
       4,
       3
      ],
@@ -52432,8 +52432,8 @@
     {
      "filename": "env/bush-3",
      "frame": {
-      "x": 752,
-      "y": 1728,
+      "x": 832,
+      "y": 1472,
       "w": 64,
       "h": 44
      },
@@ -52454,8 +52454,8 @@
       "y": 0.95455
      },
      "cell": [
-      47,
-      108,
+      52,
+      92,
       4,
       3
      ],
@@ -52463,10 +52463,142 @@
      "group": "env"
     },
     {
+     "filename": "env/rock-0",
+     "frame": {
+      "x": 896,
+      "y": 1472,
+      "w": 24,
+      "h": 59
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 24,
+      "h": 59
+     },
+     "sourceSize": {
+      "w": 24,
+      "h": 59
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9661
+     },
+     "cell": [
+      56,
+      92,
+      2,
+      4
+     ],
+     "zone": "env",
+     "group": "env"
+    },
+    {
+     "filename": "env/rock-1",
+     "frame": {
+      "x": 928,
+      "y": 1472,
+      "w": 32,
+      "h": 32
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 32,
+      "h": 32
+     },
+     "sourceSize": {
+      "w": 32,
+      "h": 32
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      58,
+      92,
+      2,
+      2
+     ],
+     "zone": "env",
+     "group": "env"
+    },
+    {
+     "filename": "env/rock-2",
+     "frame": {
+      "x": 960,
+      "y": 1472,
+      "w": 32,
+      "h": 32
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 32,
+      "h": 32
+     },
+     "sourceSize": {
+      "w": 32,
+      "h": 32
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      60,
+      92,
+      2,
+      2
+     ],
+     "zone": "env",
+     "group": "env"
+    },
+    {
+     "filename": "env/log-fallen",
+     "frame": {
+      "x": 992,
+      "y": 1472,
+      "w": 103,
+      "h": 77
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 103,
+      "h": 77
+     },
+     "sourceSize": {
+      "w": 103,
+      "h": 77
+     },
+     "anchor": {
+      "x": 0.49515,
+      "y": 0.97403
+     },
+     "cell": [
+      62,
+      92,
+      7,
+      5
+     ],
+     "zone": "env",
+     "group": "env"
+    },
+    {
      "filename": "env/tent",
      "frame": {
-      "x": 816,
-      "y": 1728,
+      "x": 1104,
+      "y": 1472,
       "w": 124,
       "h": 150
      },
@@ -52487,8 +52619,8 @@
       "y": 0.98667
      },
      "cell": [
-      51,
-      108,
+      69,
+      92,
       8,
       10
      ],
@@ -52498,8 +52630,8 @@
     {
      "filename": "env/logs",
      "frame": {
-      "x": 944,
-      "y": 1728,
+      "x": 1232,
+      "y": 1472,
       "w": 30,
       "h": 32
      },
@@ -52520,8 +52652,8 @@
       "y": 0.9375
      },
      "cell": [
-      59,
-      108,
+      77,
+      92,
       2,
       2
      ],
@@ -52531,8 +52663,8 @@
     {
      "filename": "env/stump",
      "frame": {
-      "x": 976,
-      "y": 1728,
+      "x": 1264,
+      "y": 1472,
       "w": 64,
       "h": 60
      },
@@ -52553,8 +52685,8 @@
       "y": 0.96667
      },
      "cell": [
-      61,
-      108,
+      79,
+      92,
       4,
       4
      ],
@@ -53019,9 +53151,273 @@
      "group": "ui"
     },
     {
-     "filename": "ui/button-normal",
+     "filename": "ui/icon-dung",
      "frame": {
       "x": 320,
+      "y": 1344,
+      "w": 7,
+      "h": 11
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 7,
+      "h": 11
+     },
+     "sourceSize": {
+      "w": 7,
+      "h": 11
+     },
+     "anchor": {
+      "x": 0.0,
+      "y": 0.0
+     },
+     "cell": [
+      20,
+      84,
+      1,
+      1
+     ],
+     "zone": "ui",
+     "group": "ui"
+    },
+    {
+     "filename": "ui/icon-chay",
+     "frame": {
+      "x": 336,
+      "y": 1344,
+      "w": 9,
+      "h": 10
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 9,
+      "h": 10
+     },
+     "sourceSize": {
+      "w": 9,
+      "h": 10
+     },
+     "anchor": {
+      "x": 0.0,
+      "y": 0.0
+     },
+     "cell": [
+      21,
+      84,
+      1,
+      1
+     ],
+     "zone": "ui",
+     "group": "ui"
+    },
+    {
+     "filename": "ui/icon-khom",
+     "frame": {
+      "x": 352,
+      "y": 1344,
+      "w": 9,
+      "h": 9
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 9,
+      "h": 9
+     },
+     "sourceSize": {
+      "w": 9,
+      "h": 9
+     },
+     "anchor": {
+      "x": 0.0,
+      "y": 0.0
+     },
+     "cell": [
+      22,
+      84,
+      1,
+      1
+     ],
+     "zone": "ui",
+     "group": "ui"
+    },
+    {
+     "filename": "ui/icon-bo",
+     "frame": {
+      "x": 368,
+      "y": 1344,
+      "w": 12,
+      "h": 4
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 12,
+      "h": 4
+     },
+     "sourceSize": {
+      "w": 12,
+      "h": 4
+     },
+     "anchor": {
+      "x": 0.0,
+      "y": 0.0
+     },
+     "cell": [
+      23,
+      84,
+      1,
+      1
+     ],
+     "zone": "ui",
+     "group": "ui"
+    },
+    {
+     "filename": "ui/icon-rock",
+     "frame": {
+      "x": 384,
+      "y": 1344,
+      "w": 9,
+      "h": 7
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 9,
+      "h": 7
+     },
+     "sourceSize": {
+      "w": 9,
+      "h": 7
+     },
+     "anchor": {
+      "x": 0.0,
+      "y": 0.0
+     },
+     "cell": [
+      24,
+      84,
+      1,
+      1
+     ],
+     "zone": "ui",
+     "group": "ui"
+    },
+    {
+     "filename": "ui/icon-quest",
+     "frame": {
+      "x": 400,
+      "y": 1344,
+      "w": 7,
+      "h": 7
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 7,
+      "h": 7
+     },
+     "sourceSize": {
+      "w": 7,
+      "h": 7
+     },
+     "anchor": {
+      "x": 0.0,
+      "y": 0.0
+     },
+     "cell": [
+      25,
+      84,
+      1,
+      1
+     ],
+     "zone": "ui",
+     "group": "ui"
+    },
+    {
+     "filename": "ui/icon-item",
+     "frame": {
+      "x": 416,
+      "y": 1344,
+      "w": 7,
+      "h": 7
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 7,
+      "h": 7
+     },
+     "sourceSize": {
+      "w": 7,
+      "h": 7
+     },
+     "anchor": {
+      "x": 0.0,
+      "y": 0.0
+     },
+     "cell": [
+      26,
+      84,
+      1,
+      1
+     ],
+     "zone": "ui",
+     "group": "ui"
+    },
+    {
+     "filename": "ui/icon-clock",
+     "frame": {
+      "x": 432,
+      "y": 1344,
+      "w": 7,
+      "h": 7
+     },
+     "rotated": false,
+     "trimmed": false,
+     "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 7,
+      "h": 7
+     },
+     "sourceSize": {
+      "w": 7,
+      "h": 7
+     },
+     "anchor": {
+      "x": 0.0,
+      "y": 0.0
+     },
+     "cell": [
+      27,
+      84,
+      1,
+      1
+     ],
+     "zone": "ui",
+     "group": "ui"
+    },
+    {
+     "filename": "ui/button-normal",
+     "frame": {
+      "x": 448,
       "y": 1344,
       "w": 24,
       "h": 16
@@ -53043,7 +53439,7 @@
       "y": 0.0
      },
      "cell": [
-      20,
+      28,
       84,
       2,
       1
@@ -53061,7 +53457,7 @@
     {
      "filename": "ui/button-hover",
      "frame": {
-      "x": 352,
+      "x": 480,
       "y": 1344,
       "w": 24,
       "h": 16
@@ -53083,7 +53479,7 @@
       "y": 0.0
      },
      "cell": [
-      22,
+      30,
       84,
       2,
       1
@@ -53101,7 +53497,7 @@
     {
      "filename": "ui/button-pressed",
      "frame": {
-      "x": 384,
+      "x": 512,
       "y": 1344,
       "w": 24,
       "h": 16
@@ -53123,7 +53519,7 @@
       "y": 0.0
      },
      "cell": [
-      24,
+      32,
       84,
       2,
       1
@@ -53141,7 +53537,7 @@
     {
      "filename": "ui/button-disabled",
      "frame": {
-      "x": 416,
+      "x": 544,
       "y": 1344,
       "w": 24,
       "h": 16
@@ -53163,7 +53559,7 @@
       "y": 0.0
      },
      "cell": [
-      26,
+      34,
       84,
       2,
       1
@@ -53181,7 +53577,7 @@
     {
      "filename": "ui/tab-normal",
      "frame": {
-      "x": 448,
+      "x": 576,
       "y": 1344,
       "w": 28,
       "h": 16
@@ -53203,7 +53599,7 @@
       "y": 0.0
      },
      "cell": [
-      28,
+      36,
       84,
       2,
       1
@@ -53221,7 +53617,7 @@
     {
      "filename": "ui/tab-active",
      "frame": {
-      "x": 480,
+      "x": 608,
       "y": 1344,
       "w": 28,
       "h": 16
@@ -53243,7 +53639,7 @@
       "y": 0.0
      },
      "cell": [
-      30,
+      38,
       84,
       2,
       1
@@ -53261,7 +53657,7 @@
     {
      "filename": "ui/slot",
      "frame": {
-      "x": 512,
+      "x": 640,
       "y": 1344,
       "w": 28,
       "h": 28
@@ -53283,7 +53679,7 @@
       "y": 0.0
      },
      "cell": [
-      32,
+      40,
       84,
       2,
       2
@@ -53301,7 +53697,7 @@
     {
      "filename": "ui/slot-sel",
      "frame": {
-      "x": 544,
+      "x": 672,
       "y": 1344,
       "w": 28,
       "h": 28
@@ -53323,7 +53719,7 @@
       "y": 0.0
      },
      "cell": [
-      34,
+      42,
       84,
       2,
       2
@@ -53341,7 +53737,7 @@
     {
      "filename": "ui/card",
      "frame": {
-      "x": 576,
+      "x": 704,
       "y": 1344,
       "w": 32,
       "h": 24
@@ -53363,7 +53759,7 @@
       "y": 0.0
      },
      "cell": [
-      36,
+      44,
       84,
       2,
       2
@@ -53381,7 +53777,7 @@
     {
      "filename": "ui/card-sel",
      "frame": {
-      "x": 608,
+      "x": 736,
       "y": 1344,
       "w": 32,
       "h": 24
@@ -53403,7 +53799,7 @@
       "y": 0.0
      },
      "cell": [
-      38,
+      46,
       84,
       2,
       2
@@ -53421,7 +53817,7 @@
     {
      "filename": "ui/choice",
      "frame": {
-      "x": 640,
+      "x": 768,
       "y": 1344,
       "w": 28,
       "h": 16
@@ -53443,7 +53839,7 @@
       "y": 0.0
      },
      "cell": [
-      40,
+      48,
       84,
       2,
       1
@@ -53461,7 +53857,7 @@
     {
      "filename": "ui/choice-sel",
      "frame": {
-      "x": 672,
+      "x": 800,
       "y": 1344,
       "w": 28,
       "h": 16
@@ -53483,7 +53879,7 @@
       "y": 0.0
      },
      "cell": [
-      42,
+      50,
       84,
       2,
       1
@@ -53501,7 +53897,7 @@
     {
      "filename": "ui/seg-bad",
      "frame": {
-      "x": 704,
+      "x": 832,
       "y": 1344,
       "w": 5,
       "h": 5
@@ -53523,7 +53919,7 @@
       "y": 0.0
      },
      "cell": [
-      44,
+      52,
       84,
       1,
       1
@@ -53534,7 +53930,7 @@
     {
      "filename": "ui/seg-warn",
      "frame": {
-      "x": 720,
+      "x": 848,
       "y": 1344,
       "w": 5,
       "h": 5
@@ -53556,7 +53952,7 @@
       "y": 0.0
      },
      "cell": [
-      45,
+      53,
       84,
       1,
       1
@@ -53567,7 +53963,7 @@
     {
      "filename": "ui/seg-ok",
      "frame": {
-      "x": 736,
+      "x": 864,
       "y": 1344,
       "w": 5,
       "h": 5
@@ -53589,7 +53985,7 @@
       "y": 0.0
      },
      "cell": [
-      46,
+      54,
       84,
       1,
       1
@@ -53600,7 +53996,7 @@
     {
      "filename": "ui/seg-tick",
      "frame": {
-      "x": 752,
+      "x": 880,
       "y": 1344,
       "w": 5,
       "h": 5
@@ -53622,7 +54018,7 @@
       "y": 0.0
      },
      "cell": [
-      47,
+      55,
       84,
       1,
       1
@@ -53633,7 +54029,7 @@
     {
      "filename": "ui/seg-speed",
      "frame": {
-      "x": 768,
+      "x": 896,
       "y": 1344,
       "w": 5,
       "h": 5
@@ -53655,7 +54051,7 @@
       "y": 0.0
      },
      "cell": [
-      48,
+      56,
       84,
       1,
       1
@@ -53666,7 +54062,7 @@
     {
      "filename": "ui/seg-off",
      "frame": {
-      "x": 784,
+      "x": 912,
       "y": 1344,
       "w": 5,
       "h": 5
@@ -53688,7 +54084,7 @@
       "y": 0.0
      },
      "cell": [
-      49,
+      57,
       84,
       1,
       1
@@ -53699,7 +54095,7 @@
     {
      "filename": "ui/led-bad",
      "frame": {
-      "x": 800,
+      "x": 928,
       "y": 1344,
       "w": 4,
       "h": 3
@@ -53721,7 +54117,7 @@
       "y": 0.0
      },
      "cell": [
-      50,
+      58,
       84,
       1,
       1
@@ -53732,7 +54128,7 @@
     {
      "filename": "ui/led-warn",
      "frame": {
-      "x": 816,
+      "x": 944,
       "y": 1344,
       "w": 4,
       "h": 3
@@ -53754,7 +54150,7 @@
       "y": 0.0
      },
      "cell": [
-      51,
+      59,
       84,
       1,
       1
@@ -53765,7 +54161,7 @@
     {
      "filename": "ui/led-ok",
      "frame": {
-      "x": 832,
+      "x": 960,
       "y": 1344,
       "w": 4,
       "h": 3
@@ -53787,7 +54183,7 @@
       "y": 0.0
      },
      "cell": [
-      52,
+      60,
       84,
       1,
       1
@@ -53881,20 +54277,20 @@
     "name": "ui",
     "page": 1,
     "row0": 84,
-    "row1": 107,
-    "used": 74,
-    "capacity": 3072
+    "row1": 91,
+    "used": 82,
+    "capacity": 1024
    },
    {
     "name": "env",
     "page": 1,
-    "row0": 108,
+    "row0": 92,
     "row1": 127,
-    "used": 531,
-    "capacity": 2560
+    "used": 571,
+    "capacity": 4608
    }
   ],
-  "frames": 1626,
+  "frames": 1638,
   "anims": 206
  }
 }

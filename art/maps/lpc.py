@@ -24,7 +24,7 @@ def block(c, r):
 
 
 # Khối địa hình trong terrain-v7.png: mỗi khối 3×7 tile (lõi + viền chuyển tiếp)
-BLK = {'forest': block(2, 1), 'grass': block(0, 1), 'dirt': block(1, 0), 'water': block(1, 2)}
+BLK = {'forest': block(2, 1), 'grass': block(0, 1), 'sun': block(1, 1), 'dirt': block(1, 0), 'water': block(1, 2)}
 
 
 def tile(b, tx, ty):
@@ -39,8 +39,20 @@ def quad(b, tx, ty, qx, qy):
     return sheet('terrain-v7.png').crop((x, y, x + Q, y + Q))
 
 
-def autotile(img: Image.Image, mask, b: str, rng: random.Random):
-    """Vẽ địa hình b lên img tại mọi ô mask=True, viền chuyển tiếp theo 8 ô lân cận (quarter-tile)."""
+def roll_v(im: Image.Image, dy: int) -> Image.Image:
+    """Cuộn ảnh theo chiều dọc (ô lõi liền mạch nên cuộn vẫn khớp mép): dùng làm khung sóng nước."""
+    dy %= im.height
+    if not dy:
+        return im
+    out = Image.new('RGBA', im.size)
+    out.paste(im.crop((0, 0, im.width, im.height - dy)), (0, dy))
+    out.paste(im.crop((0, im.height - dy, im.width, im.height)), (0, 0))
+    return out
+
+
+def autotile(img: Image.Image, mask, b: str, rng: random.Random, interior=None):
+    """Vẽ địa hình b lên img tại mọi ô mask=True, viền chuyển tiếp theo 8 ô lân cận (quarter-tile).
+    interior(x, y) -> ảnh ô lõi (mặc định: trộn ngẫu nhiên các ô lõi của khối)."""
     H = len(mask)
     W = len(mask[0])
 
@@ -53,7 +65,7 @@ def autotile(img: Image.Image, mask, b: str, rng: random.Random):
                 continue
             allin = all(m(x + dx, y + dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1))
             if allin:
-                t = tile(b, rng.choice((0, 1, 2)), 5) if rng.random() < 0.5 else tile(b, 1, 3)
+                t = interior(x, y) if interior else (tile(b, rng.choice((0, 1, 2)), 5) if rng.random() < 0.5 else tile(b, 1, 3))
                 img.alpha_composite(t, (x * TS, y * TS))
                 continue
             for qy in (0, 1):
@@ -109,18 +121,68 @@ def comp_at(im: Image.Image, px, py, pad=0):
 
 
 # ---- sprite môi trường (id trong atlas: env/<tên>) ---------------------------------
+def _split_v(im: Image.Image):
+    """Tách một thành phần gồm hai vật xếp dọc (hàng alpha trống ở giữa) thành (trên, dưới)."""
+    a = im.split()[3]
+    rows = [any(a.getpixel((x, y)) > 8 for x in range(im.width)) for y in range(im.height)]
+    gaps = [y for y in range(1, im.height) if rows[y - 1] and not rows[y]]
+    cut = gaps[0] if gaps else im.height // 2
+    top = im.crop((0, 0, im.width, cut))
+    bot = im.crop((0, cut, im.width, im.height))
+    return top.crop(top.getbbox()), bot.crop(bot.getbbox())
+
+
+def _tree(canopy: Image.Image, trunk: Image.Image, overlap=34) -> Image.Image:
+    """Cây tán tròn LPC: tán đặt chồng lên thân (Outside Objects tách tán và thân riêng)."""
+    w = max(canopy.width, trunk.width)
+    h = canopy.height + trunk.height - overlap
+    im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
+    im.alpha_composite(trunk, ((w - trunk.width) // 2, canopy.height - overlap))
+    im.alpha_composite(canopy, ((w - canopy.width) // 2, 0))
+    return im
+
+
 def env_sprites() -> dict[str, Image.Image]:
+    """Vật thể có xếp lớp theo y trong game (cây, bụi, đá, gỗ, lều, củi)."""
     con = sheet('conifers.png')
     pla = sheet('plants.png')
     out = sheet('Outside Objects.png')
+    ter = sheet('Terrain and Outside.png')
     s = {}
-    for i, b in enumerate([(391, 2, 473, 191), (487, 2, 561, 160), (641, 2, 768, 217), (302, 3, 376, 157), (224, 8, 288, 224)]):
+    # hai cỡ cây thống nhất: thông 154–189 px và tán tròn ~118 px (bỏ thông 216 px và cây nhỏ 45–60 px cho đồng bộ tỷ lệ)
+    for i, b in enumerate([(391, 2, 473, 191), (487, 2, 561, 160), (302, 3, 376, 157)]):
         s[f'conifer-{i}'] = con.crop(b)
-    for i, b in enumerate([(580, 11, 636, 89), (590, 101, 628, 181)]):
-        s[f'conifer-small-{i}'] = con.crop(b)
+    # cây tán tròn: 2 tán × 2 thân (Outside Objects)
+    canopies = [comp_at(out, 240, 50), comp_at(out, 335, 50)]
+    trunks = [comp_at(out, 45, 490), comp_at(out, 140, 490)]
+    for i, (c, t) in enumerate(((0, 0), (1, 1), (0, 1), (1, 0))):
+        s[f'tree-{i}'] = _tree(canopies[c], trunks[t])
     for i, b in enumerate([(192, 704, 256, 756), (256, 704, 320, 756), (192, 776, 256, 820), (256, 776, 320, 820)]):
         s[f'bush-{i}'] = pla.crop(b)
+    # đá (Terrain and Outside): đá dựng xám, đá trắng, đá nâu
+    s['rock-0'] = comp_at(ter, 1000, 640)
+    white, brown = _split_v(comp_at(ter, 975, 545))
+    s['rock-1'] = white
+    s['rock-2'] = brown
+    s['log-fallen'] = comp_at(pla, 60, 880)
     s['tent'] = comp_at(out, 60, 790)
     s['logs'] = comp_at(out, 420, 470)
     s['stump'] = pla.crop((0, 760, 64, 820))
+    return s
+
+
+def ground_decor() -> dict[str, Image.Image]:
+    """Trang trí nướng thẳng vào nền (không xếp lớp): hoa, nấm, sậy, súng, cỏ cao (ô 'o' núp được)."""
+    pla = sheet('plants.png')
+    ter = sheet('Terrain and Outside.png')
+    s = {}
+    for i, (px, py) in enumerate(((140, 230), (60, 160), (120, 110), (30, 300))):
+        s[f'flower-{i}'] = comp_at(pla, px, py)
+    s['mush-0'] = comp_at(pla, 45, 690)
+    s['mush-1'] = comp_at(pla, 140, 690)
+    s['reeds'] = comp_at(pla, 150, 470)
+    s['cattail'] = comp_at(pla, 60, 450)
+    s['lily'] = comp_at(pla, 80, 510)
+    s['grass-tall-0'] = ter.crop((0, 736, 64, 800))
+    s['grass-tall-1'] = ter.crop((64, 736, 128, 800))
     return s

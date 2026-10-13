@@ -253,6 +253,7 @@ Tổng giai đoạn A: **~11 ngày làm việc**.
 ### B1 · Nền tảng thế giới (2 ngày)
 
 - [x] Bản đồ màn 1: 50×30 tile (1600×960) sinh từ `art/maps/level1.py` (autotile LPC port từ tools/), 4 khu: trại với đường mòn số 8, rừng thông dày, đầu cầu, bên kia suối lên lối ra; cây/bụi/lều/củi là sprite `env/*` trong atlas, game xếp lớp theo y; nền có hậu kỳ bình minh, sprite môi trường cùng tông màu. Camera cuộn theo thủ lĩnh.
+- [x] Làm đẹp theo moodboard (2026-10-13): nền cỏ sạch + mảng cỏ tối dưới rừng dày; cây hai cỡ đồng bộ (thông 154–189 px, tán tròn LPC ghép tán + thân ~118 px); đá, gỗ đổ, hoa, nấm, sậy ven suối (nướng vào nền, mật độ thấp); cỏ cao = cụm bụi rải elip, ô `o` núp được, đặt có chủ ý ở lối tiếp cận cầu và lối ra; mặt nước là lớp riêng `level1_water.png` 3 khung (ô sóng cuộn dọc) phát 3 fps trong game, súng chỉ đặt trọn trong nước, cầu vẽ vào cả khung nước.
 - [x] `CollisionGrid` 16 px trong `levels/level1.json` (`.` `#` `o` `~` `=`), kèm `level1_mask.png` để soi; test: cầu là lối duy nhất qua suối, BFS từ trại tới lối ra, mọi điểm đặt đứng được.
 - [x] Di chuyển trượt dọc tường; 4 tư thế kiểu Commandos Chạy / Đi / Khom / Bò (96 / 58 / 34 / 18 px/s); `Shift` bật/tắt Chạy (bấm một lần), `C` xoay Đi → Khom → Bò.
 - [x] Y-sort actor và vật thể môi trường bằng depth = y chân; debug overlay F3 vẽ lưới va chạm (nón nhìn, vòng tiếng động thêm ở B2).
