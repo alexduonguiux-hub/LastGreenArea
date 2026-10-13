@@ -15,6 +15,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from matrix import Matrix, Zone  # noqa: E402
 from legacy_import import Importer  # noqa: E402
+from items import all_items  # noqa: E402
 from maps import lpc as lpc_tiles  # noqa: E402
 from maps import level1  # noqa: E402
 from ui.components import all_components  # noqa: E402
@@ -56,6 +57,9 @@ def build():
         # neo = chân vật thể: giữa đáy; cây có bóng nên nhích lên 6 px
         foot = im.height - (6 if name.startswith('conifer') else 4 if name.startswith('tree-') else 2)
         m.place(f'env/{name}', im, 'env', 'env', (im.width // 2, foot), trim=False)
+    # vật phẩm vẽ bằng code theo kiểu Cainos (art/items.py); neo đáy để đặt trên bản đồ
+    for name, im in all_items().items():
+        m.place(f'item/{name}', im, 'items', 'item', (8, 14), trim=False)
     # thành phần UI v10 (A4): vào vùng ui, kèm slice/outset trong manifest; cắt ra sprite riêng cho CSS border-image
     comps = all_components()
     for name, spec in comps.items():

@@ -211,12 +211,15 @@ class Importer:
                          tuple(w['grip']), trim=False)
 
     def items(self):
+        from items import ITEMS as CODE_ITEMS
         items = json.load(open(DATA / 'items.json', encoding='utf-8'))
-        sheet = self._sheet('items/item_icons.png')
+        sheet = self._sheet('items/item_icons.png', tint=True)  # icon bàn giao kéo về hệ màu Cainos
         assert sheet.width == 16 * len(items), (sheet.width, len(items))
         for i, it in enumerate(items):
-            self.m.place(f'item/{slug(it["name"])}', sheet.crop((i * 16, 0, i * 16 + 16, 16)), 'items', 'item',
-                         (8, 8), trim=False)
+            sid = slug(it['name'])
+            if sid in CODE_ITEMS:
+                continue  # đã vẽ bằng code theo kiểu Cainos (art/items.py)
+            self.m.place(f'item/{sid}', sheet.crop((i * 16, 0, i * 16 + 16, 16)), 'items', 'item', (8, 8), trim=False)
 
     def all(self):
         self.characters()

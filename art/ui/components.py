@@ -1,4 +1,4 @@
-"""Thành phần UI v10 vẽ bằng code (port tools/locked.py: frame, title, slot, card, tabs, choice, bar, scrollbar).
+"""Thành phần UI v11 "đá và gỗ" vẽ bằng code (khung phiến đá, thẻ tiêu đề ván gỗ, ô lõm, thanh phân đoạn, thanh cuộn).
 
 Mỗi thành phần là một ảnh nhỏ + metadata 9-slice (top, right, bottom, left) và outset (phần vẽ ra ngoài hộp:
 vạch thước, bóng). Game dùng qua CSS border-image (src/ui/v10.css sinh từ build) hoặc Phaser NineSlice.
@@ -27,87 +27,85 @@ def brackets(d, x0, y0, x1, y1, col, L=3):
 
 
 def panel() -> Spec:
-    """Khung: bóng lệch, viền tối, nền có vạch quét, viền teal hai góc, vạch cyan, thước đo, 3 LED."""
-    M = 4  # lề ngoài cho thước và bóng
-    w, h = 64 + M * 2, 40 + M * 2
+    """Phiến đá: bóng dưới, viền đá tối, thân đá, cạnh sáng trên-trái, cạnh tối dưới-phải, đinh tán 4 góc."""
+    M = 3  # lề ngoài cho bóng
+    w, h = 48 + M * 2, 32 + M * 2
     im = _new(w, h)
     d = ImageDraw.Draw(im)
-    x0, y0, x1, y1 = M, M, M + 63, M + 39
-    d.rectangle((x0 + 2, y0 + 2, x1 + 2, y1 + 2), fill=_c('black', 120))
-    d.rectangle((x0, y0, x1, y1), fill=_c('shadow'))
+    x0, y0, x1, y1 = M, M, M + 47, M + 31
+    d.rectangle((x0 + 1, y0 + 2, x1 + 2, y1 + 2), fill=_c('shadow', 150))
+    d.rectangle((x0, y0, x1, y1), fill=_c('edge'))
     d.rectangle((x0 + 1, y0 + 1, x1 - 1, y1 - 1), fill=_c('panel'))
-    for y in range(y0 + 3, y1 - 1, 2):
-        d.line([(x0 + 2, y), (x1 - 2, y)], fill=_c('scan'))
-    d.line([(x0 + 1, y0 + 1), (x1 - 4, y0 + 1)], fill=_c('edge'))
-    d.line([(x0 + 1, y0 + 1), (x0 + 1, y1 - 4)], fill=_c('edge'))
-    d.line([(x1 - 1, y0 + 4), (x1 - 1, y1 - 1)], fill=_c('edge'))
-    d.line([(x0 + 4, y1 - 1), (x1 - 1, y1 - 1)], fill=_c('edge'))
-    d.line([(x1 - 4, y0 + 1), (x1 - 1, y0 + 4)], fill=_c('tick'))
-    d.line([(x0 + 1, y1 - 4), (x0 + 4, y1 - 1)], fill=_c('tick'))
-    # thước: dải trên trái + dải trái trên, chấm dưới trái + dải trái dưới (chỉ trong góc để 9-slice lặp được)
-    d.line([(x0 + 2, y0 - 2), (x0 + 2 + 20, y0 - 2)], fill=_c('tick'))
-    for k in range(0, 20, 2):
-        d.point((x0 + 2 + k, y0 - 3), fill=_c('tick'))
-    d.line([(x0 - 2, y0 + 2), (x0 - 2, y0 + 12)], fill=_c('tick'))
-    for k in range(0, 16, 2):
-        d.point((x0 + 4 + k, y1 + 2), fill=_c('tick'))
-    d.line([(x0 - 2, y1 - 8), (x0 - 2, y1)], fill=_c('tick'))
-    for k, c in enumerate(('bad', 'warn', 'ok')):
-        d.rectangle((x1 - 22 + k * 6, y0 + 4, x1 - 19 + k * 6, y0 + 6), fill=_c(c))
-    d.point((x1 - 4, y1 - 4), fill=_c('dim'))
-    # slice: trên 14 (thước + LED), phải 28 (LED), dưới 10 (chấm + bóng), trái 10 (thước); giữa 2 hàng vạch quét lặp
-    return {'img': im, 'slice': (M + 10, M + 26, M + 6, M + 6), 'outset': M, 'kind': 'nine'}
+    d.line([(x0 + 1, y0 + 1), (x1 - 2, y0 + 1)], fill=_c('tick'))
+    d.line([(x0 + 1, y0 + 1), (x0 + 1, y1 - 2)], fill=_c('tick'))
+    d.line([(x0 + 2, y1 - 1), (x1 - 1, y1 - 1)], fill=_c('scan'))
+    d.line([(x1 - 1, y0 + 2), (x1 - 1, y1 - 1)], fill=_c('scan'))
+    for cx, cy in ((x0 + 3, y0 + 3), (x1 - 4, y0 + 3), (x0 + 3, y1 - 4), (x1 - 4, y1 - 4)):
+        d.rectangle((cx, cy, cx + 1, cy + 1), fill=_c('edge'))
+        d.point((cx, cy), fill=_c('tick'))
+    # vân đá thưa ở giữa (lặp được)
+    for (px_, py_) in ((14, 12), (30, 20), (22, 26), (38, 10)):
+        d.point((x0 + px_, y0 + py_), fill=_c('scan'))
+    return {'img': im, 'slice': (M + 7, M + 7, M + 7, M + 7), 'outset': M, 'kind': 'nine'}
+
+
+def _plank(w, h, fill='mag', top='mag_line', bottom='mag_lo', nails=True):
+    im = _new(w, h)
+    d = ImageDraw.Draw(im)
+    d.rectangle((0, 0, w - 1, h - 1), fill=_c(bottom))
+    d.rectangle((1, 1, w - 2, h - 2), fill=_c(fill))
+    d.line([(1, 1), (w - 2, 1)], fill=_c(top))
+    d.line([(1, 1), (1, h - 2)], fill=_c(top))
+    if nails:
+        for (nx, ny) in ((3, 3), (w - 4, 3), (3, h - 4), (w - 4, h - 4)):
+            d.point((nx, ny), fill=_c('mag_lo'))
+            d.point((nx + 1, ny), fill=_c('mag_line'))
+    return im
 
 
 def button(state: str) -> Spec:
     w, h = 24, 16
-    im = _new(w, h)
-    d = ImageDraw.Draw(im)
-    fill = {'normal': 'tab_off', 'hover': 'btn_hover', 'pressed': 'mag', 'disabled': 'scan'}[state]
-    edge = {'normal': 'edge', 'hover': 'edge_hi', 'pressed': 'mag_hi', 'disabled': 'bracket_dim'}[state]
-    d.rectangle((0, 0, w - 1, h - 1), fill=_c(fill), outline=_c(edge))
     if state == 'pressed':
-        d.line([(1, 1), (w - 2, 1)], fill=_c('mag_hi'))
+        im = _plank(w, h, nails=False)
     else:
+        im = _new(w, h)
+        d = ImageDraw.Draw(im)
+        fill = {'normal': 'tab_off', 'hover': 'btn_hover', 'disabled': 'scan'}[state]
+        d.rectangle((0, 0, w - 1, h - 1), fill=_c(fill), outline=_c('edge'))
+        d.line([(1, 1), (w - 2, 1)], fill=_c('tick'))
         d.line([(1, h - 2), (w - 2, h - 2)], fill=_c('shadow'))
     return {'img': im, 'slice': (3, 3, 3, 3), 'outset': 0, 'kind': 'nine'}
 
 
-def _parallelogram(w, h, fill, top=None, left_stripe=None, shadow=None):
-    im = _new(w, h)
-    d = ImageDraw.Draw(im)
-    s = 4  # độ nghiêng
-    if shadow:
-        d.polygon([(s + 1, 1), (w - 1, 1), (w - 1 - s, h - 1), (1, h - 1)], fill=_c(shadow))
-    d.polygon([(s, 0), (w - 2, 0), (w - 2 - s, h - 2), (0, h - 2)], fill=_c(fill))
-    if left_stripe:
-        d.polygon([(s, 0), (s + 3, 0), (3, h - 2), (0, h - 2)], fill=_c(left_stripe))
-    if top:
-        d.line([(s + (4 if left_stripe else 0), 0), (w - 2, 0)], fill=_c(top))
-    return im
-
-
 def tab(state: str) -> Spec:
-    im = _parallelogram(28, 16, 'mag' if state == 'active' else 'tab_off', top='mag_hi' if state == 'active' else None)
-    return {'img': im, 'slice': (2, 8, 2, 8), 'outset': 0, 'kind': 'nine'}
+    if state == 'active':
+        im = _plank(28, 16, nails=False)
+    else:
+        im = _new(28, 16)
+        d = ImageDraw.Draw(im)
+        d.rectangle((0, 0, 27, 15), fill=_c('tab_off'), outline=_c('edge'))
+        d.line([(1, 15), (26, 15)], fill=_c('shadow'))
+    return {'img': im, 'slice': (3, 4, 3, 4), 'outset': 0, 'kind': 'nine'}
 
 
 def title() -> Spec:
-    im = _parallelogram(32, 18, 'mag', top='mag_line', left_stripe='mag_hi', shadow='mag_lo')
-    return {'img': im, 'slice': (3, 9, 3, 9), 'outset': 0, 'kind': 'nine'}
+    """Ván gỗ treo: nền gỗ, cạnh sáng trên-trái, bóng dưới, đinh ở hai đầu."""
+    return {'img': _plank(32, 16), 'slice': (3, 6, 3, 6), 'outset': 0, 'kind': 'nine'}
 
 
 def slot(selected: bool) -> Spec:
+    """Ô lõm vào đá; đang chọn: viền hổ phách."""
     M = 2
     w, h = 24 + M * 2, 24 + M * 2
     im = _new(w, h)
     d = ImageDraw.Draw(im)
     x0, y0, x1, y1 = M, M, M + 23, M + 23
+    d.rectangle((x0, y0, x1, y1), fill=_c('edge'))
     d.rectangle((x0 + 1, y0 + 1, x1 - 1, y1 - 1), fill=_c('slot'))
-    brackets(d, x0, y0, x1, y1, _c('mag_hi') if selected else _c('edge'))
+    d.line([(x0 + 1, y0 + 1), (x1 - 1, y0 + 1)], fill=_c('shadow'))
+    d.line([(x0 + 1, y0 + 1), (x0 + 1, y1 - 1)], fill=_c('shadow'))
     if selected:
-        for x in range(x0, x1 + 1, 2):
-            d.point((x, y0 - 2), fill=_c('mag_hi'))
+        d.rectangle((x0 - 1, y0 - 1, x1 + 1, y1 + 1), outline=_c('mag_hi'))
     return {'img': im, 'slice': (M + 5, M + 5, M + 5, M + 5), 'outset': M, 'kind': 'nine'}
 
 
@@ -115,14 +113,12 @@ def card(selected: bool) -> Spec:
     w, h = 32, 24
     im = _new(w, h)
     d = ImageDraw.Draw(im)
-    d.rectangle((0, 0, w - 1, h - 1), fill=_c('card_sel') if selected else _c('slot'))
     if selected:
-        for y in range(1, h - 1, 2):
-            d.line([(1, y), (w - 2, y)], fill=_c('card_stripe'))
-        d.rectangle((0, 0, 1, h - 1), fill=_c('mag_hi'))
-        brackets(d, 0, 0, w - 1, h - 1, _c('mag_hi'), 4)
+        d.rectangle((0, 0, w - 1, h - 1), fill=_c('card_sel'), outline=_c('mag_hi'))
+        d.line([(1, 1), (w - 2, 1)], fill=_c('warn_hi'))
     else:
-        brackets(d, 0, 0, w - 1, h - 1, _c('bracket_dim'), 3)
+        d.rectangle((0, 0, w - 1, h - 1), fill=_c('tab_off'), outline=_c('edge'))
+        d.line([(1, h - 2), (w - 2, h - 2)], fill=_c('shadow'))
     return {'img': im, 'slice': (6, 6, 6, 6), 'outset': 0, 'kind': 'nine'}
 
 
@@ -130,11 +126,10 @@ def choice(selected: bool) -> Spec:
     w, h = 28, 16
     im = _new(w, h)
     d = ImageDraw.Draw(im)
-    d.rectangle((0, 0, w - 1, h - 1), fill=_c('choice_sel') if selected else _c('choice'))
+    d.rectangle((0, 0, w - 1, h - 1), fill=_c('choice_sel') if selected else _c('choice'), outline=_c('edge') if not selected else _c('mag_hi'))
     if selected:
-        d.rectangle((0, 0, 1, h - 1), fill=_c('mag_hi'))
-        d.line([(2, 0), (w - 1, 0)], fill=_c('mag_hi'))
-        d.polygon([(w - 8, 4), (w - 3, 8), (w - 8, 12)], fill=_c('ink'))
+        d.rectangle((1, 1, 2, h - 2), fill=_c('mag_hi'))
+        d.polygon([(w - 8, 4), (w - 3, 8), (w - 8, 12)], fill=_c('paper'))
     return {'img': im, 'slice': (2, 10, 2, 4), 'outset': 0, 'kind': 'nine'}
 
 
@@ -163,13 +158,8 @@ def scroll_thumb() -> Spec:
 
 
 def keycap() -> Spec:
-    w, h = 12, 12
-    im = _new(w, h)
-    d = ImageDraw.Draw(im)
-    d.rectangle((0, 0, w - 1, h - 1), fill=_c('tab_off'), outline=_c('edge'))
-    d.line([(1, h - 2), (w - 2, h - 2)], fill=_c('scan'))
-    d.line([(1, h - 3), (w - 2, h - 3)], fill=_c('scan'))
-    return {'img': im, 'slice': (3, 3, 4, 3), 'outset': 0, 'kind': 'nine'}
+    """Phím: mẩu gỗ nhỏ, chữ màu giấy."""
+    return {'img': _plank(12, 12, nails=False), 'slice': (3, 3, 4, 3), 'outset': 0, 'kind': 'nine'}
 
 
 def toggle(on: bool) -> Spec:
@@ -178,7 +168,7 @@ def toggle(on: bool) -> Spec:
     d = ImageDraw.Draw(im)
     d.rectangle((0, 0, w - 1, h - 1), fill=_c('slot'), outline=_c('edge'))
     if on:
-        d.rectangle((12, 1, w - 2, h - 2), fill=_c('tick'))
+        d.rectangle((12, 1, w - 2, h - 2), fill=_c('mag_hi'))
     else:
         d.rectangle((1, 1, 11, h - 2), fill=_c('dim'))
     return {'img': im, 'slice': None, 'outset': 0, 'kind': 'sprite'}
@@ -344,8 +334,8 @@ def check(on: bool) -> Spec:
 def target() -> Spec:
     im = _new(9, 9)
     d = ImageDraw.Draw(im)
-    d.line([(0, 0), (8, 8)], fill=_c('tick'))
-    d.line([(8, 0), (0, 8)], fill=_c('tick'))
+    d.line([(0, 0), (8, 8)], fill=_c('mag_hi'))
+    d.line([(8, 0), (0, 8)], fill=_c('mag_hi'))
     return {'img': im, 'slice': None, 'outset': 0, 'kind': 'sprite'}
 
 
@@ -356,7 +346,7 @@ def all_components() -> dict[str, Spec]:
         'keycap': keycap(),
         'scroll-track': scroll_track(),
         'scroll-thumb': scroll_thumb(),
-        'cursor': glyph(CURSOR, 'ink'),
+        'cursor': glyph(CURSOR, 'paper'),
         'target': target(),
         'marker-q': glyph(GLYPH_Q, 'warn'),
         'marker-x': glyph(GLYPH_X, 'bad'),
@@ -368,7 +358,7 @@ def all_components() -> dict[str, Spec]:
         'icon-chay': glyph(GLYPH_CHAY, 'ok'),
         'icon-khom': glyph(GLYPH_KHOM, 'ok'),
         'icon-bo': glyph(GLYPH_BO, 'ok'),
-        'icon-rock': glyph(GLYPH_ROCK, 'dim'),
+        'icon-rock': glyph(GLYPH_ROCK, 'tick'),
         'icon-quest': glyph(GLYPH_QUEST, 'warn'),
         'icon-item': glyph(GLYPH_ITEM, 'ok'),
         'icon-clock': glyph(GLYPH_CLOCK, 'warn'),

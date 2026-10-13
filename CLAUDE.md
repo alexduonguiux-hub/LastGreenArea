@@ -12,9 +12,10 @@ Game chiến thuật ẩn nấp góc nhìn 3/4 (top-down), pixel art, tiếng Vi
 - **Vũ khí nạp theo dữ liệu**: `data/weapons.json` (bản v2 ĐÃ CHỐT, 18 món). Mỗi món có `class`, `pose_set`
   (one_hand / shoulder / throw / blade_short / blade_long), `atlas_rect`, `grip`, `muzzle`, `stats`, `anims`.
   Bộ 11 tiểu liên mới chỉ là bản lưu: `data/weapons_v3_smg_backup.json` — không dùng trừ khi được yêu cầu.
-- **UI đã chốt là v10 (cyberpunk nhà máy)** — xem `assets/ui/v10_*.png` và token màu ở `tools/locked.py`:
-  nền #080A10 lưới ô, khung #121620 có vạch quét, viền #186078, vạch thước #3EECFF, bảng tên hình bình hành
-  #6E144A mép #FF3AA8, LED đỏ/vàng/xanh, ô có ngoặc góc, ô đang chọn ngoặc tím hồng.
+- **UI đã chốt là v11 "đá và gỗ"** (2026-10-13, thay v10 cyberpunk): khung phiến đá xám ấm #878579 viền #575248 cạnh sáng #98968E,
+  thẻ tiêu đề và phím là ván gỗ #4F2913, chữ trên đá #28241E, chữ trên gỗ màu giấy cũ #CDC8B2, ô đang chọn viền hổ phách #C4963C,
+  thanh HP ô-liu #8B8632, SL hổ phách, báo động đỏ gạch #A03E2E. Token trong `art/palette.py` (tên khóa giữ từ v10),
+  thành phần trong `art/ui/components.py`, bố cục `src/ui/tokens.css` (lớp vẫn tên `.v10-*`). Moodboard `assets/ui/v10_*.png` chỉ còn giá trị bố cục.
 - **Chữ**: Be Vietnam Pro (`assets/fonts/`, OFL). Chữ pixel nhỏ làm mất dấu tiếng Việt → luôn vẽ chữ ở độ phân giải hiển thị.
 - **Hệ màu thế giới chốt theo Cainos** (`assets/tiles/cainos/`, ô-liu + teal xám + bóng ấm): tile Cainos giữ nguyên màu, mọi sprite nguồn khác phải qua `art/maps/grade.py:cainos_grade` trước khi vào atlas.
 - **Ghi công bắt buộc**: sprite nhân vật/Biến Thể và tile lấy từ Liberated Pixel Cup (CC-BY-SA 3.0 / GPL 3.0). Xem `docs/CREDITS.md`.
@@ -35,7 +36,7 @@ Game chiến thuật ẩn nấp góc nhìn 3/4 (top-down), pixel art, tiếng Vi
 
 ## Cấu trúc
 - `assets/characters/` hoạt ảnh 4 nhân vật (bản C) · `assets/enemies/` 8 loại Biến Thể · `assets/npcs/` Mai, Ông Tư, Bác sĩ Lan, Lính Nhiễm
-- `assets/weapons/` sheet hoạt ảnh vũ khí v2 (đi cầm / ngắm / bắn cho từng món), atlas sprite, icon · `assets/items/` 33 icon vật phẩm 16×16
+- `assets/weapons/` sheet hoạt ảnh vũ khí v2 (đi cầm / ngắm / bắn cho từng món), atlas sprite, icon · `assets/items/` 33 icon bàn giao (đang thay dần bằng `art/items.py` vẽ theo kiểu Cainos)
 - `assets/fx/` 12 hiệu ứng 64×64 · `assets/maps/` nền màn 1 không nhân vật · `assets/tiles/` tile LPC gốc (rừng, suối, cầu, cây)
 - `data/` JSON mô tả mọi sheet · `prototype/build_hub.html` bản chạy thử (sân thử vũ khí) — mở thẳng trên trình duyệt
 - `tools/` script Python đã dùng để sinh asset (Pillow, numpy). Đường dẫn trong script trỏ tới `/home/claude/...` của môi trường cũ;

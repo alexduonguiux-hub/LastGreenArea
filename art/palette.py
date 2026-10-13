@@ -1,49 +1,50 @@
 """Bảng màu dùng chung cho mọi asset sinh bằng code.
 
-UI: token v10 "cyberpunk nhà máy" (đã chốt, lấy từ tools/locked.py và CSS của prototype).
+UI: token v11 "đá và gỗ" (chốt theo hệ màu Cainos; v10 cyberpunk đã bỏ).
 Nhân vật: bảng màu từng người (lấy từ tools/crawl.py), dùng cho rig ghép lớp ở A2.
 Mọi màu là tuple RGB; alpha thêm khi vẽ.
 """
 
-# ---- UI v10 (chốt) -------------------------------------------------------
+# ---- UI v11 "đá và gỗ" (chốt 2026-10-13, màu lấy từ đá, bệ, tường, thùng gỗ của Cainos) ---------------
+# Tên khóa giữ nguyên từ v10 để CSS và thành phần không đổi; nghĩa mới ghi bên cạnh.
 UI = {
-    'bg': (8, 10, 16),          # nền
-    'grid': (14, 18, 28),       # lưới ô trên nền
-    'panel': (18, 22, 32),      # khung
-    'scan': (16, 20, 30),       # vạch quét trong khung
-    'edge': (24, 96, 120),      # viền teal
-    'tick': (62, 236, 255),     # vạch thước cyan
-    'mag': (110, 20, 74),       # bảng tên hình bình hành
-    'mag_hi': (255, 58, 168),   # mép bảng tên, ô đang chọn
-    'mag_lo': (56, 16, 44),     # bóng bảng tên
-    'slot': (22, 28, 40),       # ô vật phẩm
-    'ink': (216, 244, 255),     # chữ chính
-    'dim': (120, 150, 176),     # chữ phụ
-    'warn': (240, 200, 60),     # LED vàng, sức lực
-    'ok': (80, 220, 120),       # LED xanh
-    'bad': (240, 70, 80),       # LED đỏ, máu
-    'bracket_dim': (40, 56, 76),
-    'tab_off': (30, 38, 54),
-    'bar_off': (30, 36, 52),
-    'shadow': (4, 6, 10),
-    'black': (0, 0, 0),
-    # màu phụ lấy từ tools/locked.py và cyber.py
-    'mag_line': (170, 40, 120),   # vạch trên bảng tên
-    'card_sel': (58, 14, 42),     # thẻ đang chọn
-    'card_stripe': (70, 18, 52),  # vạch quét trên thẻ đang chọn
-    'choice': (24, 30, 44),       # dòng lựa chọn
-    'choice_sel': (70, 16, 52),   # dòng lựa chọn đang chọn
-    'track': (30, 40, 58),        # rãnh thanh cuộn
-    'btn_hover': (40, 52, 74),
-    'edge_hi': (60, 150, 170),
-    'speed': (190, 120, 255),     # thanh Nhanh
-    # viền sáng trên thanh phân đoạn (= màu + 60)
-    'bad_hi': (255, 130, 140), 'warn_hi': (255, 255, 120), 'ok_hi': (140, 255, 180), 'tick_hi': (122, 255, 255), 'speed_hi': (250, 180, 255),
+    'bg': (36, 34, 28),          # nền trang (ngoài sân khấu)
+    'grid': (44, 42, 34),        # lưới ô trên nền trang
+    'panel': (135, 133, 121),    # phiến đá (thân khung)
+    'scan': (128, 127, 114),     # đá tối hơn một bậc (vân, nút vô hiệu)
+    'edge': (87, 82, 72),        # viền đá tối
+    'tick': (152, 150, 142),     # cạnh đá sáng (bevel)
+    'mag': (79, 41, 19),         # ván gỗ (thẻ tiêu đề, phím, nút bấm)
+    'mag_hi': (196, 150, 60),    # hổ phách: ô đang chọn, vạch chọn
+    'mag_lo': (58, 30, 14),      # gỗ tối (bóng ván)
+    'slot': (100, 94, 82),       # ô lõm (vật phẩm, chân dung)
+    'ink': (40, 36, 30),         # chữ chính trên đá
+    'dim': (78, 74, 64),         # chữ phụ trên đá
+    'warn': (196, 150, 60),      # hổ phách: sức lực, nhiệm vụ, đồng hồ
+    'ok': (139, 134, 50),        # ô-liu sáng: máu, vật phẩm
+    'bad': (160, 62, 46),        # đỏ gạch: báo động
+    'bracket_dim': (112, 108, 96),
+    'tab_off': (118, 116, 105),  # tab/nút thường (đá tối)
+    'bar_off': (112, 108, 96),   # ô thanh chưa đầy
+    'shadow': (60, 56, 48),      # bóng dưới khung
+    'black': (30, 28, 24),       # viền glyph
+    'mag_line': (120, 84, 52),   # cạnh sáng ván gỗ
+    'card_sel': (124, 120, 98),  # thẻ đang chọn (đá ngả ô-liu)
+    'card_stripe': (130, 126, 104),
+    'choice': (118, 116, 105),   # dòng lựa chọn
+    'choice_sel': (110, 108, 60),  # dòng đang chọn (ô-liu tối)
+    'track': (100, 94, 82),      # rãnh thanh cuộn
+    'btn_hover': (142, 140, 129),
+    'edge_hi': (152, 150, 142),
+    'speed': (140, 110, 150),    # thanh Nhanh (tím xám)
+    'paper': (205, 200, 178),    # chữ trên gỗ và trên ô đang chọn
+    # viền sáng trên thanh phân đoạn
+    'bad_hi': (190, 90, 70), 'warn_hi': (225, 185, 95), 'ok_hi': (170, 165, 80), 'tick_hi': (170, 168, 160), 'speed_hi': (170, 140, 180),
 }
 LED = (UI['bad'], UI['warn'], UI['ok'])
 
-# Thanh chỉ số (HUD v10): máu đỏ, sức lực vàng, ẩn nấp cyan, nhanh tím
-STAT = {'hp': UI['bad'], 'sl': UI['warn'], 'stealth': UI['tick'], 'speed': UI['speed']}
+# Thanh chỉ số (HUD v11): máu ô-liu, sức lực hổ phách, ẩn nấp đá sáng, nhanh tím xám
+STAT = {'hp': UI['ok'], 'sl': UI['warn'], 'stealth': UI['tick'], 'speed': UI['speed']}
 
 # ---- Nhân vật (bản C) ----------------------------------------------------
 CHARACTERS = {

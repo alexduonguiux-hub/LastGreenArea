@@ -1,44 +1,45 @@
 /* FILE SINH bởi art/ui/css.py (npm run art). Không sửa tay. */
 :root {
-  --bg: #080A10;
-  --grid: #0E121C;
-  --panel: #121620;
-  --scan: #10141E;
-  --edge: #186078;
-  --tick: #3EECFF;
-  --mag: #6E144A;
-  --mag-hi: #FF3AA8;
-  --mag-lo: #38102C;
-  --slot: #161C28;
-  --ink: #D8F4FF;
-  --dim: #7896B0;
-  --warn: #F0C83C;
-  --ok: #50DC78;
-  --bad: #F04650;
-  --bracket-dim: #28384C;
-  --tab-off: #1E2636;
-  --bar-off: #1E2434;
-  --shadow: #04060A;
-  --black: #000000;
-  --mag-line: #AA2878;
-  --card-sel: #3A0E2A;
-  --card-stripe: #461234;
-  --choice: #181E2C;
-  --choice-sel: #461034;
-  --track: #1E283A;
-  --btn-hover: #28344A;
-  --edge-hi: #3C96AA;
-  --speed: #BE78FF;
-  --bad-hi: #FF828C;
-  --warn-hi: #FFFF78;
-  --ok-hi: #8CFFB4;
-  --tick-hi: #7AFFFF;
-  --speed-hi: #FAB4FF;
+  --bg: #24221C;
+  --grid: #2C2A22;
+  --panel: #878579;
+  --scan: #807F72;
+  --edge: #575248;
+  --tick: #98968E;
+  --mag: #4F2913;
+  --mag-hi: #C4963C;
+  --mag-lo: #3A1E0E;
+  --slot: #645E52;
+  --ink: #28241E;
+  --dim: #4E4A40;
+  --warn: #C4963C;
+  --ok: #8B8632;
+  --bad: #A03E2E;
+  --bracket-dim: #706C60;
+  --tab-off: #767469;
+  --bar-off: #706C60;
+  --shadow: #3C3830;
+  --black: #1E1C18;
+  --mag-line: #785434;
+  --card-sel: #7C7862;
+  --card-stripe: #827E68;
+  --choice: #767469;
+  --choice-sel: #6E6C3C;
+  --track: #645E52;
+  --btn-hover: #8E8C81;
+  --edge-hi: #98968E;
+  --speed: #8C6E96;
+  --paper: #CDC8B2;
+  --bad-hi: #BE5A46;
+  --warn-hi: #E1B95F;
+  --ok-hi: #AAA550;
+  --tick-hi: #AAA8A0;
+  --speed-hi: #AA8CB4;
   --px: 2px;
 }
 .v10 { image-rendering: pixelated; }
-.v10-panel { border-style: solid; border-width: calc(var(--px) * 14) calc(var(--px) * 30) calc(var(--px) * 10) calc(var(--px) * 10); border-image: url(./sprites/panel.png) 14 30 10 10 fill / calc(var(--px) * 14) calc(var(--px) * 30) calc(var(--px) * 10) calc(var(--px) * 10) / calc(var(--px) * 4) repeat; image-rendering: pixelated; box-sizing: border-box; }
-.v10-title { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 9) calc(var(--px) * 3) calc(var(--px) * 9); border-image: url(./sprites/title.png) 3 9 3 9 fill / calc(var(--px) * 3) calc(var(--px) * 9) calc(var(--px) * 3) calc(var(--px) * 9) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-panel { border-style: solid; border-width: calc(var(--px) * 10) calc(var(--px) * 10) calc(var(--px) * 10) calc(var(--px) * 10); border-image: url(./sprites/panel.png) 10 10 10 10 fill / calc(var(--px) * 10) calc(var(--px) * 10) calc(var(--px) * 10) calc(var(--px) * 10) / calc(var(--px) * 3) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-title { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 6) calc(var(--px) * 3) calc(var(--px) * 6); border-image: url(./sprites/title.png) 3 6 3 6 fill / calc(var(--px) * 3) calc(var(--px) * 6) calc(var(--px) * 3) calc(var(--px) * 6) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
 .v10-keycap { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 4) calc(var(--px) * 3); border-image: url(./sprites/keycap.png) 3 3 4 3 fill / calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 4) calc(var(--px) * 3) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
 .v10-scroll-track { background: url(./sprites/scroll-track.png) repeat-x; background-size: calc(var(--px) * 5) calc(var(--px) * 4); height: calc(var(--px) * 4); image-rendering: pixelated; display: inline-block; }
 .v10-scroll-thumb { border-style: solid; border-width: calc(var(--px) * 2) calc(var(--px) * 0) calc(var(--px) * 2) calc(var(--px) * 0); border-image: url(./sprites/scroll-thumb.png) 2 0 2 0 fill / calc(var(--px) * 2) calc(var(--px) * 0) calc(var(--px) * 2) calc(var(--px) * 0) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
@@ -62,8 +63,8 @@
 .v10-button-hover { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3); border-image: url(./sprites/button-hover.png) 3 3 3 3 fill / calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
 .v10-button-pressed { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3); border-image: url(./sprites/button-pressed.png) 3 3 3 3 fill / calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
 .v10-button-disabled { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3); border-image: url(./sprites/button-disabled.png) 3 3 3 3 fill / calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 3) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
-.v10-tab-normal { border-style: solid; border-width: calc(var(--px) * 2) calc(var(--px) * 8) calc(var(--px) * 2) calc(var(--px) * 8); border-image: url(./sprites/tab-normal.png) 2 8 2 8 fill / calc(var(--px) * 2) calc(var(--px) * 8) calc(var(--px) * 2) calc(var(--px) * 8) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
-.v10-tab-active { border-style: solid; border-width: calc(var(--px) * 2) calc(var(--px) * 8) calc(var(--px) * 2) calc(var(--px) * 8); border-image: url(./sprites/tab-active.png) 2 8 2 8 fill / calc(var(--px) * 2) calc(var(--px) * 8) calc(var(--px) * 2) calc(var(--px) * 8) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-tab-normal { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 4) calc(var(--px) * 3) calc(var(--px) * 4); border-image: url(./sprites/tab-normal.png) 3 4 3 4 fill / calc(var(--px) * 3) calc(var(--px) * 4) calc(var(--px) * 3) calc(var(--px) * 4) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
+.v10-tab-active { border-style: solid; border-width: calc(var(--px) * 3) calc(var(--px) * 4) calc(var(--px) * 3) calc(var(--px) * 4); border-image: url(./sprites/tab-active.png) 3 4 3 4 fill / calc(var(--px) * 3) calc(var(--px) * 4) calc(var(--px) * 3) calc(var(--px) * 4) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
 .v10-slot { border-style: solid; border-width: calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7); border-image: url(./sprites/slot.png) 7 7 7 7 fill / calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) / calc(var(--px) * 2) repeat; image-rendering: pixelated; box-sizing: border-box; }
 .v10-slot-sel { border-style: solid; border-width: calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7); border-image: url(./sprites/slot-sel.png) 7 7 7 7 fill / calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) calc(var(--px) * 7) / calc(var(--px) * 2) repeat; image-rendering: pixelated; box-sizing: border-box; }
 .v10-card { border-style: solid; border-width: calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6); border-image: url(./sprites/card.png) 6 6 6 6 fill / calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6) calc(var(--px) * 6) / calc(var(--px) * 0) repeat; image-rendering: pixelated; box-sizing: border-box; }
