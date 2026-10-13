@@ -206,8 +206,8 @@ def env_sprites() -> dict[str, Image.Image]:
     plant = cainos('plant')
     for i in range(3):
         s[f'tree-{i}'] = plant.crop((i * 128, 0, i * 128 + 128, 160))
-    for i, (x0, x1) in enumerate(((32, 64), (96, 128), (160, 224), (224, 288), (288, 352), (352, 416))):
-        s[f'bush-{i}'] = plant.crop((x0, 192, x1, 224))
+    for i, cx in enumerate((48, 112, 192, 256, 320, 384)):
+        s[f'bush-{i}'] = comp_at(plant, cx, 208, pad=1)  # hộp bao thật của bụi (cao hơn một ô 32 px)
     props = cainos('props')
     for i in range(6):
         s[f'rock-{i}'] = props.crop((i * 32, 480, i * 32 + 32, 512))
