@@ -109,9 +109,9 @@ body {
 .hud-card .bar i, .hud-detbar i { display: inline-block; height: calc(var(--px) * 5); }
 .hud-actions { left: 50%; bottom: calc(var(--px) * 10); transform: translateX(-50%); width: calc(var(--px) * 300); }
 .hud-stances { display: flex; gap: calc(var(--px) * 3); margin-top: calc(var(--px) * 3); }
-.hud-stances div { padding: 0 calc(var(--px) * 6); font-size: calc(var(--px) * 6); font-weight: 600; min-width: calc(var(--px) * 48); }
-.hud-slots { display: flex; gap: calc(var(--px) * 4); margin-top: calc(var(--px) * 4); }
-.hud-slot { width: calc(var(--px) * 68); height: calc(var(--px) * 30); position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--px) * 1); padding: 0 calc(var(--px) * 3); }
+.hud-stances div { padding: 0 calc(var(--px) * 4); font-size: calc(var(--px) * 6); font-weight: 600; min-width: calc(var(--px) * 44); text-align: center; }
+.hud-slots { display: flex; gap: calc(var(--px) * 3); margin-top: calc(var(--px) * 4); }
+.hud-slot { width: calc(var(--px) * 54); height: calc(var(--px) * 30); position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--px) * 1); padding: 0 calc(var(--px) * 3); }
 .hud-slot .v10-keycap { padding: 0 calc(var(--px) * 3); font-size: calc(var(--px) * 5); line-height: calc(var(--px) * 8); font-weight: 700; }
 .hud-slot .lbl { font-size: calc(var(--px) * 5.5); text-align: center; line-height: 1.15; }
 .hud-detect { display: flex; align-items: center; gap: calc(var(--px) * 4); margin-top: calc(var(--px) * 4); font-size: calc(var(--px) * 5.5); }

@@ -109,7 +109,7 @@ class Runner {
           this.done();
           break;
         }
-        if (this.m.moveTo(next.x, next.y, dtMs, false, 3)) this.path.shift();
+        if (this.m.moveTo(next.x, next.y, dtMs, 3)) this.path.shift();
         break;
       }
       case 'cho':

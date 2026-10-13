@@ -1505,7 +1505,7 @@
    "type": "ke-lang-thang",
    "points": [
     [
-     742,
+     782,
      450
     ],
     [
@@ -1570,15 +1570,15 @@
    800
   ],
   "rung": [
-   633,
+   592,
    416,
-   681,
+   633,
    640
   ],
   "dau-cau": [
-   702,
+   652,
    298,
-   792,
+   712,
    598
   ],
   "qua-cau": [
@@ -1600,12 +1600,12 @@
    760
   ],
   "rung": [
-   656,
-   533
+   608,
+   576
   ],
   "dau-cau": [
-   672,
-   488
+   620,
+   498
   ],
   "ben-kia": [
    1102,
@@ -1614,29 +1614,42 @@
  },
  "stealth": {
   "vision": {
-   "angle": 90,
-   "range": 140
+   "angle": 100,
+   "range": 144,
+   "near": 64
   },
   "detect": {
-   "suspect": 0.4,
-   "fillBase": 1.6,
+   "suspect": 0.3,
+   "fillBase": 2.0,
    "stance": {
+    "chay": 1.4,
     "dung": 1.0,
-    "khom": 0.6,
-    "bo": 0.35
+    "khom": 0.55,
+    "bo": 0.25
    },
-   "decay": 0.4
+   "decay": 0.3
   },
   "noise": {
    "rock": 120,
-   "run": 48
+   "step": {
+    "chay": 160,
+    "dung": 56,
+    "khom": 16,
+    "bo": 0
+   },
+   "stepEvery": {
+    "chay": 0.3,
+    "dung": 0.45,
+    "khom": 0.6,
+    "bo": 1.0
+   }
   },
   "speed": {
    "patrol": 16,
    "investigate": 24,
    "alert": 34
   },
-  "listenEvery": 4.0,
+  "listenEvery": 3.0,
   "listenFor": 1.6,
   "lookFor": 3.0,
   "downFor": 30.0,

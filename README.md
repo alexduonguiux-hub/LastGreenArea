@@ -18,7 +18,10 @@ npm test           # Vitest
 npm run lint && npm run typecheck
 ```
 
-Phím: `WASD` hoặc mũi tên đi, `Shift` chạy, `C` đổi tư thế đứng / khom / bò.
+Phím: `WASD` hoặc mũi tên đi, `Shift` bật/tắt chạy (bấm một lần), `C` xoay tư thế đi / khom / bò, `Space` ném đá, `E` nhặt / hạ gục, `1`–`4` đổi người, `Tab` kế hoạch.
+
+Luật ẩn nấp (kiểu Commandos, hằng số trong `stealth` của `public/data/levels/level1.json`): tiếng bước chân lan Chạy 160 px (10 ô) · Đi 56 px · Khom 16 px · Bò im;
+nón nhìn 110° / 176 px, lộ mặt trong vùng gần 72 px là báo động ngay; khom / bò trong bụi thì không bị thấy, bò nằm im ở xa cũng không.
 
 ## Art bằng code trên ma trận
 

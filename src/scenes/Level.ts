@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { createKeys, type Keys } from '../core/input';
 import { ATLAS } from '../core/atlas';
 import { clearSave, formatTime, loadSave, writeSave, type SaveData } from '../core/save';
-import type { CharacterDef, Player } from '../entities/Player';
+import { STANCE_LABEL, type CharacterDef, type Player, type Stance } from '../entities/Player';
 import { Enemy, type StealthConfig } from '../entities/Enemy';
 import { Rock } from '../entities/Rock';
 import { Npc } from '../entities/Npc';
@@ -17,7 +17,6 @@ import { Dialogue, portraitCanvas, type Line } from '../ui/dialogue';
 import { overlay } from '../ui/overlay';
 import { Hud, type HudState } from '../ui/hud';
 
-const STANCE_LABEL = { dung: 'Đứng', khom: 'Khom', bo: 'Bò' } as const;
 const LEVEL_COLOR = { 'an-minh': 0xf05040, 'nghi-ngo': 0xf0c83c, 'bao-dong': 0xf04650 } as const;
 const ORDER = ['duong', 'hung', 'ny', 'son'];
 const LEVEL_ID = 'level1';
@@ -48,7 +47,8 @@ export class Level extends Phaser.Scene {
   private lastSay = '';
   private caught = false;
   private won = false;
-  private runNoiseT = 0;
+  /** đồng hồ bước chân từng thành viên (giây tới lần phát tiếng kế) */
+  private stepT = new Map<string, number>();
   private objective = '';
   private inventory: Record<string, number> = {};
   private stats = { time: 0, detected: 0 };
@@ -209,7 +209,11 @@ export class Level extends Phaser.Scene {
     const busyUI = () => this.caught || this.won || this.dialogue.active || this.plan.executing;
     kb.on('keydown-C', () => {
       if (busyUI() || this.plan.active) return;
-      this.say(`Tư thế: ${STANCE_LABEL[this.squad.leader.cycleStance()]}`);
+      this.sayStance(this.squad.leader.cycleStance());
+    });
+    kb.on('keydown-SHIFT', () => {
+      if (busyUI() || this.plan.active) return;
+      this.sayStance(this.squad.leader.toggleRun());
     });
     kb.on('keydown-SPACE', () => {
       if (this.dialogue.active) {
@@ -443,10 +447,17 @@ export class Level extends Phaser.Scene {
     });
   }
 
+  /** Thông báo tư thế kèm bán kính tiếng bước chân (ô 16 px) để người chơi hiểu luật. */
+  private sayStance(s: Stance): void {
+    const r = this.level.stealth.noise.step[s] ?? 0;
+    const tiles = Math.round((r / this.grid.cell) * 2) / 2;
+    this.say(`${STANCE_LABEL[s]} · ${r > 0 ? `tiếng bước chân lan ${tiles} ô` : 'không gây tiếng'}`);
+  }
+
   private drawHud(dt: number): void {
     const cam = this.cameras.main;
     const L = this.squad.leader;
-    const hidden = L.stance !== 'dung' && this.grid.hides(L.x, L.y);
+    const hidden = (L.stance === 'khom' || L.stance === 'bo') && this.grid.hides(L.x, L.y);
     let e: Enemy | undefined;
     let bd = Infinity;
     for (const en of this.enemies) {
@@ -470,7 +481,7 @@ export class Level extends Phaser.Scene {
       hidden,
       time: formatTime(this.stats.time),
       detect: e ? e.meter.value : 0,
-      detectLevel: e ? (e.state === 'down' ? 'down' : e.level) : null,
+      detectLevel: e ? (e.state === 'down' ? 'down' : e.state === 'alert' ? 'bao-dong' : e.level) : null,
       executing: this.plan.executing,
       inventory: inv,
       nearPickup: near ? (ITEM_LABEL[near.def.item] ?? near.def.item) : null,
@@ -517,10 +528,20 @@ export class Level extends Phaser.Scene {
         }
       } else this.squad.update(this.keys, delta);
       const L = this.squad.leader;
-      this.runNoiseT -= dt;
-      if (L.running && this.runNoiseT <= 0) {
-        this.noise.emit(L.x, L.y, this.level.stealth.noise.run, 'run');
-        this.runNoiseT = 0.35;
+      // tiếng bước chân: mỗi thành viên đang di chuyển phát vòng theo tư thế (chạy xa, đi gần, khom sát, bò im)
+      for (const m of this.squad.members) {
+        const left = (this.stepT.get(m.key) ?? 0) - dt;
+        if (!m.moving) {
+          this.stepT.set(m.key, Math.min(left, 0.1));
+          continue;
+        }
+        if (left > 0) {
+          this.stepT.set(m.key, left);
+          continue;
+        }
+        const r = this.level.stealth.noise.step[m.stance] ?? 0;
+        if (r > 0) this.noise.emit(m.x, m.y, r, 'step');
+        this.stepT.set(m.key, this.level.stealth.noise.stepEvery[m.stance] ?? 0.5);
       }
       this.noise.update(dt);
       const targets = this.squad.targets((x, y) => this.grid.hides(x, y));
@@ -538,14 +559,18 @@ export class Level extends Phaser.Scene {
     }
     this.cones.clear();
     for (const e of this.enemies) {
-      if (e.state !== 'down' && e.state !== 'listen' && e.state !== 'look') {
-        drawCone(this.cones, this.level.stealth.vision, e.x, e.y - 12, e.face, LEVEL_COLOR[e.level], e.level === 'an-minh' ? 0.2 : 0.3, this.grid);
+      if (e.state !== 'down') {
+        // hai vùng kiểu Commandos: vùng xa mờ, vùng gần đậm (thấy là báo động ngay)
+        const v = this.level.stealth.vision;
+        const a = e.level === 'an-minh' ? 0.18 : 0.28;
+        drawCone(this.cones, v, e.x, e.y - 12, e.face, LEVEL_COLOR[e.level], a, this.grid);
+        drawCone(this.cones, { angle: v.angle, range: v.near }, e.x, e.y - 12, e.face, LEVEL_COLOR[e.level], a, this.grid, 12);
       }
     }
     this.fxLayer.clear();
     for (const n of this.noise.active) {
       const r = 4 + (n.r - 4) * Math.min(1, n.t / 0.6);
-      this.fxLayer.lineStyle(1, n.kind === 'rock' ? 0xf0c83c : 0x7896b0, Math.max(0, (n.kind === 'rock' ? 0.8 : 0.4) - n.t));
+      this.fxLayer.lineStyle(1, n.kind === 'rock' ? 0xf0c83c : 0x7896b0, Math.max(0, (n.kind === 'rock' ? 0.8 : 0.45) - n.t));
       this.fxLayer.strokeEllipse(n.x, n.y, r * 2, r);
     }
     if (this.mai.visibleNow) {

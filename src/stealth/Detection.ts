@@ -17,9 +17,11 @@ export class DetectionMeter {
    * @param seen mục tiêu đang trong nón nhìn và có đường nhìn
    * @param dist01 khoảng cách chuẩn hóa 0 (sát) → 1 (mép tầm)
    * @param stance tư thế mục tiêu
+   * @param instant mục tiêu lộ trong vùng gần của nón (Commandos: thấy là báo động ngay)
    */
-  update(dt: number, seen: boolean, dist01: number, stance: string): DetectLevel {
-    if (seen) {
+  update(dt: number, seen: boolean, dist01: number, stance: string, instant = false): DetectLevel {
+    if (seen && instant) this.value = 1;
+    else if (seen) {
       const k = this.cfg.stance[stance] ?? 1;
       this.value = Math.min(1, this.value + dt * k * Math.max(0.2, this.cfg.fillBase - dist01));
     } else {

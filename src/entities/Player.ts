@@ -1,12 +1,14 @@
 import type Phaser from 'phaser';
 import { Actor } from './Actor';
-import { axis, isRunning, type Keys } from '../core/input';
+import { axis, type Keys } from '../core/input';
 
-export type Stance = 'dung' | 'khom' | 'bo';
+/** Bốn tư thế kiểu Commandos: Chạy (ồn, nhanh) · Đi · Khom · Bò. */
+export type Stance = 'chay' | 'dung' | 'khom' | 'bo';
+export const STANCES: Stance[] = ['chay', 'dung', 'khom', 'bo'];
+export const STANCE_LABEL: Record<Stance, string> = { chay: 'Chạy', dung: 'Đi', khom: 'Khom', bo: 'Bò' };
 
 /** Tốc độ px/s theo tư thế (docs/PLAN.md B1). */
-export const SPEED: Record<Stance, number> = { dung: 58, khom: 34, bo: 18 };
-export const RUN_SPEED = 96;
+export const SPEED: Record<Stance, number> = { chay: 96, dung: 58, khom: 34, bo: 18 };
 
 /** Hàm kiểm tra một điểm chân có đi được không (CollisionGrid.canStand). */
 export type Walkable = (x: number, y: number) => boolean;
@@ -24,7 +26,6 @@ export class Player extends Actor {
   readonly def: CharacterDef;
   stance: Stance = 'dung';
   moving = false;
-  running = false;
   /** hành động đang khóa điều khiển: ném đá, hạ gục */
   busy: 'nem' | 'ha' | null = null;
   rocks = 5;
@@ -57,6 +58,11 @@ export class Player extends Actor {
     return this.def.skills.includes(skill);
   }
 
+  /** Đang chạy (tư thế Chạy và có di chuyển): phát tiếng bước chân xa. */
+  get running(): boolean {
+    return this.stance === 'chay' && this.moving;
+  }
+
   setStance(s: Stance): void {
     if (s === this.stance) return;
     this.stance = s;
@@ -65,8 +71,15 @@ export class Player extends Actor {
     this.idle();
   }
 
+  /** Phím C: Đi → Khom → Bò → Đi; đang Chạy thì xuống Khom. */
   cycleStance(): Stance {
-    this.setStance(this.stance === 'dung' ? 'khom' : this.stance === 'khom' ? 'bo' : 'dung');
+    this.setStance(this.stance === 'dung' || this.stance === 'chay' ? 'khom' : this.stance === 'khom' ? 'bo' : 'dung');
+    return this.stance;
+  }
+
+  /** Phím Shift: bật/tắt Chạy. Từ Khom/Bò bấm Shift là đứng dậy chạy luôn. */
+  toggleRun(): Stance {
+    this.setStance(this.stance === 'chay' ? 'dung' : 'chay');
     return this.stance;
   }
 
@@ -92,50 +105,47 @@ export class Player extends Actor {
   update(keys: Keys, dtMs: number): void {
     if (this.busy) {
       this.moving = false;
-      this.running = false;
       return;
     }
     const a = axis(keys);
-    const run = isRunning(keys) && this.stance === 'dung';
-    this.step(a.x, a.y, run, dtMs / 1000);
+    this.step(a.x, a.y, dtMs / 1000);
   }
 
-  /** Đi về phía điểm (người đi theo, lệnh kế hoạch). Trả true khi tới nơi. */
-  moveTo(tx: number, ty: number, dtMs: number, run = false, arrive = 4): boolean {
+  /** Đi về phía điểm theo tốc độ tư thế hiện tại (người đi theo, lệnh kế hoạch). Trả true khi tới nơi. */
+  moveTo(tx: number, ty: number, dtMs: number, arrive = 4): boolean {
     if (this.busy) return false;
     const dx = tx - this.x;
     const dy = ty - this.y;
     const d = Math.hypot(dx, dy);
     if (d <= arrive) {
-      this.step(0, 0, false, 0);
+      this.step(0, 0, 0);
       return true;
     }
     const dt = dtMs / 1000;
-    const sp = run && this.stance === 'dung' ? RUN_SPEED : SPEED[this.stance];
+    const sp = SPEED[this.stance];
     const stepLen = Math.min(d, sp * dt);
-    this.step(dx / d, dy / d, run, stepLen / sp);
+    this.step(dx / d, dy / d, stepLen / sp);
     return Math.hypot(tx - this.x, ty - this.y) <= arrive;
   }
 
   /** Bước theo vector (ax, ay) đơn vị/0 trong dt giây, có trượt dọc tường và chọn hoạt ảnh. */
-  private step(ax: number, ay: number, run: boolean, dt: number): void {
+  private step(ax: number, ay: number, dt: number): void {
     this.moving = ax !== 0 || ay !== 0;
-    this.running = run && this.moving && this.stance === 'dung';
     if (!this.moving) {
       this.idle();
       return;
     }
     const len = Math.hypot(ax, ay);
-    const sp = this.running ? RUN_SPEED : SPEED[this.stance];
+    const sp = SPEED[this.stance];
     const nx = this.x + (ax / len) * sp * dt;
     const ny = this.y + (ay / len) * sp * dt;
     if (this.walkable(nx, this.y)) this.x = nx; // trượt dọc tường: thử từng trục
     if (this.walkable(this.x, ny)) this.y = ny;
     if (Math.abs(ax) > 0.3) this.setFace(ax > 0 ? 1 : -1);
-    this.pickAnim(ax, ay, this.running);
+    this.pickAnim(ax, ay);
   }
 
-  private pickAnim(ax: number, ay: number, run: boolean): void {
+  private pickAnim(ax: number, ay: number): void {
     if (this.stance === 'bo') {
       this.playAnim('bo-nup');
       return;
@@ -146,6 +156,7 @@ export class Player extends Actor {
       this.playAnim(vertical && ay < 0 ? 'khom-len' : vertical && ay > 0 ? 'khom-xuong' : 'khom-trai');
       return;
     }
+    const run = this.stance === 'chay';
     if (vertical && ay < 0) {
       // "Đi lên" chưa có trong sheet bàn giao (A2 sẽ sinh); tạm dùng "Chạy lên" chậm lại.
       if (!this.playAnim('di-len')) this.playAnim('chay-len', { frameRate: run ? 12 : 6 });

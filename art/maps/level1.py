@@ -243,7 +243,8 @@ def build(env: dict[str, Image.Image]):
         },
         'bridge': list(bridge),
         'patrol': {
-            'canh-cau': {'type': 'ke-lang-thang', 'points': [[bridge[0] - 160, bridge_mid_y + 2], [bridge[0] - 30, bridge_mid_y + 2]]},
+            # canh cầu: tuần tra sát đầu cầu; đường mòn rừng và điểm lưu nhịp 1–2 nằm ngoài tầm nhìn 144 px của nó
+            'canh-cau': {'type': 'ke-lang-thang', 'points': [[bridge[0] - 120, bridge_mid_y + 2], [bridge[0] - 30, bridge_mid_y + 2]]},
             'canh-loi-ra': {'type': 'ke-lang-thang', 'points': [[int(41.5 * TS), int(far_path_y(41.5) * TS)], [int(45.5 * TS), int(far_path_y(45.5) * TS)]]},
         },
         'mai': {
@@ -255,25 +256,28 @@ def build(env: dict[str, Image.Image]):
         'triggers': {
             'vong-xa': [int((LOOP_B[0] + 3.0) * TS), int((LOOP_B[1] - 5.5) * TS), int((LOOP_B[0] + 6.0) * TS), int((LOOP_B[1] + 5.5) * TS)],
             'trai-ve': [int((CAMP[0] - 3.0) * TS), int((CAMP[1] - 3.0) * TS), int((CAMP[0] + 3.0) * TS), int((CAMP[1] + 3.0) * TS)],
-            'rung': [int(19.8 * TS), int(13 * TS), int(21.3 * TS), int(20 * TS)],
-            'dau-cau': [bridge[0] - 200, bridge[1] - 120, bridge[0] - 110, bridge[3] + 120],
+            'rung': [int(18.5 * TS), int(13 * TS), int(19.8 * TS), int(20 * TS)],
+            'dau-cau': [bridge[0] - 250, bridge[1] - 120, bridge[0] - 190, bridge[3] + 120],
             'qua-cau': [bridge[2] + 10, bridge[1] - 20, bridge[2] + 70, bridge[3] + 20],
             'loi-ra': [int((EXIT[0] - 2.5) * TS), 0, int((EXIT[0] + 2.5) * TS), int((EXIT[1] + 1.5) * TS)],
         },
         # điểm lưu: vị trí thủ lĩnh ở đầu mỗi nhịp (đội xếp quanh)
         'checkpoints': {
             'trai': [int(cx - 20), int(cy + 56)],
-            'rung': [int(20.5 * TS), int(forest_path_y(20.5) * TS) + 10],
-            'dau-cau': [bridge[0] - 230, bridge_mid_y + 40],
+            'rung': [int(19.0 * TS), int(forest_path_y(19.0) * TS) + 10],
+            'dau-cau': [bridge[0] - 282, bridge_mid_y + 50],
             'ben-kia': [bridge[2] + 44, bridge_mid_y + 30],
         },
         # hằng số ẩn nấp của màn (B2); chỉnh ở đây rồi npm run art, không sửa trong code game
         'stealth': {
-            'vision': {'angle': 90, 'range': 140},
-            'detect': {'suspect': 0.4, 'fillBase': 1.6, 'stance': {'dung': 1.0, 'khom': 0.6, 'bo': 0.35}, 'decay': 0.4},
-            'noise': {'rock': 120, 'run': 48},
+            # Nón nhìn kiểu Commandos: vùng gần (near) thấy là báo động ngay, vùng xa đầy đồng hồ theo tư thế.
+            'vision': {'angle': 100, 'range': 144, 'near': 64},
+            'detect': {'suspect': 0.3, 'fillBase': 2.0, 'stance': {'chay': 1.4, 'dung': 1.0, 'khom': 0.55, 'bo': 0.25}, 'decay': 0.3},
+            # Tiếng động (px): đá ném; bước chân theo tư thế (chạy 10 ô, đi 3.5 ô, khom 1 ô, bò im) phát mỗi stepEvery giây.
+            'noise': {'rock': 120, 'step': {'chay': 160, 'dung': 56, 'khom': 16, 'bo': 0},
+                      'stepEvery': {'chay': 0.3, 'dung': 0.45, 'khom': 0.6, 'bo': 1.0}},
             'speed': {'patrol': 16, 'investigate': 24, 'alert': 34},
-            'listenEvery': 4.0, 'listenFor': 1.6, 'lookFor': 3.0, 'downFor': 30.0,
+            'listenEvery': 3.0, 'listenFor': 1.6, 'lookFor': 3.0, 'downFor': 30.0,
             'takedown': {'dist': 22},
             'rocks': 2,
         },

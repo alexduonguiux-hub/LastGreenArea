@@ -8,9 +8,11 @@ import type { CollisionGrid } from '../world/CollisionGrid';
 export type EnemyState = 'patrol' | 'listen' | 'suspect' | 'investigate' | 'look' | 'alert' | 'lost' | 'down';
 
 export interface StealthConfig {
-  vision: ConeConfig;
+  /** nón nhìn; `near` = vùng gần (px): mục tiêu lộ trong đó là báo động ngay (Commandos) */
+  vision: ConeConfig & { near: number };
   detect: { suspect: number; fillBase: number; stance: Record<string, number>; decay: number };
-  noise: { rock: number; run: number };
+  /** bán kính tiếng động (px): đá ném; bước chân theo tư thế, phát mỗi stepEvery giây khi di chuyển */
+  noise: { rock: number; step: Record<string, number>; stepEvery: Record<string, number> };
   speed: { patrol: number; investigate: number; alert: number };
   listenEvery: number;
   listenFor: number;
@@ -24,12 +26,15 @@ export interface Target {
   x: number;
   y: number;
   stance: string;
+  moving: boolean;
   hidden: boolean; // đang khom/bò trong bụi
 }
 
 /**
  * Kẻ Lang Thang (màn 1): tuần tra giữa các điểm, dừng nghe ngóng theo nhịp, nhìn thấy thì nghi ngờ rồi báo động,
  * nghe tiếng động thì đi kiểm tra, mất dấu thì quay về tuần tra. Bị hạ từ sau thì nằm một lúc rồi dậy.
+ * Luật nhìn kiểu Commandos: trong vùng gần của nón, ai lộ (không nấp bụi) là báo động ngay;
+ * vùng xa đầy đồng hồ theo tư thế, riêng Bò nằm im ở vùng xa thì không bị thấy. Mắt mở ở mọi trạng thái, kể cả khi đứng nghe.
  */
 export class Enemy extends Actor {
   state: EnemyState = 'patrol';
@@ -113,21 +118,22 @@ export class Enemy extends Actor {
       }
       return;
     }
-    // nhìn: lấy người lộ nhất trong đội
-    const sensing = this.state !== 'listen' && this.state !== 'look';
+    // nhìn: lấy người lộ nhất trong đội (gần nhất trong nón, có đường nhìn)
+    const near01 = cfg.vision.near / cfg.vision.range;
     let t: Target = targets[0];
     let dist01 = -1;
-    if (sensing) {
-      for (const tg of targets) {
-        if (tg.hidden) continue;
-        const d = inCone(cfg.vision, this.x, this.y - 12, this.face, tg.x, tg.y - 12, this.grid);
-        if (d >= 0 && (dist01 < 0 || d < dist01)) {
-          dist01 = d;
-          t = tg;
-        }
+    for (const tg of targets) {
+      if (tg.hidden) continue;
+      const d = inCone(cfg.vision, this.x, this.y - 12, this.face, tg.x, tg.y - 12, this.grid);
+      if (d < 0) continue;
+      if (tg.stance === 'bo' && !tg.moving && d > near01) continue; // bò nằm im ngoài vùng gần: lẫn vào nền
+      if (dist01 < 0 || d < dist01) {
+        dist01 = d;
+        t = tg;
       }
     }
     const seen = dist01 >= 0;
+    const instant = seen && dist01 <= near01;
     if (!seen) {
       // khi không thấy ai, đuổi theo người gần nhất lúc báo động
       let bd = Infinity;
@@ -139,7 +145,7 @@ export class Enemy extends Actor {
         }
       }
     }
-    const lvl = this.meter.update(dt, seen, Math.max(0, dist01), t.stance);
+    const lvl = this.meter.update(dt, seen, Math.max(0, dist01), t.stance, instant);
     if (seen) this.lastSeen = { x: t.x, y: t.y };
     if (lvl === 'bao-dong' && this.state !== 'alert') this.go('alert');
     else if (lvl === 'nghi-ngo' && (this.state === 'patrol' || this.state === 'listen')) {

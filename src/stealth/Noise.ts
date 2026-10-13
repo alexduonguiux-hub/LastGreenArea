@@ -1,9 +1,11 @@
-/** Tiếng động trong màn: ai phát, ở đâu, bán kính. Biến Thể trong bán kính sẽ đi điều tra. */
+/** Tiếng động trong màn: ai phát, ở đâu, bán kính. Biến Thể trong bán kính sẽ đi điều tra.
+ * Bán kính theo nguồn nằm trong `stealth.noise` của level JSON: đá ném 120 px; bước chân theo tư thế
+ * (Chạy 160 / Đi 56 / Khom 16 / Bò 0 px) phát lặp mỗi `stepEvery` giây khi đang di chuyển. */
 export interface Noise {
   x: number;
   y: number;
   r: number;
-  kind: 'rock' | 'run';
+  kind: 'rock' | 'step';
   t: number; // tuổi (giây), để vẽ vòng lan
 }
 

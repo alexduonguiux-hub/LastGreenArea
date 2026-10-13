@@ -254,7 +254,7 @@ Tổng giai đoạn A: **~11 ngày làm việc**.
 
 - [x] Bản đồ màn 1: 50×30 tile (1600×960) sinh từ `art/maps/level1.py` (autotile LPC port từ tools/), 4 khu: trại với đường mòn số 8, rừng thông dày, đầu cầu, bên kia suối lên lối ra; cây/bụi/lều/củi là sprite `env/*` trong atlas, game xếp lớp theo y; nền có hậu kỳ bình minh, sprite môi trường cùng tông màu. Camera cuộn theo thủ lĩnh.
 - [x] `CollisionGrid` 16 px trong `levels/level1.json` (`.` `#` `o` `~` `=`), kèm `level1_mask.png` để soi; test: cầu là lối duy nhất qua suối, BFS từ trại tới lối ra, mọi điểm đặt đứng được.
-- [x] Di chuyển trượt dọc tường; 3 tư thế Đứng / Khom / Bò (58 / 34 / 18 px/s), chạy 96.
+- [x] Di chuyển trượt dọc tường; 4 tư thế kiểu Commandos Chạy / Đi / Khom / Bò (96 / 58 / 34 / 18 px/s); `Shift` bật/tắt Chạy (bấm một lần), `C` xoay Đi → Khom → Bò.
 - [x] Y-sort actor và vật thể môi trường bằng depth = y chân; debug overlay F3 vẽ lưới va chạm (nón nhìn, vòng tiếng động thêm ở B2).
 - [ ] Hoạt ảnh "Đi lên" (việc A2, cần clone LPC); tạm dùng "Chạy lên" chậm.
 - [x] Tư thế Khom có hoạt ảnh riêng: `khom-trai`, `khom-xuong`, `khom-len` dẫn xuất bằng code từ khung đi (ép chân, hạ thân) trong `art/legacy_import.crouch_anims`; A2 thay bằng pose LPC thật nếu cần.
@@ -265,10 +265,10 @@ Tổng giai đoạn A: **~11 ngày làm việc**.
 
 - [x] `Enemy` FSM (`src/entities/Enemy.ts`): Tuần tra (quay đầu nghe ngóng mỗi 4 s) → Nghi ngờ → Điều tra (3 s) → Báo động (30 px/s) →
       Mất dấu → Tuần tra; Bị hạ.
-- [x] `VisionCone` 90°, 140 px, raycast qua ô `#`; Khom/Bò trong ô bụi `o` thì không bị thấy; vẽ nón bị cắt bởi vật chắn, màu theo mức.
-- [x] `Detection` 3 mức (test): 0–40 % Ẩn mình, 40–99 % Nghi ngờ (`?`), 100 % Báo động (`!` + FX); hệ số tư thế
-      1.0 / 0.6 / 0.35; tự giảm khi ra khỏi nón.
-- [x] `Noise`: ném đá (parabol, vòng 120 px, FX tiếng động), chạy (vòng 48 px); Biến Thể đi điều tra.
+- [x] `VisionCone` 100°, 144 px, raycast qua ô `#`; vùng gần 64 px: lộ mặt là báo động ngay (Commandos); Khom/Bò trong ô bụi `o` thì không bị thấy; Bò nằm im ở vùng xa không bị thấy; mắt mở cả khi đứng nghe. Vẽ nón hai vùng bị cắt bởi vật chắn, màu theo mức.
+- [x] `Detection` 3 mức (test): 0–30 % Ẩn mình, 30–99 % Nghi ngờ (`?`), 100 % Báo động (`!` + FX); hệ số tư thế
+      Chạy 1.4 / Đi 1.0 / Khom 0.55 / Bò 0.25; tự giảm 0.3/s khi ra khỏi nón.
+- [x] `Noise`: ném đá (parabol, vòng 120 px, FX tiếng động); tiếng bước chân theo tư thế cho cả đội: Chạy 160 px (10 ô, nghe được ngoài tầm nhìn) / Đi 56 px / Khom 16 px / Bò im; Biến Thể đi điều tra.
 - [x] Hạ từ sau (Dương): sau lưng 20 px, ngoài nón, phím W; nằm 30 s rồi dậy (cấu hình trong level JSON).
 - [x] Bị tóm → hộp "Bị phát hiện" trên lớp DOM, Enter nạp lại màn (điểm lưu thật ở B4). Mọi hằng số nằm trong `stealth` của `levels/level1.json` (sinh từ `art/maps/level1.py`). Dấu ?/! là marker DOM bám thế giới.
 

@@ -35,9 +35,9 @@ export class Squad {
     return this.members.find((m) => m.key === key);
   }
 
-  /** Mục tiêu cho Biến Thể: vị trí, tư thế, có đang ẩn trong bụi. */
+  /** Mục tiêu cho Biến Thể: vị trí, tư thế, đang di chuyển, có đang ẩn trong bụi (chỉ Khom/Bò). */
   targets(hides: (x: number, y: number) => boolean) {
-    return this.members.map((m) => ({ x: m.x, y: m.y, stance: m.stance, hidden: m.stance !== 'dung' && hides(m.x, m.y), member: m }));
+    return this.members.map((m) => ({ x: m.x, y: m.y, stance: m.stance, moving: m.moving, hidden: (m.stance === 'khom' || m.stance === 'bo') && hides(m.x, m.y), member: m }));
   }
 
   update(keys: Keys, dtMs: number): void {
@@ -51,7 +51,7 @@ export class Squad {
       behind++;
       if (m.stance !== L.stance) m.setStance(L.stance);
       const p = this.trailPoint(behind * SPACING);
-      if (p) m.moveTo(p.x, p.y, dtMs, L.running, 3);
+      if (p) m.moveTo(p.x, p.y, dtMs, 3);
     }
   }
 

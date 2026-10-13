@@ -20,7 +20,7 @@ export interface HudState {
   side: { label: string; have: number; need: number }[];
   members: HudMember[];
   leader: number;
-  stance: 'dung' | 'khom' | 'bo';
+  stance: 'chay' | 'dung' | 'khom' | 'bo';
   hidden: boolean;
   time: string;
   detect: number; // 0–1
@@ -32,7 +32,8 @@ export interface HudState {
 }
 
 const STANCES: [HudState['stance'], string][] = [
-  ['dung', 'Đứng'],
+  ['chay', 'Chạy'],
+  ['dung', 'Đi'],
   ['khom', 'Khom'],
   ['bo', 'Bò'],
 ];
@@ -152,6 +153,7 @@ export class Hud {
       { key: 'Space', label: `Ném đá ×${L.rocks}`, on: L.rocks > 0 },
       { key: 'E', label: s.canTakedown ? 'Hạ gục' : s.nearPickup ? `Nhặt ${s.nearPickup}` : 'Nhặt / Hạ gục', on: s.canTakedown || !!s.nearPickup },
       { key: 'Tab', label: s.executing ? 'Đang thực thi' : 'Kế hoạch', on: true },
+      { key: 'Shift', label: s.stance === 'chay' ? 'Thôi chạy' : 'Chạy', on: s.stance === 'chay' },
       { key: 'C', label: 'Tư thế', on: true },
     ];
     this.set('slots', slots.map((sl) => `<div class="${sl.on ? 'v10-slot-sel' : 'v10-slot'} hud-slot"><span class="v10-keycap">${sl.key}</span><span class="lbl">${sl.label}</span></div>`).join(''));
