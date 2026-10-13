@@ -132,6 +132,10 @@ export class Hud {
     const x = this.mini.getContext('2d')!;
     x.imageSmoothingEnabled = false;
     x.drawImage(this.miniBase, 0, 0);
+    // lưới mờ như moodboard (mỗi 8 ô = 128 px thế giới)
+    x.fillStyle = 'rgba(62, 236, 255, 0.18)';
+    for (let gx = 0; gx < this.mini.width; gx += 8) x.fillRect(gx, 0, 1, this.mini.height);
+    for (let gy = 0; gy < this.mini.height; gy += 8) x.fillRect(0, gy, this.mini.width, 1);
     for (const d of dots) {
       x.fillStyle = d.color;
       const px = Math.floor(d.x / this.miniScale);

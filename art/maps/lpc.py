@@ -24,12 +24,12 @@ def block(c, r):
 
 
 # Khối địa hình trong terrain-v7.png: mỗi khối 3×7 tile (lõi + viền chuyển tiếp)
-BLK = {'forest': block(2, 1), 'grass': block(0, 1), 'sun': block(1, 1), 'dirt': block(1, 0), 'water-t7': block(1, 2)}
+BLK = {'forest': block(2, 1), 'grass': block(0, 1), 'sun': block(1, 1), 'dirt': block(1, 0), 'water': block(1, 2)}
 
 
 @lru_cache(maxsize=None)
 def water_block() -> Image.Image:
-    """Khối 3×7 tổng hợp cho 'water': bộ "nước trong cỏ" 3×3 + 2×2 của Terrain and Outside (mép cỏ phủ lên nước,
+    """Khối 3×7 tổng hợp cho 'water-grass' (dự phòng, không dùng cho màn 1): bộ "nước trong cỏ" 3×3 + 2×2 của Terrain and Outside (mép cỏ phủ lên nước,
     bờ nâu chỉ lộ ở cạnh trên/dưới) xếp theo bố cục autotile: hàng 0–1 cột 1–2 góc lõm, hàng 2–4 viền 3×3, hàng 5 ô lõi."""
     ter = sheet('Terrain and Outside.png')
     blk = Image.new('RGBA', (96, 224), (0, 0, 0, 0))
@@ -42,7 +42,7 @@ def water_block() -> Image.Image:
 
 def _src(b):
     """(ảnh, x0, y0) của khối b: khối tổng hợp hoặc khối trong terrain-v7."""
-    if b == 'water':
+    if b == 'water-grass':
         return water_block(), 0, 0
     x0, y0 = BLK[b]
     return sheet('terrain-v7.png'), x0, y0

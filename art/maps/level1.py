@@ -115,8 +115,8 @@ def build(env: dict[str, Image.Image]):
     for k in range(3):
         wl = Image.new('RGBA', (W, H))
         # ô lõi có vệt sóng (hàng 5 của khối), cuộn dọc 11 px mỗi khung → sóng trôi xuôi dòng
-        # viền: bộ "nước trong cỏ" (lpc.water_block); lõi: ô sóng của terrain-v7 (cùng màu nền), cuộn dọc 11 px mỗi khung
-        lpc.autotile(wl, water, 'water', random.Random(1), interior=lambda x, y, k=k: lpc.roll_v(lpc.tile('water-t7', (x + y) % 3, 5), k * 11))
+        # viền bờ nâu của terrain-v7 (như moodboard); lõi: ô sóng cùng khối, cuộn dọc 11 px mỗi khung
+        lpc.autotile(wl, water, 'water', random.Random(1), interior=lambda x, y, k=k: lpc.roll_v(lpc.tile('water', (x + y) % 3, 5), k * 11))
         water_frames.append(wl)
     img.alpha_composite(water_frames[0])
     bridge = draw_bridge(img)
