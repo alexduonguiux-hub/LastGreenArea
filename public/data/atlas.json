@@ -1202,16 +1202,16 @@
      "frame": {
       "x": 1200,
       "y": 0,
-      "w": 63,
-      "h": 37
+      "w": 52,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 52,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -1225,7 +1225,7 @@
       75,
       0,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/duong"
@@ -1235,16 +1235,16 @@
      "frame": {
       "x": 1264,
       "y": 0,
-      "w": 64,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 28,
-      "w": 64,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -1258,7 +1258,7 @@
       79,
       0,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/duong"
@@ -1268,16 +1268,16 @@
      "frame": {
       "x": 1328,
       "y": 0,
-      "w": 64,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 28,
-      "w": 64,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -1291,7 +1291,7 @@
       83,
       0,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/duong"
@@ -1301,16 +1301,16 @@
      "frame": {
       "x": 1392,
       "y": 0,
-      "w": 63,
-      "h": 37
+      "w": 54,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 54,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -1324,7 +1324,7 @@
       87,
       0,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/duong"
@@ -1334,16 +1334,16 @@
      "frame": {
       "x": 1456,
       "y": 0,
-      "w": 63,
-      "h": 37
+      "w": 52,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 52,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -1357,7 +1357,7 @@
       91,
       0,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/duong"
@@ -1367,16 +1367,16 @@
      "frame": {
       "x": 1520,
       "y": 0,
-      "w": 63,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 28,
-      "w": 63,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -1390,7 +1390,7 @@
       95,
       0,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/duong"
@@ -1400,16 +1400,16 @@
      "frame": {
       "x": 1584,
       "y": 0,
-      "w": 63,
-      "h": 36
+      "w": 55,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 8,
       "y": 28,
-      "w": 63,
-      "h": 36
+      "w": 55,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -1423,7 +1423,7 @@
       99,
       0,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/duong"
@@ -1433,16 +1433,16 @@
      "frame": {
       "x": 1648,
       "y": 0,
-      "w": 63,
-      "h": 37
+      "w": 54,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 8,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 54,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -1456,7 +1456,7 @@
       103,
       0,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/duong"
@@ -2918,16 +2918,16 @@
      "frame": {
       "x": 1552,
       "y": 64,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -2941,7 +2941,7 @@
       97,
       4,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/hung"
@@ -2951,16 +2951,16 @@
      "frame": {
       "x": 1616,
       "y": 64,
-      "w": 64,
-      "h": 34
+      "w": 55,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 30,
-      "w": 64,
-      "h": 34
+      "w": 55,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -2974,7 +2974,7 @@
       101,
       4,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/hung"
@@ -2984,16 +2984,16 @@
      "frame": {
       "x": 1680,
       "y": 64,
-      "w": 64,
-      "h": 34
+      "w": 55,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 30,
-      "w": 64,
-      "h": 34
+      "w": 55,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -3007,7 +3007,7 @@
       105,
       4,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/hung"
@@ -3017,16 +3017,16 @@
      "frame": {
       "x": 1744,
       "y": 64,
-      "w": 63,
-      "h": 35
+      "w": 55,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 8,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 55,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -3040,7 +3040,7 @@
       109,
       4,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/hung"
@@ -3050,16 +3050,16 @@
      "frame": {
       "x": 1808,
       "y": 64,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 8,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -3073,7 +3073,7 @@
       113,
       4,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/hung"
@@ -3083,16 +3083,16 @@
      "frame": {
       "x": 1872,
       "y": 64,
-      "w": 63,
-      "h": 34
+      "w": 55,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 8,
       "y": 30,
-      "w": 63,
-      "h": 34
+      "w": 55,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -3106,7 +3106,7 @@
       117,
       4,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/hung"
@@ -3116,16 +3116,16 @@
      "frame": {
       "x": 1936,
       "y": 64,
-      "w": 63,
-      "h": 34
+      "w": 56,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 7,
       "y": 30,
-      "w": 63,
-      "h": 34
+      "w": 56,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -3139,7 +3139,7 @@
       121,
       4,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/hung"
@@ -3149,16 +3149,16 @@
      "frame": {
       "x": 0,
       "y": 112,
-      "w": 63,
-      "h": 35
+      "w": 55,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 7,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 55,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -3172,7 +3172,7 @@
       0,
       7,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/hung"
@@ -4205,16 +4205,16 @@
      "frame": {
       "x": 1056,
       "y": 112,
-      "w": 63,
-      "h": 37
+      "w": 52,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 52,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -4228,7 +4228,7 @@
       66,
       7,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/ny"
@@ -4238,16 +4238,16 @@
      "frame": {
       "x": 1120,
       "y": 112,
-      "w": 64,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 28,
-      "w": 64,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -4261,7 +4261,7 @@
       70,
       7,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/ny"
@@ -4271,16 +4271,16 @@
      "frame": {
       "x": 1184,
       "y": 112,
-      "w": 64,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 28,
-      "w": 64,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -4294,7 +4294,7 @@
       74,
       7,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/ny"
@@ -4304,16 +4304,16 @@
      "frame": {
       "x": 1248,
       "y": 112,
-      "w": 63,
-      "h": 37
+      "w": 54,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 54,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -4327,7 +4327,7 @@
       78,
       7,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/ny"
@@ -4337,16 +4337,16 @@
      "frame": {
       "x": 1312,
       "y": 112,
-      "w": 63,
-      "h": 37
+      "w": 52,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 52,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -4360,7 +4360,7 @@
       82,
       7,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/ny"
@@ -4370,16 +4370,16 @@
      "frame": {
       "x": 1376,
       "y": 112,
-      "w": 63,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 28,
-      "w": 63,
-      "h": 36
+      "w": 54,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -4393,7 +4393,7 @@
       86,
       7,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/ny"
@@ -4403,16 +4403,16 @@
      "frame": {
       "x": 1440,
       "y": 112,
-      "w": 63,
-      "h": 36
+      "w": 55,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 8,
       "y": 28,
-      "w": 63,
-      "h": 36
+      "w": 55,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -4426,7 +4426,7 @@
       90,
       7,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/ny"
@@ -4436,16 +4436,16 @@
      "frame": {
       "x": 1504,
       "y": 112,
-      "w": 63,
-      "h": 37
+      "w": 54,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 8,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 54,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -4459,7 +4459,7 @@
       94,
       7,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/ny"
@@ -5657,16 +5657,16 @@
      "frame": {
       "x": 832,
       "y": 176,
-      "w": 63,
-      "h": 37
+      "w": 55,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 7,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 55,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -5680,7 +5680,7 @@
       52,
       11,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/son"
@@ -5690,16 +5690,16 @@
      "frame": {
       "x": 896,
       "y": 176,
-      "w": 64,
-      "h": 36
+      "w": 57,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 7,
       "y": 28,
-      "w": 64,
-      "h": 36
+      "w": 57,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -5713,7 +5713,7 @@
       56,
       11,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/son"
@@ -5723,16 +5723,16 @@
      "frame": {
       "x": 960,
       "y": 176,
-      "w": 64,
-      "h": 36
+      "w": 57,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 7,
       "y": 28,
-      "w": 64,
-      "h": 36
+      "w": 57,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -5746,7 +5746,7 @@
       60,
       11,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/son"
@@ -5756,16 +5756,16 @@
      "frame": {
       "x": 1024,
       "y": 176,
-      "w": 63,
-      "h": 37
+      "w": 57,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 6,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 57,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -5779,7 +5779,7 @@
       64,
       11,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/son"
@@ -5789,16 +5789,16 @@
      "frame": {
       "x": 1088,
       "y": 176,
-      "w": 63,
-      "h": 37
+      "w": 55,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 6,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 55,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -5812,7 +5812,7 @@
       68,
       11,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/son"
@@ -5822,16 +5822,16 @@
      "frame": {
       "x": 1152,
       "y": 176,
-      "w": 63,
-      "h": 36
+      "w": 57,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 6,
       "y": 28,
-      "w": 63,
-      "h": 36
+      "w": 57,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -5845,7 +5845,7 @@
       72,
       11,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/son"
@@ -5855,16 +5855,16 @@
      "frame": {
       "x": 1216,
       "y": 176,
-      "w": 63,
-      "h": 36
+      "w": 58,
+      "h": 30
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 5,
       "y": 28,
-      "w": 63,
-      "h": 36
+      "w": 58,
+      "h": 30
      },
      "sourceSize": {
       "w": 64,
@@ -5878,7 +5878,7 @@
       76,
       11,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/son"
@@ -5888,16 +5888,16 @@
      "frame": {
       "x": 1280,
       "y": 176,
-      "w": 63,
-      "h": 37
+      "w": 57,
+      "h": 31
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 5,
       "y": 27,
-      "w": 63,
-      "h": 37
+      "w": 57,
+      "h": 31
      },
      "sourceSize": {
       "w": 64,
@@ -5911,7 +5911,7 @@
       80,
       11,
       4,
-      3
+      2
      ],
      "zone": "char",
      "group": "char/son"
@@ -7274,16 +7274,16 @@
      "frame": {
       "x": 1472,
       "y": 1344,
-      "w": 63,
-      "h": 35
+      "w": 49,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 13,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 49,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -7297,7 +7297,7 @@
       92,
       84,
       4,
-      3
+      2
      ],
      "zone": "bienthe",
      "group": "enemy/bien-the"
@@ -7307,16 +7307,16 @@
      "frame": {
       "x": 1536,
       "y": 1344,
-      "w": 64,
-      "h": 34
+      "w": 53,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 11,
       "y": 30,
-      "w": 64,
-      "h": 34
+      "w": 53,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -7330,7 +7330,7 @@
       96,
       84,
       4,
-      3
+      2
      ],
      "zone": "bienthe",
      "group": "enemy/bien-the"
@@ -7340,16 +7340,16 @@
      "frame": {
       "x": 1600,
       "y": 1344,
-      "w": 64,
-      "h": 34
+      "w": 54,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 30,
-      "w": 64,
-      "h": 34
+      "w": 54,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -7363,7 +7363,7 @@
       100,
       84,
       4,
-      3
+      2
      ],
      "zone": "bienthe",
      "group": "enemy/bien-the"
@@ -7373,16 +7373,16 @@
      "frame": {
       "x": 1664,
       "y": 1344,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -7396,7 +7396,7 @@
       104,
       84,
       4,
-      3
+      2
      ],
      "zone": "bienthe",
      "group": "enemy/bien-the"
@@ -7406,16 +7406,16 @@
      "frame": {
       "x": 1728,
       "y": 1344,
-      "w": 63,
-      "h": 35
+      "w": 49,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 12,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 49,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -7429,7 +7429,7 @@
       108,
       84,
       4,
-      3
+      2
      ],
      "zone": "bienthe",
      "group": "enemy/bien-the"
@@ -7439,16 +7439,16 @@
      "frame": {
       "x": 1792,
       "y": 1344,
-      "w": 63,
-      "h": 34
+      "w": 53,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 30,
-      "w": 63,
-      "h": 34
+      "w": 53,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -7462,7 +7462,7 @@
       112,
       84,
       4,
-      3
+      2
      ],
      "zone": "bienthe",
      "group": "enemy/bien-the"
@@ -7472,16 +7472,16 @@
      "frame": {
       "x": 1856,
       "y": 1344,
-      "w": 63,
-      "h": 34
+      "w": 55,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 8,
       "y": 30,
-      "w": 63,
-      "h": 34
+      "w": 55,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -7495,7 +7495,7 @@
       116,
       84,
       4,
-      3
+      2
      ],
      "zone": "bienthe",
      "group": "enemy/bien-the"
@@ -7505,16 +7505,16 @@
      "frame": {
       "x": 1920,
       "y": 1344,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -7528,7 +7528,7 @@
       120,
       84,
       4,
-      3
+      2
      ],
      "zone": "bienthe",
      "group": "enemy/bien-the"
@@ -23840,16 +23840,16 @@
      "frame": {
       "x": 720,
       "y": 1536,
-      "w": 63,
-      "h": 35
+      "w": 49,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 13,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 49,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -23863,7 +23863,7 @@
       45,
       96,
       4,
-      3
+      2
      ],
      "zone": "zombies",
      "group": "enemy/ke-thinh"
@@ -23873,16 +23873,16 @@
      "frame": {
       "x": 784,
       "y": 1536,
-      "w": 64,
-      "h": 34
+      "w": 53,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 11,
       "y": 30,
-      "w": 64,
-      "h": 34
+      "w": 53,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -23896,7 +23896,7 @@
       49,
       96,
       4,
-      3
+      2
      ],
      "zone": "zombies",
      "group": "enemy/ke-thinh"
@@ -23906,16 +23906,16 @@
      "frame": {
       "x": 848,
       "y": 1536,
-      "w": 64,
-      "h": 34
+      "w": 54,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 30,
-      "w": 64,
-      "h": 34
+      "w": 54,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -23929,7 +23929,7 @@
       53,
       96,
       4,
-      3
+      2
      ],
      "zone": "zombies",
      "group": "enemy/ke-thinh"
@@ -23939,16 +23939,16 @@
      "frame": {
       "x": 912,
       "y": 1536,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -23962,7 +23962,7 @@
       57,
       96,
       4,
-      3
+      2
      ],
      "zone": "zombies",
      "group": "enemy/ke-thinh"
@@ -23972,16 +23972,16 @@
      "frame": {
       "x": 976,
       "y": 1536,
-      "w": 63,
-      "h": 35
+      "w": 49,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 12,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 49,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -23995,7 +23995,7 @@
       61,
       96,
       4,
-      3
+      2
      ],
      "zone": "zombies",
      "group": "enemy/ke-thinh"
@@ -24005,16 +24005,16 @@
      "frame": {
       "x": 1040,
       "y": 1536,
-      "w": 63,
-      "h": 34
+      "w": 53,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 10,
       "y": 30,
-      "w": 63,
-      "h": 34
+      "w": 53,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -24028,7 +24028,7 @@
       65,
       96,
       4,
-      3
+      2
      ],
      "zone": "zombies",
      "group": "enemy/ke-thinh"
@@ -24038,16 +24038,16 @@
      "frame": {
       "x": 1104,
       "y": 1536,
-      "w": 63,
-      "h": 34
+      "w": 55,
+      "h": 28
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 8,
       "y": 30,
-      "w": 63,
-      "h": 34
+      "w": 55,
+      "h": 28
      },
      "sourceSize": {
       "w": 64,
@@ -24061,7 +24061,7 @@
       69,
       96,
       4,
-      3
+      2
      ],
      "zone": "zombies",
      "group": "enemy/ke-thinh"
@@ -24071,16 +24071,16 @@
      "frame": {
       "x": 1168,
       "y": 1536,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "rotated": false,
      "trimmed": true,
      "spriteSourceSize": {
-      "x": 0,
+      "x": 9,
       "y": 29,
-      "w": 63,
-      "h": 35
+      "w": 53,
+      "h": 29
      },
      "sourceSize": {
       "w": 64,
@@ -24094,7 +24094,7 @@
       73,
       96,
       4,
-      3
+      2
      ],
      "zone": "zombies",
      "group": "enemy/ke-thinh"
@@ -53810,7 +53810,7 @@
     "page": 0,
     "row0": 0,
     "row1": 83,
-    "used": 5501,
+    "used": 5373,
     "capacity": 10752
    },
    {
@@ -53818,7 +53818,7 @@
     "page": 0,
     "row0": 84,
     "row1": 95,
-    "used": 473,
+    "used": 441,
     "capacity": 1536
    },
    {
@@ -53826,7 +53826,7 @@
     "page": 0,
     "row0": 96,
     "row1": 123,
-    "used": 1720,
+    "used": 1688,
     "capacity": 3584
    },
    {

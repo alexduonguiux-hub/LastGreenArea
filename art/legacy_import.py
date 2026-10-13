@@ -71,6 +71,8 @@ class Importer:
             imgs = []
             for i in range(n):
                 fr = sheet.crop((i * fw, r * fh, i * fw + fw, r * fh + fh))
+                if anim.startswith('Bò') and fw == 64:
+                    fr = self.strip_grass(fr)
                 fid = f'{aid}/{i}'
                 self.m.place(fid, fr, zone_of(actor), group, anchor)
                 ids.append(fid)
@@ -91,6 +93,37 @@ class Importer:
         for name in ('anim_core', 'anim_more', 'anim_actions'):
             meta = json.load(open(DATA / f'{name}.json', encoding='utf-8'))['meta']
             self._rows(self._sheet(f'characters/{name}.png'), meta, group_of, zone_of, seen=seen, source=name)
+
+    # ---- dọn khung bàn giao ------------------------------------------------
+    GRASS = {(58, 104, 52), (74, 128, 60), (46, 86, 44)}       # cỏ do tools/crawl.py vẽ thêm
+    DARK = {(12, 7, 15), (24, 14, 21), (0, 0, 0), (24, 18, 16)}  # viền tối polish vẽ quanh lá cỏ
+
+    @classmethod
+    def strip_grass(cls, im, y0=55):
+        """Bỏ cỏ nướng sẵn dưới khung bò: xóa 3 màu cỏ, rồi xóa viền tối ở hàng dưới không chạm thân."""
+        im = im.copy()
+        px = im.load()
+        for y in range(y0, 64):
+            for x in range(64):
+                if px[x, y][3] and px[x, y][:3] in cls.GRASS:
+                    px[x, y] = (0, 0, 0, 0)
+        for _ in range(3):
+            for y in range(y0, 64):
+                for x in range(64):
+                    p = px[x, y]
+                    if not p[3] or p[:3] not in cls.DARK:
+                        continue
+                    body = False
+                    for dy in (-1, 0, 1):
+                        for dx in (-1, 0, 1):
+                            xx, yy = x + dx, y + dy
+                            if (dx or dy) and 0 <= xx < 64 and 0 <= yy < 64:
+                                q = px[xx, yy]
+                                if q[3] and q[:3] not in cls.DARK and q[:3] not in cls.GRASS:
+                                    body = True
+                    if not body:
+                        px[x, y] = (0, 0, 0, 0)
+        return im
 
     # ---- pose dẫn xuất bằng code ---------------------------------------
     @staticmethod
