@@ -47,8 +47,13 @@ class Importer:
         self.frames = {}  # anim_id -> [Image] (để sinh pose dẫn xuất)
 
     # ---- tiện ích -----------------------------------------------------
-    def _sheet(self, rel: str):
-        return Image.open(ASSETS / rel).convert('RGBA')
+    def _sheet(self, rel: str, tint: bool = False):
+        im = Image.open(ASSETS / rel).convert('RGBA')
+        if tint:
+            # nhân vật, Biến Thể, NPC kéo về hệ màu Cainos của nền (giữ 85 % để da và áo còn đọc được)
+            from maps.grade import cainos_grade
+            im = cainos_grade(im, 0.85)
+        return im
 
     def _anim(self, aid, name, actor, frames, anchor, fps=None, loop=None, source=None):
         self.anims[aid] = {'name': name, 'actor': actor, 'frames': frames, 'fps': fps or fps_for(name),
@@ -92,7 +97,7 @@ class Importer:
 
         for name in ('anim_core', 'anim_more', 'anim_actions'):
             meta = json.load(open(DATA / f'{name}.json', encoding='utf-8'))['meta']
-            self._rows(self._sheet(f'characters/{name}.png'), meta, group_of, zone_of, seen=seen, source=name)
+            self._rows(self._sheet(f'characters/{name}.png', tint=True), meta, group_of, zone_of, seen=seen, source=name)
 
     # ---- dọn khung bàn giao ------------------------------------------------
     GRASS = {(58, 104, 52), (74, 128, 60), (46, 86, 44)}       # cỏ do tools/crawl.py vẽ thêm
@@ -154,18 +159,18 @@ class Importer:
                 self._anim(aid, label, name, ids, FOOT, fps=8, loop=True, source='derived:crouch')
 
     def wanderer(self):
-        sheet = self._sheet('enemies/wanderer_walk_knockdown.png')
+        sheet = self._sheet('enemies/wanderer_walk_knockdown.png', tint=True)
         meta = [['Kẻ Lang Thang', 'Lê bước trái', 8], ['Kẻ Lang Thang', 'Bị hạ', 11]]
         self._rows(sheet, meta, lambda a: 'enemy/ke-lang-thang', lambda a: 'bienthe', source='wanderer')
 
     def zombies(self):
         meta = json.load(open(DATA / 'zombies.json', encoding='utf-8'))['meta']
-        self._rows(self._sheet('enemies/zombies.png'), meta, lambda a: f'enemy/{slug(a)}', lambda a: 'zombies',
+        self._rows(self._sheet('enemies/zombies.png', tint=True), meta, lambda a: f'enemy/{slug(a)}', lambda a: 'zombies',
                    source='zombies')
 
     def npcs(self):
         meta = json.load(open(DATA / 'npcs.json', encoding='utf-8'))['meta']
-        self._rows(self._sheet('npcs/npcs.png'), meta, lambda a: f'npc/{slug(a)}', lambda a: 'npc', source='npcs')
+        self._rows(self._sheet('npcs/npcs.png', tint=True), meta, lambda a: f'npc/{slug(a)}', lambda a: 'npc', source='npcs')
 
     def fx(self):
         meta = json.load(open(DATA / 'fx.json', encoding='utf-8'))['meta']

@@ -46,3 +46,45 @@ def rays(im: Image.Image, strength: float = 0.42) -> Image.Image:
     Rq = np.floor(R * 4 + B) / 4.0
     A = A + Rq[..., None] * np.array([1.0, 0.80, 0.50]) * strength
     return _out(A, alpha)
+
+
+# ---- Hệ màu Cainos (assets/tiles/cainos): ô-liu 56–66°, bão hòa vừa, dải sáng hẹp 0.2–0.65, bóng ấm -------------
+def _rgb2hsv(a):
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    mx = a.max(-1)
+    mn = a.min(-1)
+    d = mx - mn + 1e-9
+    h = np.where(mx == r, ((g - b) / d) % 6, np.where(mx == g, (b - r) / d + 2, (r - g) / d + 4)) / 6.0
+    s = np.where(mx > 0, d / (mx + 1e-9), 0)
+    return h, s, mx
+
+
+def _hsv2rgb(h, s, v):
+    i = np.floor(h * 6) % 6
+    f = h * 6 - np.floor(h * 6)
+    p = v * (1 - s)
+    q = v * (1 - f * s)
+    t = v * (1 - (1 - f) * s)
+    sel = [i == k for k in range(6)]
+    r = np.select(sel, [v, q, p, p, t, v])
+    g = np.select(sel, [t, v, v, q, p, p])
+    b = np.select(sel, [p, p, t, v, v, q])
+    return np.stack([r, g, b], -1)
+
+
+def cainos_grade(im: Image.Image, strength: float = 1.0) -> Image.Image:
+    """Kéo sprite LPC về hệ màu Cainos: xanh lá → ô-liu, xanh lam → teal xám, màu da/gỗ giữ ấm, nén dải sáng."""
+    A, alpha = _rgb_alpha(im)
+    h, s, v = _rgb2hsv(A)
+    hd = h * 360
+    green = (hd > 70) & (hd < 178)   # lá thông LPC tới ~175° vẫn là xanh lá
+    blue = (hd >= 178) & (hd < 270)
+    warm = (hd <= 50) | (hd >= 330)
+    h2 = np.where(green, (56 + (hd - 70) / 108 * 12) / 360, h)
+    h2 = np.where(blue, (185 + (hd - 178) / 92 * 10) / 360, h2)
+    s2 = np.where(green, np.clip(s * 0.95, 0, 0.8), np.where(blue, s * 0.55, np.where(warm, s * 0.85, s * 0.7)))
+    v2 = np.where(warm, 0.18 + v * 0.52, 0.2 + v * 0.45)
+    v2 = np.where(green, v2 + 0.04, v2)
+    out = _hsv2rgb(h2, s2, v2) * np.array([1.03, 1.0, 0.92])
+    out = A * (1 - strength) + out * strength
+    return _out(out, alpha)

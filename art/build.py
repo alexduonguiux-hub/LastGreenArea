@@ -17,7 +17,6 @@ from matrix import Matrix, Zone  # noqa: E402
 from legacy_import import Importer  # noqa: E402
 from maps import lpc as lpc_tiles  # noqa: E402
 from maps import level1  # noqa: E402
-from maps.grade import grade  # noqa: E402
 from ui.components import all_components  # noqa: E402
 from ui.css import css as ui_css  # noqa: E402
 
@@ -52,10 +51,10 @@ def build():
     """Sinh mọi file đầu ra trong bộ nhớ. Trả về (matrix, outputs{đường dẫn tương đối: bytes}, manifest, anims, log)."""
     m = Matrix(ZONES)
     imp = Importer(m).all()
-    env = {k: grade(v) for k, v in lpc_tiles.env_sprites().items()}
+    env = lpc_tiles.env_sprites()  # đã đồng bộ hệ màu Cainos trong lpc.env_sprites
     for name, im in env.items():
         # neo = chân vật thể: giữa đáy; cây có bóng nên nhích lên 6 px
-        foot = im.height - (6 if name.startswith('conifer') else 4 if name.startswith('tree-') and not name.startswith('tree-small') else 2)
+        foot = im.height - (6 if name.startswith('conifer') else 4 if name.startswith('tree-') else 2)
         m.place(f'env/{name}', im, 'env', 'env', (im.width // 2, foot), trim=False)
     # thành phần UI v10 (A4): vào vùng ui, kèm slice/outset trong manifest; cắt ra sprite riêng cho CSS border-image
     comps = all_components()

@@ -40,12 +40,42 @@ def water_block() -> Image.Image:
     return blk
 
 
+@lru_cache(maxsize=None)
+def graded_terrain() -> Image.Image:
+    """terrain-v7 đã kéo về hệ màu Cainos (dùng cho khối 'dirt-c', 'water-c')."""
+    from maps.grade import cainos_grade
+    return cainos_grade(sheet('terrain-v7.png'))
+
+
 def _src(b):
-    """(ảnh, x0, y0) của khối b: khối tổng hợp hoặc khối trong terrain-v7."""
+    """(ảnh, x0, y0) của khối b: khối tổng hợp, khối terrain-v7, hoặc bản đã grade Cainos (hậu tố -c)."""
     if b == 'water-grass':
         return water_block(), 0, 0
+    if b.endswith('-c'):
+        x0, y0 = BLK[b[:-2]]
+        return graded_terrain(), x0, y0
     x0, y0 = BLK[b]
     return sheet('terrain-v7.png'), x0, y0
+
+
+# ---- Cainos "Pixel Art Top Down - Basic" (assets/tiles/cainos, 32 px): nền và vật thể chuẩn hệ màu ----
+CAINOS = ROOT / 'assets' / 'tiles' / 'cainos'
+
+
+@lru_cache(maxsize=None)
+def cainos(name: str) -> Image.Image:
+    return Image.open(CAINOS / f'{name}.png').convert('RGBA')
+
+
+def cainos_tile(name, c, r, w=1, h=1):
+    return cainos(name).crop((c * TS, r * TS, (c + w) * TS, (r + h) * TS))
+
+
+def cainos_grass(rng, flowers=0.12):
+    """Một ô cỏ Cainos: 16 ô trơn (0..3,0..3), 16 ô có hoa (4..7,0..3)."""
+    if rng.random() < flowers:
+        return cainos_tile('grass', 4 + rng.randrange(4), rng.randrange(4))
+    return cainos_tile('grass', rng.randrange(4), rng.randrange(4))
 
 
 def tile(b, tx, ty):
@@ -164,31 +194,30 @@ def _tree(canopy: Image.Image, trunk: Image.Image, overlap=34) -> Image.Image:
 
 
 def env_sprites() -> dict[str, Image.Image]:
-    """Vật thể có xếp lớp theo y trong game (cây, bụi, đá, gỗ, lều, củi)."""
+    """Vật thể xếp lớp theo y trong game. Cây tán tròn, bụi, đá, thùng, biển: Cainos (giữ nguyên màu, là chuẩn);
+    thông, gỗ đổ, lều, củi, gốc cây: LPC đã kéo về hệ màu Cainos."""
+    from maps.grade import cainos_grade
     con = sheet('conifers.png')
     pla = sheet('plants.png')
     out = sheet('Outside Objects.png')
-    ter = sheet('Terrain and Outside.png')
     s = {}
-    # hai cỡ cây thống nhất: thông 154–189 px và tán tròn ~118 px (bỏ thông 216 px và cây nhỏ 45–60 px cho đồng bộ tỷ lệ)
     for i, b in enumerate([(391, 2, 473, 191), (487, 2, 561, 160), (302, 3, 376, 157)]):
-        s[f'conifer-{i}'] = con.crop(b)
-    # cây tán tròn: 2 tán × 2 thân (Outside Objects)
-    canopies = [comp_at(out, 240, 50), comp_at(out, 335, 50)]
-    trunks = [comp_at(out, 45, 490), comp_at(out, 140, 490)]
-    for i, (c, t) in enumerate(((0, 0), (1, 1), (0, 1), (1, 0))):
-        s[f'tree-{i}'] = _tree(canopies[c], trunks[t])
-    for i, b in enumerate([(192, 704, 256, 756), (256, 704, 320, 756), (192, 776, 256, 820), (256, 776, 320, 820)]):
-        s[f'bush-{i}'] = pla.crop(b)
-    # đá (Terrain and Outside): đá dựng xám, đá trắng, đá nâu
-    s['rock-0'] = comp_at(ter, 1000, 640)
-    white, brown = _split_v(comp_at(ter, 975, 545))
-    s['rock-1'] = white
-    s['rock-2'] = brown
-    s['log-fallen'] = comp_at(pla, 60, 880)
-    s['tent'] = comp_at(out, 60, 790)
-    s['logs'] = comp_at(out, 420, 470)
-    s['stump'] = pla.crop((0, 760, 64, 820))
+        s[f'conifer-{i}'] = cainos_grade(con.crop(b))
+    plant = cainos('plant')
+    for i in range(3):
+        s[f'tree-{i}'] = plant.crop((i * 128, 0, i * 128 + 128, 160))
+    for i, (x0, x1) in enumerate(((32, 64), (96, 128), (160, 224), (224, 288), (288, 352), (352, 416))):
+        s[f'bush-{i}'] = plant.crop((x0, 192, x1, 224))
+    props = cainos('props')
+    for i in range(6):
+        s[f'rock-{i}'] = props.crop((i * 32, 480, i * 32 + 32, 512))
+    s['rock-big'] = props.crop((0, 416, 64, 480))
+    s['barrel'] = props.crop((160, 160, 192, 224))
+    s['sign'] = props.crop((96, 160, 128, 224))
+    s['log-fallen'] = cainos_grade(comp_at(pla, 60, 880))
+    s['tent'] = cainos_grade(comp_at(out, 60, 790))
+    s['logs'] = cainos_grade(comp_at(out, 420, 470))
+    s['stump'] = cainos_grade(pla.crop((0, 760, 64, 820)))
     return s
 
 
@@ -206,4 +235,9 @@ def ground_decor() -> dict[str, Image.Image]:
     s['lily'] = comp_at(pla, 80, 510)
     s['grass-tall-0'] = ter.crop((0, 736, 64, 800))
     s['grass-tall-1'] = ter.crop((64, 736, 128, 800))
+    from maps.grade import cainos_grade
+    s = {k: cainos_grade(v) for k, v in s.items()}
+    plant = cainos('plant')
+    for i in range(16):
+        s[f'tuft-{i}'] = plant.crop(((i % 4) * 32, 384 + (i // 4) * 32, (i % 4) * 32 + 32, 384 + (i // 4) * 32 + 32))
     return s

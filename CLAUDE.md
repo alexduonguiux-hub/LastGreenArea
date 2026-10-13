@@ -16,6 +16,7 @@ Game chiến thuật ẩn nấp góc nhìn 3/4 (top-down), pixel art, tiếng Vi
   nền #080A10 lưới ô, khung #121620 có vạch quét, viền #186078, vạch thước #3EECFF, bảng tên hình bình hành
   #6E144A mép #FF3AA8, LED đỏ/vàng/xanh, ô có ngoặc góc, ô đang chọn ngoặc tím hồng.
 - **Chữ**: Be Vietnam Pro (`assets/fonts/`, OFL). Chữ pixel nhỏ làm mất dấu tiếng Việt → luôn vẽ chữ ở độ phân giải hiển thị.
+- **Hệ màu thế giới chốt theo Cainos** (`assets/tiles/cainos/`, ô-liu + teal xám + bóng ấm): tile Cainos giữ nguyên màu, mọi sprite nguồn khác phải qua `art/maps/grade.py:cainos_grade` trước khi vào atlas.
 - **Ghi công bắt buộc**: sprite nhân vật/Biến Thể và tile lấy từ Liberated Pixel Cup (CC-BY-SA 3.0 / GPL 3.0). Xem `docs/CREDITS.md`.
 
 ## Art bằng code trên ma trận (từ A1)

@@ -15,7 +15,7 @@ import random
 from PIL import Image, ImageDraw
 
 from maps import lpc
-from maps.grade import grade, rays
+from maps.grade import cainos_grade, rays
 
 MW, MH = 50, 30
 TS = lpc.TS
@@ -105,23 +105,28 @@ def draw_bridge(img: Image.Image):
 def build(env: dict[str, Image.Image]):
     rng = random.Random(11)
     img = Image.new('RGBA', (W, H))
-    full = [[True] * MW for _ in range(MH)]
-    lpc.autotile(img, full, 'grass', rng)
+    # nền: cỏ Cainos (chuẩn hệ màu), hoa thưa; đường đất và nước là terrain-v7 đã kéo về hệ màu Cainos (khối -c)
     water, dirt, dark, sun = masks()
-    lpc.autotile(img, dark, 'forest', rng)
-    lpc.autotile(img, dirt, 'dirt', rng)
+    for ty in range(MH):
+        for tx in range(MW):
+            img.alpha_composite(lpc.cainos_grass(rng, 0.10), (tx * TS, ty * TS))
+    lpc.autotile(img, dirt, 'dirt-c', rng)
     # nước: lớp riêng 3 khung (ô lõi cuộn dọc = sóng trôi), khung 0 cũng in vào nền
     water_frames = []
     for k in range(3):
         wl = Image.new('RGBA', (W, H))
         # ô lõi có vệt sóng (hàng 5 của khối), cuộn dọc 11 px mỗi khung → sóng trôi xuôi dòng
         # viền bờ nâu của terrain-v7 (như moodboard); lõi: ô sóng cùng khối, cuộn dọc 11 px mỗi khung
-        lpc.autotile(wl, water, 'water', random.Random(1), interior=lambda x, y, k=k: lpc.roll_v(lpc.tile('water', (x + y) % 3, 5), k * 11))
+        lpc.autotile(wl, water, 'water-c', random.Random(1), interior=lambda x, y, k=k: lpc.roll_v(lpc.tile('water-c', (x + y) % 3, 5), k * 11))
         water_frames.append(wl)
     img.alpha_composite(water_frames[0])
-    bridge = draw_bridge(img)
+    # cầu vẽ bằng code vào lớp riêng rồi kéo về hệ màu Cainos; lớp nước nằm trên nền nên cũng mang cầu
+    bridge_layer = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+    bridge = draw_bridge(bridge_layer)
+    bridge_layer = cainos_grade(bridge_layer)
+    img.alpha_composite(bridge_layer)
     for wl in water_frames:
-        draw_bridge(wl)  # lớp nước nằm trên nền nên phải mang cả cầu
+        wl.alpha_composite(bridge_layer)
 
     def blocked_tile(x, y, pad=1):
         tx, ty = int(x // TS), int(y // TS)
@@ -161,7 +166,7 @@ def build(env: dict[str, Image.Image]):
         if any(math.hypot(x - px, (y - py) * 1.4) < mind for px, py in placed):
             continue
         # hai cỡ cây: thông (rừng dày nhiều thông hơn) và tán tròn như moodboard
-        kind = rng.choice(['conifer-0', 'conifer-1', 'conifer-2']) if rng.random() < (0.5 if dense else 0.35) else rng.choice(['tree-0', 'tree-1', 'tree-2', 'tree-3'])
+        kind = rng.choice(['conifer-0', 'conifer-1', 'conifer-2']) if rng.random() < (0.5 if dense else 0.3) else rng.choice(['tree-0', 'tree-1', 'tree-2'])
         im = env[kind]
         if covers_path(x, y, min(im.width, 56), im.height * 0.8):
             continue
@@ -184,11 +189,11 @@ def build(env: dict[str, Image.Image]):
             continue
         placed.append((x, y))
         bushes += 1
-        objects.append((y, f'env/bush-{rng.randrange(4)}', int(x), int(y)))
+        objects.append((y, f'env/bush-{rng.randrange(6)}', int(x), int(y)))
     # bụi nấp cố định cho bài học: trước đầu cầu tây và cạnh đường rừng
     for i, (x, y) in enumerate(((bridge[0] - 70, bridge[3] + 40), (bridge[0] - 150, bridge[1] - 30), (760, 470), (690, 560), (bridge[2] + 60, bridge[3] + 50),
                                 (760, 540), (826, 520), (700, 480), (1200, 430), (1262, 326), (1392, 270), (1462, 214), (1120, 548))):
-        objects.append((y, f'env/bush-{i % 4}', int(x), int(y)))  # bụi núp có chủ ý: lối tiếp cận cầu và lối ra
+        objects.append((y, f'env/bush-{i % 6}', int(x), int(y)))  # bụi núp có chủ ý: lối tiếp cận cầu và lối ra
     # đá và gỗ đổ: vật cản nhỏ rải trong rừng và ven đường, không đè đường/nước
     rocks = 0
     tries = 0
@@ -199,7 +204,7 @@ def build(env: dict[str, Image.Image]):
             continue
         if any(math.hypot(x - px, (y - py) * 1.4) < 40 for px, py in placed):
             continue
-        kind = 'log-fallen' if rocks % 4 == 3 else rng.choice(['rock-0', 'rock-1', 'rock-2'])
+        kind = 'log-fallen' if rocks % 4 == 3 else 'rock-big' if rocks % 4 == 1 else rng.choice(['rock-0', 'rock-1', 'rock-2', 'rock-3', 'rock-4', 'rock-5'])
         placed.append((x, y))
         rocks += 1
         objects.append((y, f'env/{kind}', int(x), int(y)))
@@ -290,12 +295,18 @@ def build(env: dict[str, Image.Image]):
         for wl in water_frames:
             wl.alpha_composite(lily, (int(x - lily.width / 2), int(y - lily.height)))
 
-    ground = rays(grade(img))
+    # bụi cỏ Cainos rải trên nền
+    for _ in range(140):
+        x, y = rng.uniform(10, W - 10), rng.uniform(10, H - 10)
+        if blocked_tile(x, y, 0):
+            continue
+        paste(f'tuft-{rng.randrange(16)}', x, y)
+    ground = rays(img, 0.22)  # không split-tone nữa: màu đã theo Cainos; chỉ vệt nắng nhẹ
     # hộp nước (ô) → dải khung ngang; nền in lại khung 0 đã grade (không vệt nắng dither trên mặt nước)
     wx = [x for y in range(MH) for x in range(MW) if water[y][x]]
     wy = [y for y in range(MH) for x in range(MW) if water[y][x]]
     wbox = (min(wx) * TS, min(wy) * TS, (max(wx) + 1) * TS, (max(wy) + 1) * TS)
-    frames = [grade(wl.crop(wbox)) for wl in water_frames]
+    frames = [wl.crop(wbox) for wl in water_frames]
     fw, fh = frames[0].size
     water_strip = Image.new('RGBA', (fw * len(frames), fh))
     for k, fr in enumerate(frames):
