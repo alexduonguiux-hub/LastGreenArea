@@ -64,7 +64,9 @@ def masks():
                 on = True
             if math.hypot(cx - CAMP[0], (cy - CAMP[1]) * 1.25) < 2.2:
                 on = True  # sân trại
-            dirt[y][x] = on and not water[y][x]
+            # dải đất ven suối: ô kề nước thành đất để bờ chuyển nước → đất → cỏ (không chạm thẳng vào cỏ)
+            shore = any(0 <= x + dx < MW and 0 <= y + dy < MH and water[y + dy][x + dx] for dx in (-1, 0, 1) for dy in (-1, 0, 1))
+            dirt[y][x] = (on or shore) and not water[y][x]
     rng = random.Random(5)
     # mảng cỏ tối (dưới tán rừng dày, khu 2 và rìa bản đồ) và mảng nắng (gần trại, ven suối)
     dark = [[False] * MW for _ in range(MH)]
@@ -185,8 +187,9 @@ def build(env: dict[str, Image.Image]):
         bushes += 1
         objects.append((y, f'env/bush-{rng.randrange(4)}', int(x), int(y)))
     # bụi nấp cố định cho bài học: trước đầu cầu tây và cạnh đường rừng
-    for (x, y) in ((bridge[0] - 70, bridge[3] + 40), (bridge[0] - 150, bridge[1] - 30), (760, 470), (690, 560), (bridge[2] + 60, bridge[3] + 50)):
-        objects.append((y, 'env/bush-1', int(x), int(y)))
+    for i, (x, y) in enumerate(((bridge[0] - 70, bridge[3] + 40), (bridge[0] - 150, bridge[1] - 30), (760, 470), (690, 560), (bridge[2] + 60, bridge[3] + 50),
+                                (760, 540), (826, 520), (700, 480), (1200, 430), (1262, 326), (1392, 270), (1462, 214), (1120, 548))):
+        objects.append((y, f'env/bush-{i % 4}', int(x), int(y)))  # bụi núp có chủ ý: lối tiếp cận cầu và lối ra
     # đá và gỗ đổ: vật cản nhỏ rải trong rừng và ven đường, không đè đường/nước
     rocks = 0
     tries = 0
@@ -258,40 +261,7 @@ def build(env: dict[str, Image.Image]):
         im = decor[name]
         img.alpha_composite(im, (int(x - im.width / 2), int(y - im.height)))
 
-    # cỏ cao: mảng 64×64 đặt có chủ ý ở lối tiếp cận cầu (lấp khoảng trống giữa các bụi) và ven lối ra, cộng ngẫu nhiên trong rừng
-    patches = [(760, 528), (826, 508), (700, 468), (1200, 420), (1262, 318), (1392, 262), (1462, 206), (1120, 540)]
-    tries = 0
-    while tries < 4000 and len(patches) < 12:
-        tries += 1
-        x, y = rng.uniform(40, W - 40), rng.uniform(40, H - 40)
-        tx, ty = int(x // TS), int(y // TS)
-        if water[ty][tx] or dirt[ty][tx] or any(math.hypot(x - kx, y - ky) < 110 for kx, ky in keep):
-            continue
-        if any(math.hypot(x - px, y - py) < 120 for px, py in patches):
-            continue
-        patches.append((int(x), int(y)))
-    # mỗi mảng = nhiều cụm cỏ rải trong hình elip (mép tự nhiên, không cắt vuông); ô lưới trong lõi elip thành 'o'
-    for (x, y) in patches:
-        rx, ry = 36, 24
-        clumps = []
-        for _ in range(60):
-            if len(clumps) >= 16:
-                break
-            u, v = rng.uniform(-1, 1), rng.uniform(-1, 1)
-            if u * u + v * v > 1:
-                continue
-            cx_, cy_ = x + u * rx, y + v * ry
-            tx, ty = int(cx_ // TS), int(cy_ // TS)
-            if not (0 <= tx < MW and 0 <= ty < MH) or water[ty][tx] or dirt[ty][tx]:
-                continue
-            clumps.append((cx_, cy_ + 14))
-        for (cx_, cy_) in sorted(clumps, key=lambda c: c[1]):
-            paste('reeds', cx_, cy_)
-        for gy in range(int((y - ry) // CELL), int((y + ry) // CELL) + 1):
-            for gx in range(int((x - rx) // CELL), int((x + rx) // CELL) + 1):
-                px_, py_ = gx * CELL + 8, gy * CELL + 8
-                if ((px_ - x) / (rx - 4)) ** 2 + ((py_ - y) / (ry - 4)) ** 2 <= 1 and not dirt[py_ // TS][px_ // TS]:
-                    fill(px_, py_, px_, py_, 'o')
+    # (cụm cỏ cao đã bỏ theo góp ý: màu xanh sáng lạc tông; chỗ núp dùng bụi cây thường ở phần vật thể)
     # hoa ven đường mòn, nấm trong rừng dày, sậy và súng ven suối
     for _ in range(24):
         x, y = rng.uniform(10, W - 10), rng.uniform(10, H - 10)
@@ -306,9 +276,9 @@ def build(env: dict[str, Image.Image]):
     for _ in range(220):
         x, y = rng.uniform(10, W - 10), rng.uniform(10, H - 10)
         tx, ty = int(x // TS), int(y // TS)
-        if water[ty][tx] or dirt[ty][tx] or not near_water(tx, ty):
+        if water[ty][tx] or not near_water(tx, ty):
             continue
-        paste(rng.choice(['reeds', 'reeds', 'cattail']), x, y)
+        paste('cattail', x, y)
     # súng: in vào cả 3 khung nước, chỉ khi cả bốn góc lá nằm trong nước (không cắt bờ), tránh gầm cầu
     lily = decor['lily']
     for _ in range(300):
