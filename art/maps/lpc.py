@@ -24,19 +24,40 @@ def block(c, r):
 
 
 # Khối địa hình trong terrain-v7.png: mỗi khối 3×7 tile (lõi + viền chuyển tiếp)
-BLK = {'forest': block(2, 1), 'grass': block(0, 1), 'sun': block(1, 1), 'dirt': block(1, 0), 'water': block(1, 2)}
+BLK = {'forest': block(2, 1), 'grass': block(0, 1), 'sun': block(1, 1), 'dirt': block(1, 0), 'water-t7': block(1, 2)}
+
+
+@lru_cache(maxsize=None)
+def water_block() -> Image.Image:
+    """Khối 3×7 tổng hợp cho 'water': bộ "nước trong cỏ" 3×3 + 2×2 của Terrain and Outside (mép cỏ phủ lên nước,
+    bờ nâu chỉ lộ ở cạnh trên/dưới) xếp theo bố cục autotile: hàng 0–1 cột 1–2 góc lõm, hàng 2–4 viền 3×3, hàng 5 ô lõi."""
+    ter = sheet('Terrain and Outside.png')
+    blk = Image.new('RGBA', (96, 224), (0, 0, 0, 0))
+    blk.paste(ter.crop((480, 576, 544, 640)), (32, 0))
+    blk.paste(ter.crop((480, 640, 576, 736)), (0, 64))
+    for i in range(3):
+        blk.paste(ter.crop((512, 672, 544, 704)), (i * 32, 160))
+    return blk
+
+
+def _src(b):
+    """(ảnh, x0, y0) của khối b: khối tổng hợp hoặc khối trong terrain-v7."""
+    if b == 'water':
+        return water_block(), 0, 0
+    x0, y0 = BLK[b]
+    return sheet('terrain-v7.png'), x0, y0
 
 
 def tile(b, tx, ty):
-    x0, y0 = BLK[b]
-    return sheet('terrain-v7.png').crop((x0 + tx * TS, y0 + ty * TS, x0 + tx * TS + TS, y0 + ty * TS + TS))
+    im, x0, y0 = _src(b)
+    return im.crop((x0 + tx * TS, y0 + ty * TS, x0 + tx * TS + TS, y0 + ty * TS + TS))
 
 
 def quad(b, tx, ty, qx, qy):
-    x0, y0 = BLK[b]
+    im, x0, y0 = _src(b)
     x = x0 + tx * TS + qx * Q
     y = y0 + ty * TS + qy * Q
-    return sheet('terrain-v7.png').crop((x, y, x + Q, y + Q))
+    return im.crop((x, y, x + Q, y + Q))
 
 
 def roll_v(im: Image.Image, dy: int) -> Image.Image:

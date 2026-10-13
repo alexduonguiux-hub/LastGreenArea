@@ -31,7 +31,7 @@ EXIT = (47.5, 3.0)
 
 
 def river_x(y):
-    return RIVER_X0 + 0.9 * math.sin(y / 3.2)
+    return RIVER_X0 + 0.6 * math.sin(y / 4.5)  # uốn nhẹ: ít bậc thang ở mép tile 32 px
 
 
 def forest_path_y(x):
@@ -64,9 +64,7 @@ def masks():
                 on = True
             if math.hypot(cx - CAMP[0], (cy - CAMP[1]) * 1.25) < 2.2:
                 on = True  # sân trại
-            # dải đất ven suối: ô kề nước thành đất để bờ chuyển nước → đất → cỏ (không chạm thẳng vào cỏ)
-            shore = any(0 <= x + dx < MW and 0 <= y + dy < MH and water[y + dy][x + dx] for dx in (-1, 0, 1) for dy in (-1, 0, 1))
-            dirt[y][x] = (on or shore) and not water[y][x]
+            dirt[y][x] = on and not water[y][x]
     rng = random.Random(5)
     # mảng cỏ tối (dưới tán rừng dày, khu 2 và rìa bản đồ) và mảng nắng (gần trại, ven suối)
     dark = [[False] * MW for _ in range(MH)]
@@ -117,7 +115,8 @@ def build(env: dict[str, Image.Image]):
     for k in range(3):
         wl = Image.new('RGBA', (W, H))
         # ô lõi có vệt sóng (hàng 5 của khối), cuộn dọc 11 px mỗi khung → sóng trôi xuôi dòng
-        lpc.autotile(wl, water, 'water', random.Random(1), interior=lambda x, y, k=k: lpc.roll_v(lpc.tile('water', (x + y) % 3, 5), k * 11))
+        # viền: bộ "nước trong cỏ" (lpc.water_block); lõi: ô sóng của terrain-v7 (cùng màu nền), cuộn dọc 11 px mỗi khung
+        lpc.autotile(wl, water, 'water', random.Random(1), interior=lambda x, y, k=k: lpc.roll_v(lpc.tile('water-t7', (x + y) % 3, 5), k * 11))
         water_frames.append(wl)
     img.alpha_composite(water_frames[0])
     bridge = draw_bridge(img)
@@ -281,7 +280,7 @@ def build(env: dict[str, Image.Image]):
         paste('cattail', x, y)
     # súng: in vào cả 3 khung nước, chỉ khi cả bốn góc lá nằm trong nước (không cắt bờ), tránh gầm cầu
     lily = decor['lily']
-    for _ in range(300):
+    for _ in range(90):
         x, y = rng.uniform(10, W - 10), rng.uniform(10, H - 10)
         if abs(y - BRIDGE_TY * TS) < 70:
             continue
