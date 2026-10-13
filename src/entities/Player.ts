@@ -61,7 +61,7 @@ export class Player extends Actor {
     if (s === this.stance) return;
     this.stance = s;
     this.current = '';
-    this.playAnim(s === 'bo' ? 'bo-nup' : 'di-sang-trai');
+    this.playAnim(s === 'bo' ? 'bo-nup' : s === 'khom' ? 'khom-trai' : 'di-sang-trai');
     this.idle();
   }
 
@@ -141,6 +141,11 @@ export class Player extends Actor {
       return;
     }
     const vertical = Math.abs(ay) > Math.abs(ax) * 1.2;
+    if (this.stance === 'khom') {
+      // hoạt ảnh khom dẫn xuất bằng code từ khung đi (art/legacy_import.crouch_anims)
+      this.playAnim(vertical && ay < 0 ? 'khom-len' : vertical && ay > 0 ? 'khom-xuong' : 'khom-trai');
+      return;
+    }
     if (vertical && ay < 0) {
       // "Đi lên" chưa có trong sheet bàn giao (A2 sẽ sinh); tạm dùng "Chạy lên" chậm lại.
       if (!this.playAnim('di-len')) this.playAnim('chay-len', { frameRate: run ? 12 : 6 });

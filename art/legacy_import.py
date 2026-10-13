@@ -44,6 +44,7 @@ class Importer:
         self.m = matrix
         self.anims = {}  # anim_id -> dict
         self.log = []
+        self.frames = {}  # anim_id -> [Image] (để sinh pose dẫn xuất)
 
     # ---- tiện ích -----------------------------------------------------
     def _sheet(self, rel: str):
@@ -67,11 +68,14 @@ class Importer:
             group = group_of(actor)
             aid = f'{group}/{slug(anim)}'
             ids = []
+            imgs = []
             for i in range(n):
                 fr = sheet.crop((i * fw, r * fh, i * fw + fw, r * fh + fh))
                 fid = f'{aid}/{i}'
                 self.m.place(fid, fr, zone_of(actor), group, anchor)
                 ids.append(fid)
+                imgs.append(fr)
+            self.frames[aid] = imgs
             self._anim(aid, anim, actor, ids, anchor, source=source)
 
     # ---- nhóm ---------------------------------------------------------
@@ -87,6 +91,34 @@ class Importer:
         for name in ('anim_core', 'anim_more', 'anim_actions'):
             meta = json.load(open(DATA / f'{name}.json', encoding='utf-8'))['meta']
             self._rows(self._sheet(f'characters/{name}.png'), meta, group_of, zone_of, seen=seen, source=name)
+
+    # ---- pose dẫn xuất bằng code ---------------------------------------
+    @staticmethod
+    def crouch(fr, hip=46, foot=61, legs_h=8):
+        """Khom: ép phần chân (hip→foot) còn legs_h px rồi hạ thân xuống; chân vẫn ở y=60."""
+        out = Image.new('RGBA', (64, 64), (0, 0, 0, 0))
+        shift = (foot - hip) - legs_h
+        out.alpha_composite(fr.crop((0, 0, 64, hip)), (0, shift))
+        out.alpha_composite(fr.crop((0, hip, 64, foot)).resize((64, legs_h), Image.NEAREST), (0, hip + shift))
+        out.alpha_composite(fr.crop((0, foot, 64, 64)), (0, foot))
+        return out
+
+    def crouch_anims(self):
+        """Tư thế Khom cho 4 nhân vật: khom-trai, khom-xuong, khom-len dẫn xuất từ đi trái, đi xuống, chạy lên."""
+        for name in MAIN:
+            g = f'char/{slug(name)}'
+            for src, dst, label in (('di-sang-trai', 'khom-trai', 'Khom đi trái'), ('di-xuong', 'khom-xuong', 'Khom đi xuống'), ('chay-len', 'khom-len', 'Khom đi lên')):
+                imgs = self.frames.get(f'{g}/{src}')
+                if not imgs:
+                    self.log.append(f'thiếu {g}/{src} để sinh {dst}')
+                    continue
+                aid = f'{g}/{dst}'
+                ids = []
+                for i, fr in enumerate(imgs):
+                    fid = f'{aid}/{i}'
+                    self.m.place(fid, self.crouch(fr), 'char', g, FOOT)
+                    ids.append(fid)
+                self._anim(aid, label, name, ids, FOOT, fps=8, loop=True, source='derived:crouch')
 
     def wanderer(self):
         sheet = self._sheet('enemies/wanderer_walk_knockdown.png')
@@ -150,6 +182,7 @@ class Importer:
 
     def all(self):
         self.characters()
+        self.crouch_anims()
         self.wanderer()
         self.zombies()
         self.npcs()

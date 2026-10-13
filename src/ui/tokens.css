@@ -101,8 +101,8 @@ body {
 .hud-team { left: calc(var(--px) * 10); bottom: calc(var(--px) * 10); }
 .hud-cards { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--px) * 3); margin-top: calc(var(--px) * 3); }
 .hud-card { display: flex; gap: calc(var(--px) * 3); align-items: center; width: calc(var(--px) * 118); padding: calc(var(--px) * 2) calc(var(--px) * 4); }
-.hud-card .pf { width: calc(var(--px) * 24); height: calc(var(--px) * 30); overflow: hidden; display: flex; align-items: flex-end; justify-content: center; background: var(--slot); flex: none; }
-.hud-card .pf canvas { image-rendering: pixelated; width: calc(var(--px) * 48); height: auto; margin-bottom: calc(var(--px) * -2); }
+.hud-card .pf { width: calc(var(--px) * 26); height: calc(var(--px) * 30); overflow: hidden; display: flex; align-items: flex-start; justify-content: center; background: var(--slot); flex: none; }
+.hud-card .pf canvas { image-rendering: pixelated; height: auto; margin-top: calc(var(--px) * -1); }
 .hud-card .nm { font-size: calc(var(--px) * 6); font-weight: 600; }
 .hud-card .nm b { color: var(--tick); }
 .hud-card .bar { display: flex; align-items: center; gap: calc(var(--px) * 3); font-size: calc(var(--px) * 5); color: var(--dim); margin-top: calc(var(--px) * 1); }

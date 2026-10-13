@@ -1552,6 +1552,258 @@
   ],
   "source": "anim_actions"
  },
+ "char/duong/khom-trai": {
+  "name": "Khom đi trái",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/khom-trai/0",
+   "char/duong/khom-trai/1",
+   "char/duong/khom-trai/2",
+   "char/duong/khom-trai/3",
+   "char/duong/khom-trai/4",
+   "char/duong/khom-trai/5",
+   "char/duong/khom-trai/6",
+   "char/duong/khom-trai/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/duong/khom-xuong": {
+  "name": "Khom đi xuống",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/khom-xuong/0",
+   "char/duong/khom-xuong/1",
+   "char/duong/khom-xuong/2",
+   "char/duong/khom-xuong/3",
+   "char/duong/khom-xuong/4",
+   "char/duong/khom-xuong/5",
+   "char/duong/khom-xuong/6",
+   "char/duong/khom-xuong/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/duong/khom-len": {
+  "name": "Khom đi lên",
+  "actor": "Dương",
+  "frames": [
+   "char/duong/khom-len/0",
+   "char/duong/khom-len/1",
+   "char/duong/khom-len/2",
+   "char/duong/khom-len/3",
+   "char/duong/khom-len/4",
+   "char/duong/khom-len/5",
+   "char/duong/khom-len/6",
+   "char/duong/khom-len/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/hung/khom-trai": {
+  "name": "Khom đi trái",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/khom-trai/0",
+   "char/hung/khom-trai/1",
+   "char/hung/khom-trai/2",
+   "char/hung/khom-trai/3",
+   "char/hung/khom-trai/4",
+   "char/hung/khom-trai/5",
+   "char/hung/khom-trai/6",
+   "char/hung/khom-trai/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/hung/khom-xuong": {
+  "name": "Khom đi xuống",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/khom-xuong/0",
+   "char/hung/khom-xuong/1",
+   "char/hung/khom-xuong/2",
+   "char/hung/khom-xuong/3",
+   "char/hung/khom-xuong/4",
+   "char/hung/khom-xuong/5",
+   "char/hung/khom-xuong/6",
+   "char/hung/khom-xuong/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/hung/khom-len": {
+  "name": "Khom đi lên",
+  "actor": "Hùng",
+  "frames": [
+   "char/hung/khom-len/0",
+   "char/hung/khom-len/1",
+   "char/hung/khom-len/2",
+   "char/hung/khom-len/3",
+   "char/hung/khom-len/4",
+   "char/hung/khom-len/5",
+   "char/hung/khom-len/6",
+   "char/hung/khom-len/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/ny/khom-trai": {
+  "name": "Khom đi trái",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/khom-trai/0",
+   "char/ny/khom-trai/1",
+   "char/ny/khom-trai/2",
+   "char/ny/khom-trai/3",
+   "char/ny/khom-trai/4",
+   "char/ny/khom-trai/5",
+   "char/ny/khom-trai/6",
+   "char/ny/khom-trai/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/ny/khom-xuong": {
+  "name": "Khom đi xuống",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/khom-xuong/0",
+   "char/ny/khom-xuong/1",
+   "char/ny/khom-xuong/2",
+   "char/ny/khom-xuong/3",
+   "char/ny/khom-xuong/4",
+   "char/ny/khom-xuong/5",
+   "char/ny/khom-xuong/6",
+   "char/ny/khom-xuong/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/ny/khom-len": {
+  "name": "Khom đi lên",
+  "actor": "Ny",
+  "frames": [
+   "char/ny/khom-len/0",
+   "char/ny/khom-len/1",
+   "char/ny/khom-len/2",
+   "char/ny/khom-len/3",
+   "char/ny/khom-len/4",
+   "char/ny/khom-len/5",
+   "char/ny/khom-len/6",
+   "char/ny/khom-len/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/son/khom-trai": {
+  "name": "Khom đi trái",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/khom-trai/0",
+   "char/son/khom-trai/1",
+   "char/son/khom-trai/2",
+   "char/son/khom-trai/3",
+   "char/son/khom-trai/4",
+   "char/son/khom-trai/5",
+   "char/son/khom-trai/6",
+   "char/son/khom-trai/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/son/khom-xuong": {
+  "name": "Khom đi xuống",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/khom-xuong/0",
+   "char/son/khom-xuong/1",
+   "char/son/khom-xuong/2",
+   "char/son/khom-xuong/3",
+   "char/son/khom-xuong/4",
+   "char/son/khom-xuong/5",
+   "char/son/khom-xuong/6",
+   "char/son/khom-xuong/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
+ "char/son/khom-len": {
+  "name": "Khom đi lên",
+  "actor": "Sơn",
+  "frames": [
+   "char/son/khom-len/0",
+   "char/son/khom-len/1",
+   "char/son/khom-len/2",
+   "char/son/khom-len/3",
+   "char/son/khom-len/4",
+   "char/son/khom-len/5",
+   "char/son/khom-len/6",
+   "char/son/khom-len/7"
+  ],
+  "fps": 8,
+  "loop": true,
+  "anchor": [
+   32,
+   60
+  ],
+  "source": "derived:crouch"
+ },
  "enemy/ke-lang-thang/le-buoc-trai": {
   "name": "Lê bước trái",
   "actor": "Kẻ Lang Thang",

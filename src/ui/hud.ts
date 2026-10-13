@@ -167,7 +167,11 @@ export class Hud {
         .join('');
       s.members.forEach((m, i) => {
         const pf = cards.querySelector<HTMLElement>(`[data-i="${i}"] .pf`)!;
-        if (m.portrait) pf.appendChild(m.portrait);
+        if (m.portrait) {
+          // canvas chân dung vẽ ở ×2: hiển thị đúng 1 px game = --px
+          m.portrait.style.width = `calc(var(--px) * ${m.portrait.width / 2})`;
+          pf.appendChild(m.portrait);
+        }
       });
       this.teamBuilt = true;
     }

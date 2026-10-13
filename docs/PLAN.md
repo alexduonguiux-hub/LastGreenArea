@@ -257,6 +257,7 @@ Tổng giai đoạn A: **~11 ngày làm việc**.
 - [x] Di chuyển trượt dọc tường; 3 tư thế Đứng / Khom / Bò (58 / 34 / 18 px/s), chạy 96.
 - [x] Y-sort actor và vật thể môi trường bằng depth = y chân; debug overlay F3 vẽ lưới va chạm (nón nhìn, vòng tiếng động thêm ở B2).
 - [ ] Hoạt ảnh "Đi lên" (việc A2, cần clone LPC); tạm dùng "Chạy lên" chậm.
+- [x] Tư thế Khom có hoạt ảnh riêng: `khom-trai`, `khom-xuong`, `khom-len` dẫn xuất bằng code từ khung đi (ép chân, hạ thân) trong `art/legacy_import.crouch_anims`; A2 thay bằng pose LPC thật nếu cần.
 
 **Nghiệm thu (đạt 2026-10-12, trừ "Đi lên")**: đi hết 4 khu trong build Chromium, không lọt nước, cầu là lối duy nhất (test), cây và bụi che người theo depth.
 

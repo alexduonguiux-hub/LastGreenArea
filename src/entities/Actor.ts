@@ -11,7 +11,10 @@ import { animId } from '../core/anims';
 export class Actor extends Phaser.GameObjects.Sprite {
   readonly actorId: string;
   face: 1 | -1 = -1;
+  /** id hoạt ảnh đang phát; rỗng khi đứng yên */
   current = '';
+  /** id hoạt ảnh phát gần nhất (để biết đang đứng yên theo tư thế nào) */
+  lastAnim = '';
 
   constructor(scene: Phaser.Scene, actorId: string, x: number, y: number, firstAnim: string) {
     super(scene, x, y, ATLAS, `${animId(actorId, firstAnim)}/0`);
@@ -34,11 +37,13 @@ export class Actor extends Phaser.GameObjects.Sprite {
     return this.scene.anims.exists(animId(this.actorId, anim));
   }
 
-  /** Dừng ở khung đầu của hoạt ảnh hiện tại (đứng yên). */
+  /** Dừng ở khung đầu của hoạt ảnh hiện tại (đứng yên). Xóa `current` để lần phát sau khởi động lại được. */
   idle(): void {
     if (!this.current) return;
     this.anims.stop();
     this.setFrame(`${this.current}/0`);
+    this.lastAnim = this.current;
+    this.current = '';
   }
 
   setFace(f: 1 | -1): void {

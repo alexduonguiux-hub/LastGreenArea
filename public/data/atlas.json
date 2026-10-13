@@ -19513,6 +19513,3174 @@
      "group": "char/son"
     },
     {
+     "filename": "char/duong/khom-trai/0",
+     "frame": {
+      "x": 1136,
+      "y": 688,
+      "w": 25,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 21,
+      "w": 25,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      71,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-trai/1",
+     "frame": {
+      "x": 1168,
+      "y": 688,
+      "w": 22,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 20,
+      "w": 22,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      73,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-trai/2",
+     "frame": {
+      "x": 1200,
+      "y": 688,
+      "w": 24,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 20,
+      "w": 24,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      75,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-trai/3",
+     "frame": {
+      "x": 1232,
+      "y": 688,
+      "w": 25,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 20,
+      "w": 25,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      77,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-trai/4",
+     "frame": {
+      "x": 1264,
+      "y": 688,
+      "w": 28,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 21,
+      "w": 28,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      79,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-trai/5",
+     "frame": {
+      "x": 1296,
+      "y": 688,
+      "w": 25,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 20,
+      "w": 25,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      81,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-trai/6",
+     "frame": {
+      "x": 1328,
+      "y": 688,
+      "w": 24,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 20,
+      "w": 24,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      83,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-trai/7",
+     "frame": {
+      "x": 1360,
+      "y": 688,
+      "w": 23,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 20,
+      "w": 23,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      85,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-xuong/0",
+     "frame": {
+      "x": 1392,
+      "y": 688,
+      "w": 30,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      87,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-xuong/1",
+     "frame": {
+      "x": 1424,
+      "y": 688,
+      "w": 30,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      89,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-xuong/2",
+     "frame": {
+      "x": 1456,
+      "y": 688,
+      "w": 29,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 18,
+      "y": 20,
+      "w": 29,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      91,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-xuong/3",
+     "frame": {
+      "x": 1488,
+      "y": 688,
+      "w": 30,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      93,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-xuong/4",
+     "frame": {
+      "x": 1520,
+      "y": 688,
+      "w": 30,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      95,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-xuong/5",
+     "frame": {
+      "x": 1552,
+      "y": 688,
+      "w": 30,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      97,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-xuong/6",
+     "frame": {
+      "x": 1584,
+      "y": 688,
+      "w": 29,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 20,
+      "w": 29,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      99,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-xuong/7",
+     "frame": {
+      "x": 1616,
+      "y": 688,
+      "w": 30,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      101,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-len/0",
+     "frame": {
+      "x": 1648,
+      "y": 688,
+      "w": 24,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 20,
+      "w": 24,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      103,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-len/1",
+     "frame": {
+      "x": 1680,
+      "y": 688,
+      "w": 23,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 21,
+      "w": 23,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      105,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-len/2",
+     "frame": {
+      "x": 1712,
+      "y": 688,
+      "w": 24,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 20,
+      "w": 24,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      107,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-len/3",
+     "frame": {
+      "x": 1744,
+      "y": 688,
+      "w": 25,
+      "h": 46
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 18,
+      "w": 25,
+      "h": 46
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      109,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-len/4",
+     "frame": {
+      "x": 1776,
+      "y": 688,
+      "w": 23,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 20,
+      "w": 23,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      111,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-len/5",
+     "frame": {
+      "x": 1808,
+      "y": 688,
+      "w": 24,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 21,
+      "w": 24,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      113,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-len/6",
+     "frame": {
+      "x": 1840,
+      "y": 688,
+      "w": 23,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 20,
+      "w": 23,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      115,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/duong/khom-len/7",
+     "frame": {
+      "x": 1872,
+      "y": 688,
+      "w": 25,
+      "h": 46
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 18,
+      "w": 25,
+      "h": 46
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      117,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/duong"
+    },
+    {
+     "filename": "char/hung/khom-trai/0",
+     "frame": {
+      "x": 1904,
+      "y": 688,
+      "w": 27,
+      "h": 39
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 23,
+      "w": 27,
+      "h": 39
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      119,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-trai/1",
+     "frame": {
+      "x": 1936,
+      "y": 688,
+      "w": 25,
+      "h": 39
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 22,
+      "w": 25,
+      "h": 39
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      121,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-trai/2",
+     "frame": {
+      "x": 1968,
+      "y": 688,
+      "w": 23,
+      "h": 39
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 23,
+      "y": 22,
+      "w": 23,
+      "h": 39
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      123,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-trai/3",
+     "frame": {
+      "x": 2000,
+      "y": 688,
+      "w": 24,
+      "h": 40
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 22,
+      "y": 22,
+      "w": 24,
+      "h": 40
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      125,
+      43,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-trai/4",
+     "frame": {
+      "x": 0,
+      "y": 752,
+      "w": 28,
+      "h": 39
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 23,
+      "w": 28,
+      "h": 39
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      0,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-trai/5",
+     "frame": {
+      "x": 32,
+      "y": 752,
+      "w": 24,
+      "h": 40
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 23,
+      "y": 22,
+      "w": 24,
+      "h": 40
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      2,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-trai/6",
+     "frame": {
+      "x": 64,
+      "y": 752,
+      "w": 23,
+      "h": 40
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 23,
+      "y": 22,
+      "w": 23,
+      "h": 40
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      4,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-trai/7",
+     "frame": {
+      "x": 96,
+      "y": 752,
+      "w": 23,
+      "h": 40
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 23,
+      "y": 22,
+      "w": 23,
+      "h": 40
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      6,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-xuong/0",
+     "frame": {
+      "x": 128,
+      "y": 752,
+      "w": 32,
+      "h": 40
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 16,
+      "y": 22,
+      "w": 32,
+      "h": 40
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      8,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-xuong/1",
+     "frame": {
+      "x": 160,
+      "y": 752,
+      "w": 32,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 16,
+      "y": 22,
+      "w": 32,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      10,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-xuong/2",
+     "frame": {
+      "x": 192,
+      "y": 752,
+      "w": 30,
+      "h": 40
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 23,
+      "w": 30,
+      "h": 40
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      12,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-xuong/3",
+     "frame": {
+      "x": 224,
+      "y": 752,
+      "w": 30,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 22,
+      "w": 30,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      14,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-xuong/4",
+     "frame": {
+      "x": 256,
+      "y": 752,
+      "w": 32,
+      "h": 40
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 16,
+      "y": 22,
+      "w": 32,
+      "h": 40
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      16,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-xuong/5",
+     "frame": {
+      "x": 288,
+      "y": 752,
+      "w": 32,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 16,
+      "y": 22,
+      "w": 32,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      18,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-xuong/6",
+     "frame": {
+      "x": 320,
+      "y": 752,
+      "w": 30,
+      "h": 40
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 23,
+      "w": 30,
+      "h": 40
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      20,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-xuong/7",
+     "frame": {
+      "x": 352,
+      "y": 752,
+      "w": 30,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 22,
+      "w": 30,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      22,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-len/0",
+     "frame": {
+      "x": 384,
+      "y": 752,
+      "w": 24,
+      "h": 39
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 22,
+      "w": 24,
+      "h": 39
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      24,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-len/1",
+     "frame": {
+      "x": 416,
+      "y": 752,
+      "w": 24,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 22,
+      "w": 24,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      26,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-len/2",
+     "frame": {
+      "x": 448,
+      "y": 752,
+      "w": 23,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 22,
+      "w": 23,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      28,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-len/3",
+     "frame": {
+      "x": 480,
+      "y": 752,
+      "w": 24,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 20,
+      "w": 24,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      30,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-len/4",
+     "frame": {
+      "x": 512,
+      "y": 752,
+      "w": 24,
+      "h": 39
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 22,
+      "w": 24,
+      "h": 39
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      32,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-len/5",
+     "frame": {
+      "x": 544,
+      "y": 752,
+      "w": 24,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 22,
+      "w": 24,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      34,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-len/6",
+     "frame": {
+      "x": 576,
+      "y": 752,
+      "w": 23,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 22,
+      "w": 23,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      36,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/hung/khom-len/7",
+     "frame": {
+      "x": 608,
+      "y": 752,
+      "w": 24,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 20,
+      "w": 24,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      38,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/hung"
+    },
+    {
+     "filename": "char/ny/khom-trai/0",
+     "frame": {
+      "x": 640,
+      "y": 752,
+      "w": 23,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 21,
+      "w": 23,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      40,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-trai/1",
+     "frame": {
+      "x": 672,
+      "y": 752,
+      "w": 22,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 22,
+      "y": 20,
+      "w": 22,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      42,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-trai/2",
+     "frame": {
+      "x": 704,
+      "y": 752,
+      "w": 22,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 22,
+      "y": 20,
+      "w": 22,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      44,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-trai/3",
+     "frame": {
+      "x": 736,
+      "y": 752,
+      "w": 25,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 20,
+      "w": 25,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      46,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-trai/4",
+     "frame": {
+      "x": 768,
+      "y": 752,
+      "w": 27,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 21,
+      "w": 27,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      48,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-trai/5",
+     "frame": {
+      "x": 800,
+      "y": 752,
+      "w": 24,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 22,
+      "y": 20,
+      "w": 24,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      50,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-trai/6",
+     "frame": {
+      "x": 832,
+      "y": 752,
+      "w": 22,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 22,
+      "y": 20,
+      "w": 22,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      52,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-trai/7",
+     "frame": {
+      "x": 864,
+      "y": 752,
+      "w": 22,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 22,
+      "y": 20,
+      "w": 22,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      54,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-xuong/0",
+     "frame": {
+      "x": 896,
+      "y": 752,
+      "w": 28,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 18,
+      "y": 21,
+      "w": 28,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      56,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-xuong/1",
+     "frame": {
+      "x": 928,
+      "y": 752,
+      "w": 27,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 21,
+      "w": 27,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      58,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-xuong/2",
+     "frame": {
+      "x": 960,
+      "y": 752,
+      "w": 25,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 22,
+      "w": 25,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      60,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-xuong/3",
+     "frame": {
+      "x": 992,
+      "y": 752,
+      "w": 28,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 18,
+      "y": 21,
+      "w": 28,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      62,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-xuong/4",
+     "frame": {
+      "x": 1024,
+      "y": 752,
+      "w": 28,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 18,
+      "y": 21,
+      "w": 28,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      64,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-xuong/5",
+     "frame": {
+      "x": 1056,
+      "y": 752,
+      "w": 27,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 18,
+      "y": 21,
+      "w": 27,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      66,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-xuong/6",
+     "frame": {
+      "x": 1088,
+      "y": 752,
+      "w": 25,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 22,
+      "w": 25,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      68,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-xuong/7",
+     "frame": {
+      "x": 1120,
+      "y": 752,
+      "w": 28,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 18,
+      "y": 21,
+      "w": 28,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      70,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-len/0",
+     "frame": {
+      "x": 1152,
+      "y": 752,
+      "w": 22,
+      "h": 40
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 21,
+      "w": 22,
+      "h": 40
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      72,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-len/1",
+     "frame": {
+      "x": 1184,
+      "y": 752,
+      "w": 22,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 22,
+      "w": 22,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      74,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-len/2",
+     "frame": {
+      "x": 1216,
+      "y": 752,
+      "w": 22,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 21,
+      "w": 22,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      76,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-len/3",
+     "frame": {
+      "x": 1248,
+      "y": 752,
+      "w": 22,
+      "h": 45
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 19,
+      "w": 22,
+      "h": 45
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      78,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-len/4",
+     "frame": {
+      "x": 1280,
+      "y": 752,
+      "w": 22,
+      "h": 40
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 21,
+      "w": 22,
+      "h": 40
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      80,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-len/5",
+     "frame": {
+      "x": 1312,
+      "y": 752,
+      "w": 22,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 22,
+      "w": 22,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      82,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-len/6",
+     "frame": {
+      "x": 1344,
+      "y": 752,
+      "w": 22,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 21,
+      "w": 22,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      84,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/ny/khom-len/7",
+     "frame": {
+      "x": 1376,
+      "y": 752,
+      "w": 22,
+      "h": 45
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 21,
+      "y": 19,
+      "w": 22,
+      "h": 45
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      86,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/ny"
+    },
+    {
+     "filename": "char/son/khom-trai/0",
+     "frame": {
+      "x": 1408,
+      "y": 752,
+      "w": 26,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 21,
+      "w": 26,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      88,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-trai/1",
+     "frame": {
+      "x": 1440,
+      "y": 752,
+      "w": 25,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 20,
+      "w": 25,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      90,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-trai/2",
+     "frame": {
+      "x": 1472,
+      "y": 752,
+      "w": 25,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 20,
+      "w": 25,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      92,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-trai/3",
+     "frame": {
+      "x": 1504,
+      "y": 752,
+      "w": 26,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 20,
+      "w": 26,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      94,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-trai/4",
+     "frame": {
+      "x": 1536,
+      "y": 752,
+      "w": 28,
+      "h": 41
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 21,
+      "w": 28,
+      "h": 41
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      96,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-trai/5",
+     "frame": {
+      "x": 1568,
+      "y": 752,
+      "w": 26,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 20,
+      "w": 26,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      98,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-trai/6",
+     "frame": {
+      "x": 1600,
+      "y": 752,
+      "w": 25,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 20,
+      "w": 25,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      100,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-trai/7",
+     "frame": {
+      "x": 1632,
+      "y": 752,
+      "w": 25,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 20,
+      "y": 20,
+      "w": 25,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      102,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-xuong/0",
+     "frame": {
+      "x": 1664,
+      "y": 752,
+      "w": 30,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      104,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-xuong/1",
+     "frame": {
+      "x": 1696,
+      "y": 752,
+      "w": 30,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      106,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-xuong/2",
+     "frame": {
+      "x": 1728,
+      "y": 752,
+      "w": 29,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 18,
+      "y": 20,
+      "w": 29,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      108,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-xuong/3",
+     "frame": {
+      "x": 1760,
+      "y": 752,
+      "w": 30,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      110,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-xuong/4",
+     "frame": {
+      "x": 1792,
+      "y": 752,
+      "w": 30,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      112,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-xuong/5",
+     "frame": {
+      "x": 1824,
+      "y": 752,
+      "w": 30,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      114,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-xuong/6",
+     "frame": {
+      "x": 1856,
+      "y": 752,
+      "w": 29,
+      "h": 43
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 20,
+      "w": 29,
+      "h": 43
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      116,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-xuong/7",
+     "frame": {
+      "x": 1888,
+      "y": 752,
+      "w": 30,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 17,
+      "y": 19,
+      "w": 30,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      118,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-len/0",
+     "frame": {
+      "x": 1920,
+      "y": 752,
+      "w": 26,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 18,
+      "y": 19,
+      "w": 26,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      120,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-len/1",
+     "frame": {
+      "x": 1952,
+      "y": 752,
+      "w": 26,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 18,
+      "y": 20,
+      "w": 26,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      122,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-len/2",
+     "frame": {
+      "x": 1984,
+      "y": 752,
+      "w": 25,
+      "h": 45
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 19,
+      "w": 25,
+      "h": 45
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      124,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-len/3",
+     "frame": {
+      "x": 2016,
+      "y": 752,
+      "w": 26,
+      "h": 47
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 17,
+      "w": 26,
+      "h": 47
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      126,
+      47,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-len/4",
+     "frame": {
+      "x": 0,
+      "y": 800,
+      "w": 25,
+      "h": 42
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 19,
+      "w": 25,
+      "h": 42
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      0,
+      50,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-len/5",
+     "frame": {
+      "x": 32,
+      "y": 800,
+      "w": 25,
+      "h": 44
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 20,
+      "w": 25,
+      "h": 44
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      2,
+      50,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-len/6",
+     "frame": {
+      "x": 64,
+      "y": 800,
+      "w": 25,
+      "h": 45
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 19,
+      "w": 25,
+      "h": 45
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      4,
+      50,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
+     "filename": "char/son/khom-len/7",
+     "frame": {
+      "x": 96,
+      "y": 800,
+      "w": 25,
+      "h": 47
+     },
+     "rotated": false,
+     "trimmed": true,
+     "spriteSourceSize": {
+      "x": 19,
+      "y": 17,
+      "w": 25,
+      "h": 47
+     },
+     "sourceSize": {
+      "w": 64,
+      "h": 64
+     },
+     "anchor": {
+      "x": 0.5,
+      "y": 0.9375
+     },
+     "cell": [
+      6,
+      50,
+      2,
+      3
+     ],
+     "zone": "char",
+     "group": "char/son"
+    },
+    {
      "filename": "enemy/ke-lang-thang/le-buoc-trai/0",
      "frame": {
       "x": 1984,
@@ -50642,7 +53810,7 @@
     "page": 0,
     "row0": 0,
     "row1": 83,
-    "used": 4925,
+    "used": 5501,
     "capacity": 10752
    },
    {
@@ -50726,7 +53894,7 @@
     "capacity": 2560
    }
   ],
-  "frames": 1530,
-  "anims": 194
+  "frames": 1626,
+  "anims": 206
  }
 }

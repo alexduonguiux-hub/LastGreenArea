@@ -35,6 +35,8 @@ describe('atlas + anims (file sinh bởi art/build.py)', () => {
       'char/duong/di-sang-trai',
       'char/duong/chay',
       'char/duong/bo-nup',
+      'char/duong/khom-trai',
+      'char/ny/khom-len',
       'char/duong/nem-da',
       'char/duong/khoa-siet-tu-sau',
       'enemy/ke-lang-thang/le-buoc-trai',
