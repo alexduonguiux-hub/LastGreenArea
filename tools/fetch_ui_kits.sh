@@ -22,3 +22,14 @@ clone NeirizaBagas/Technical-Test-Toge tinyswords_b "Assets/Tiny Swords/Building
 clone arianne/stendhal stendhal "data/maps/tileset/building" "data/maps/tileset/object" "data/maps/tileset/item"  # CC BY-SA 3.0 / GPL
 # --- lấy nội dung LFS ---
 python3 "$(dirname "$0")/lfs_media_fetch.py" pixel_ui_fantasy tinyswords bdragon cryo goldenui kenney_fantasy sprout jam tinyswords_b
+# --- isometric (2026-10-14), đích /home/user/iso ---
+ISO=${2:-/home/user/iso}; mkdir -p "$ISO"; cd "$ISO"
+clone phaserjs/examples phaser public/3.55/assets/tilemaps/iso public/3.55/assets/tests/iso   # Yar iso-64x64 (CC BY 3.0)
+clone flareteam/flare-game flare mods/fantasycore/images/tilesets mods/fantasycore/images/enemies mods/fantasycore/images/avatar
+clone w84death/Tanks-of-Freedom tof assets
+clone lincity-ng/lincity-ng lincity data/images
+clone mapeditor/tiled tiled examples
+clone OpenTTD/OpenGFX opengfx sprites/png
+clone unknown-horizons/unknown-horizons uh content/gfx/buildings content/gfx/terrain
+[ -d pak128/.git ] || { GIT_LFS_SKIP_SMUDGE=1 git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/simutrans/pak128 pak128; (cd pak128 && git sparse-checkout init --cone && git sparse-checkout set cityhouses special_buildings landscape citycars && git checkout -q); }
+# gói Kenney isometric: trong "$DST/jam" (series-ai/jam-ready-assets) — git sparse-checkout add kenney-isometric-* rồi tải LFS media
